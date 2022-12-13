@@ -4,10 +4,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:xe
-    username: hero
-    password: hero
-    driver-class-name: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@hero_high?TNS_ADMIN=C:\\herolanding\\Wallet_hero
+    username: Herolanding1
+    password: Rlathdud1011
+    driver-class-name: oracle.jdbc.OracleDriver
 
   jpa:
     hibernate:
