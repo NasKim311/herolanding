@@ -1,5 +1,5 @@
 server:
-  port: 9999
+  port: 9998
 
 
 spring:
@@ -11,7 +11,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: create 
     properties:
       hibernate:
         show_sql: true
