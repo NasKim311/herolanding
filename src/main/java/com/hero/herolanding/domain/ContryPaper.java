@@ -15,18 +15,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ContryPaper {
-
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "countryPapersIdSequence")
-	private int 국가별서류번호;
-	private int 나이;
-	private String 서류유효기간;
-	private String 서류제출방법;
-	private String 비고;
-	private int 국가번호;
-	private int 서류번호;
-
-
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "countryPapersIdSequence")
 	@Column(name = "국가별서류번호")
 	private int countryPaperNum;
