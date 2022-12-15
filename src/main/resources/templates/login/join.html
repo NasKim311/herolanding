@@ -17,7 +17,7 @@
 
     /* 메인 네비바에 안가리게 */
     body {
-        padding-top: 3rem;
+        padding-top: 3.5rem;
         /* padding-bottom: 3rem; */
         color: #333;
     }
@@ -28,170 +28,97 @@
 <div th:replace="/fragments/nav-main.html :: nav-main"></div>
 
     
-	<main class="container-md py-5">
-	    <div class="row">
-	        <div class="col text-center">
-	            <h1>회원가입</h1>
-	            <hr>
+<main>
+<div class="container-fluid">
+	<div class="row justify-content-center py-5">
+	    <div class="col-md-5">
+	        <h4 class="h3 mb-3 text-center">회원가입</h4>
+	        <form>
+	            <div class="row">
+	                <div class="col-sm-12 pb-3">
+	                    <!-- 아이디, 중복확인 -->
+	                    <label for="name" class="form-label">아이디</label>
+	                    <div class="input-group">
+	                        <input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요.">
+	                        <button class="btn btn-secondary" type="button" id="button-addon2">중복확인</button>
+	                    </div>
+	                </div>
+	                <!-- 비밀번호 -->
+	
+	                <div class="sol-sm-12 pb-3">
+	                    <label for="password" class="form-label">비밀번호</label>
+	                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요.">
+	                </div>
+	
+	                <!-- 비밀번호 확인 -->
+	                <div class="sol-sm-12 pb-3">
+	                    <label for="password-check" class="form-label">비밀번호 확인</label>
+	                    <div class="input-group">
+	                        <input type="password" class="form-control" id="password-check" placeholder="비밀번호를 입력하세요.">
+	                        <button class="btn btn-secondary" type="button" id="button-addon2">중복확인</button>
+	                    </div>
+	                </div>
+	
+	                <!-- 닉네임 -->
+	                <div class="col-sm-12 pb-3">
+	                    <label for="nickname" class="form-label">닉네임</label>
+	                        <div class="input-group">
+	                            <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요.">
+	                            <button class="btn btn-secondary" type="button" id="button-addon2">중복확인</button>
+	                        </div>
+	                    </div>
+	                </div>
+	                
+	                <!-- 이메일 -->
+	                <div class="col-sm-12 pb-3">
+	                    <label for="email" class="form-label">이메일</label>
+	                    <div class="input-group">
+	                        <input type="text" class="form-control" id="email" placeholder="이메일을 입력하세요.">
+	                        <button class="btn btn-secondary" type="button" id="button-addon2">인증번호 받기</button>
+	                    </div>
+	                </div>
+	
+	                <!-- 휴대폰 -->
+	                <div class="col-sm-12">
+	                    <label for="phone" class="form-label">휴대폰</label>
+	                    <div class="input-group">
+	                        <input type="text" class="form-control" id="phone" placeholder="휴대폰을 입력하세요.">
+	                        <button class="btn btn-secondary" type="button" id="button-addon2">인증번호 받기</button>
+	                    </div>
+	                </div>
+	
+	            <hr class="my-4">
+	
+	            <div class="form-check pb-1">
+	                <input type="checkbox" class="form-check-input" id="same-address">
+	                <label class="form-check-label" for="same-address"><b>전체 동의합니다.</b></label>
+	            </div>
+	            
+	            <ul>
+	                <div class="form-check">
+	                        <input type="checkbox" class="form-check-input" id="save-info">
+	                        <label class="form-check-label" for="save-info">이용약관 동의</label>
+	                    </div>
+	                
+	                <div class="form-check">
+	                    <input type="checkbox" class="form-check-input" id="save-info">
+	                    <label class="form-check-label" for="save-info">개인정보 수집 및 이용 동의<span class="text-muted">(필수)</span></label>
+	                </div>
+	                
+	                <div class="form-check">
+	                    <input type="checkbox" class="form-check-input" id="save-info">
+	                    <label class="form-check-label" for="save-info">개인정보 수집 및 이용 동의<span class="text-muted">(선택)</span></label>
+	                </div>
+	            </ul>
+	                
+	            <hr class="my-4">
+	
+	            <!-- 가입하기 버튼 -->
+	                <button class="w-100 btn btn-primary btn-lg" type="submit">가입하기</button>
+	            </form>
 	        </div>
 	    </div>
-	    <form>
-	        <div class="container">
-	            <!-- 아이디 -->
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="id" class="form-label mb-0">
-	                        <p>
-	                            <h5>아이디</h5>
-	                        </p>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input type="text" class="form-control" id="id" placeholder="아이디를 입력하세요">
-	                </div>
-	                <div class="col-3 align-self-center text-center">
-	                    <button type="button" class="btn btn-primary">중복확인</button>
-	                </div>
-	            </div>
-	            <!-- 패스워드 -->
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="password" class="form-label mb-0">
-	                        <p>
-	                            <h5>비밀번호</h5>
-	                        </p>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요">
-	                </div>
-	            </div>
-	            <!-- 이름 -->
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="name" class="form-label mb-0">
-	                        <P>
-	                            <h5>이름</h5>
-	                        </P>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input type="text" class="form-control" id="name" placeholder="이름을 입력하세요">
-	                </div>
-	            </div>
-	            <!-- 닉네임 -->
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="nickname" class="form-label mb-0">
-	                        <P>
-	                            <h5>닉네임</h5>
-	                        </P>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요">
-	                </div>
-	                <div class="col-3 text-center align-self-center">
-	                    <button type="button" class="btn btn-primary">중복확인</button>
-	                </div>
-	            </div>
-	            <!-- 이메일 -->
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="email" class="form-label mb-0">
-	                        <P>
-	                            <h5>이메일</h5>
-	                        </P>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input type="email" class="form-control" id="email" placeholder="이메일을 입력하세요">
-	                </div>
-	                <div class="col-3 align-self-center text-center">
-	                    <button type="button" class="btn btn-primary">중복확인</button>
-	                </div>
-	            </div>
-	            <!-- 휴대폰 -->
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="phone" class="form-label mb-0">
-	                        <P>
-	                            <h5>휴대폰</h5>
-	                        </P>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input type="text" class="form-control" id="phone" placeholder="휴대폰을 입력하세요">
-	                </div>
-	                <div class="col-3 align-self-center text-center">
-	                    <button type="button" class="btn btn-primary">인증번호 받기</button>
-	                </div>
-	            </div>
-	        </div>
-	
-	        <hr>
-	        <!-- 회원정보 동의 -->
-	        <div class="container">
-	            <div class="row">
-	                <div class="col-3">
-	                    <label for="agree" class="form-label mb-0">
-	                        <p>
-	                            <h5>회원정보 동의</h5>
-	                        </p>
-	                    </label>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input class="form-check-input mx-2" type="checkbox" value="" id="agree">전체 동의합니다.
-	                </div>
-	            </div>
-	            <div class="row">
-	                <div class="col-3">
-	                    <p>
-	                        <h5>&nbsp;</h5>
-	                    </p>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input class="form-check-input mx-2" type="checkbox" value="" id="agree">이용약관 동의
-	                </div>
-	                <div class="col-3 align-self-center text-center">
-	                    <button type="button" class="btn btn-primary">약관보기</button>
-	                </div>
-	            </div>
-	            <div class="row">
-	                <div class="col-3">
-	                    <p>
-	                        <h5>&nbsp;</h5>
-	                    </p>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input class="form-check-input mx-2" type="checkbox" value="" id="agree">개인정보 수집 및 이용 동의<span class='text-muted'>(필수)</span>
-	                </div>
-	                <div class="col-3 align-self-center text-center">
-	                    <button type="button" class="btn btn-primary">약관보기</button>
-	                </div>
-	            </div>
-	            <div class="row">
-	                <div class="col-3">
-	                    <p>
-	                        <h5>&nbsp;</h5>
-	                    </p>
-	                </div>
-	                <div class="col-6 align-self-center">
-	                    <input class="form-check-input mx-2" type="checkbox" value="" id="agree">개인정보 수집 및 이용 동의<span class='text-muted'>(선택)</span>
-	                </div>
-	                <div class="col-3 align-self-center text-center">
-	                    <button type="button" class="btn btn-primary">약관보기</button>
-	                </div>
-	            </div>
-	        </div>
-	
-	        <hr>
-	            
-	        <!-- 제출 버튼 -->
-	        <div class="text-center">
-	            <button type="submit" class="btn btn-primary text-center">가입하기</button>
-	        </div>
-	    </form>
+	    </div>
 	</main>
 
 <!-- 푸터 -->
