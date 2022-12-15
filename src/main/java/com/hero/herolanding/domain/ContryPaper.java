@@ -17,7 +17,6 @@ import lombok.Setter;
 public class ContryPaper {
 
 	@Id
-<<<<<<< HEAD
 	@GeneratedValue(strategy = GenerationType.SEQUENCE,generator = "countryPapersIdSequence")
 	private int 국가별서류번호;
 	private int 나이;
@@ -26,8 +25,8 @@ public class ContryPaper {
 	private String 비고;
 	private int 국가번호;
 	private int 서류번호;
-}
-=======
+
+
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "countryPapersIdSequence")
 	@Column(name = "국가별서류번호")
 	private int countryPaperNum;
@@ -51,4 +50,4 @@ public class ContryPaper {
 	private int paperNum; // 서류 조인 컬럼
 
 } // ContryPapers class
->>>>>>> hero/main
+
