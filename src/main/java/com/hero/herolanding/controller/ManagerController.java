@@ -22,5 +22,4 @@ public class ManagerController {
 	
 // 게시판관리.html
 	
-
 }
