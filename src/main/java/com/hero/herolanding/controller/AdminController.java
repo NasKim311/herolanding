@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class ManagerController {
+public class AdminController {
 
 // 임시로 설정해놓은 경로(관리자페이지)
 	@GetMapping("/admin")
