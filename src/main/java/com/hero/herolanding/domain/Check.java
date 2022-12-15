@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@SequenceGenerator(name = "checkIdSequence", sequenceName = "member_seq", allocationSize = 1)
+@SequenceGenerator(name = "checkIdSequence", sequenceName = "check_seq", allocationSize = 1)
 @Getter
 @Setter
 public class Check {

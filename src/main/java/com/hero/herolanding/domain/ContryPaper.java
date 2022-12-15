@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@SequenceGenerator(name = "countryPapersIdSequence", sequenceName = "member_seq", allocationSize = 1)
+@SequenceGenerator(name = "countryPapersIdSequence", sequenceName = "countryPaper_seq", allocationSize = 1)
 @Getter
 @Setter
 public class ContryPaper {

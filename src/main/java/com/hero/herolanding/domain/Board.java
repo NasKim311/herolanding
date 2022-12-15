@@ -13,7 +13,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@SequenceGenerator(name = "boardIdSequence", sequenceName = "member_seq", allocationSize = 1)
+@SequenceGenerator(name = "boardIdSequence", sequenceName = "board_seq", allocationSize = 1)
 @Getter
 @Setter
 public class Board {
