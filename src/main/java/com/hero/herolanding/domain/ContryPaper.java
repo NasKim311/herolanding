@@ -23,5 +23,4 @@ public class ContryPapers {
 	private String 비고;
 	private int 국가번호;
 	private int 서류번호;
-	
 }
