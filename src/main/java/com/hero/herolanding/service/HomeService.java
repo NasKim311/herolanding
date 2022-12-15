@@ -16,8 +16,10 @@ public class HomeService {
 	
 //	@Transactional
 //	public Country findCountryAll() {
+//	
 //		return homeRepository.findCountryAll();
 //	}
 	
+	// 해당 국가 뉴스기사 ( 크롤링 , 디비 X )
 
 }
