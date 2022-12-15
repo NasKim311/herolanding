@@ -20,10 +20,11 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("{search}")
-	public String search(@PathVariable String search, Model model) {
-		return "search";
-	}
+//	@GetMapping("{search}")
+//	public String search(@PathVariable String search, Model model) {
+//		return "search";
+//	}
 	
+//	임시
 	
 }
