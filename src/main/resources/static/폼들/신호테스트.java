@@ -48,11 +48,5 @@ public class ManagerController {
 		return "admin/DB관리";
 	}
 
-// DB수정.html
-	@GetMapping("/DB수정.html")
-	public String dbupdate() {
-		System.out.println("DB수정");
-		return "admin/DB수정";
-	}
-
+	
 }
