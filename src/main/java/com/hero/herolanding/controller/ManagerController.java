@@ -10,14 +10,14 @@ public class ManagerController {
 	@GetMapping("/admin")
 	public String admin() {
 		System.out.println("관리자페이지");
-		return "heromanager/관리자페이지";
+		return "admin/관리자페이지";
 	}
 	
 // 회원관리.html
 	@GetMapping("/회원관리.html")
 	public String manager() {
 		System.out.println("회원관리");
-		return "heromanager/회원관리";
+		return "admin/회원관리";
 	}
 	
 // 게시판관리.html
