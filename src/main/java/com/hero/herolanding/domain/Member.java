@@ -1,10 +1,15 @@
 package com.hero.herolanding.domain;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -31,7 +36,7 @@ public class Member {
 	private String memberName;
 
 	@Column(name = "닉네임")
-	private String memberNickname;
+	private String memberNickName;
 
 	@Column(name = "핸드폰번호")
 	private String memberPhoneNum;
@@ -48,10 +53,22 @@ public class Member {
 	@Column(name = "광고약관동의")
 	private boolean memberAdvAgree;
 
+	@Column(name = "가입날짜")
+	private LocalDate signUpDate;
+
 	@Column(name = "회원상태")
 	private boolean memberIsjoin;
 
-	@Column(name = "국가번호")
-	private Long countryNum; // 국가테이블 조인 컬럼
+//--------<@OneToMany / board>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "member")
+	private List<Board> boards = new ArrayList<Board>();
+
+//--------<@OneToMany / reply>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "member")
+	private List<Reply> replys = new ArrayList<Reply>();
+
+//--------<@OneToMany / report>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "member")
+	private List<Report> reports = new ArrayList<Report>();
 
 } // Member class
