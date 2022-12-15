@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ManagerController {
 
 // 임시로 설정해놓은 경로(관리자페이지)
-	@GetMapping("/")
-	public String hello() {
+	@GetMapping("/admin")
+	public String admin() {
 		System.out.println("관리자페이지");
 		return "heromanager/관리자페이지";
 	}
