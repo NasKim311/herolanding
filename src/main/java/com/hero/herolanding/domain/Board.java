@@ -1,12 +1,19 @@
 package com.hero.herolanding.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -41,16 +48,30 @@ public class Board {
 	@Column(name = "신고횟수")
 	private Long reportCount;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "대륙명")
-	private String continent; // 대륙이름(ENUM)
+	private Continent continent;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "게시글분류")
-	private String boardType; // 자유게시판, 맛집후기, 여행지후기
+	private BoardType boardType;
 
-	@Column(name = "회원번호")
-	private Long memberNum; // 멤버 조인 컬럼
+//--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "회원번호")
+	private Member member;
 
-	@Column(name = "국가번호")
-	private int countryNum; // 국가 조인 컬럼
+	public void setMember(Member member) {
+		this.member = member;
+		member.getBoards().add(this);
+	}
+
+//--------<@OneToMany / reply>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "board")
+	private List<Reply> replys = new ArrayList<Reply>();
+
+//--------<@OneToMany / reply>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "board")
+	private List<Report> reports = new ArrayList<Report>();
 
 } // Board class

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -30,10 +32,24 @@ public class Check {
 	@Column(name = "비고")
 	private String checkNote;
 
-	@Column(name = "국가번호")
-	private Long countryNum; // 국가 조인 컬럼
+//--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "국가번호")
+	private Country country; // 국가 조인 컬럼
 
-	@Column(name = "도시번호")
-	private Long cityNum; // 도시 조인 컬럼
+	public void setCountry(Country country) {
+		this.country = country;
+		country.getChecks().add(this);
+	}
+
+//--------<@ManyToOne / City>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "도시번호")
+	private City city; // 도시 조인 컬럼
+
+	public void setCity(City city) {
+		this.city = city;
+		city.getChecks().add(this);
+	}
 
 } // Check class

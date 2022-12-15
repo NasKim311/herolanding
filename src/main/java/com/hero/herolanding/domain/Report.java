@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -24,13 +26,34 @@ public class Report {
 	@Column(name = "신고사유")
 	private String reportReason;
 
-	@Column(name = "신고자회원번호")
-	private Long reportMemberNum;
+//--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "회원번호")
+	private Member member;
 
-	@Column(name = "게시글번호")
-	private Long boardNum; // 게시글 조인 컬럼
+	public void setMember(Member member) {
+		this.member = member;
+		member.getReports().add(this);
+	}
 
-	@Column(name = "댓글번호")
-	private Long replyNum; // 댓글 조인 컬럼
+//--------<@ManyToOne / board>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "게시글번호")
+	private Board board;
+
+	public void setBoard(Board board) {
+		this.board = board;
+		board.getReports().add(this);
+	}
+
+//--------<@ManyToOne / reply>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "댓글번호")
+	private Reply reply;
+
+	public void setReply(Reply reply) {
+		this.reply = reply;
+		reply.getReports().add(this);
+	}
 
 } // Report class

@@ -1,10 +1,19 @@
 package com.hero.herolanding.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -25,15 +34,42 @@ public class Country {
 	private String countryName;
 
 	@Column(name = "대륙명")
-	private String continent; // 대륙이름(ENUM)
+	@Enumerated(EnumType.STRING)
+	private Continent continent;
 
 	@Column(name = "대사관/영사관링크")
-	private String embassyLink; // 해당 대사관/영사관 링크
+	private String embassyLink;
 
 	@Column(name = "비고")
 	private String countryNote;
 
-	@Column(name = "입국조치번호")
-	private int entranceLevelNum; // 입국조치 조인 컬럼
+	@Embedded
+	private CovidData covidData;
+
+//--------<@ManyToOne / ExchangeRate>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "통화번호")
+	private ExchangeRate exchangeRate;
+
+	public void setExchangeRate(ExchangeRate exchangeRate) {
+		this.exchangeRate = exchangeRate;
+		exchangeRate.getCountries().add(this);
+	}
+
+//--------<@OneToMany / Check>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "country")
+	private List<Check> checks = new ArrayList<Check>();
+
+//--------<@OneToMany / Visa>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "country")
+	private List<Visa> visas = new ArrayList<Visa>();
+
+//--------<@OneToMany / CountryPaper>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "country")
+	private List<CountryPaper> countryPapers = new ArrayList<CountryPaper>();
+
+//--------<@OneToMany / City>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "country")
+	private List<City> cities = new ArrayList<City>();
 
 } // Country class

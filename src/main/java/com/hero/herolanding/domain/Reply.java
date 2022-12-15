@@ -1,12 +1,17 @@
 package com.hero.herolanding.domain;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 import lombok.Getter;
@@ -32,10 +37,28 @@ public class Reply {
 	@Column(name = "뎁스레벨")
 	private int replyDepthLevel;
 
-	@Column(name = "회원번호")
-	private Long memberNum; // 멤버 조인 컬럼
+//--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "회원번호")
+	private Member member;
 
-	@Column(name = "게시글번호")
-	private Long boardNum; // 게시글 조인 컬럼
+	public void setMember(Member member) {
+		this.member = member;
+		member.getReplys().add(this);
+	}
+
+//--------<@ManyToOne / board>-------------------------------------------------------------------------------------	
+	@ManyToOne
+	@JoinColumn(name = "게시글번호")
+	private Board board;
+
+	public void setBoard(Board board) {
+		this.board = board;
+		board.getReplys().add(this);
+	}
+
+//--------<@OneToMany / report>-------------------------------------------------------------------------------------	
+	@OneToMany(mappedBy = "reply")
+	private List<Report> reports = new ArrayList<Report>();
 
 } // Reply class
