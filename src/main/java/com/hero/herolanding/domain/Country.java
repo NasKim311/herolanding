@@ -11,7 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@SequenceGenerator(name = "countryIdSequence", sequenceName = "member_seq", allocationSize = 1)
+@SequenceGenerator(name = "countryIdSequence", sequenceName = "country_seq", allocationSize = 1)
 @Getter
 @Setter
 public class Country {
