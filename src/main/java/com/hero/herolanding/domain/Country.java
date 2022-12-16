@@ -35,16 +35,16 @@ public class Country {
 
 	@Column(name = "대륙명")
 	@Enumerated(EnumType.STRING)
-	private Continent continent;
+	private String continent;
 
-	@Column(name = "대사관/영사관링크")
+	@Column(name = "대사관영사관링크")
 	private String embassyLink;
 
 	@Column(name = "비고")
 	private String countryNote;
 
 	@Embedded
-	private CovidData covidData;
+	private String covidData;
 
 //--------<@ManyToOne / ExchangeRate>-------------------------------------------------------------------------------------	
 	@ManyToOne
@@ -56,9 +56,9 @@ public class Country {
 		exchangeRate.getCountries().add(this);
 	}
 
-//--------<@OneToMany / Check>-------------------------------------------------------------------------------------	
+//--------<@OneToMany / Inspection>-------------------------------------------------------------------------------------	
 	@OneToMany(mappedBy = "country")
-	private List<Check> checks = new ArrayList<Check>();
+	private List<Inspection> inspections = new ArrayList<Inspection>();
 
 //--------<@OneToMany / Visa>-------------------------------------------------------------------------------------	
 	@OneToMany(mappedBy = "country")

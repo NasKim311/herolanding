@@ -50,11 +50,11 @@ public class Board {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "대륙명")
-	private Continent continent;
+	private String continent;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "게시글분류")
-	private BoardType boardType;
+	private String boardType;
 
 //--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
 	@ManyToOne

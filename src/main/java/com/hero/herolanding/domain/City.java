@@ -34,16 +34,16 @@ public class City {
 
 	@Column(name = "입국조치번호")
 	@Enumerated(EnumType.STRING)
-	private EntranceLevel entranceLevel;
+	private String entranceLevel;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
 	@ManyToOne
 	@JoinColumn(name = "국가번호")
 	private Country country;
 
-//--------<@OneToMany / Check>-------------------------------------------------------------------------------------	
+//--------<@OneToMany / Inspection>-------------------------------------------------------------------------------------	
 	@OneToMany
-	private List<Check> checks = new ArrayList<Check>();
+	private List<Inspection> inspections = new ArrayList<Inspection>();
 
 	public void setCountry(Country country) {
 		this.country = country;

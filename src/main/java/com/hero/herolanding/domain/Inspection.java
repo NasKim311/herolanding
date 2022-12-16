@@ -16,21 +16,21 @@ import lombok.Setter;
 @SequenceGenerator(name = "checkIdSequence", sequenceName = "check_seq", allocationSize = 1)
 @Getter
 @Setter
-public class Check {
+public class Inspection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "checkIdSequence")
 	@Column(name = "검사번호")
-	private int checkNum;
+	private int inspectionNum;
 
 	@Column(name = "격리기간")
 	private int isolationPeriod;
 
 	@Column(name = "검사횟수")
-	private int checkCount;
+	private int inspectionCount;
 
 	@Column(name = "비고")
-	private String checkNote;
+	private String inspectionNote;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
 	@ManyToOne
@@ -39,7 +39,7 @@ public class Check {
 
 	public void setCountry(Country country) {
 		this.country = country;
-		country.getChecks().add(this);
+		country.getInspections().add(this);
 	}
 
 //--------<@ManyToOne / City>-------------------------------------------------------------------------------------	
@@ -49,7 +49,7 @@ public class Check {
 
 	public void setCity(City city) {
 		this.city = city;
-		city.getChecks().add(this);
+		city.getInspections().add(this);
 	}
 
-} // Check class
+} // Inspection class
