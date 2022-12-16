@@ -33,9 +33,9 @@ public class Country {
 	@Column(name = "국가명")
 	private String countryName;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "대륙명")
-//	@Enumerated(EnumType.STRING)
-	private String continent;
+	private Continent continent;
 
 	@Column(name = "대사관영사관링크")
 	private String embassyLink;

@@ -32,9 +32,9 @@ public class City {
 	@Column(name = "도시명")
 	private String cityName;
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "입국조치번호")
-//	@Enumerated(EnumType.STRING)
-	private String entranceLevel;
+	private EntranceLevel entranceLevel;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
 	@ManyToOne
