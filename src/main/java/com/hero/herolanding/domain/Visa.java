@@ -26,22 +26,22 @@ public class Visa {
 	@Column(name = "입국시비자소지여부")
 	private boolean entranceVisaStatus;
 
-	@Column(name = "일반여권소지자_입국가능여부")
+	@Column(name = "일반여권소지자입국가능여부")
 	private boolean normalPassportStatus;
 
-	@Column(name = "일반여권소지자_입국가능기간")
+	@Column(name = "일반여권소지자입국가능기간")
 	private String normalPassportPeriod;
 
-	@Column(name = "관용여권소지자_입국가능여부")
+	@Column(name = "관용여권소지자입국가능여부")
 	private boolean officialPassportStatus;
 
-	@Column(name = "관용여권소지자_입국가능기간")
+	@Column(name = "관용여권소지자입국가능기간")
 	private String officialPassportPeriod;
 
-	@Column(name = "외교관여권소지자_입국가능여부")
+	@Column(name = "외교관여권소지자입국가능여부")
 	private boolean diplomatPassportStatus;
 
-	@Column(name = "외교관여권소지자_입국가능기간")
+	@Column(name = "외교관여권소지자입국가능기간")
 	private String diplomatPassportPeriod;
 
 	@Column(name = "무비자입국근거")
