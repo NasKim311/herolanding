@@ -34,7 +34,7 @@ public class Country {
 	private String countryName;
 
 	@Column(name = "대륙명")
-	@Enumerated(EnumType.STRING)
+//	@Enumerated(EnumType.STRING)
 	private String continent;
 
 	@Column(name = "대사관영사관링크")
@@ -44,7 +44,7 @@ public class Country {
 	private String countryNote;
 
 	@Embedded
-	private String covidData;
+	private CovidData covidData;
 
 //--------<@ManyToOne / ExchangeRate>-------------------------------------------------------------------------------------	
 	@ManyToOne

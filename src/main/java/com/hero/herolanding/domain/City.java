@@ -33,7 +33,7 @@ public class City {
 	private String cityName;
 
 	@Column(name = "입국조치번호")
-	@Enumerated(EnumType.STRING)
+//	@Enumerated(EnumType.STRING)
 	private String entranceLevel;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	

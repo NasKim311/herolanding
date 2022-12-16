@@ -48,11 +48,11 @@ public class Board {
 	@Column(name = "신고횟수")
 	private Long reportCount;
 
-	@Enumerated(EnumType.STRING)
+//	@Enumerated(EnumType.STRING)
 	@Column(name = "대륙명")
 	private String continent;
 
-	@Enumerated(EnumType.STRING)
+//	@Enumerated(EnumType.STRING)
 	@Column(name = "게시글분류")
 	private String boardType;
 
