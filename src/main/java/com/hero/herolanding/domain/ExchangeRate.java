@@ -53,4 +53,6 @@ public class ExchangeRate {
 	@OneToMany(mappedBy = "exchangeRate")
 	private List<Country> countries = new ArrayList<Country>();
 
+
+
 } // ExchangeRate class

@@ -4,6 +4,9 @@ import javax.persistence.EntityManager;
 
 import org.springframework.stereotype.Repository;
 
+import com.hero.herolanding.crawling.ExchangeRateCr;
+import com.hero.herolanding.domain.ExchangeRate;
+
 import lombok.RequiredArgsConstructor;
 
 @Repository
@@ -15,13 +18,14 @@ public class HomeRepository {
 	
 	// 메인페이지에서 사용
 	
-	// 전 세계 환율 정보 (크롤링) - 실시간 변동 (인서트)
-	public void ExchageInsert() {
-		
-	}
-	// 전 세계 환율 정보 (크롤링) - 실시간 변동 (업데이트)
-	public void ExchageUpdate() {
-		
+	// 전 세계 환율 정보 (크롤링) - 실시간 변동 (인서트 / 업데이트)
+	public void insertExchange(ExchangeRate exchangeRate) {
+		System.out.println("레파지토리");
+		if(exchangeRate.getCurrencyNum() == null) { 
+			em.persist(exchangeRate);
+		}else {
+			em.merge(exchangeRate);
+		}
 	}
 	// 등록된 회원의 많이 여행가는 나라 순위 (디비 - select)
 	public void maxCntContry() {
@@ -62,6 +66,8 @@ public class HomeRepository {
 	public void findTripLank() {
 		
 	}
+	
+	
 	
 	
 }

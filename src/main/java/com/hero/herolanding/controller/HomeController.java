@@ -1,10 +1,9 @@
 package com.hero.herolanding.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
+import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.service.HomeService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +16,9 @@ public class HomeController {
 	
 	@GetMapping
 	public String index() {
+		homeService.save();
+		Board board = new Board();
+		board.getBoardType();
 		return "index";
 	}
 	

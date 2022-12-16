@@ -1,5 +1,16 @@
 package com.hero.herolanding.domain;
 
 public enum BoardType {
-	자유게시판, 맛집후기, 여행지후기
-} // BoardType enum
+	   TIP("꿀팁게시판"), FREE("자유게시판");
+	
+	   private final String description;
+	   private BoardType(String  description)
+	   {
+	      this.description = description;
+	   }
+	   public String getDescription()
+	   {
+	      return description;
+	   }
+	}
+ // BoardType enum
