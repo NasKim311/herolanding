@@ -1,0 +1,105 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>글 보기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- 글 보기 -->
+    <main>
+    
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h3 th:text="${board.user_name}"></h3>
+                </div>
+                <br>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 th:text="${board.post_title}" >제목</h3>
+                            <input type="hidden" th:value="${board.id}" id="get_id">
+                        </div>
+                        <div class="card-body">
+                            <p th:text="${board.post_content}"> 내용</p>
+                        </div>
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="#" th:href="@{/board/edit/{id}(id=${board.id})}"  class="btn btn-primary">수정</a>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.id})}"  class="btn btn-danger">삭제</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                       <div class="comment-box">
+                    
+   		                 <div class="comment-count">댓글 <span id="count">0</span></div>
+   		                 <div class="comment-name">
+	                        <span class="anonym">작성자 : 
+	                    	    <input type="text" class="form-control" id="com_writer" placeholder="이름" name ="com_writer" value='${login.userId}' readonly  style="width: 100px; border:none;">
+	                        </span>
+	                      </div>   
+                    <div class="comment-sbox">
+                        <textarea class="comment-input" id="com_content" cols="80" rows="2" name="com_content" ></textarea>
+                    </div>
+                    	<div class="regBtn">
+                    		<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
+                    	 </div>
+                    	 <div id="comment">
+	                    	 <table border="1">
+	                    	 	<tr>
+	                    	 		<td>작성자</td>
+	                    	 		<td>내용</td>
+	                    	 		<td>작성시간</td>
+	                    	 	</tr>
+	                    	 	
+	                    	 	<tr th:each="comment : ${comments}">
+	                    	 		<td th:text="${comment.user_name}"></td>
+	                    	 		<td th:text="${comment.comment_contents}"></td>
+	                    	 		<td th:text="${comment.commnet_date}"></td>
+	                    	 	</tr>
+	                    	 </table>
+                    	 </div>
+            		</div>
+        </div>
+    </main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		function dataSend()
+		{	
+			var data = $("#com_content").val();
+			var user_name = $("#com_writer").val();
+			var board_id = $("#get_id").val();
+			const sendDTO = {
+					name: user_name,
+					result:data,
+					boardId:board_id
+			};
+			$.ajax({
+				url: "/board/comment",
+				data: sendDTO,
+				type: 'POST',
+			}).done(function (fragment){
+				history.go(0);
+			});
+			
+		}
+		 
+	</script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
