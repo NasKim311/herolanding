@@ -1,0 +1,60 @@
+server:
+  port: 9998
+
+
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@hero_high?TNS_ADMIN=C:\\herolanding\\Wallet_hero
+    username: Herolanding1
+    password: Rlathdud1011
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+      
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+ 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

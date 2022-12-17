@@ -1,0 +1,47 @@
+package com.hero.herolanding.domain;
+
+import static com.querydsl.core.types.PathMetadataFactory.*;
+
+import com.querydsl.core.types.dsl.*;
+
+import com.querydsl.core.types.PathMetadata;
+import javax.annotation.processing.Generated;
+import com.querydsl.core.types.Path;
+
+
+/**
+ * QCovidData is a Querydsl query type for CovidData
+ */
+@Generated("com.querydsl.codegen.DefaultEmbeddableSerializer")
+public class QCovidData extends BeanPath<CovidData> {
+
+    private static final long serialVersionUID = -201992739L;
+
+    public static final QCovidData covidData = new QCovidData("covidData");
+
+    public final StringPath injectionCompleteCount = createString("injectionCompleteCount");
+
+    public final StringPath newCovidCount = createString("newCovidCount");
+
+    public final StringPath newInjectionCount = createString("newInjectionCount");
+
+    public final StringPath samang = createString("samang");
+
+    public final StringPath totalCovidCount = createString("totalCovidCount");
+
+    public final StringPath totalInjectionCount = createString("totalInjectionCount");
+
+    public QCovidData(String variable) {
+        super(CovidData.class, forVariable(variable));
+    }
+
+    public QCovidData(Path<? extends CovidData> path) {
+        super(path.getType(), path.getMetadata());
+    }
+
+    public QCovidData(PathMetadata metadata) {
+        super(CovidData.class, metadata);
+    }
+
+}
+
