@@ -6,6 +6,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,11 +39,33 @@ public class BoardController {
 	} // 글 작성 Form으로 이동 시켜주는 로직
 	
 	@PostMapping("/board/write")
-	public String Board_write(BoardDTO dto)
+	public String Board_write(BoardDTO dto , BindingResult bindingResult)
 	{
 		Board board = new Board();
 		Member member = new Member(); // 추후에 로그인한 아이디가 있다면 아이디를 통해 멤버 정보를
 									  // 가져와서 입력해주면 됨
+		if(!StringUtils.hasText(dto.getPost_title()))
+		{
+			bindingResult.addError(new FieldError("dto", "post_title", dto.getPost_title(), false, null, null , "제목은 필수입니다."));
+		}
+		
+		if(!StringUtils.hasText(dto.getPost_content()))
+		{
+			bindingResult.addError(new FieldError("dto", "post_content", dto.getPost_content(), false, null, null , "내용은 필수입니다."));
+		}
+		
+		if(dto.getContinent() == null)
+		{
+			bindingResult.addError(new FieldError("dto", "continent", dto.getContinent(), false, null, null , "여행지역을 입력해주세요"));
+		}
+		
+		if(dto.getWriteType() == null)
+		{
+			bindingResult.addError(new FieldError("dto", "writeType", dto.getWriteType(), false, null, null , "게시판을 선택해주세요"));
+		}
+		
+		
+		if(bindingResult.hasErrors()) return "board/board_write"; // 에러가 있는 경우 입력폼으로 다시 이동
 		
 		board.setBoardTitle(dto.getPost_title()); // 사용자가 입력한 제목
 		board.setBoardContents(dto.getPost_content()); // 사용자가 입력한 내용
