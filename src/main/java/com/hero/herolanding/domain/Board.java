@@ -31,10 +31,10 @@ public class Board {
 	private Long boardNum;
 
 	@Column(name = "작성일자")
-	private LocalDateTime insertDate;
+	private String insertDate;
 
 	@Column(name = "수정일자")
-	private LocalDateTime updateDate;
+	private String updateDate;
 
 	@Column(name = "글제목")
 	private String boardTitle;

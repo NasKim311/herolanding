@@ -29,13 +29,16 @@ public class Reply {
 	private Long replyNum;
 
 	@Column(name = "작성일자")
-	private LocalDateTime replyInsertDate;
+	private String replyInsertDate;
 
 	@Column(name = "수정일자")
-	private LocalDateTime replyUpdateDate;
+	private String replyUpdateDate;
 
 	@Column(name = "뎁스레벨")
 	private int replyDepthLevel;
+	
+	@Column(name ="댓글내용")
+	private String replyContent;
 
 //--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
 	@ManyToOne
