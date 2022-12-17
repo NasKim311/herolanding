@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -73,5 +74,11 @@ public class Board {
 //--------<@OneToMany / reply>-------------------------------------------------------------------------------------	
 	@OneToMany(mappedBy = "board")
 	private List<Report> reports = new ArrayList<Report>();
+	
+	  public Board updateViewCount(long boardCount)
+	   {
+		   this.boardCount = boardCount + 1;
+		   return this;
+	   } // 조회수를 올리기위한 로직
 
 } // Board class

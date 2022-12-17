@@ -16,7 +16,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <h3 th:text="${board.user_name}"></h3>
+                    <h3 th:text="${board.member}"></h3>
                 </div>
                 <br>
             </div>
@@ -24,19 +24,19 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 th:text="${board.post_title}" >제목</h3>
-                            <input type="hidden" th:value="${board.id}" id="get_id">
+                            <h3 th:text="${board.boardTitle}" >제목</h3>
+                            <input type="hidden" th:value="${board.boardNum}" id="get_id">
                         </div>
                         <div class="card-body">
-                            <p th:text="${board.post_content}"> 내용</p>
+                            <p th:text="${board.boardContents}"> 내용</p>
                         </div>
                         <div class="card-footer">
                             <div class="row">
                                 <div class="col-6">
-                                    <a href="#" th:href="@{/board/edit/{id}(id=${board.id})}"  class="btn btn-primary">수정</a>
+                                    <a href="#" th:href="@{/board/edit/{id}(id=${board.boardNum})}"  class="btn btn-primary">수정</a>
                                 </div>
                                 <div class="col-6 text-end">
-                                    <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.id})}"  class="btn btn-danger">삭제</a>
+                                    <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.boardNum})}"  class="btn btn-danger">삭제</a>
                                 </div>
                             </div>
                         </div>
@@ -65,9 +65,9 @@
 	                    	 	</tr>
 	                    	 	
 	                    	 	<tr th:each="comment : ${comments}">
-	                    	 		<td th:text="${comment.user_name}"></td>
-	                    	 		<td th:text="${comment.comment_contents}"></td>
-	                    	 		<td th:text="${comment.commnet_date}"></td>
+	                    	 		<td th:text="${comment.member}"></td>
+	                    	 		<td th:text="${comment.replyContent}"></td>
+	                    	 		<td th:text="${comment.replyInsertDate}"></td>
 	                    	 	</tr>
 	                    	 </table>
                     	 </div>

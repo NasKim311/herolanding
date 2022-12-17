@@ -16,7 +16,6 @@
         <div class="row">
             <div class="col-12">
                 <h1>게시판 목록</h1>
-                <input type="radio" th:onclick="check(this.id)" th:id="${select_type.name()}" name="gesipan" th:text="${select_type.getDescription()}"  th:each="select_type : ${T(com.test.teamOne.domain.writeType).values()}">
 			</div>
         </div>
     	 <div class="row" id="test">
@@ -33,11 +32,11 @@
                     </thead>
                 	<tbody>
                 		<tr th:each="list : ${list}">
-						<th scope="row"><a href="/board/view" th:href="@{/board/{id}/view(id=${list.id})}" th:text="${list.id}">1</a></th>
-   						<td th:text="${list.post_title}">게시글 제목</td>	
-       					<td th:text="${list.user_name}">작성자</td>
-         				<td th:text="${list.post_date}">2021-01-01</td>
-       					<td th:text="${list.view_count}">0</td>
+						<th scope="row"><a href="/board/view" th:href="@{/board/{id}/view(id=${list.boardNum})}" th:text="${list.boardNum}">1</a></th>
+   						<td th:text="${list.boardTitle}">게시글 제목</td>	
+       					<td th:text="${list.member}">작성자</td>
+         				<td th:text="${list.insertDate}">2021-01-01</td>
+       					<td th:text="${list.boardCount}">0</td>
         			</tr>
 
                 	</tbody>
@@ -45,8 +44,6 @@
             </div>
         </div>
     </div>
-
-
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
