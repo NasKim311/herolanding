@@ -62,12 +62,19 @@
 	                    	 		<td>작성자</td>
 	                    	 		<td>내용</td>
 	                    	 		<td>작성시간</td>
+	                    	 		<td></td>
+	                    	 		<td></td>
 	                    	 	</tr>
 	                    	 	
-	                    	 	<tr th:each="comment : ${comments}">
+	                    	 	<tr th:each="comment : ${comments}" th:id="reply + ${commentStat.index}">
+	                    	 		<td><input type="hidden" th:value="${comment.replyNum}" th:id="replyNum + ${commentStat.index}"/></td>
+	                    	 		<td><input type="hidden" th:value="${comment.replyContent}" th:id="replyContent + ${commentStat.index}"/></td>
+	                    	 		<td><input type="hidden" th:value="${comment.replyInsertDate}" th:id="replyTime + ${commentStat.index}"/></td>
 	                    	 		<td th:text="${comment.member}"></td>
 	                    	 		<td th:text="${comment.replyContent}"></td>
 	                    	 		<td th:text="${comment.replyInsertDate}"></td>
+	                    	 		<td><button th:onclick="Change_editForm(this.value)" th:value="${commentStat.index}">수정</button></td>
+	                    	 		<td><button onclick="delete()">삭제</button></td>
 	                    	 	</tr>
 	                    	 </table>
                     	 </div>
@@ -81,6 +88,7 @@
 			var data = $("#com_content").val();
 			var user_name = $("#com_writer").val();
 			var board_id = $("#get_id").val();
+			
 			const sendDTO = {
 					name: user_name,
 					result:data,
@@ -93,8 +101,41 @@
 			}).done(function (fragment){
 				history.go(0);
 			});
+		}
+		function Change_editForm(id)
+		{	
+			var replyNum = $("#replyNum" + id).val();
+			var temp = replyNum - 1;
+			var replyContent = $("#replyContent" + id).val();
+			var replyTime = $("#replyTime" + id).val();
+			var htmls = "";
+			htmls += '<tr id=reply'+ temp +'>';
+			htmls += '<td colspan="4"><input type="text" value = "' + replyContent +'"></td>';
+			htmls += '<td><button onclick="edit('+replyNum+')">수정</button><button onclick="cancel('+replyNum+','+replyContent+',\''+replyTime +'\')">취소</button></td>';
+			htmls += '</tr>';
+			$('#reply' + id).replaceWith(htmls);
+			$('#reply' + id + ' #editContent').focus();
+		}
+		
+		function cancel(id, content, time)
+		{	
+			var htmls = "";	
+			var temp = id - 1;
+			htmls += '<tr id=reply'+ temp +'>';
+			htmls += '<td><input type="hidden" value='+ id +'id=replyNum'+temp +'></td>';
+			htmls += '<td><input type="hidden" value='+ content+' id=replyContent'+temp+'></td>';
+			htmls += '<td></td>';
+			htmls += '<td>'+content+'</td>';
+			htmls += '<td>'+time+'</td>';
+			htmls += '<td><button th:onclick="Change_editForm(this.value)" th:value='+ temp +'>수정</button></td>'
+			htmls += '<td><button onclick="delete()">삭제</button></td>';
+			htmls += '</tr>';
+			id--;
+			$("#reply" + id).replaceWith(htmls);
 			
 		}
+		
+		
 		 
 	</script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

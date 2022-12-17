@@ -122,7 +122,7 @@ public class BoardController {
 //		reply.setMember(member); // member입력
 		
 		boardService.inputComment(reply);
-	}
+	} // 댓글 짜는 로직입니다 .AJAX 사용이기 때문에 따로 return 값없고 db에 댓글만 입력합니다.
 	
 	
 }
