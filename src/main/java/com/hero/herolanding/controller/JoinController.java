@@ -4,14 +4,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class MemberController {
+public class JoinController {
 
-	// 임시
-	@GetMapping("/login.html")
-		public String login() {
-			System.out.println("로그인페이지");
-		return "login/login";
-		}
 
 	// 임시
 	@GetMapping("/join.html")
