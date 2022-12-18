@@ -44,7 +44,7 @@
                         <!-- <div class="form-group d-none"> -->
                         <div class="form-group">
                         	<select class="form-control" id="continent" name="continent" th:errorclass="field-error">
-                        		<option>===여행지역을 정해주세요 ===</option>
+                        		<option value="null">===여행지역을 정해주세요 ===</option>
                         		<option th:each="select_continent : ${T(com.hero.herolanding.domain.Continent).values()}"
                         			th:value="${select_continent.name()}"
                         			th:text="${select_continent.getDescription()}"
@@ -54,7 +54,7 @@
                         </div>
                           <div class="form-group">
                         	<select class="form-control" id="writeType" name="writeType" th:errorclass="field-error">
-                        		<option>===게시판을 정해주세요 ===</option>
+                        		<option value="null">===게시판을 정해주세요 ===</option>
                         		<option th:each="write : ${T(com.hero.herolanding.domain.BoardType).values()}"
                         			th:value="${write.name()}"
                         			th:text="${write.getDescription()}"

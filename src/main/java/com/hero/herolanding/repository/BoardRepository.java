@@ -78,5 +78,12 @@ public class BoardRepository {
 	}
 	
 	
+	
+	public void comment_update(Long ReplyNum)
+	{
+		
+	}
+	
+	
 
 }

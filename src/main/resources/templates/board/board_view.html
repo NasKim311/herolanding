@@ -75,7 +75,7 @@
 	                    	 		<td th:text="${comment.replyInsertDate}"></td>
 	                    	 		<td><button th:onclick="Change_editForm(this.value)" th:value="${commentStat.index}">수정</button></td>
 	                    	 		<td><button onclick="delete()">삭제</button></td>
-	                    	 	</tr>
+	                    	 	</tr>                    	 	
 	                    	 </table>
                     	 </div>
             		</div>
@@ -83,6 +83,7 @@
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
+	
 		function dataSend()
 		{	
 			var data = $("#com_content").val();
@@ -102,6 +103,26 @@
 				history.go(0);
 			});
 		}
+		
+		function edit(replyNum)
+		{	
+			var change = $('input[name=change]').val();
+			var reply = replyNum;
+			
+			const ReplyDTO = {
+					num : reply,
+					changeData : change
+			};
+			$.ajax({
+				url: "/board/comment_update",
+				data: ReplyDTO,
+				type: 'POST',
+			}).done(function (fragment){
+				history.go(0);
+			});
+			
+		}
+
 		function Change_editForm(id)
 		{	
 			var replyNum = $("#replyNum" + id).val();
@@ -110,7 +131,7 @@
 			var replyTime = $("#replyTime" + id).val();
 			var htmls = "";
 			htmls += '<tr id=reply'+ temp +'>';
-			htmls += '<td colspan="4"><input type="text" value = "' + replyContent +'"></td>';
+			htmls += '<td colspan="4"><input type="text" value = "' + replyContent +'" th:id="change" name="change"></td>';
 			htmls += '<td><button onclick="edit('+replyNum+')">수정</button><button onclick="cancel('+replyNum+','+replyContent+',\''+replyTime +'\')">취소</button></td>';
 			htmls += '</tr>';
 			$('#reply' + id).replaceWith(htmls);
@@ -132,9 +153,8 @@
 			htmls += '</tr>';
 			id--;
 			$("#reply" + id).replaceWith(htmls);
-			
 		}
-		
+	
 		
 		 
 	</script>

@@ -20,6 +20,7 @@ import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
+import com.hero.herolanding.dto.ReplyDTO;
 import com.hero.herolanding.dto.SendDTO;
 import com.hero.herolanding.service.BoardService;
 
@@ -47,22 +48,22 @@ public class BoardController {
 		if(!StringUtils.hasText(dto.getPost_title()))
 		{
 			bindingResult.addError(new FieldError("dto", "post_title", dto.getPost_title(), false, null, null , "제목은 필수입니다."));
-		}
+		} // 제목 검사 ( 값을 입력했는지 검사 )
 		
 		if(!StringUtils.hasText(dto.getPost_content()))
 		{
 			bindingResult.addError(new FieldError("dto", "post_content", dto.getPost_content(), false, null, null , "내용은 필수입니다."));
-		}
+		} // 내용 검사 ( 값을 입력했는지 검사 )
 		
 		if(dto.getContinent() == null)
 		{
-			bindingResult.addError(new FieldError("dto", "continent", dto.getContinent(), false, null, null , "여행지역을 입력해주세요"));
-		}
+			bindingResult.addError(new FieldError("dto", "continent", null, false, null, null , "여행지역을 입력해주세요"));
+		} // 지역 선택했는지 검사
 		
 		if(dto.getWriteType() == null)
 		{
 			bindingResult.addError(new FieldError("dto", "writeType", dto.getWriteType(), false, null, null , "게시판을 선택해주세요"));
-		}
+		} // 게시판 선택했는지 검사
 		
 		
 		if(bindingResult.hasErrors()) return "board/board_write"; // 에러가 있는 경우 입력폼으로 다시 이동
@@ -149,5 +150,11 @@ public class BoardController {
 		boardService.inputComment(reply);
 	} // 댓글 짜는 로직입니다 .AJAX 사용이기 때문에 따로 return 값없고 db에 댓글만 입력합니다.
 	
+	@RequestMapping(value = "/board/comment_update" , method = RequestMethod.POST)
+	@ResponseBody
+	public void updateComment(ReplyDTO dto)
+	{
+		System.out.println(dto);
+	}
 	
 }
