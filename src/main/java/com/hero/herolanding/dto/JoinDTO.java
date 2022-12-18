@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class MemberForm {
+public class JoinDTO {
 
 	
 } // MemberForm class
