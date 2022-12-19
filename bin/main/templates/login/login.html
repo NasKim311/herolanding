@@ -22,6 +22,10 @@
         /* padding-bottom: 3rem; */
         color: #333;
     }
+     .field-error { 
+ 		border-color: #dc3545; 
+ 		color: #dc3545; 
+ 	} 
 </style>
 
 <body class="row mx-0">
@@ -29,19 +33,26 @@
 	<!-- 네비바 -->
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 
+<<<<<<< HEAD
+    <main class="form-signin w-100 m-auto text-center py-5 my-3" >
+        <form action="index.html" th:action method="post" th:object="${loginDTO}">
+=======
     <main class="form-signin w-100 m-auto text-center py-5 my-3">
         <form action="index.html" th:action method="post" th:object="${login}">
+>>>>>>> hero/main
             <!-- src에 로고 넣어야함 -->
             <img class="mt-5" src="/assets/images/히어로_랜딩-removebg-preview.png" alt="히어로 랜딩 로고 넣자" height="150">
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="loginId" th:field="*{loginId}" placeholder="아이디를 입력하세요.">
                 <label for="loginId">아이디</label>
+                <input type="text" id="loginId" th:field="*{loginId}" th:errorclass="field-error" class="form-control" placeholder="아이디를 입력하세요.">
+                <div class="field-error" th:errors="*{loginId}">로그인ID 오류</div>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="loginPw" th:field="*{loginPw}" placeholder="비밀번호를 입력하세요.">
                 <label for="loginPw">비밀번호</label>
+                <input type="password" id="loginPw" th:field="*{loginPw}" th:errorclass="field-error" class="form-control" placeholder="비밀번호를 입력하세요.">
+                <div class="field-error" th:errors="*{loginPw}">비밀번로 오류</div>
             </div>
 
             <div class="checkbox mb-3">
