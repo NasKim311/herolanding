@@ -104,26 +104,26 @@ public class JoinController {
 	}
 	
 	
-//	@RequestMapping(value = "/join/id", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String login(Model model,JoinIdNicknameDTO dto ) {
-//		// @RequestParam String id , @RequestParam String password,
-//		List<Join>  login = loginService.login(loginForm.getId(), loginForm.getPassword());
+	@RequestMapping(value = "/join/id", method = RequestMethod.POST)
+	@ResponseBody
+	public void join(Model model,JoinIdNicknameDTO dto ) {
+		// @RequestParam String id , @RequestParam String password,
+//		List<Member>  join = joinService.join(loginForm.getId(), loginForm.getPassword());
 //		
-//		if ( login == null) {
-//			model.addAttribute("msg", "아이디 또는 비밀번호를 확인해주세요!!");
+//		if ( join == null) {
 //			return "login/login";
 //		}
-//		
-//		
-//		if(login.get(0).getId() == loginForm.getId()) {
+//		if(join.get(0).getId() == loginForm.getId()) {
 //			
 //			HttpSession session = request.getSession();
 //			session.setAttribute(SessionConst.login, login.get(0));
 //			redirectAttributes.addFlashAttribute("msg", "로그인성공");
 //		}
 //		return "redirect:" + redirectURL;
-//	}
+		
+		System.out.println(dto.getMemberId());
+		
+	}
 	
 	
 	
