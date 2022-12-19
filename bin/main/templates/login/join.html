@@ -21,6 +21,10 @@
         /* padding-bottom: 3rem; */
         color: #333;
     }
+    .field-error {
+   border-color: #dc3545;
+   color: #dc3545;
+    
 </style>
 
 <body>
@@ -33,36 +37,47 @@
 	<div class="row justify-content-center py-5">
 	    <div class="col-md-5">
 	        <h4 class="h3 mb-3 text-center">회원가입</h4>
-	        <form>
+	        <form th:action="@{/joins/new}" th:object="${joinDTO}" method="post">
 	            <div class="row">
 	                <div class="col-sm-12 pb-3">
 	                    <!-- 아이디, 중복확인 -->
 	                    <label for="name" class="form-label">아이디</label>
+	                     
 	                    <div class="input-group">
-	                        <input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요.">
-	                        <button class="btn btn-secondary" type="button" id="button-addon2">중복확인</button>
+	                        <input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요."
+	                        th:field="*{memberId}" th:errorclass="field-error">
+	                        <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSend()">중복확인</button>
 	                    </div>
+	                    	 <div class="field-error" th:errors="*{memberId}">아이디 오류</div>
+	                    	<div id="중복" style="display: none;" >중복된 아이디입니다. </div>
 	                </div>
 	                <!-- 비밀번호 -->
 	
 	                <div class="sol-sm-12 pb-3">
 	                    <label for="password" class="form-label">비밀번호</label>
-	                    <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요.">
+	                    <input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력하세요."
+	                    th:field="*{memberPw}" th:errorclass="field-error">
 	                </div>
+                        	<div class="field-error" th:errors="*{memberPw}">비밀번호 오류</div>
 	
 	                <!-- 비밀번호 확인 -->
 	                <div class="sol-sm-12 pb-3">
 	                    <label for="password-check" class="form-label">비밀번호 확인</label>
-	                    <input type="password" class="form-control" id="password-check" placeholder="비밀번호를 입력하세요.">
+	                    <div class="input-group">
+	                    <input type="password" class="form-control" id="password2"  placeholder="비밀번호를 입력하세요.">
+	                     <button class="btn btn-secondary" type="button" id="button-addon2"  onclick="test()" value="비밀번호 확인">비밀번호 확인</button>
+	                     </div>
 	                </div>
 	
 	                <!-- 닉네임 -->
 	                <div class="col-sm-12 pb-3">
 	                    <label for="nickname" class="form-label">닉네임</label>
 	                        <div class="input-group">
-	                            <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요.">
+	                            <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요."
+	                            th:field="*{memberNickName}" th:errorclass="field-error">
 	                            <button class="btn btn-secondary" type="button" id="button-addon2">중복확인</button>
 	                        </div>
+                       		 	<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
 	                    </div>
 	                </div>
 	                
@@ -70,19 +85,23 @@
 	                <div class="col-sm-12 pb-3">
 	                    <label for="email" class="form-label">이메일</label>
 	                    <div class="input-group">
-	                        <input type="text" class="form-control" id="email" placeholder="이메일을 입력하세요.">
+	                        <input type="text" class="form-control" id="email" placeholder="이메일을 입력하세요."
+	                        th:field="*{memberEmail}" th:errorclass="field-error">
                             <button class="btn btn-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#emailModal">인증번호 받기</button>
 	                    </div>
+                        	<div class="field-error" th:errors="*{memberEmail}">이메일 오류</div>
 	                </div>
 	
 	                <!-- 휴대폰 -->
 	                <div class="col-sm-12">
 	                    <label for="phone" class="form-label">휴대폰</label>
 	                    <div class="input-group">
-	                        <input type="text" class="form-control" id="phone" placeholder="휴대폰을 입력하세요.">
+	                        <input type="text" class="form-control" id="phone" placeholder="휴대폰을 입력하세요."
+	                        th:field="*{memberPhoneNum}" th:errorclass="field-error">
                             <!-- 모달창 버튼-->
                             <button class="btn btn-secondary" type="button" id="button-addon2" data-bs-toggle="modal" data-bs-target="#phoneModal">인증번호 받기</button>
 	                    </div>
+                        	<div class="field-error" th:errors="*{memberPhoneNum}">폰번 오류</div>
 	                </div>
 	
 	            <hr class="my-4">
@@ -94,18 +113,20 @@
 	            
 	            <ul>
 	                <div class="form-check">
-	                        <input type="checkbox" name="약관" value="이용동" onclick='checkSelectAll()' class="form-check-input" id="이용동">
-	                        <label class="form-check-label" for="이용동">이용약관 동의</label>
+	                        <input type="checkbox" name="약관" value="이용동" onclick='checkSelectAll()' class="form-check-input" id="이용동"
+	                        th:field="*{memberUsingAgree}" th:errorclass="field-error">이용약관 동의
+                       		 <div class="field-error" th:errors="*{memberUsingAgree}">동의 오류</div>
 	                    </div>
 	                
 	                <div class="form-check">
-	                    <input type="checkbox" name="약관" value="필수동" onclick='checkSelectAll()' class="form-check-input" id="필수동">
-	                    <label class="form-check-label" for="필수동">개인정보 수집 및 이용 동의<span class="text-muted">(필수)</span></label>
+	                    <input type="checkbox" name="약관" value="필수동" onclick='checkSelectAll()' class="form-check-input" id="필수동"
+	                     th:field="*{memberDataAgree}" th:errorclass="field-error">개인정보 수집 및 이용 동의<span class='text-muted'>(필수)</span>
+                        <div class="field-error" th:errors="*{memberDataAgree}">동의 오류</div>
 	                </div>
 	                
 	                <div class="form-check">
-	                    <input type="checkbox" name="약관" value="선택동" onclick='checkSelectAll()' class="form-check-input" id="선택동">
-	                    <label class="form-check-label" for="선택동">개인정보 수집 및 이용 동의<span class="text-muted">(선택)</span></label>
+	                    <input type="checkbox" name="약관" value="선택동" onclick='checkSelectAll()' class="form-check-input" id="선택동"
+	                     th:field="*{memberAdvAgree}" th:errorclass="field-error">개인정보 수집 및 이용 동의<span class='text-muted'>(선택)</span>
 	                </div>
 	            </ul>
 	                
@@ -179,7 +200,7 @@
             const checked
                 = document.querySelectorAll('input[name="약관"]:checked');
             // select all 체크박스
-            const selectAll
+            const selectAll	
                 = document.querySelector('input[name="전체동"]');
 
             if (checkboxes.length === checked.length) {
@@ -199,7 +220,49 @@
             })
         }
         
+        function test() {
+            var p1 = document.getElementById('password1').value;
+            var p2 = document.getElementById('password2').value;
+            if( p1 != p2 ) {
+              alert("비밀번호가 일치 하지 않습니다");
+              document.getElementById('password1').value = '';
+              document.getElementById('password2').value = '';
+              return false;
+            } else{
+              alert("비밀번호가 일치합니다");
+              return true;
+            }
+
+          }
+        
+        function dataSend()
+		{	
+			var data = $("#com_content").val();
+			var user_name = $("#com_writer").val();
+			var board_id = $("#get_id").val();
+			
+			const sendDTO = {
+					name: user_name,
+					result:data,
+					boardId:board_id
+			};
+			$.ajax({
+				url: "/join/id",
+				data: JoinIdNicknameDTO,
+				type: 'POST',
+			}).done(function (fragment){
+				history.go(0);
+			});
+		}
+        
+        
     </script>
+    
+    
+    
+    
+    
+    
 </body>
 
 </html>
