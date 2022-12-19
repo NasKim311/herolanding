@@ -17,8 +17,12 @@ public class HomeController {
 	@GetMapping
 	public String index() {
 		homeService.save();
-		Board board = new Board();
-		board.getBoardType();
+//		Board board = new Board();
+//		board.getBoardType();
+<<<<<<< HEAD
+=======
+		//asdf
+>>>>>>> hero/main
 		return "index";
 	}
 	

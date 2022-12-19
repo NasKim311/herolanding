@@ -33,8 +33,13 @@
 	<!-- 네비바 -->
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 
+<<<<<<< HEAD
     <main class="form-signin w-100 m-auto text-center py-5 my-3" >
         <form action="index.html" th:action method="post" th:object="${loginDTO}">
+=======
+    <main class="form-signin w-100 m-auto text-center py-5 my-3">
+        <form action="index.html" th:action method="post" th:object="${login}">
+>>>>>>> hero/main
             <!-- src에 로고 넣어야함 -->
             <img class="mt-5" src="/assets/images/히어로_랜딩-removebg-preview.png" alt="히어로 랜딩 로고 넣자" height="150">
             <h1 class="h3 mb-3 fw-normal">로그인</h1>
