@@ -208,60 +208,61 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<script>
-		function checkSelectAll() {
-			const checkboxes1
-				= document.querySelectorAll('input[id="필수동"]');
-			const checkboxes2
-				= document.querySelectorAll('input[id="이용동"]');
-			const checkboxes3
-				= document.querySelectorAll('input[id="선택동"]');
-			// select all 체크박스
-			const selectAll
-				= document.querySelector('input[name="전체동"]');
+	function checkSelectAll() {
+		const checkboxes1
+			= document.querySelectorAll('input[id="필수동"]');
+		const checkboxes2
+			= document.querySelectorAll('input[id="이용동"]');
+		const checkboxes3
+			= document.querySelectorAll('input[id="선택동"]');
+		// select all 체크박스
+		const selectAll
+			= document.querySelector('input[name="전체동"]');
 
-			// checkboxes1, checkboxes2, checkboxes3 전부 체크 시 const selectAll 체크
-			if (checkboxes1[0].checked && checkboxes2[0].checked && checkboxes3[0].checked) {
-				selectAll.checked = true;
-			} else {
-				selectAll.checked = false;
-			}
-			
+		// checkboxes1, checkboxes2, checkboxes3 전부 체크 시 const selectAll 체크
+		if (checkboxes1[0].checked && checkboxes2[0].checked && checkboxes3[0].checked) {
+			selectAll.checked = true;
+		} else {
+			selectAll.checked = false;
 		}
+		
+	}
 
-		// 전체 동의 체크박스 클릭 시
-		function selectAll() {
-			const checkboxes1
-				= document.querySelectorAll('input[id="필수동"]');
-			const checkboxes2
-				= document.querySelectorAll('input[id="이용동"]');
-			const checkboxes3
-				= document.querySelectorAll('input[id="선택동"]');
-			// select all 체크박스
-			const selectAll
-				= document.querySelector('input[name="전체동"]');
+	// 전체 동의 체크박스 클릭 시
+	function selectAll() {
+		const checkboxes1
+			= document.querySelectorAll('input[id="필수동"]');
+		const checkboxes2
+			= document.querySelectorAll('input[id="이용동"]');
+		const checkboxes3
+			= document.querySelectorAll('input[id="선택동"]');
+		// select all 체크박스
+		const selectAll
+			= document.querySelector('input[name="전체동"]');
 
-			if (selectAll.checked) {
-				checkboxes1.forEach((checkbox) => {
-					checkbox.checked = true;
-				});
-				checkboxes2.forEach((checkbox) => {
-					checkbox.checked = true;
-				});
-				checkboxes3.forEach((checkbox) => {
-					checkbox.checked = true;
-				});
-			} else {
-				checkboxes1.forEach((checkbox) => {
-					checkbox.checked = false;
-				});
-				checkboxes2.forEach((checkbox) => {
-					checkbox.checked = false;
-				});
-				checkboxes3.forEach((checkbox) => {
-					checkbox.checked = false;
-				});
-			}
-		};
+		if (selectAll.checked) {
+			checkboxes1.forEach((checkbox) => {
+				checkbox.checked = true;
+			});
+			checkboxes2.forEach((checkbox) => {
+				checkbox.checked = true;
+			});
+			checkboxes3.forEach((checkbox) => {
+				checkbox.checked = true;
+			});
+		} else {
+			checkboxes1.forEach((checkbox) => {
+				checkbox.checked = false;
+			});
+			checkboxes2.forEach((checkbox) => {
+				checkbox.checked = false;
+			});
+			checkboxes3.forEach((checkbox) => {
+				checkbox.checked = false;
+			});
+		}
+	};
+
 
 		function test() {
 			var p1 = document.getElementById('password1').value;
