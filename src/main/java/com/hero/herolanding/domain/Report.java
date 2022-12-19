@@ -20,15 +20,15 @@ public class Report {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "reportSequence")
-	@Column(name = "신고번호")
+	@Column(name = "\"신고 번호\"")
 	private Long reportNum;
 
-	@Column(name = "신고사유")
+	@Column(name = "\"신고 사유\"")
 	private String reportReason;
 
 //--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "회원번호")
+	@JoinColumn(name = "\"회원 번호\"")
 	private Member member;
 
 	public void setMember(Member member) {
@@ -38,7 +38,7 @@ public class Report {
 
 //--------<@ManyToOne / board>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "게시글번호")
+	@JoinColumn(name = "\"게시글 번호\"")
 	private Board board;
 
 	public void setBoard(Board board) {
@@ -48,7 +48,7 @@ public class Report {
 
 //--------<@ManyToOne / reply>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "댓글번호")
+	@JoinColumn(name = "\"댓글 번호\"")
 	private Reply reply;
 
 	public void setReply(Reply reply) {

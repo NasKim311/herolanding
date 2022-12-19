@@ -1,6 +1,5 @@
 package com.hero.herolanding.domain;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,38 +27,38 @@ public class Board {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "boardIdSequence")
-	@Column(name = "게시글번호")
+	@Column(name = "\"게시글 번호\"")
 	private Long boardNum;
 
-	@Column(name = "작성일자")
+	@Column(name = "\"작성 일자\"")
 	private String insertDate;
 
-	@Column(name = "수정일자")
+	@Column(name = "\"수정 일자\"")
 	private String updateDate;
 
-	@Column(name = "글제목")
+	@Column(name = "\"글 제목\"")
 	private String boardTitle;
 
-	@Column(name = "글내용")
+	@Column(name = "\"글 내용\"")
 	private String boardContents;
 
-	@Column(name = "조회수")
+	@Column(name = "\"조회 수\"")
 	private Long boardCount;
 
-	@Column(name = "신고횟수")
+	@Column(name = "\"신고 수\"")
 	private Long reportCount;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "대륙명")
+	@Column(name = "\"대륙 명\"")
 	private Continent continent;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "게시글분류")
+	@Column(name = "\"게시글 분류\"")
 	private BoardType boardType;
 
 //--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "회원번호")
+	@JoinColumn(name = "\"회원 번호\"")
 	private Member member;
 
 	public void setMember(Member member) {
