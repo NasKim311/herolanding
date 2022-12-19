@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +23,7 @@
     .field-error {
    border-color: #dc3545;
    color: #dc3545;
-   }
+    
 </style>
 
 <body>
@@ -49,8 +48,7 @@
 	                        <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSendId()">중복확인</button>
 	                    </div>
 	                    	 <div class="field-error" th:errors="*{memberId}">아이디 오류</div>
-	                    	<div class="field-error" id="idcheck1" style="display: none;" >중복된 아이디입니다. </div>
-	                    	<div class="field-error" id="idcheck2" style="display: none;" >탐나는 아이디네요. </div>
+	                    	<div class="field-error" id="idcheck" style="display: none;" >중복된 아이디입니다. </div>
 	                </div>
 	                <!-- 비밀번호 -->
 	
@@ -79,8 +77,7 @@
 	                            <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSendNickname()">중복확인</button>
 	                        </div>
                        		 	<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
-                       		 	<div class="field-error" id="nicknamecheck1" style="display: none;" >중복된 닉네임입니다. </div>
-                       		 	<div class="field-error" id="nicknamecheck2" style="display: none;" >멋진 닉네임이에요. </div>
+                       		 	<div class="field-error" id="nicknamecheck" style="display: none;" >중복된 닉네임입니다. </div>
 	                    </div>
 	                </div>
 	                
@@ -108,9 +105,7 @@
 	                </div>
 	
 	            <hr class="my-4">
-	            
 	
-				<div class="checkbox_group">
 	            <div class="form-check pb-1">
 	                <input type="checkbox" name="전체동" value="전체동" onclick='selectAll(this)' class="form-check-input" id="전체동">
 	                <label class="form-check-label" for="전체동" ><b>전체 동의합니다.</b></label>
@@ -134,8 +129,6 @@
 	                     th:field="*{memberAdvAgree}" th:errorclass="field-error">개인정보 수집 및 이용 동의<span class='text-muted'>(선택)</span>
 	                </div>
 	            </ul>
-	            </div>
-	            
 	                
 	            <hr class="my-4">
 	
@@ -257,10 +250,9 @@
 			})	.done(function (fragment){
 		
 				if(fragment){
-					$("#idcheck1").css("display" , "block");
+					$("#idcheck").css("display" , "block");
 				}else{
-					$("#idcheck2").css("display" , "block");
-					$("#idcheck1").css("display" , "none");}
+					$("#idcheck").css("display" , "none");}
 			});
 		}
         
@@ -277,16 +269,12 @@
 			})	.done(function (fragment){
 		
 				if(fragment){
-					$("#nicknamecheck1").css("display" , "block");
+					$("#nicknamecheck").css("display" , "block");
 				}else{
-					$("#nicknamecheck2").css("display" , "block");
-					$("#nicknamecheck1").css("display" , "none");}
+					$("#nicknamecheck").css("display" , "none");}
 			});
 		}
 		
-        
-        
-        
         
         
     </script>
