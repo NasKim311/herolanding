@@ -1,13 +1,23 @@
 package com.hero.herolanding.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.LoginDTO;
 import com.hero.herolanding.service.LoginService;
+import com.hero.herolanding.session.SessionConst;
 
 import lombok.RequiredArgsConstructor;
 
@@ -21,19 +31,52 @@ public class LoginController {
 	@GetMapping("/login/loginForm")
 	public String loginForm(Model model) {
 		LoginDTO loginDTO = new LoginDTO();
-		model.addAttribute("login", loginDTO);
-		System.out.println("loginId : " + loginDTO.getLoginId());
-		System.out.println("loginPw : " + loginDTO.getLoginPw());
-		return "login/login.html";
+		model.addAttribute("loginDTO", loginDTO);
+		return "login/login";
 	}
 
 //--------<login() / 로그인 하는 메서드>-------------------------------------------------------------------------------------	
 	@PostMapping("/login/loginForm")
-	public String login(@ModelAttribute LoginDTO loginDTO  , Model model) {
-		model.addAttribute("login", loginDTO);
-		System.out.println("loginId : " + loginDTO.getLoginId());
-		System.out.println("loginPw : " + loginDTO.getLoginPw());
-		return "index";
+	public String login(@ModelAttribute LoginDTO loginDTO, BindingResult bindingResult, Model model,
+			RedirectAttributes redirectAttributes, HttpServletRequest request,
+			@RequestParam(defaultValue = "/") String redirectURL) {
+
+		// 아이디 Validation Check
+		if (!StringUtils.hasText(loginDTO.getLoginId())) {
+			bindingResult.addError(
+					new FieldError("loginDTO", "loginId", loginDTO.getLoginId(), false, null, null, "아이디를 입력해주세요."));
+		}
+
+		// 비밀번호 Validation Check
+		if (!StringUtils.hasText(loginDTO.getLoginPw())) {
+			bindingResult.addError(
+					new FieldError("loginDTO", "loginPw", loginDTO.getLoginPw(), false, null, null, "비밀번호를 입력해주세요."));
+		}
+
+		// Validation Check 검증에 실패하면 다시 로그인 폼으로 이동하는 로직
+		if (bindingResult.hasErrors()) {
+			System.out.println("error = " + bindingResult);
+			return "login/login";
+		}
+
+		// loginService Class login()사용
+		Member loginMemberData = loginService.login(loginDTO.getLoginId(), loginDTO.getLoginPw());
+
+		// 로그인 실패일 경우
+		if (loginMemberData == null) {
+			model.addAttribute("msg", "로그인 실패");
+			return "login/login";
+		}
+
+		// 로그인 성공일 경우
+		HttpSession session = request.getSession(); // 세션 사용
+		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMemberData); // 세션에 로그인 회원정보 보관
+
+		redirectAttributes.addFlashAttribute("msg", "로그인 성공");
+
+		model.addAttribute("loginDTO", loginMemberData);
+
+		return "redirect:" + redirectURL;
 	}
 
 } // LoginController class
