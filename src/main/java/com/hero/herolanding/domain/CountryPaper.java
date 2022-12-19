@@ -19,24 +19,24 @@ import lombok.Setter;
 public class CountryPaper {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "countryPapersIdSequence")
-	@Column(name = "국가별서류번호")
+	@Column(name = "\"국가별 서류 번호\"")
 	private int countryPaperNum;
 
-	@Column(name = "최소나이")
+	@Column(name = "\"최소 나이\"")
 	private int countryPaperMinAge;
 
-	@Column(name = "서류유효기간")
+	@Column(name = "\"서류 유효 기간\"")
 	private String countryPaperExpiration;
 
-	@Column(name = "서류제출방법")
+	@Column(name = "\"서류 제출 방법\"")
 	private String countryPaperSubmitType;
 
-	@Column(name = "비고")
+	@Column(name = "\"비고\"")
 	private String countryPaperNote;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "국가번호")
+	@JoinColumn(name = "\"국가 번호\"")
 	private Country country; // 국가 조인 컬럼
 
 	public void setCountry(Country country) {
@@ -46,7 +46,7 @@ public class CountryPaper {
 
 //--------<@ManyToOne / Papers>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "서류번호")
+	@JoinColumn(name = "\"서류 번호\"")
 	private Paper paper; // 서류 조인 컬럼
 
 	public void setPaper(Paper paper) {

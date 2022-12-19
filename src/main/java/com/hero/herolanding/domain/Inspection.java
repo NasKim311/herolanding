@@ -20,21 +20,21 @@ public class Inspection {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "checkIdSequence")
-	@Column(name = "검사번호")
+	@Column(name = "\"검사 번호\"")
 	private int inspectionNum;
 
-	@Column(name = "격리기간")
+	@Column(name = "\"격리 기간\"")
 	private int isolationPeriod;
 
-	@Column(name = "검사횟수")
+	@Column(name = "\"검사 횟수\"")
 	private int inspectionCount;
 
-	@Column(name = "비고")
+	@Column(name = "\"비고\"")
 	private String inspectionNote;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "국가번호")
+	@JoinColumn(name = "\"국가 번호\"")
 	private Country country; // 국가 조인 컬럼
 
 	public void setCountry(Country country) {
@@ -44,7 +44,7 @@ public class Inspection {
 
 //--------<@ManyToOne / City>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "도시번호")
+	@JoinColumn(name = "\"도시 번호\"")
 	private City city; // 도시 조인 컬럼
 
 	public void setCity(City city) {

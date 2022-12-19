@@ -27,31 +27,31 @@ public class Country {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "countryIdSequence")
-	@Column(name = "국가번호")
+	@Column(name = "\"국가 번호\"")
 	private Long countryNum;
 
-	@Column(name = "국가명")
+	@Column(name = "\"국가 명\"")
 	private String countryName;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "대륙명")
+	@Column(name = "\"대륙 명\"")
 	private Continent continent;
 
-	@Column(name = "대사관영사관링크")
+	@Column(name = "\"대사관/영사관 링크\"")
 	private String embassyLink;
 
-	@Column(name = "비고")
+	@Column(name = "\"비고\"")
 	private String countryNote;
 
 	@Embedded
 	private CovidData covidData;
-	
+
 	@Embedded
 	private CovidVaccinData covidVaccinData;
 
 //--------<@ManyToOne / ExchangeRate>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "통화번호")
+	@JoinColumn(name = "\"통화 번호\"")
 	private ExchangeRate exchangeRate;
 
 	public void setExchangeRate(ExchangeRate exchangeRate) {

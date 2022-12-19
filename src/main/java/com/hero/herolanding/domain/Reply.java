@@ -1,6 +1,5 @@
 package com.hero.herolanding.domain;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,24 +24,24 @@ public class Reply {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "replyIdSequence")
-	@Column(name = "댓글번호")
+	@Column(name = "\"댓글 번호\"")
 	private Long replyNum;
 
-	@Column(name = "작성일자")
+	@Column(name = "\"작성 일자\"")
 	private String replyInsertDate;
 
-	@Column(name = "수정일자")
+	@Column(name = "\"수정 일자\"")
 	private String replyUpdateDate;
 
-	@Column(name = "뎁스레벨")
+	@Column(name = "\"뎁스 레벨\"")
 	private int replyDepthLevel;
-	
-	@Column(name ="댓글내용")
+
+	@Column(name = "\"댓글 내용\"")
 	private String replyContent;
 
 //--------<@ManyToOne / member>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "회원번호")
+	@JoinColumn(name = "\"회원 번호\"")
 	private Member member;
 
 	public void setMember(Member member) {
@@ -52,7 +51,7 @@ public class Reply {
 
 //--------<@ManyToOne / board>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "게시글번호")
+	@JoinColumn(name = "\"게시글 번호\"")
 	private Board board;
 
 	public void setBoard(Board board) {
