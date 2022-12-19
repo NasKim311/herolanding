@@ -26,19 +26,19 @@ public class City {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "cityIdSequence")
-	@Column(name = "도시번호")
+	@Column(name = "\"도시 번호\"")
 	private Long cityNum;
 
-	@Column(name = "도시명")
+	@Column(name = "\"도시 명\"")
 	private String cityName;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "입국조치번호")
+	@Column(name = "\"입국 조치 번호\"")
 	private EntranceLevel entranceLevel;
 
 //--------<@ManyToOne / Country>-------------------------------------------------------------------------------------	
 	@ManyToOne
-	@JoinColumn(name = "국가번호")
+	@JoinColumn(name = "\"국가 번호\"")
 	private Country country;
 
 //--------<@OneToMany / Inspection>-------------------------------------------------------------------------------------	

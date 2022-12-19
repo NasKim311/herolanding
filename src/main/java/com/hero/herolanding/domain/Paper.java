@@ -22,19 +22,19 @@ public class Paper {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "papersIdSequence")
-	@Column(name = "서류번호")
+	@Column(name = "\"서류 번호\"")
 	private int paperNum;
 
-	@Column(name = "서류명")
+	@Column(name = "\"서류 명\"")
 	private String paperTitle;
 
-	@Column(name = "발급기관명")
+	@Column(name = "\"발급 기관 명\"")
 	private String paperAuthorityName;
 
-	@Column(name = "발급기관링크")
+	@Column(name = "\"발급 기관 링크\"")
 	private String paperAuthorityLink;
 
-	@Column(name = "비고")
+	@Column(name = "\"비고\"")
 	private String paperNote;
 
 //--------<@OneToMany / CountryPaper>-------------------------------------------------------------------------------------	
