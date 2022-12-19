@@ -19,7 +19,10 @@ public class HomeController {
 		homeService.save();
 //		Board board = new Board();
 //		board.getBoardType();
+<<<<<<< HEAD
+=======
 		//asdf
+>>>>>>> hero/main
 		return "index";
 	}
 	
