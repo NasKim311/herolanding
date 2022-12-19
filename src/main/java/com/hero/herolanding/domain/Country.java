@@ -40,7 +40,7 @@ public class Country {
 	@Column(name = "\"대사관/영사관 링크\"")
 	private String embassyLink;
 
-	@Column(name = "\"비고\"")
+	@Column(name = "\"비고\"" , length = 4000)
 	private String countryNote;
 
 	@Embedded

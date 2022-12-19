@@ -39,7 +39,7 @@ public class Covid {
 		// 브라우저 선택
 
 		try {
-			getDataList(country);
+			getDataList();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -51,7 +51,7 @@ public class Covid {
 	/**
 	 * data가져오기
 	 */
-	private List<String> getDataList(String country) throws InterruptedException {
+	private List<String> getDataList() throws InterruptedException {
 		List<String> list = new ArrayList<>();
 		List<String> list2 = new ArrayList<>();
 		 
