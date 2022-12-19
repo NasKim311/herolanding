@@ -1,9 +1,12 @@
 package com.hero.herolanding.controller;
 
+import java.awt.print.Pageable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -85,10 +88,11 @@ public class BoardController {
 	
 //===================== 리스트 불러오기 ===============================
 	
-	@GetMapping("/board/list")
-	public String board_list(Model model)
+	@GetMapping("/board/list/{id}")
+	public String board_list(@PathVariable("id") Integer page ,Model model)
 	{	
-		model.addAttribute("list" , boardService.findAll());
+		model.addAttribute("list" , boardService.findAll(page));
+		model.addAttribute("WholeCount", (boardService.BoardCount().size() / 10) + 1);
 		return "board/board_list";
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
