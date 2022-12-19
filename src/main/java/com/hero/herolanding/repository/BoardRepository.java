@@ -25,11 +25,20 @@ public class BoardRepository {
 		em.persist(board);
 	}
 	
+	public List<Board> BoardCount()
+	{
+		return em.createQuery("select b from Board b", Board.class).getResultList();
+	}
+	
 	// 리스트 전체 출력
-	public List<Board> FindAll()
+	public List<Board> FindAll(int page)
 	{	
-
-		return em.createQuery("select b from Board b order by b.boardNum desc" , Board.class).getResultList();
+		if(page == 1) page = 0;
+		else {
+			page--;
+			page = page * 10;
+		}
+		return em.createQuery("select b from Board b order by b.boardNum desc" , Board.class).setFirstResult(page).setMaxResults(10).getResultList();
 	}
 
 	// 리스트 중 아디를 통해 찾아오기
