@@ -45,6 +45,9 @@ public class Country {
 
 	@Embedded
 	private CovidData covidData;
+	
+	@Embedded
+	private CovidVaccinData covidVaccinData;
 
 //--------<@ManyToOne / ExchangeRate>-------------------------------------------------------------------------------------	
 	@ManyToOne
