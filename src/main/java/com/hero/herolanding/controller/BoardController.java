@@ -90,9 +90,31 @@ public class BoardController {
 	
 	@GetMapping("/board/list/{id}")
 	public String board_list(@PathVariable("id") Integer page ,Model model)
-	{	
-		model.addAttribute("list" , boardService.findAll(page));
-		model.addAttribute("WholeCount", (boardService.BoardCount().size() / 10) + 1);
+	{		
+		if(page < 1) // Previous를 눌러서 page값이 -일경우 첫번 쨰 페이지를 보여준다
+		{
+			page = 1;
+		}
+		if(page > (boardService.BoardCount().size() / 10) + 1 ) // Next를 눌러서 마지막 page값보다 초과한 경우 마지막 페이지를 보여준다.
+		{
+			page = (boardService.BoardCount().size() / 10) + 1;
+		}
+
+	
+		model.addAttribute("qurrent", page / 10);
+			 // 현재 페이지를 보여주기위한 변수 etc: 14번쨰에 있다면 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18, 19 를보여줘야하고
+			//   etc: 22번쨰에 있다면 21 , 22 , 23 ...
+		
+		if((page / 10) * 10 + 10 < (boardService.BoardCount().size() / 10) + 1) // 현제 보고있는 페이지보다 게시물이 100개 이상 있는 경우는 모두 보여줌
+		{
+			model.addAttribute("last", 9);
+		}else
+		{
+			model.addAttribute("last", ((boardService.BoardCount().size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
+		}
+		model.addAttribute("list" , boardService.findAll(page)); 
+		model.addAttribute("WholeCount", (boardService.BoardCount().size() / 10) + 1); // 전체 게시물 수
+		model.addAttribute("now", page); // 현재 페이지
 		return "board/board_list";
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
