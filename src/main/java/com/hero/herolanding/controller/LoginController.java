@@ -1,5 +1,7 @@
 package com.hero.herolanding.controller;
 
+import java.util.Objects;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -37,33 +39,34 @@ public class LoginController {
 
 //--------<login() / 로그인 하는 메서드>-------------------------------------------------------------------------------------	
 	@PostMapping("/login/loginForm")
-	public String login(@ModelAttribute LoginDTO loginDTO, BindingResult bindingResult, Model model,
+	public String login(@ModelAttribute LoginDTO loginDTO, /* BindingResult bindingResult, */ Model model,
 			RedirectAttributes redirectAttributes, HttpServletRequest request,
 			@RequestParam(defaultValue = "/") String redirectURL) {
 
-		// 아이디 Validation Check
-		if (!StringUtils.hasText(loginDTO.getLoginId())) {
-			bindingResult.addError(
-					new FieldError("loginDTO", "loginId", loginDTO.getLoginId(), false, null, null, "아이디를 입력해주세요."));
-		}
-
-		// 비밀번호 Validation Check
-		if (!StringUtils.hasText(loginDTO.getLoginPw())) {
-			bindingResult.addError(
-					new FieldError("loginDTO", "loginPw", loginDTO.getLoginPw(), false, null, null, "비밀번호를 입력해주세요."));
-		}
-
-		// Validation Check 검증에 실패하면 다시 로그인 폼으로 이동하는 로직
-		if (bindingResult.hasErrors()) {
-			System.out.println("error = " + bindingResult);
-			return "login/login";
-		}
+//		// 아이디 Validation Check
+//		if (!StringUtils.hasText(loginDTO.getLoginId())) {
+//			bindingResult.addError(
+//					new FieldError("loginDTO", "loginId", loginDTO.getLoginId(), false, null, null, "아이디를 입력해주세요."));
+//		}
+//
+//		// 비밀번호 Validation Check
+//		if (!StringUtils.hasText(loginDTO.getLoginPw())) {
+//			bindingResult.addError(
+//					new FieldError("loginDTO", "loginPw", loginDTO.getLoginPw(), false, null, null, "비밀번호를 입력해주세요."));
+//		}
+//
+//		// Validation Check 검증에 실패하면 다시 로그인 폼으로 이동하는 로직
+//		if (bindingResult.hasErrors()) {
+//			System.out.println("error = " + bindingResult);
+//			return "login/login";
+//		}
 
 		// loginService Class login()사용
 		Member loginMemberData = loginService.login(loginDTO.getLoginId(), loginDTO.getLoginPw());
 
 		// 로그인 실패일 경우
 		if (loginMemberData == null) {
+			System.out.println("로그인실패시 Controller");
 			model.addAttribute("msg", "로그인 실패");
 			return "login/login";
 		}
@@ -73,8 +76,6 @@ public class LoginController {
 		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMemberData); // 세션에 로그인 회원정보 보관
 
 		redirectAttributes.addFlashAttribute("msg", "로그인 성공");
-
-		model.addAttribute("loginDTO", loginMemberData);
 
 		return "redirect:" + redirectURL;
 	}
