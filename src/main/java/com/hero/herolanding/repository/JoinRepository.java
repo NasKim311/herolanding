@@ -2,6 +2,7 @@ package com.hero.herolanding.repository;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -31,5 +32,23 @@ public class JoinRepository {
 			member.setSignUpDate(LocalDate.now());
 			em.persist(member);
 		}
+		
+		// 아이디 찾기
+		public List<Member> findDuplicationId(String memberId){
+		
+			 return em.createQuery("select m from Member m where m.memberId = :memberId", Member.class)
+					 .setParameter("memberId", memberId)
+					 .getResultList();
+		}
+		
+		// 닉네임 찾기
+		public List<Member> findDuplicationNickName(String memberNickName){
+		
+			 return em.createQuery("select m from Member m where m.memberNickName = :memberNickName", Member.class)
+					 .setParameter("memberNickName", memberNickName)
+					 .getResultList();
+		}
+		
+		
 	
 }

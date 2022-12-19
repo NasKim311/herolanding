@@ -1,5 +1,7 @@
 package com.hero.herolanding.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -20,6 +22,18 @@ public class JoinService {
 	public void saveJoin(Member member ) {
 		joinRepository.save(member); 
 		joinRepository.saveSignUpDate(member);
+	}
+	
+	// 중복아이디값 찾기
+	@Transactional
+	public List<Member> findId(String memberId) {
+		return joinRepository.findDuplicationId(memberId);
+	}
+	
+	// 중복닉네임값 찾기
+	@Transactional
+	public List<Member> findNickName(String memberNickName) {
+		return joinRepository.findDuplicationNickName(memberNickName);
 	}
 	
 }

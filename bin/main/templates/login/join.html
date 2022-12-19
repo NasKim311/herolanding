@@ -1,6 +1,5 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -46,10 +45,10 @@
 	                    <div class="input-group">
 	                        <input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요."
 	                        th:field="*{memberId}" th:errorclass="field-error">
-	                        <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSend()">중복확인</button>
+	                        <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSendId()">중복확인</button>
 	                    </div>
 	                    	 <div class="field-error" th:errors="*{memberId}">아이디 오류</div>
-	                    	<div id="아이디중복" style="display: none;" >중복된 아이디입니다. </div>
+	                    	<div class="field-error" id="idcheck" style="display: none;" >중복된 아이디입니다. </div>
 	                </div>
 	                <!-- 비밀번호 -->
 	
@@ -75,10 +74,10 @@
 	                        <div class="input-group">
 	                            <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요."
 	                            th:field="*{memberNickName}" th:errorclass="field-error">
-	                            <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSend()">중복확인</button>
+	                            <button class="btn btn-secondary" type="button" id="button-addon2" onclick="dataSendNickname()">중복확인</button>
 	                        </div>
                        		 	<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
-                       		 	<div id="닉네임중복" style="display: none;" >중복된 닉네임입니다. </div>
+                       		 	<div class="field-error" id="nicknamecheck" style="display: none;" >중복된 닉네임입니다. </div>
 	                    </div>
 	                </div>
 	                
@@ -238,23 +237,41 @@
 
           }
         
-        function dataSend()
+        function dataSendId()
 		{	
 			var name = $("#name").val();
-			var nickname = $("#nickname").val();
-			
-			
 			const JoinIdNicknameDTO = {
 					memberId: name,
-					memberNickName: nickname
 			};
-			
 			$.ajax({
 				url: "/join/id",
 				data: JoinIdNicknameDTO,
 				type: 'POST',
-			}).done(function (fragment){
-			
+			})	.done(function (fragment){
+		
+				if(fragment){
+					$("#idcheck").css("display" , "block");
+				}else{
+					$("#idcheck").css("display" , "none");}
+			});
+		}
+        
+        function dataSendNickname()
+		{	
+			var nickname = $("#nickname").val();
+			const JoinIdNicknameDTO = {
+					memberNickName: nickname,
+			};
+			$.ajax({
+				url: "/join/nickname",
+				data: JoinIdNicknameDTO,
+				type: 'POST',
+			})	.done(function (fragment){
+		
+				if(fragment){
+					$("#nicknamecheck").css("display" , "block");
+				}else{
+					$("#nicknamecheck").css("display" , "none");}
 			});
 		}
 		

@@ -32,8 +32,6 @@ import lombok.RequiredArgsConstructor;
 public class JoinController {
 
 	private final JoinService joinService;
-	private final JoinRepository joinRepository;
-	
 	
 	@GetMapping("/joins/new")
 	public String createForm(Model model) {
@@ -98,34 +96,41 @@ public class JoinController {
 		
 		joinService.saveJoin(member);
 		
-		
-		
 		return "redirect:/";
 	}
 	
-	
+	// 중복된 아이디 찾기
 	@RequestMapping(value = "/join/id", method = RequestMethod.POST)
 	@ResponseBody
-	public void join(Model model,JoinIdNicknameDTO dto ) {
-		// @RequestParam String id , @RequestParam String password,
-//		List<Member>  join = joinService.join(loginForm.getId(), loginForm.getPassword());
-//		
-//		if ( join == null) {
-//			return "login/login";
-//		}
-//		if(join.get(0).getId() == loginForm.getId()) {
-//			
-//			HttpSession session = request.getSession();
-//			session.setAttribute(SessionConst.login, login.get(0));
-//			redirectAttributes.addFlashAttribute("msg", "로그인성공");
-//		}
-//		return "redirect:" + redirectURL;
+	public boolean join1(JoinIdNicknameDTO dto ) {
 		
-		System.out.println(dto.getMemberId());
+		List<Member>  checkId = joinService.findId(dto.getMemberId());
 		
+		System.out.println(checkId.size());
+		
+		if(checkId.size() != 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
-	
+	// 중복된 닉네임 찾기
+	@RequestMapping(value = "/join/nickname", method = RequestMethod.POST)
+	@ResponseBody
+	public boolean join2(JoinIdNicknameDTO dto ) {
+		
+		List<Member>  checkNickname = joinService.findNickName(dto.getMemberNickName());
+		
+		System.out.println(checkNickname.size());
+		System.out.println("-----------------------------------");
+		
+		if(checkNickname.size() != 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 	
 	
