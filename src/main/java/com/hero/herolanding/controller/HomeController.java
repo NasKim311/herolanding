@@ -19,6 +19,7 @@ public class HomeController {
 		homeService.save();
 //		Board board = new Board();
 //		board.getBoardType();
+		//asdf
 		return "index";
 	}
 	
