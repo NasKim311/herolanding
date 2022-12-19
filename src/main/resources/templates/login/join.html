@@ -51,7 +51,8 @@
 										onclick="dataSendId()">중복확인</button>
 								</div>
 								<div class="field-error" th:errors="*{memberId}">아이디 오류</div>
-								<div class="field-error" id="idcheck" style="display: none;">중복된 아이디입니다. </div>
+								<div class="field-error" id="idcheck1" style="display: none;">중복된 아이디입니다. </div>
+								<div class="field-error" id="idcheck2" style="display: none;">탐나는 아이디네요. </div>
 							</div>
 							<!-- 비밀번호 -->
 
@@ -83,7 +84,8 @@
 										onclick="dataSendNickname()">중복확인</button>
 								</div>
 								<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
-								<div class="field-error" id="nicknamecheck" style="display: none;">중복된 닉네임입니다. </div>
+								<div class="field-error" id="nicknamecheck1" style="display: none;">중복된 닉네임입니다. </div>
+								<div class="field-error" id="nicknamecheck2" style="display: none;">멋진 닉네임이에요. </div>
 							</div>
 						</div>
 
@@ -288,9 +290,10 @@
 			}).done(function (fragment) {
 
 				if (fragment) {
-					$("#idcheck").css("display", "block");
+					$("#idcheck1").css("display", "block");
 				} else {
-					$("#idcheck").css("display", "none");
+					$("#idcheck1").css("display", "none");
+					$("#idcheck2").css("display", "block");
 				}
 			});
 		}
@@ -307,9 +310,10 @@
 			}).done(function (fragment) {
 
 				if (fragment) {
-					$("#nicknamecheck").css("display", "block");
+					$("#nicknamecheck1").css("display", "block");
 				} else {
-					$("#nicknamecheck").css("display", "none");
+					$("#nicknamecheck1").css("display", "none");
+					$("#nicknamecheck2").css("display", "block");
 				}
 			});
 		}
