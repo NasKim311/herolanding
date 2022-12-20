@@ -39,55 +39,63 @@
 				<div class="col-md-5">
 					<h4 class="h3 mb-3 text-center">회원가입</h4>
 					<form th:action="@{/joins/new}" th:object="${joinDTO}" method="post">
-						<div class="row">
-							<div class="col-sm-12 pb-3">
-								<!-- 아이디, 중복확인 -->
-								<label for="name" class="form-label">아이디</label>
+						
+						<div class="col-sm-12 pb-3">
+							<!-- 아이디, 중복확인 -->
+							<label for="name" class="form-label">아이디</label>
 
-								<div class="input-group">
-									<input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요."
-										th:field="*{memberId}" th:errorclass="field-error">
-									<button class="btn btn-secondary" type="button" id="button-addon2"
-										onclick="dataSendId()">중복확인</button>
-								</div>
-								<div class="field-error" th:errors="*{memberId}">아이디 오류</div>
-								<div class="field-error" id="idcheck1" style="display: none;">중복된 아이디입니다. </div>
-								<div class="field-error" id="idcheck2" style="display: none;">탐나는 아이디네요. </div>
+							<div class="input-group">
+								<input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요."
+									th:field="*{memberId}" th:errorclass="field-error">
+								<button class="btn btn-secondary" type="button" id="button-addon2"
+									onclick="dataSendId()">중복확인</button>
 							</div>
-							<!-- 비밀번호 -->
+							<div class="field-error" th:errors="*{memberId}">아이디 오류</div>
+							<div class="field-error" id="idcheck1" style="display: none;">중복된 아이디입니다. </div>
+							<div class="field-error" id="idcheck2" style="display: none;">탐나는 아이디네요. </div>
+						</div>
+						<!-- 비밀번호 -->
 
-							<div class="sol-sm-12 pb-3">
-								<label for="password" class="form-label">비밀번호</label>
-								<input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력하세요."
-									th:field="*{memberPw}" th:errorclass="field-error">
-							</div>
-							<div class="field-error" th:errors="*{memberPw}">비밀번호 오류</div>
+						<div class="sol-sm-12 pb-3">
+							<label for="password" class="form-label">비밀번호</label>
+							<input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력하세요."
+								th:field="*{memberPw}" th:errorclass="field-error">
+						</div>
+						<div class="field-error" th:errors="*{memberPw}">비밀번호 오류</div>
 
-							<!-- 비밀번호 확인 -->
-							<div class="sol-sm-12 pb-3">
-								<label for="password-check" class="form-label">비밀번호 확인</label>
-								<div class="input-group">
-									<input type="password" class="form-control" id="password2"
-										placeholder="비밀번호를 입력하세요.">
-									<button class="btn btn-secondary" type="button" id="button-addon2" onclick="test()"
-										value="비밀번호 확인">비밀번호 확인</button>
-								</div>
-							</div>
-
-							<!-- 닉네임 -->
-							<div class="col-sm-12 pb-3">
-								<label for="nickname" class="form-label">닉네임</label>
-								<div class="input-group">
-									<input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요."
-										th:field="*{memberNickName}" th:errorclass="field-error">
-									<button class="btn btn-secondary" type="button" id="button-addon2"
-										onclick="dataSendNickname()">중복확인</button>
-								</div>
-								<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
-								<div class="field-error" id="nicknamecheck1" style="display: none;">중복된 닉네임입니다. </div>
-								<div class="field-error" id="nicknamecheck2" style="display: none;">멋진 닉네임이에요. </div>
+						<!-- 비밀번호 확인 -->
+						<div class="sol-sm-12 pb-3">
+							<label for="password-check" class="form-label">비밀번호 확인</label>
+							<div class="input-group">
+								<input type="password" class="form-control" id="password2"
+									placeholder="비밀번호를 입력하세요.">
+								<button class="btn btn-secondary" type="button" id="button-addon2" onclick="test()"
+									value="비밀번호 확인">비밀번호 확인</button>
 							</div>
 						</div>
+						
+						<!-- 이름 -->
+						<div class="col-sm-12 pb-3">
+							<label for="name" class="form-label">이름</label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="name" placeholder="이름을 입력하세요.">
+							</div>
+						</div>
+
+						<!-- 닉네임 -->
+						<div class="col-sm-12 pb-3">
+							<label for="nickname" class="form-label">닉네임</label>
+							<div class="input-group">
+								<input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요."
+									th:field="*{memberNickName}" th:errorclass="field-error">
+								<button class="btn btn-secondary" type="button" id="button-addon2"
+									onclick="dataSendNickname()">중복확인</button>
+							</div>
+							<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
+							<div class="field-error" id="nicknamecheck1" style="display: none;">중복된 닉네임입니다. </div>
+							<div class="field-error" id="nicknamecheck2" style="display: none;">멋진 닉네임이에요. </div>
+						</div>
+						
 
 						<!-- 이메일 -->
 						<div class="col-sm-12 pb-3">
