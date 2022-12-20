@@ -16,8 +16,8 @@ public class HomeController {
 	@GetMapping
 	public String index() {
 		System.out.println("컨트롤러들어옴");
-		homeService.save();
-		homeService.saveCovidVaccin();
+//		homeService.save();
+//		homeService.saveCovidVaccin();
 		
 		return "index";
 	}
