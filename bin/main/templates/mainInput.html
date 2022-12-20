@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>인풋박스 넣어주세용</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="country.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+<body>
+ 
+<div class="ui-widget">
+	<form action="/검색" method="get" id="searchForm">	
+  		<label for="tags">Tags: </label>
+  		<input id="search" name="country">
+  		<button type="submit" id="submit">전송하기</button>
+  	</form>
+  
+</div>
+ 
+ <script>
+        
+        $('#searchForm').submit(function(){
+            var search = $("#search").val();
+            var check = 0;
+            for (var i = 0; i < List.length; i++) {
+                if (search == List[i]) {
+                    check = 1;
+                    break;
+                }
+            }
+            if (check == 1) {
+                $('#searchForm').submit()
+            } else {
+                alert("자동완성된 나라만 입력 검색 가능합니다.");
+                return false;
+            }
+          });
+ </script>
+</body>
+</html>
