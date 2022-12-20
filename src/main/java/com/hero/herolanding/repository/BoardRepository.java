@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
 import com.hero.herolanding.domain.Board;
+import com.hero.herolanding.domain.BoardType;
 import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
@@ -40,6 +41,19 @@ public class BoardRepository {
 			page = page * 10;
 		}
 		return em.createQuery("select b from Board b order by b.boardNum desc" , Board.class).setFirstResult(page).setMaxResults(10).getResultList();
+	}
+	// 타입 별로 리스트 가져오기
+	public List<Board> findByType(String boardType)
+	{	
+		switch(boardType)
+		{
+			case "TIP" :
+				return em.createQuery("select b from Board b where b.boardType = :type", Board.class).setParameter("type", BoardType.REVIEW).getResultList();
+			case "FREE" :
+				return em.createQuery("select b from Board b where b.boardType = :type", Board.class).setParameter("type", BoardType.FREE).getResultList();
+		}
+		return null;
+		
 	}
 
 	// 리스트 중 아디를 통해 찾아오기
@@ -91,21 +105,19 @@ public class BoardRepository {
 		findBoard.setContinent(updateBoard.getContinent());
 		findBoard.setBoardType(updateBoard.getWriteType());
 		findBoard.setInsertDate(updateBoard.getModifiedDate());
-	}
-	
-	
+	} // 게시판 글 업데이트
 	
 	public void comment_update(Long ReplyNum , ReplyDTO dto)
 	{
 		Reply findReply = findCommentById(ReplyNum);
 		findReply.setReplyContent(dto.getChangeData());
-	}
+	} // 게시판 댓글 업데이트
 	
 	public void comment_remove(Long ReplyNum)
 	{
 		Reply findReply = findCommentById(ReplyNum);
 		em.remove(findReply);
-	}
+	} // 게시판 댓글 삭제
 	
 	
 
