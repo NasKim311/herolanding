@@ -96,5 +96,12 @@ public class AdminController {
 		System.out.println("항공권(여행정보)등록페이지");
 		return "mypage/항공권(여행정보)등록페이지";
 	}
+	
+// 항공권(여행정보)등록페이지.html 프론트 작업용 임시
+	@GetMapping("/출국일자등록")
+	public String 출국일자등록() {
+		System.out.println("항공권(여행정보)등록페이출국일자등록");
+		return "mypage/출국일자등록";
+	}
 
 }
