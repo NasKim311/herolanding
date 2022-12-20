@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.BoardType;
+import com.hero.herolanding.domain.Continent;
 import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
@@ -47,13 +48,52 @@ public class BoardRepository {
 	{	
 		switch(boardType)
 		{
-			case "TIP" :
-				return em.createQuery("select b from Board b where b.boardType = :type", Board.class).setParameter("type", BoardType.REVIEW).getResultList();
-			case "FREE" :
-				return em.createQuery("select b from Board b where b.boardType = :type", Board.class).setParameter("type", BoardType.FREE).getResultList();
+			case "ASIA" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc ", Board.class).setParameter("type", Continent.ASIA).getResultList();
+			case "EUROPE" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class).setParameter("type", Continent.EUROPE).getResultList();
+			case "NorthAmerica" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class).setParameter("type", Continent.NorthAmerica).getResultList();
+			case "SouthAmerica" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class).setParameter("type", Continent.SouthAmerica).getResultList();
+			case "AFRICA" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class).setParameter("type", Continent.AFRICA).getResultList();
+			case "OCEANIA" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class).setParameter("type", Continent.OCEANIA).getResultList();
 		}
 		return null;
-		
+	}
+	
+	// 대륙별 + 게시판 교차 리스트 가져오기
+	public List<Board> rangeSelect(String continent , String boardType)
+	{
+		switch(continent)
+		{
+		case "ASIA" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.REVIEW).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.FREE).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.FOOD).getResultList();
+			}
+		case "EUROPE" :
+			
+		case "NorthAmerica" :
+			
+		case "SouthAmerica" :
+			
+		case "AFRICA" :
+			
+		case "OCEANIA" :
+			
+	}
+		return null;
 	}
 
 	// 리스트 중 아디를 통해 찾아오기

@@ -43,12 +43,12 @@
 			</div>
 			<!-- Categories widget-->
 			<div class="card mb-4">
-				<div class="card-header">Categories</div>
+				<div class="card-header">대륙별</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-6">
-							<ul class="list-unstyled mb-0" th:each="select_boardType :  ${T(com.hero.herolanding.domain.BoardType).values()}">
-								<li><a href="#" th:text="${select_boardType.getDescription()}" th:value="${select_boardType.name()}" th:href="@{/board/listByType/{key}(key=${select_boardType.name()})}"></a></li>
+							<ul class="list-unstyled mb-0" th:each="select_continent :  ${T(com.hero.herolanding.domain.Continent).values()}">
+								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" th:href="@{/board/listByType/{key}(key=${select_continent.name()})}"></a></li>
 							</ul>
 						</div>
 					</div>

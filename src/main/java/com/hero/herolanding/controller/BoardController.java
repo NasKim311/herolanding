@@ -83,7 +83,7 @@ public class BoardController {
 //		board.setMember(member);
 		boardService.inputBoardContents(board);
 		
-		return "redirect:/";
+		return "redirect:/board/list/1";
 	} // 작성한 글 DB에 저장하기 위한 로직
 	
 //===================== 리스트 불러오기 ===============================
@@ -119,12 +119,21 @@ public class BoardController {
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
 	@GetMapping("/board/listByType/{key}")
-	public String boardListByType(@PathVariable("key") String boardType , Model model)
+	public String boardListByType(@PathVariable("key") String continent , Model model)
 	{	
-		List<Board> boards = boardService.findByType(boardType);
-		model.addAttribute("boardType" , boardType);
+		List<Board> boards = boardService.findByType(continent);
+		model.addAttribute("continents" , continent);
 		model.addAttribute("boards", boards);
 		return "board/board_listByType";
+	} // 대륙만 선택한 경우
+	
+	@GetMapping("/board/rangeSelect/{key}/{type}")
+	public String ragneSelect(@PathVariable("key") String continent, @PathVariable("type") String boardType , Model model)
+	{	
+		List<Board> boards = boardService.rangeSelect(continent, boardType);
+		model.addAttribute("continents" , continent);
+		model.addAttribute("boards", boards);
+		return "board/board_listByType";	
 	}
 	
 	
