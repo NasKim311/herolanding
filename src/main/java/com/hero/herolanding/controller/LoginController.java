@@ -1,15 +1,10 @@
 package com.hero.herolanding.controller;
 
-import java.util.Objects;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,6 +73,16 @@ public class LoginController {
 		redirectAttributes.addFlashAttribute("msg", "로그인 성공");
 
 		return "redirect:" + redirectURL;
+	}
+
+//--------<logout() / 로그아웃 하는 메서드>-------------------------------------------------------------------------------------	
+	@GetMapping("/logout/index")
+	public String logout(HttpServletRequest request) {
+
+		HttpSession session = request.getSession();
+		session.removeAttribute(SessionConst.LOGIN_MEMBER);
+
+		return "index";
 	}
 
 } // LoginController class

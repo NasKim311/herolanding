@@ -99,4 +99,10 @@ public class BoardService {
 	{
 		return boardRepository.findByType(boardType);
 	}
+	
+	@Transactional
+	public List<Board> rangeSelect(String continent , String boardType)
+	{
+		return boardRepository.rangeSelect(continent, boardType);
+	}
 }

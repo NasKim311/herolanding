@@ -43,12 +43,12 @@
 			</div>
 			<!-- Categories widget-->
 			<div class="card mb-4">
-				<div class="card-header">Categories</div>
+				<div class="card-header">게시판</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-6">
-							<ul class="list-unstyled mb-0" th:each="select_boardType :  ${T(com.hero.herolanding.domain.BoardType).values()}">
-								<li><a href="#" th:text="${select_boardType.getDescription()}" th:value="${select_boardType.name()}" th:href="@{/board/listByType/{key}(key=${select_boardType.name()})}"></a></li>
+							<ul class="list-unstyled mb-0" th:each="select_continent :  ${T(com.hero.herolanding.domain.Continent).values()}">
+								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" th:href="@{/board/listByType/{key}(key=${select_continent.name()})}"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -67,12 +67,20 @@
 			<div class="vh-100">
 				<div class="row">
 					<div class="col-12">
-						<th:block th:switch="${boardType}">
-							<h1 th:case="REVIEW">후기게시판</h1>
-							<h1 th:case="FREE">자유게시판</h1>
-							<h1 th:case="FOOD">맛집게시판</h1>
+						<th:block th:switch="${continents}">
+							<h1 th:case="ASIA">아시아</h1>
+							<h1 th:case="EUROPE">유럽</h1>
+							<h1 th:case="NorthAmerica">북아메리카</h1>
+							<h1 th:case="SouthAmerica">남아메리카</h1>
+							<h1 th:case="AFRICA">아프리카</h1>
+							<h1 th:case="OCEANIA">오세아니아</h1>
 						</th:block>
 					</div>
+				</div>
+				<div style="display: inline-block;">
+					<ul th:each="select_boardType :  ${T(com.hero.herolanding.domain.BoardType).values()}">
+						<li><a href="#" th:href="@{/board/rangeSelect/{key}/{type}(key=${continents},type=${select_boardType.name()})}" th:text="${select_boardType.getDescription()}" ></a></li>
+					</ul>
 				</div>
 				<div class="row" id="test">
 					<div class="col-12">
