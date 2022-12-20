@@ -47,9 +47,9 @@
 
                 <!-- 네비바 우측 메뉴 -->
                 <div class="d-flex">
-					<!-- 회원 유저 이름 박스@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+					<!-- 회원 유저 이름 박스 -->
 					<th:block th:if="${session.loginMember != null}">
-						<button class="btn btn-link text-decoration-none text-light" href="/" th:value="${session.loginMember.memberName}">님의 마이페이지</button>
+						<button class="btn btn-link text-decoration-none text-light" th:onclick="|location.href='@{/mypage/mypageForm}'|" th:value="${session.loginMember.memberName}">님의 마이페이지</button>
 					</th:block>
                     <th:block th:unless="${session.loginMember != null}">
                     	<!-- 로그인 버튼 -->
@@ -57,7 +57,7 @@
                     </th:block>
 					
 					<th:block th:if="${session.loginMember != null}">
-						<button class="btn btn-outline-success" type="button">로그아웃</button>
+						<button class="btn btn-outline-success" type="button" th:onclick="|location.href='@{/logout/index}'|" >로그아웃</button>
 					</th:block>
                     <th:block th:unless="${session.loginMember != null}">
                     	<!-- 회원가입 -->
