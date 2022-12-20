@@ -48,7 +48,8 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<ul class="list-unstyled mb-0" th:each="select_continent :  ${T(com.hero.herolanding.domain.Continent).values()}">
-								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" th:href="@{/board/listByType/{key}(key=${select_continent.name()})}"></a></li>
+								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" 
+								th:href="@{/board/listByType/{key}/{id}(key=${select_continent.name()}, id = 1)}"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -105,7 +106,7 @@
 									<li class="page-item"><a class="page-link"
 											th:href="@{/board/list/{id}(id=${now - 1})}" tabindex="-1">Previous</a></li>
 									<div
-										th:each="board : ${#numbers.sequence((qurrent * 10) + 1 ,(qurrent * 10 + 1 ) +  last)}">
+										th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}">
 										<li class="page-item"><a class="page-link"
 												th:href="@{/board/list/{id}(id=${board})}" th:text="${board}">1</a></li>
 									</div>

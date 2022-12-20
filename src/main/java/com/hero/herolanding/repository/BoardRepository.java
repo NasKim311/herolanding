@@ -33,6 +33,7 @@ public class BoardRepository {
 		return em.createQuery("select b from Board b", Board.class).getResultList();
 	}
 	
+
 	// 리스트 전체 출력
 	public List<Board> FindAll(int page)
 	{	
@@ -43,6 +44,128 @@ public class BoardRepository {
 		}
 		return em.createQuery("select b from Board b order by b.boardNum desc" , Board.class).setFirstResult(page).setMaxResults(10).getResultList();
 	}
+	
+	public List<Board> findAllByType(int page , String boardType)
+	{	
+		
+		page = page * 10;
+		switch(boardType)
+		{
+			case "ASIA" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc ", Board.class)
+						.setParameter("type", Continent.ASIA).setFirstResult(page).setMaxResults(10)
+						.getResultList();
+			case "EUROPE" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class)
+						.setParameter("type", Continent.EUROPE).setFirstResult(page).setMaxResults(10)
+						.getResultList();
+			case "NorthAmerica" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class)
+						.setParameter("type", Continent.NorthAmerica).setFirstResult(page).setMaxResults(10)
+						.getResultList();
+			case "SouthAmerica" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class)
+						.setParameter("type", Continent.SouthAmerica).setFirstResult(page).setMaxResults(10)
+						.getResultList();
+			case "AFRICA" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class)
+						.setParameter("type", Continent.AFRICA).setFirstResult(page).setMaxResults(10)
+						.getResultList();
+			case "OCEANIA" :
+				return em.createQuery("select b from Board b where b.continent = :type order by b.boardNum desc", Board.class)
+						.setParameter("type", Continent.OCEANIA).setFirstResult(page).setMaxResults(10)
+						.getResultList();
+		}
+		return null;
+	}
+	
+	public List<Board> findAllByRange(int page , String continent , String boardType)
+	{
+		page = page * 10;
+		switch(continent)
+		{
+		case "ASIA" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.REVIEW).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.FREE).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.FOOD).setFirstResult(page).setMaxResults(10).getResultList();
+			}
+		case "EUROPE" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.EUROPE).setParameter("type", BoardType.REVIEW).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.EUROPE).setParameter("type", BoardType.FREE).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.EUROPE).setParameter("type", BoardType.FOOD).setFirstResult(page).setMaxResults(10).getResultList();
+			}
+		case "NorthAmerica" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.NorthAmerica).setParameter("type", BoardType.REVIEW).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.NorthAmerica).setParameter("type", BoardType.FREE).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.NorthAmerica).setParameter("type", BoardType.FOOD).setFirstResult(page).setMaxResults(10).getResultList();
+			}
+		case "SouthAmerica" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.SouthAmerica).setParameter("type", BoardType.REVIEW).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.SouthAmerica).setParameter("type", BoardType.FREE).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.SouthAmerica).setParameter("type", BoardType.FOOD).setFirstResult(page).setMaxResults(10).getResultList();
+			}
+		case "AFRICA" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.AFRICA).setParameter("type", BoardType.REVIEW).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.AFRICA).setParameter("type", BoardType.FREE).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.AFRICA).setParameter("type", BoardType.FOOD).setFirstResult(page).setMaxResults(10).getResultList();
+			}
+		case "OCEANIA" :
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.OCEANIA).setParameter("type", BoardType.REVIEW).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.OCEANIA).setParameter("type", BoardType.FREE).setFirstResult(page).setMaxResults(10).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.OCEANIA).setParameter("type", BoardType.FOOD).setFirstResult(page).setMaxResults(10).getResultList();
+			}
+	}
+		return null;
+	}
+	
 	// 타입 별로 리스트 가져오기
 	public List<Board> findByType(String boardType)
 	{	
@@ -83,15 +206,70 @@ public class BoardRepository {
 							.setParameter("continent", Continent.ASIA).setParameter("type", BoardType.FOOD).getResultList();
 			}
 		case "EUROPE" :
-			
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.EUROPE).setParameter("type", BoardType.REVIEW).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.EUROPE).setParameter("type", BoardType.FREE).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.EUROPE).setParameter("type", BoardType.FOOD).getResultList();
+			}
 		case "NorthAmerica" :
-			
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.NorthAmerica).setParameter("type", BoardType.REVIEW).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.NorthAmerica).setParameter("type", BoardType.FREE).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.NorthAmerica).setParameter("type", BoardType.FOOD).getResultList();
+			}
 		case "SouthAmerica" :
-			
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.SouthAmerica).setParameter("type", BoardType.REVIEW).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.SouthAmerica).setParameter("type", BoardType.FREE).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.SouthAmerica).setParameter("type", BoardType.FOOD).getResultList();
+			}
 		case "AFRICA" :
-			
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.AFRICA).setParameter("type", BoardType.REVIEW).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.AFRICA).setParameter("type", BoardType.FREE).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.AFRICA).setParameter("type", BoardType.FOOD).getResultList();
+			}
 		case "OCEANIA" :
-			
+			switch(boardType)
+			{
+				case "REVIEW" :
+					return em.createQuery("select b from Board b where b.continent = :continent AND b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.OCEANIA).setParameter("type", BoardType.REVIEW).getResultList();
+				case "FREE" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.OCEANIA).setParameter("type", BoardType.FREE).getResultList();
+				case "FOOD" :
+					return em.createQuery("select b from Board b where b.continent = :continent and b.boardType = :type order by b.boardNum desc ", Board.class)
+							.setParameter("continent", Continent.OCEANIA).setParameter("type", BoardType.FOOD).getResultList();
+			}
 	}
 		return null;
 	}

@@ -105,4 +105,15 @@ public class BoardService {
 	{
 		return boardRepository.rangeSelect(continent, boardType);
 	}
+	@Transactional
+	public List<Board> findAllByType(int page , String boardType)
+	{
+		return boardRepository.findAllByType(page, boardType);
+	}
+	
+	@Transactional
+	public List<Board> findAllByRange(int page , String continent , String boardType)
+	{
+		return boardRepository.findAllByRange(page, continent, boardType);
+	}
 }

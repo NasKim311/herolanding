@@ -48,7 +48,7 @@
 					<div class="row">
 						<div class="col-sm-6">
 							<ul class="list-unstyled mb-0" th:each="select_continent :  ${T(com.hero.herolanding.domain.Continent).values()}">
-								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" th:href="@{/board/listByType/{key}(key=${select_continent.name()})}"></a></li>
+								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" th:href="@{/board/listByType/{key}/{id}(key=${select_continent.name()} , id = 1)}"></a></li>
 							</ul>
 						</div>
 					</div>
@@ -75,11 +75,16 @@
 							<h1 th:case="AFRICA">아프리카</h1>
 							<h1 th:case="OCEANIA">오세아니아</h1>
 						</th:block>
+						<th:block th:switch="${type}">
+							<h3 th:case="REVIEW">후기게시판</h3>
+							<h3 th:case="FREE">자유게시판</h3>
+							<h3 th:case="FOOD">맛집게시판</h3>
+						</th:block>
 					</div>
 				</div>
 				<div style="display: inline-block;">
 					<ul th:each="select_boardType :  ${T(com.hero.herolanding.domain.BoardType).values()}">
-						<li><a href="#" th:href="@{/board/rangeSelect/{key}/{type}(key=${continents},type=${select_boardType.name()})}" th:text="${select_boardType.getDescription()}" ></a></li>
+						<li><a href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=${continents},type=${select_boardType.name()}, id = 1)}" th:text="${select_boardType.getDescription()}" ></a></li>
 					</ul>
 				</div>
 				<div class="row" id="test">
@@ -96,7 +101,9 @@
 							</thead>
 							<tbody>
 								<tr th:each="board : ${boards}">
-									<th scope="row"><a href="/board/view" th:text="${board.boardNum}">1</a></th>
+									<th scope="row"><a href="/board/view" 
+									th:href="@{/board/{id}/view(id=${board.boardNum})}"
+									th:text="${board.boardNum}">1</a></th>
 									<td th:text="${board.boardTitle}">게시글 제목</td>
 									<td th:text="${board.member}">작성자</td>
 									<td th:text="${board.insertDate}">2021-01-01</td>
@@ -109,11 +116,13 @@
 						<!-- 페이징 처리 사작-->
 						<div class="my-3">
 							<nav aria-label="Page navigation example">
-
+								<input type="text" th:value="${type}"/>
 								<ul class="pagination justify-content-end mb-0">
 									<li class="page-item"><a class="page-link" tabindex="-1">Previous</a></li>
-									<div>
-										<li class="page-item"><a class="page-link">1</a></li>
+									<div
+										th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}">
+										<li class="page-item"><a class="page-link"
+											th:href="${type != null} ? @{/board/rangeSelect/{key}/{type}/{id}(key=${continents} , type=${type}, id = ${board})} : @{/board/listByType/{key}/{id}(key=${continents} , id = ${board})}" th:text="${board}">1</a></li>
 									</div>
 									<li class="page-item"><a class="page-link" href="#">Next</a>
 									</li>
