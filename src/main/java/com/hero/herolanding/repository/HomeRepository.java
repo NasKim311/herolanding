@@ -1,11 +1,24 @@
 package com.hero.herolanding.repository;
 
+
+
+import java.util.List;
+
 import javax.persistence.EntityManager;
+
 
 import org.springframework.stereotype.Repository;
 
 import com.hero.herolanding.crawling.ExchangeRateCr;
+import com.hero.herolanding.domain.Country;
+import com.hero.herolanding.domain.CovidVaccinData;
 import com.hero.herolanding.domain.ExchangeRate;
+import com.hero.herolanding.domain.QCountry;
+import com.hero.herolanding.dto.vaccinDTO;
+import com.querydsl.core.QueryFactory;
+import com.querydsl.core.types.EntityPath;
+import com.querydsl.core.types.dsl.Expressions;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +28,9 @@ public class HomeRepository {
 
 	
 	private final EntityManager em;
+	private JPAQueryFactory queryFactory;
+//	queryFactory = new JPAQueryFactory(em);
+	
 	
 	// 메인페이지에서 사용
 	
@@ -27,6 +43,11 @@ public class HomeRepository {
 			em.merge(exchangeRate);
 		}
 	}
+	// 나라 업데이트 
+	public void updateCountry() {
+		
+	}
+	
 	// 등록된 회원의 많이 여행가는 나라 순위 (디비 - select)
 	public void maxCntContry() {
 		
@@ -43,9 +64,15 @@ public class HomeRepository {
 	// 검색 후 사용
 	// 검색한 나라의 정보 가져오기 ( 환율 , 코로나 수 , 필요 서류 , 검사 종류 , 여행자 순위 )
 	// DTO를 여러 테이블 조인해서 작성해도 되는지? 안된다면 전부 셀렉트 만들기.
-	public void findCounrty() {
-	
+	public Country findCounrty(String country) {
+		queryFactory = new JPAQueryFactory(em);
+		Country findCountry = queryFactory.select(QCountry.country).from(QCountry.country).where(QCountry.country.countryName.eq(country)).fetchOne();
+//		if(findCountry == null) {
+//			return em.persist(findCountry);
+//		}
+		return findCountry;
 	}
+	
 	// 환율정보
 	public void findExchage() { 
 		
@@ -66,6 +93,7 @@ public class HomeRepository {
 	public void findTripLank() {
 		
 	}
+
 	
 	
 	
