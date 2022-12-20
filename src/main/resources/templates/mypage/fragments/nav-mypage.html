@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>네비바</title>
+</head>
+
+<!-- <div th:replace="/admin/fragments/nav-admin.html :: nav-admin"></div> -->
+
+<body th:fragment="nav-mypage">
+    <!-- 네비바 시작 -->
+    <!-- ============================================================== -->
+    <!-- Topbar header - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <header class="topbar" data-navbarbg="skin6">
+        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+            <div class="navbar-header" data-logobg="skin6">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <!--             신호 : 마이페이지로 돌아가게 해줘 -->
+                <a class="navbar-brand" href="관리자페이지.html">
+                    <!-- Logo icon -->
+                    <b class="logo-icon">
+                        <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                        <!-- Dark Logo icon -->
+                        <img src="../assets/images/히어로_랜딩-removebg-preview.png" alt="homepage" class="dark-logo"
+                            style="height: 30px;" />
+                    </b>
+                    <!--End Logo icon -->
+                    <!-- Logo text -->
+                    <span class="logo-text">
+                        <!-- dark Logo text -->
+                        <div class="h3 text-dark mb-0"><b>마이페이지</b></div>
+                    </span>
+                </a>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- toggle and nav items -->
+                <!-- ============================================================== -->
+                <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none" href="javascript:void(0)"><i
+                        class="ti-menu ti-close"></i></a>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Logo -->
+            <!-- ============================================================== -->
+            <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+
+                <!-- ============================================================== -->
+                <!-- toggle and nav items -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav me-auto mt-md-0 ">
+                    <!-- ============================================================== -->
+                    <!-- Search -->
+                    <!-- ============================================================== -->
+
+                    <!-- <li class="nav-item hidden-sm-down">
+                    <form class="app-search ps-3">
+                        <input type="text" class="form-control" placeholder="Search for..."> <a
+                            class="srh-btn"><i class="ti-search"></i></a>
+                    </form>
+                </li> -->
+                </ul>
+
+                <!-- ============================================================== -->
+                <!-- Right side toggle and nav items -->
+                <!-- ============================================================== -->
+                <ul class="navbar-nav">
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown"
+                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!-- 신호 : 언젠가 썸네일을 받는다면 썸네일을 박아넣자, 아이디 넣어주세요.-->
+                            <img src="../assets/images/히어로_랜딩-removebg-preview.png" alt="user"
+                                class="profile-pic me-2">유저 아이디</a>
+                        <ul class="dropdown-menu show" aria-labelledby="navbarDropdown"></ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <!-- ============================================================== -->
+    <!-- End Topbar header -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- Left Sidebar - style you can find in sidebar.scss  -->
+    <!-- ============================================================== -->
+    <aside class="left-sidebar" data-sidebarbg="skin6">
+        <!-- Sidebar scroll-->
+        <div class="scroll-sidebar">
+            <!-- Sidebar navigation-->
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <!--             	신호 : 각 페이지 연결 부탁드립니다. -->
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" href=""
+                            aria-expanded="false"><i class="me-3 fa fa-user" aria-hidden="true"></i><span
+                                class="hide-menu">개인정보 수정</span></a></li>
+                    <!--                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" -->
+                    <!--                         href="관리자페이지.html" aria-expanded="false"><i class="me-3 far fa-clock fa-fw" -->
+                    <!--                             aria-hidden="true"></i><span class="hide-menu">	</span></a></li> -->
+                    <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="pages-profile.html" aria-expanded="false">
+                        <i class="me-3 fa fa-user" aria-hidden="true"></i><span
+                            class="hide-menu">Profile</span></a></li> -->
+                    <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="회원정보수정.html" aria-expanded="false">
+                        <i class="me-3 fa fa-user" aria-hidden="true"></i><span
+                            class="hide-menu">Profile</span></a></li> -->
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="게시글관리.html" aria-expanded="false">
+                            <i class="me-3 fa fa-table" aria-hidden="true"></i>
+                            <span class="hide-menu">항공권(여행정보)등록페이지</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="신고글관리.html" aria-expanded="false">
+                            <i class="me-3 fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            <span class="hide-menu">등록한여행지의정보를보여주는페이지</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="DB관리.html" aria-expanded="false">
+                            <i class="me-3 fa fa-table" aria-hidden="true"></i><span class="hide-menu">북마크페이지</span></a>
+                    </li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="DB관리.html" aria-expanded="false">
+                            <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                                class="hide-menu">내가작성한게시글페이지</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="DB관리.html" aria-expanded="false">
+                            <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                                class="hide-menu">내가작성한댓글목록리스트</span></a></li>
+                    <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="icon-fontawesome.html" aria-expanded="false"><i class="me-3 fa fa-font"
+                            aria-hidden="true"></i><span class="hide-menu">Icon</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="map-google.html" aria-expanded="false"><i class="me-3 fa fa-globe"
+                            aria-hidden="true"></i><span class="hide-menu">Google Map</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="blank.html" aria-expanded="false"><i class="me-3 fa fa-columns"
+                            aria-hidden="true"></i><span class="hide-menu">Blank</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                        href="404.html" aria-expanded="false"><i class="me-3 fa fa-info-circle"
+                            aria-hidden="true"></i><span class="hide-menu">Error 404</span></a></li> -->
+                    <!-- <li class="text-center p-20 upgrade-btn">
+                    <a href="https://www.wrappixel.com/templates/monsteradmin/"
+                        class="btn btn-danger text-white mt-4" target="_blank">Upgrade to
+                        Pro</a>
+                </li> -->
+                </ul>
+
+            </nav>
+            <!-- End Sidebar navigation -->
+        </div>
+        <!-- End Sidebar scroll-->
+    </aside>
+    <!-- 네비바 끝 -->
+</body>
+
+</html>

@@ -54,5 +54,13 @@ public class AdminController {
 		System.out.println("DB수정");
 		return "admin/DB수정";
 	}
+	
+// 마이페이지.html 프론트 작업용 임시
+	@GetMapping("/마이페이지")
+	public String 마이페이지() {
+		System.out.println("마이페이지");
+		return "mypage/마이페이지";
+	}
+
 
 }
