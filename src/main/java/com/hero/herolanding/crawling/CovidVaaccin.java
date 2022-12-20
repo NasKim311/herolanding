@@ -1,5 +1,8 @@
 package com.hero.herolanding.crawling;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,11 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.springframework.stereotype.Component;
 
-import com.hero.herolanding.domain.CovidVaccinData;
 import com.hero.herolanding.dto.vaccinDTO;
-
-import java.util.ArrayList;
-import java.util.List;
 
 // 셀레니움으로 전체 백신정보 크롤링
 @Component
@@ -25,12 +24,12 @@ public class CovidVaaccin {
 		// 크롬 드라이버 셋팅 (드라이버 설치한 경로 입력)
 		System.setProperty("webdriver.chrome.driver", "C:\\herolanding\\chromedriver.exe");
 		// 크롭창 켜지않고 크롤링 하는 옵션
-//		 ChromeOptions chromeOptions = new ChromeOptions();
-//		 chromeOptions.addArguments("--headless");
-//		 chromeOptions.addArguments("--no-sandbox");
+		 ChromeOptions chromeOptions = new ChromeOptions();
+		 chromeOptions.addArguments("--headless");
+		 chromeOptions.addArguments("--no-sandbox");
 		
 		 // 브라우저 선택
-		driver = new ChromeDriver();
+		driver = new ChromeDriver(chromeOptions);
 
 		try {
 			 return getDataList();
@@ -72,9 +71,9 @@ public class CovidVaaccin {
 		// 경로에서 WebElement로 가져온 값을 text만 가져옴
 		String element = elements.get(0).getText();
 //		System.out.println(element);
-//		
 		// \은 인식하지 못하기때문에 \\를 사용해야한다. '\\'을 가져오고싶다면 \\\\ 을 써야함
 		String[] change_target = element.split("\\n");
+		
 		
 		// 반복문으로 국가와 국가정보를 하나의 리스트에 담아준다
 		for(int i = 7 ; i < change_target.length-1 ; i+=2) {
@@ -97,12 +96,15 @@ public class CovidVaaccin {
 			vaccinDTO dto = new vaccinDTO();
 			dto.setCountry(vaccins.get(i)[0]);
 			dto.setTotalInjectionCount(vaccins.get(i)[1]);
-			if(vaccins.get(i).length < 2) {
-				dto.setNewInjectionCount1("데이터 없음");
-				dto.setNewInjectionCount60("데이터 없음");
-				dto.setInjectionCompleteCount("데이터 없음");
-				dto.setInjectionCompletePercent("데이터 없음");
-			}
+			dto.setNewInjectionCount1(vaccins.get(i)[2]);
+			dto.setInjectionCompleteCount(vaccins.get(i)[3]);
+			dto.setInjectionCompletePercent(vaccins.get(i)[4]);
+			System.out.println("나라이름 : " + vaccins.get(i)[0]);
+			System.out.println("전체카운트	 : " + vaccins.get(i)[1]);
+			System.out.println("일접종 : " + vaccins.get(i)[2]);
+			System.out.println("전체접종수 : " + vaccins.get(i)[3]);
+			System.out.println("전체접종퍼센트: " + vaccins.get(i)[4]);
+			
 			vaccinDTO.add(dto);
 		}
 		return vaccinDTO;
