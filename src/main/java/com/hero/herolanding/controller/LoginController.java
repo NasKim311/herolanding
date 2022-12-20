@@ -37,6 +37,7 @@ public class LoginController {
 	public String login(@ModelAttribute LoginDTO loginDTO, /* BindingResult bindingResult, */ Model model,
 			RedirectAttributes redirectAttributes, HttpServletRequest request,
 			@RequestParam(defaultValue = "/") String redirectURL) {
+		System.out.println("일반로그인");
 
 //		// 아이디 Validation Check
 //		if (!StringUtils.hasText(loginDTO.getLoginId())) {
@@ -75,6 +76,13 @@ public class LoginController {
 		return "redirect:" + redirectURL;
 	}
 
+//--------<logout() / 로그아웃 하는 메서드>-------------------------------------------------------------------------------------	
+	@GetMapping("/kakao/loginForm")
+	public String kakaoLogin() {
+		System.out.println("카카오로그인");
+		return "index";
+	}
+	
 //--------<logout() / 로그아웃 하는 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/logout/index")
 	public String logout(HttpServletRequest request) {
