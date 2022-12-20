@@ -47,9 +47,9 @@
 
                 <!-- 네비바 우측 메뉴 -->
                 <div class="d-flex">
-					<!-- 회원 유저 이름 박스 -->
+					<!-- 회원 유저 이름 박스(일단 닉네임으로 작업해놓음) -->
 					<th:block th:if="${session.loginMember != null}">
-						<button class="btn btn-link text-decoration-none text-light" th:onclick="|location.href='@{/mypage/mypageForm}'|" th:value="${session.loginMember.memberName}">님의 마이페이지</button>
+						<a class="btn btn-link text-decoration-none text-light" th:onclick="|location.href='@{/mypage/mypageForm}'|" th:text="${session.loginMember.memberNickName} + '님의 마이페이지'"></a>
 					</th:block>
                     <th:block th:unless="${session.loginMember != null}">
                     	<!-- 로그인 버튼 -->
