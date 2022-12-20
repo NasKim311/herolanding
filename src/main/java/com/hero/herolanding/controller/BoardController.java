@@ -118,6 +118,14 @@ public class BoardController {
 		return "board/board_list";
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
+	@GetMapping("/board/listByType/{key}")
+	public String boardListByType(@PathVariable("key") String boardType)
+	{
+		System.out.println(boardType);
+		return "board/board_listByType";
+	}
+	
+	
 	@GetMapping("/board/{id}/view")
 	public String board_detail(@PathVariable("id") Long boardId , Model model)
 	{	
@@ -190,5 +198,7 @@ public class BoardController {
 	{
 		boardService.comment_remove(dto.getNum());
 	} // 댓글 삭제
+	
+	
 	
 }
