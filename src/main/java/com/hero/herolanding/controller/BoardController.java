@@ -101,7 +101,7 @@ public class BoardController {
 		}
 
 	
-		model.addAttribute("qurrent", page / 10);
+		model.addAttribute("current", page / 10);
 			 // 현재 페이지를 보여주기위한 변수 etc: 14번쨰에 있다면 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18, 19 를보여줘야하고
 			//   etc: 22번쨰에 있다면 21 , 22 , 23 ...
 		
@@ -118,21 +118,65 @@ public class BoardController {
 		return "board/board_list";
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
-	@GetMapping("/board/listByType/{key}")
-	public String boardListByType(@PathVariable("key") String continent , Model model)
+	@GetMapping("/board/listByType/{key}/{id}")
+	public String boardListByType(@PathVariable("key") String continent, @PathVariable("id") Integer page , Model model)
 	{	
+		if(page < 1) 
+		{
+			page = 1;
+		}
 		List<Board> boards = boardService.findByType(continent);
+		if(page > (boards.size() / 10) + 1 ) 
+		{
+			page = (boards.size() / 10) + 1;
+		}
+		
+		if((page / 10) * 10 + 10 < (boards.size() / 10) + 1) // 현제 보고있는 페이지보다 게시물이 100개 이상 있는 경우는 모두 보여줌
+		{
+			model.addAttribute("last", 9);
+		}else
+		{
+			model.addAttribute("last", ((boards.size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
+		}
+		
+		List<Board> list = boardService.findAllByType(--page, continent);
+		
+		model.addAttribute("now", page);
+		model.addAttribute("WholeCount", (boards.size() / 10) + 1);
+		model.addAttribute("current", (int) page / 10);
 		model.addAttribute("continents" , continent);
-		model.addAttribute("boards", boards);
+		model.addAttribute("boards", list);
 		return "board/board_listByType";
 	} // 대륙만 선택한 경우
 	
-	@GetMapping("/board/rangeSelect/{key}/{type}")
-	public String ragneSelect(@PathVariable("key") String continent, @PathVariable("type") String boardType , Model model)
+	@GetMapping("/board/rangeSelect/{key}/{type}/{id}")
+	public String ragneSelect(@PathVariable("key") String continent, @PathVariable("type") String boardType ,  @PathVariable("id") Integer page , Model model)
 	{	
+		if(page < 1) 
+		{
+			page = 1;
+		}
 		List<Board> boards = boardService.rangeSelect(continent, boardType);
+		if(page > (boards.size() / 10) + 1 ) 
+		{
+			page = (boards.size() / 10) + 1;
+		}
+		
+		if((page / 10) * 10 + 10 < (boards.size() / 10) + 1) // 현제 보고있는 페이지보다 게시물이 100개 이상 있는 경우는 모두 보여줌
+		{
+			model.addAttribute("last", 9);
+		}else
+		{
+			model.addAttribute("last", ((boards.size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
+		}
+		
+		List<Board> list = boardService.findAllByRange(--page, continent, boardType);
+		model.addAttribute("now", page);
+		model.addAttribute("type", boardType);
+		model.addAttribute("WholeCount", (boards.size() / 10) + 1);
+		model.addAttribute("current", (int) page / 10);
 		model.addAttribute("continents" , continent);
-		model.addAttribute("boards", boards);
+		model.addAttribute("boards", list);
 		return "board/board_listByType";	
 	}
 	
