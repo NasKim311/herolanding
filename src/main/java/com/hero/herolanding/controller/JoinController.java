@@ -56,6 +56,10 @@ public class JoinController {
 			bindingResult.addError(new FieldError("joinForm", "memberPw", joinDTO.getMemberPw(), false, null, null , "비밀번호는 필수입니다."));
 		}
 		
+		if(!StringUtils.hasText(joinDTO.getMemberName())) {
+			bindingResult.addError(new FieldError("joinForm", "memberName", joinDTO.getMemberName(), false, null, null , "이름은 필수입니다."));
+		}
+		
 		if(!StringUtils.hasText(joinDTO.getMemberNickName())) {
 			bindingResult.addError(new FieldError("joinForm", "memberNickName", joinDTO.getMemberNickName(), false, null, null , "별명은 필수입니다."));
 		}
@@ -85,6 +89,7 @@ public class JoinController {
 		Member member= new Member();
 		member.setMemberId(joinDTO.getMemberId());
 		member.setMemberPw(joinDTO.getMemberPw());
+		member.setMemberName(joinDTO.getMemberName());
 		member.setMemberNickName(joinDTO.getMemberNickName());
 		member.setMemberEmail(joinDTO.getMemberEmail());
 		member.setMemberPhoneNum(joinDTO.getMemberPhoneNum());

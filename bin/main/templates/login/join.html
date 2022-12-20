@@ -78,8 +78,10 @@
 						<div class="col-sm-12 pb-3">
 							<label for="name" class="form-label">이름</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="name" placeholder="이름을 입력하세요.">
+								<input type="text" class="form-control" id="name" placeholder="이름을 입력하세요."
+								th:field="*{memberName}" th:errorclass="field-error">
 							</div>
+							<div class="field-error" th:errors="*{memberName}">이름 오류</div>
 						</div>
 
 						<!-- 닉네임 -->
