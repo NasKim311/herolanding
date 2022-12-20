@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,6 +27,9 @@ public class Reply {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "replyIdSequence")
 	@Column(name = "\"댓글 번호\"")
 	private Long replyNum;
+	
+	@Column(name = "\"부모 댓글 번호\"")
+	private Long ParentReplyNum;
 
 	@Column(name = "\"작성 일자\"")
 	private String replyInsertDate;
@@ -50,8 +54,8 @@ public class Reply {
 	}
 
 //--------<@ManyToOne / board>-------------------------------------------------------------------------------------	
-	@ManyToOne
-	@JoinColumn(name = "\"게시글 번호\"")
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name = "\"게시글 번호\"" )
 	private Board board;
 
 	public void setBoard(Board board) {
