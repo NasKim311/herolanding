@@ -93,4 +93,10 @@ public class BoardService {
 	{
 		boardRepository.comment_update(replyId, dto);
 	}
+	
+	@Transactional
+	public List<Board> findByType(String boardType)
+	{
+		return boardRepository.findByType(boardType);
+	}
 }

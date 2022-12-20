@@ -119,9 +119,11 @@ public class BoardController {
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
 	@GetMapping("/board/listByType/{key}")
-	public String boardListByType(@PathVariable("key") String boardType)
-	{
-		System.out.println(boardType);
+	public String boardListByType(@PathVariable("key") String boardType , Model model)
+	{	
+		List<Board> boards = boardService.findByType(boardType);
+		model.addAttribute("boardType" , boardType);
+		model.addAttribute("boards", boards);
 		return "board/board_listByType";
 	}
 	
