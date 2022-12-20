@@ -62,5 +62,39 @@ public class AdminController {
 		return "mypage/마이페이지";
 	}
 
+// 내가작성한게시글페이지.html 프론트 작업용 임시
+	@GetMapping("/내가작성한게시글페이지")
+	public String 내가작성한게시글페이지() {
+		System.out.println("내가작성한게시글페이지");
+		return "mypage/내가작성한게시글페이지";
+	}
+
+// 내가작성한댓글목록리스트.html 프론트 작업용 임시
+	@GetMapping("/내가작성한댓글목록리스트")
+	public String 내가작성한댓글목록리스트() {
+		System.out.println("내가작성한댓글목록리스트");
+		return "mypage/내가작성한댓글목록리스트";
+	}
+
+// 등록한여행지의정보를보여주는페이지.html 프론트 작업용 임시
+	@GetMapping("/등록한여행지의정보를보여주는페이지")
+	public String 등록한여행지의정보를보여주는페이지() {
+		System.out.println("등록한여행지의정보를보여주는페이지");
+		return "mypage/등록한여행지의정보를보여주는페이지";
+	}
+
+// 북마크페이지.html 프론트 작업용 임시
+	@GetMapping("/북마크페이지")
+	public String 북마크페이지() {
+		System.out.println("북마크페이지");
+		return "mypage/북마크페이지";
+	}
+
+// 항공권(여행정보)등록페이지.html 프론트 작업용 임시
+	@GetMapping("/항공권(여행정보)등록페이지")
+	public String 항공권여행정보등록페이지() {
+		System.out.println("항공권(여행정보)등록페이지");
+		return "mypage/항공권(여행정보)등록페이지";
+	}
 
 }
