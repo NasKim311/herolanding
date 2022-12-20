@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
+import com.hero.herolanding.dto.ReplyDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -46,7 +47,13 @@ public class BoardRepository {
 	{
 		return em.createQuery("select b from Board b where b.boardNum = :id", Board.class).setParameter("id", boardId).getSingleResult();
 	}
-//	
+	
+	//댓글 번호로 댓글 가져오기
+	public Reply findCommentById(Long replyId)
+	{
+		return em.createQuery("select r from Reply r where r.replyNum = :id" , Reply.class).setParameter("id", replyId).getSingleResult();
+	}
+	
 //	// 삭제
 	public void removeById(Long boardId)
 	{
@@ -57,7 +64,7 @@ public class BoardRepository {
 	// 댓글 불러오기
 	public List<Reply> getComments(Long boardId)
 	{	
-		return em.createQuery("select r from Reply r INNER JOIN Board b on r.board = b.boardNum where b.boardNum = :board_num", Reply.class)
+		return em.createQuery("select r from Reply r INNER JOIN Board b on r.board = b.boardNum where b.boardNum = :board_num order by r.replyNum desc", Reply.class)
 				.setParameter("board_num", boardId)
 				.getResultList();
 	}
@@ -88,9 +95,16 @@ public class BoardRepository {
 	
 	
 	
-	public void comment_update(Long ReplyNum)
+	public void comment_update(Long ReplyNum , ReplyDTO dto)
 	{
-		
+		Reply findReply = findCommentById(ReplyNum);
+		findReply.setReplyContent(dto.getChangeData());
+	}
+	
+	public void comment_remove(Long ReplyNum)
+	{
+		Reply findReply = findCommentById(ReplyNum);
+		em.remove(findReply);
 	}
 	
 	

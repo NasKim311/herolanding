@@ -134,7 +134,7 @@ public class BoardController {
 	public String boardDelte(@PathVariable("id")Long boardId)
 	{	
 		boardService.removeById(boardId);
-		return "redirect:/board/list";
+		return "redirect:/board/list/1";
 	} // 아이디를 통해 삭제하기 위한 로직
 	
 //===================== 게시물 수정 ===============================
@@ -151,7 +151,7 @@ public class BoardController {
 	{	
 		boardDTO.setModifiedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 		boardService.update(boardId,boardDTO);
-		return "redirect:/board/list";
+		return "redirect:/board/list/1";
 	} // 업데이트를 위한 로직
 	
 	
@@ -180,7 +180,15 @@ public class BoardController {
 	@ResponseBody
 	public void updateComment(ReplyDTO dto)
 	{
-		System.out.println(dto);
-	}
+		boardService.comment_update(dto.getNum(), dto);
+	} //댓글 업데이트
+
+	
+	@RequestMapping(value = "/board/comment_remove" ,method = RequestMethod.POST)
+	@ResponseBody
+	public void removeComment(ReplyDTO dto)
+	{
+		boardService.comment_remove(dto.getNum());
+	} // 댓글 삭제
 	
 }

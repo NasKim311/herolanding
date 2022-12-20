@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
+import com.hero.herolanding.dto.ReplyDTO;
 import com.hero.herolanding.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -73,5 +74,23 @@ public class BoardService {
 	public void update(Long boardId , BoardDTO updateBoard)
 	{
 		boardRepository.update(boardId, updateBoard);
+	}
+	
+	@Transactional
+	public Reply findCommentById(Long replyId)
+	{
+		return boardRepository.findCommentById(replyId);
+	}
+	
+	@Transactional
+	public void comment_remove(Long replyId)
+	{
+		boardRepository.comment_remove(replyId);
+	}
+	
+	@Transactional
+	public void comment_update(Long replyId , ReplyDTO dto)
+	{
+		boardRepository.comment_update(replyId, dto);
 	}
 }
