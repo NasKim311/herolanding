@@ -61,7 +61,7 @@
 					</th:block>
                     <th:block th:unless="${session.loginMember != null}">
                     	<!-- 회원가입 -->
-                        <button class="btn btn-outline-success" href="/" type="button">회원가입</button>
+                        <button class="btn btn-outline-success"onclick="location.href='join.html'" th:onclick="|location.href='@{/joins/new}'|" type="button">회원가입</button>
                     </th:block>
                 </div>
             </div>
