@@ -87,13 +87,12 @@
 							<tbody>
 								<tr th:each="list : ${list}">
 									<th scope="row"><a href="/board/view"
-											th:href="@{/board/{id}/view(id=${list.boardNum})}"
-											th:text="${list.boardNum}">1</a></th>
-
-									<td th:text="${list.boardTitle}">게시글 제목</td>
-									<td th:text="${list.member}">작성자</td>
-									<td th:text="${list.insertDate}">2021-01-01</td>
-									<td th:text="${list.boardCount}">0</td>
+											th:href="@{/board/{id}/view(id=${list[0]})}"
+											th:text="${list[0]}">1</a></th>
+										<td th:text="${list[1]}">게시글 제목</td>
+										<td th:text="${list[2]}">작성자</td>
+										<td th:text="${list[3]}">2021-01-01</td>
+										<td th:text="${list[4]}">0</td>
 								</tr>
 
 							</tbody>
@@ -114,9 +113,11 @@
 
 
 						<div class="row">
-							<div class="col-12 text-end">
-								<a href="/board/write" class="btn btn-outline-dark">글쓰기</a>
-							</div>
+							<th:block th:if="${check == 1}">
+								<div class="col-12 text-end">
+									<a href="/board/write" class="btn btn-outline-dark">글쓰기</a>
+								</div>
+							</th:block>
 						</div>
 						<!-- 페이징 처리 종료 -->
 					</div>

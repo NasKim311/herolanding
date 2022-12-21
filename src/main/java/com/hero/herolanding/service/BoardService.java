@@ -27,7 +27,7 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public List<Board> findAll(int page)
+	public List<Object[]> findAll(int page)
 	{
 		return boardRepository.FindAll(page);
 	}

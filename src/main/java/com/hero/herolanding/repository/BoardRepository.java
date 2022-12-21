@@ -35,14 +35,14 @@ public class BoardRepository {
 	
 
 	// 리스트 전체 출력
-	public List<Board> FindAll(int page)
+	public List<Object[]> FindAll(int page)
 	{	
 		if(page == 1) page = 0;
 		else {
 			page--;
 			page = page * 10;
 		}
-		return em.createQuery("select b from Board b order by b.boardNum desc" , Board.class).setFirstResult(page).setMaxResults(10).getResultList();
+		return em.createQuery("select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum order by b.boardNum desc").setFirstResult(page).setMaxResults(10).getResultList();
 	}
 	
 	public List<Board> findAllByType(int page , String boardType)

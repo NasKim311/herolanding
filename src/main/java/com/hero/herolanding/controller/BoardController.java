@@ -55,7 +55,7 @@ public class BoardController {
 		member = (Member)session.getAttribute("loginMember");
 		
 		Member m = new Member();
-		m.setMemberName(member.getMemberName());
+		m.setMemberNum(member.getMemberNum());
 		
 		if(!StringUtils.hasText(dto.getPost_title()))
 		{
@@ -98,8 +98,17 @@ public class BoardController {
 //===================== 리스트 불러오기 ===============================
 	
 	@GetMapping("/board/list/{id}")
-	public String board_list(@PathVariable("id") Integer page ,Model model)
+	public String board_list(@PathVariable("id") Integer page ,Model model , HttpServletRequest request)
 	{		
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		if(member != null)
+		{
+			model.addAttribute("check", 1);
+		}
+		
 		if(page < 1) // Previous를 눌러서 page값이 -일경우 첫번 쨰 페이지를 보여준다
 		{
 			page = 1;
