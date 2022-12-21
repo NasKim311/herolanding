@@ -102,12 +102,12 @@
 							<tbody>
 								<tr th:each="board : ${boards}">
 									<th scope="row"><a href="/board/view" 
-									th:href="@{/board/{id}/view(id=${board.boardNum})}"
-									th:text="${board.boardNum}">1</a></th>
-									<td th:text="${board.boardTitle}">게시글 제목</td>
-									<td th:text="${board.member}">작성자</td>
-									<td th:text="${board.insertDate}">2021-01-01</td>
-									<td th:text="${board.boardCount}">0</td>
+									th:href="@{/board/{id}/view(id=${board[0]})}"
+									th:text="${board[0]}">1</a></th>
+									<td th:text="${board[1]}">게시글 제목</td>
+									<td th:text="${board[2]}">작성자</td>
+									<td th:text="${board[3]}">2021-01-01</td>
+									<td th:text="${board[4]}">0</td>
 								</tr>
 
 							</tbody>

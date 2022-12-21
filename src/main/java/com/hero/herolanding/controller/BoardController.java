@@ -166,7 +166,7 @@ public class BoardController {
 			model.addAttribute("last", ((boards.size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
 		}
 		
-		List<Board> list = boardService.findAllByType(--page, continent);
+		List<Object[]> list = boardService.findAllByType(--page, continent);
 		
 		model.addAttribute("now", page);
 		model.addAttribute("WholeCount", (boards.size() / 10) + 1);
@@ -206,7 +206,7 @@ public class BoardController {
 			model.addAttribute("last", ((boards.size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
 		}
 		
-		List<Board> list = boardService.findAllByRange(--page, continent, boardType);
+		List<Object[]> list = boardService.findAllByRange(--page, continent, boardType);
 		model.addAttribute("now", page);
 		model.addAttribute("type", boardType);
 		model.addAttribute("WholeCount", (boards.size() / 10) + 1);
