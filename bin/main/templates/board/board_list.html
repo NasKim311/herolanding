@@ -26,46 +26,47 @@
 	<!-- 네비바 -->
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 	<!-- 사이드 바 만들어달라해서 -->
-	<div class="container row">
-		<!-- 여기부터 -->
+	<div class="container-fluid row py-5 justify-content-center">
 		<!-- Side widgets-->
 		<div class="container col-4">
 			<!-- Search widget -->
 			<div class="card mb-4">
-				<div class="card-header">Search</div>
+				<div class="card-header">검색</div>
 				<div class="card-body">
 					<div class="input-group">
 						<input class="form-control" type="text" placeholder="Enter search term..."
 							aria-label="Enter search term..." aria-describedby="button-search" />
-						<button class="btn btn-primary" id="button-search" type="button">Go!</button>
+						<button class="btn btn-primary" id="button-search" type="button">검색</button>
 					</div>
 				</div>
 			</div>
 			<!-- Categories widget-->
 			<div class="card mb-4">
-				<div class="card-header">대륙별</div>
+				<div class="card-header">대륙별 카테고리</div>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-sm-6">
-							<ul class="list-unstyled mb-0" th:each="select_continent :  ${T(com.hero.herolanding.domain.Continent).values()}">
-								<li><a href="#" th:text="${select_continent.getDescription()}" th:value="${select_continent.name()}" 
-								th:href="@{/board/listByType/{key}/{id}(key=${select_continent.name()}, id = 1)}"></a></li>
+							<ul class="list-unstyled mb-0"
+								th:each="select_continent :  ${T(com.hero.herolanding.domain.Continent).values()}">
+								<li><a href="#" th:text="${select_continent.getDescription()}"
+										th:value="${select_continent.name()}"
+										th:href="@{/board/listByType/{key}/{id}(key=${select_continent.name()}, id = 1)}"></a>
+								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- Side widget-->
-			<div class="card mb-4">
+			<!-- <div class="card mb-4">
 				<div class="card-header">Side Widget</div>
 				<div class="card-body">You can put anything you want inside of these side widgets. They are easy to use,
 					and feature the Bootstrap 5 card component!</div>
-			</div>
+			</div> -->
 		</div>
-		<!-- 여기까지 신경 쓰지마셈 -->
 		<!-- boardlist -->
-		<div class="container py-5 col-8">
-			<div class="vh-100">
+		<div class="container col-8">
+			<div class="">
 				<div class="row">
 					<div class="col-12">
 						<h1>게시판</h1>
@@ -103,15 +104,9 @@
 							<nav aria-label="Page navigation example">
 
 								<ul class="pagination justify-content-end mb-0">
-									<li class="page-item"><a class="page-link"
-											th:href="@{/board/list/{id}(id=${now - 1})}" tabindex="-1">Previous</a></li>
-									<div
-										th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}">
-										<li class="page-item"><a class="page-link"
-												th:href="@{/board/list/{id}(id=${board})}" th:text="${board}">1</a></li>
-									</div>
-									<li class="page-item"><a class="page-link" href="#"
-											th:href="@{/board/list/{id}(id=${now + 1})}">Next</a>
+									<li class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${now - 1})}" tabindex="-1">Previous</a></li>
+									<li th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}" class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${board})}" th:text="${board}">1</a></li>
+									<li class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${now + 1})}">Next</a>
 									</li>
 								</ul>
 							</nav>
@@ -129,7 +124,6 @@
 			</div>
 		</div>
 		<!-- 보드리스트끝 -->
-
 	</div>
 
 	<!-- 푸터 -->
