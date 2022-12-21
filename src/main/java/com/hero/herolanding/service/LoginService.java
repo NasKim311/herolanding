@@ -24,4 +24,23 @@ public class LoginService {
 		return loginMemberData;
 	}
 
+
+//--------<getAccessToken() / 카카오 로그인을 위한 Access Token을 받아오는 메서드 >-------------------------------------------------------------------------------------	
+	public void getAccessToken(String code) {
+		
+	}
+	
+
+
+
 } // LoginService class
+
+
+
+
+
+
+
+
+
+

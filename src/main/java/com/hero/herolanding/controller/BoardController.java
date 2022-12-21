@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -43,11 +46,17 @@ public class BoardController {
 	} // 글 작성 Form으로 이동 시켜주는 로직
 	
 	@PostMapping("/board/write")
-	public String Board_write(BoardDTO dto , BindingResult bindingResult)
+	public String Board_write(BoardDTO dto , BindingResult bindingResult, HttpServletRequest request)
 	{
 		Board board = new Board();
 		Member member = new Member(); // 추후에 로그인한 아이디가 있다면 아이디를 통해 멤버 정보를
 									  // 가져와서 입력해주면 됨
+		HttpSession session = request.getSession();
+		member = (Member)session.getAttribute("loginMember");
+		
+		Member m = new Member();
+		m.setMemberName(member.getMemberName());
+		
 		if(!StringUtils.hasText(dto.getPost_title()))
 		{
 			bindingResult.addError(new FieldError("dto", "post_title", dto.getPost_title(), false, null, null , "제목은 필수입니다."));
@@ -80,7 +89,7 @@ public class BoardController {
 				.format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"))); // 지금 시간을 포맷해서 넣어줌
 		board.setReportCount(0L); // 신고 횟수는 0
 		board.setUpdateDate(""); // 게시글 작성이기 때문에 update 날짜는 NULL
-//		board.setMember(member);
+		board.setMember(m);
 		boardService.inputBoardContents(board);
 		
 		return "redirect:/board/list/1";
