@@ -87,18 +87,11 @@
                                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                             <div class="ms-3">
                                                 <div class="fw-bold" th:text="${replyComment.member}">대댓글</div>
-                                                <label th:text="${replyComment.replyContent}">어떻게 꾸며야할지 너무 어렵다.</label>	
+                                                <label th:text="${replyComment.replyContent}">어떻게 꾸며야할지 너무 어렵다.</label>
+                                                <button onclick="delete_comment(this.value)" th:value="${replyComment.replyNum}">삭제</button>
                                             </div>
                                         </th:block>
                                         </div>
-                                    </div>
-                                </div>
-                                <!-- Single comment-->
-                                <div class="d-flex">
-                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
-                                    <div class="ms-3">
-                                        <div class="fw-bold">유저2</div>
-                                        으히힣
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +151,6 @@
         <script src="/board/js/scripts.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script>
-		
 		    function Change_editForm(id)
 		    {	
 		    	
@@ -181,8 +173,6 @@
 		    	$('#replyComment' + id).replaceWith(htmls);
 		    	$('#replyComment').focus();
 		    }
-		    
-		  
 		    
 			function dataSend()
 			{	
@@ -258,7 +248,6 @@
 					history.go(0);
 				});
 			} // 댓글 삭제
-			
 			
 			
 			
