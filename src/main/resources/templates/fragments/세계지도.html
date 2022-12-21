@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+        #container {
+            height: 500px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .loading {
+            margin-top: 10em;
+            text-align: center;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body th:fragment="세계지도">
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+
+    <div id="container"></div>
+
+    <script>
+        (async () => {
+
+            const topology = await fetch(
+                'https://code.highcharts.com/mapdata/custom/world.topo.json'
+            ).then(response => response.json());
+
+            Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
+
+                // Prevent logarithmic errors in color calulcation
+                data.forEach(function (p) {
+                    p.value = (p.value < 1 ? 1 : p.value);
+                });
+
+                // Initialize the chart
+                Highcharts.mapChart('container', {
+                    chart: {
+                        map: topology,
+                        backgroundColor: {
+                            linearGradient: [0, 0, 500, 500],
+                            stops: [
+                                [0, 'rgb(50, 50, 50)'],
+                                [1, 'rgb(0, 0, 0)']
+                            ]
+                        },
+                    },
+
+                    title: {
+                        text: 'Zoom in on country by double click'
+                    },
+
+                    mapNavigation: {
+                        enabled: true,
+                        enableDoubleClickZoomTo: true
+                    },
+
+                    colorAxis: {
+                        min: 1,
+                        max: 1000,
+                        type: 'logarithmic'
+                    },
+
+                    series: [{
+                        data: data,
+                        joinBy: ['iso-a3', 'code3'],
+                        name: 'Population density',
+                        states: {
+                            hover: {
+                                color: '#0e0c32'
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: '/km²'
+                        }
+                    }]
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>

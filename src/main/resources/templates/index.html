@@ -38,13 +38,7 @@
         <div class="container-fluid bg-dark">
             <div class="row">
                 <div class="col-12 text-white text-center">
-                    	<!-- <a href="board/write">글쓰기</a>
-						<a href="board/list">글목록</a> -->
-                    <h1>여행가는 날 비와버려라~</h1>
-                    <div class="h1 my-0 py-0">🌙｀、、｀ヽ｀ヽ｀、、ヽヽ、｀、ヽ｀ヽ｀ヽヽ</div>
-					<div class="h1 my-0 py-0">ヽ｀、｀ヽ｀、ヽ｀｀、ヽ｀ヽ｀、ヽヽ｀ヽ、ヽ</div>
-					<div class="h1 my-0 py-0">｀ヽ、ヽヽ｀ヽ｀、｀｀ヽ｀ヽ、ヽ、ヽ｀ヽ｀ヽ</div>
-					<div class="h1 my-0 py-0">｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ 🚶‍♀ ヽ｀｀ヽ｀｀</div>
+					<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
 					<!-- 국가검색창 -->
 					<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
                 </div>
@@ -55,12 +49,17 @@
         <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-success">
+        <div class="container-fluid bg-primary">
             <div class="row">
                 <div class="col-12 text-white text-center">
                     <div class="py-5">        
                         <!-- 게시판 목록 버튼 검은색 외각 버튼-->
-                        <a class="btn btn-outline-light btn-lg" href="board/list/1" role="button">게시판</a>
+						<h1>여행가는 날 비와버려라~</h1>
+						<div class="h1 my-0 py-0">🌙｀、、｀ヽ｀ヽ｀、、ヽヽ、｀、ヽ｀ヽ｀ヽヽ</div>
+						<div class="h1 my-0 py-0">ヽ｀、｀ヽ｀、ヽ｀｀、ヽ｀ヽ｀、ヽヽ｀ヽ、ヽ</div>
+						<div class="h1 my-0 py-0">｀ヽ、ヽヽ｀ヽ｀、｀｀ヽ｀ヽ、ヽ、ヽ｀ヽ｀ヽ</div>
+						<div class="h1 my-0 py-0">｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ 🚶‍♀ ヽ｀｀ヽ｀｀</div>
+                        <a class="col-8 btn btn-outline-light btn-lg" href="board/list/1" role="button">게시판</a>
                     </div>
                 </div>
             </div>
