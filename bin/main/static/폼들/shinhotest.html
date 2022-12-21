@@ -1,90 +1,161 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<!-- 부트스트랩 -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 </head>
 
+<style>
+    #container {
+        height: 500px;
+        min-width: 310px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .loading {
+        margin-top: 10em;
+        text-align: center;
+        color: gray;
+    }
+</style>
+
 <body>
-	<!-- 신호 : https://news.google.com/covid19/map?hl=ko&gl=KR&ceid=KR%3Ako 자세한 사항은 여기 참고 바람 -->
-	<div class="container border rounded">
-		<h3 class="py-3">전 세계</h3>
-		<div class="">
-			<div class="">
-				<div class="row py-2">
-					<div class="col">
-						<div class="" id="c98">총 확진자 수</div>
-						<div class="" aria-describedby="c98">653,713,224</div>
-						<div class=""></div>
-					</div>
-					<div class="col border-end border-start border-2">
-						<div class="">신규 확진자(14일)</div>
-						<div class=""><img src="" class=""
-								loading="lazy" alt="14일 동향 차트" aria-label="14일 동향 차트"><img
-								src="" class=""
-								loading="lazy" alt="14일 동향 차트" aria-label="14일 동향 차트">
-						</div>
-						<div class="">12월 6일~19일: <strong>+8,009,639</strong></div>
-					</div>
-					<div class="col">
-						<div class="" id="c99">사망</div>
-						<div class="" aria-describedby="c99">6,667,399</div>
-						<div class=""></div>
-					</div>
-				</div>
-			</div>
-			<div class="border border-1"></div>
-			<div class="">
-				<div class="row py-2">
-					<div class="col">
-						<div class="" id="c100">총 접종 횟수</div>
-						<div class="" aria-describedby="c100">13,070,502,479</div>
-						<div class=""></div>
-					</div>
-					<div class="col border-end border-start border-2">
-						<div class="">신규 접종 횟수(14일)</div>
-						<div class=""><img src=""
-								class="dt3Iuf zC7z7b FS6bed" loading="lazy" alt="14일 동향 차트" aria-label="14일 동향 차트"><img
-								src=""
-								class="dt3Iuf krHqHb FS6bed" loading="lazy" alt="14일 동향 차트" aria-label="14일 동향 차트">
-						</div>
-						<div class="">12월 6일~19일: <strong>+35,061,738</strong></div>
-					</div>
-					<div class="col">
-						<div class="" id="c101">백신 접종을 완료한 사람의 수</div>
-						<div class="" aria-describedby="c101">5,036,001,382</div>
-						<div class="">인구 비율: <strong>64.8%</strong></div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="">
-			<div class="">‘총 접종 횟수’은(는) 백신 접종 횟수를 나타냅니다. 일부 백신은 1회 넘게 접종해야 하므로 접종을 완료한 사람의 수는 더 적을 수 있습니다. ‘백신 접종을
-				완료한 사람의 수’은(는) 코로나19 백신 접종이 완료된 사람의 수를 나타냅니다.</div><span jscontroller="YH0F9c"
-				jsaction="pSI0Dc:mMUZad;rcuQ6b:npT2md;"><time class="vBLAZ Yt6XT" datetime="2022-12-19T00:00:00Z">2일 전에
-					업데이트됨</time><span class="" aria-hidden="true"> • </span><a class="CZloAf"
-					href="https://support.google.com/websearch/answer/9814707?p=cvd19_statistics&amp;hl=ko"
-					target="_blank"><span class="">확진 사례 데이터 정보</span></a><span class="H4TtPb" aria-hidden="true">
-					• </span><a class=""
-					href="https://support.google.com/websearch/answer/10339795?p=cvd19_vaccine_stats&amp;hl=ko"
-					target="_blank"><span class="">백신 데이터 정보</span></a><span class="H4TtPb" aria-hidden="true"> •
-				</span><span class=""><span id="c102">출처</span><span aria-hidden="true">:</span> <a
-						class="YjZvJe GQQ5oc" target="_blank"
-						href="https://ourworldindata.org/covid-vaccinations?country=OWID_WRL"
-						aria-describedby="c102"><span class="bGEAFd">OWID</span></a></span></span>
-		</div>
-	</div>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin="anonymous"></script>
+    
+
+    <div id="container">
+        <div class="loading">
+            <i class="icon-spinner icon-spin icon-large"></i>
+            Loading data from Google Spreadsheets...
+        </div>
+    </div>
+
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+    <script>
+document.cookie = "safeCookie1=foo; SameSite=Lax"; 
+document.cookie = "safeCookie2=foo"; 
+document.cookie = "crossCookie=bar; SameSite=None; Secure";
+
+        (async () => {
+
+            const topology = await fetch(
+                'https://code.highcharts.com/mapdata/custom/world.topo.json'
+            ).then(response => response.json());
+
+            function drawChart(data) {
+                return Highcharts.mapChart('container', {
+                    chart: {
+                        map: topology,
+                        borderWidth: 1
+                    },
+
+                    colors: ['rgba(19,64,117,0.05)', 'rgba(19,64,117,0.2)', 'rgba(19,64,117,0.4)',
+                        'rgba(19,64,117,0.5)', 'rgba(19,64,117,0.6)', 'rgba(19,64,117,0.8)', 'rgba(19,64,117,1)'],
+
+                    title: {
+                        text: 'Population density by country (/km²)'
+                    },
+
+                    mapNavigation: {
+                        enabled: true
+                    },
+
+                    legend: {
+                        title: {
+                            text: 'Individuals per km²',
+                            style: {
+                                color: ( // theme
+                                    Highcharts.defaultOptions &&
+                                    Highcharts.defaultOptions.legend &&
+                                    Highcharts.defaultOptions.legend.title &&
+                                    Highcharts.defaultOptions.legend.title.style &&
+                                    Highcharts.defaultOptions.legend.title.style.color
+                                ) || 'black'
+                            }
+                        },
+                        align: 'left',
+                        verticalAlign: 'bottom',
+                        floating: true,
+                        layout: 'vertical',
+                        valueDecimals: 0,
+                        backgroundColor: ( // theme
+                            Highcharts.defaultOptions &&
+                            Highcharts.defaultOptions.legend &&
+                            Highcharts.defaultOptions.legend.backgroundColor
+                        ) || 'rgba(255, 255, 255, 0.85)',
+                        symbolRadius: 0,
+                        symbolHeight: 14
+                    },
+
+                    colorAxis: {
+                        dataClasses: [{
+                            to: 3
+                        }, {
+                            from: 3,
+                            to: 10
+                        }, {
+                            from: 10,
+                            to: 30
+                        }, {
+                            from: 30,
+                            to: 100
+                        }, {
+                            from: 100,
+                            to: 300
+                        }, {
+                            from: 300,
+                            to: 1000
+                        }, {
+                            from: 1000
+                        }]
+                    },
+
+                    series: [{
+                        data: data,
+                        joinBy: ['iso-a2', 'code'],
+                        animation: true,
+                        name: 'Population density',
+                        states: {
+                            hover: {
+                                color: '#a4edba'
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: '/km²'
+                        },
+                        shadow: false
+                    }]
+                });
+            }
+
+            // Load the data from a Google Spreadsheet
+            // https://docs.google.com/spreadsheets/d/1WBx3mRqiomXk_ks1a5sEAtJGvYukguhAkcCuRDrY1L0
+            Highcharts.data({
+                googleSpreadsheetKey: '1WBx3mRqiomXk_ks1a5sEAtJGvYukguhAkcCuRDrY1L0',
+                googleSpreadsheetWorksheet: 1,
+                switchRowsAndColumns: true,
+                parsed: function (columns) {
+                    const data = [];
+                    columns.forEach((column, i) => {
+                        if (i > 0) {
+                            data.push({
+                                code: column[0],
+                                value: column[1]
+                            });
+                        }
+                    });
+                    drawChart(data);
+                }
+            });
+        })();
+    </script>
 </body>
 
 </html>
