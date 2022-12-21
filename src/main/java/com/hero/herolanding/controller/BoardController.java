@@ -137,8 +137,17 @@ public class BoardController {
 	} // 전체 글 리스트를 보여주기 위한 로직
 	
 	@GetMapping("/board/listByType/{key}/{id}")
-	public String boardListByType(@PathVariable("key") String continent, @PathVariable("id") Integer page , Model model)
+	public String boardListByType(@PathVariable("key") String continent, @PathVariable("id") Integer page , Model model , HttpServletRequest request)
 	{	
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		if(member != null)
+		{
+			model.addAttribute("check", 1);
+		}
+		
 		if(page < 1) 
 		{
 			page = 1;
@@ -168,8 +177,17 @@ public class BoardController {
 	} // 대륙만 선택한 경우
 	
 	@GetMapping("/board/rangeSelect/{key}/{type}/{id}")
-	public String ragneSelect(@PathVariable("key") String continent, @PathVariable("type") String boardType ,  @PathVariable("id") Integer page , Model model)
+	public String ragneSelect(@PathVariable("key") String continent, @PathVariable("type") String boardType ,  @PathVariable("id") Integer page , Model model , HttpServletRequest request)
 	{	
+		
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		if(member != null)
+		{
+			model.addAttribute("check", 1);
+		}
 		if(page < 1) 
 		{
 			page = 1;

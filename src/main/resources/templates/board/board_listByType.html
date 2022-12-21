@@ -116,7 +116,6 @@
 						<!-- 페이징 처리 사작-->
 						<div class="my-3">
 							<nav aria-label="Page navigation example">
-								<input type="text" th:value="${type}"/>
 								<ul class="pagination justify-content-end mb-0">
 									<li class="page-item"><a class="page-link" tabindex="-1">Previous</a></li>
 									<div
@@ -132,9 +131,11 @@
 
 
 						<div class="row">
-							<div class="col-12 text-end">
-								<a href="/board/write" class="btn btn-outline-dark">글쓰기</a>
-							</div>
+							<th:block th:if="${check == 1}">
+								<div class="col-12 text-end">
+									<a href="/board/write" class="btn btn-outline-dark">글쓰기</a>
+								</div>
+							</th:block>
 						</div>
 						<!-- 페이징 처리 종료 -->
 					</div>
