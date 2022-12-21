@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class MypageController {
 
 //--------<mypageForm() / 마이 페이지 이동 메서드>-------------------------------------------------------------------------------------	
-	@GetMapping("/mypage/mypageForm")
+	@GetMapping("mypage/mypageForm")
 	public String mypageForm() {
 		return "mypage/마이페이지";
 	}
