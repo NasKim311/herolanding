@@ -116,4 +116,10 @@ public class BoardService {
 	{
 		return boardRepository.findAllByRange(page, continent, boardType);
 	}
+	
+	@Transactional
+	public List<Reply> getReplyComment(Long boardId)
+	{
+		return boardRepository.getReplyComment(boardId);
+	}
 }

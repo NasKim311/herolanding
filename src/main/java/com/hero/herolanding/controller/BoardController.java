@@ -186,6 +186,8 @@ public class BoardController {
 	{	
 		Board board = boardService.findById(boardId);
 		List<Reply> comments = boardService.getComments(boardId);
+		List<Reply> replyComments = boardService.getReplyComment(boardId);
+		model.addAttribute("replyComments",replyComments);
 		model.addAttribute("comments", comments);
 		model.addAttribute("board", board);
 		return "board/board_view";
@@ -239,6 +241,29 @@ public class BoardController {
 		boardService.inputComment(reply);
 	} // 댓글 짜는 로직입니다 .AJAX 사용이기 때문에 따로 return 값없고 db에 댓글만 입력합니다.
 	
+	@RequestMapping(value = "/board/replyComment", method = RequestMethod.POST )
+	@ResponseBody
+	public void addReplyComment (SendDTO dto)
+	{	
+		dto.setWrite_time(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+		Reply reply = new Reply();
+		Board board = new Board();
+		// Member member = new Member();
+		board.setBoardNum(dto.getBoardId());
+		
+		reply.setReplyContent(dto.getResult());
+		reply.setReplyDepthLevel(2); // 답글이기 때문에 depth 레벨은 2
+		reply.setReplyInsertDate(LocalDateTime.now().
+				format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
+		reply.setReplyUpdateDate("");
+		reply.setBoard(board);
+		//reply.setMember(member);
+		reply.setParentReplyNum(dto.getNum()); // 부모의 값도 넣어줘야함
+		
+		boardService.inputComment(reply);
+	} // 답글 달기
+	
+		
 	@RequestMapping(value = "/board/comment_update" , method = RequestMethod.POST)
 	@ResponseBody
 	public void updateComment(ReplyDTO dto)
@@ -253,6 +278,8 @@ public class BoardController {
 	{
 		boardService.comment_remove(dto.getNum());
 	} // 댓글 삭제
+	
+	
 	
 	
 	

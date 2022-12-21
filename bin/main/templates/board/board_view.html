@@ -76,24 +76,21 @@
 	                                        	<input type="hidden" th:value="${reply.replyNum}" th:id="getId + ${replyStat.index}"/>
 	                                        	 <button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
 		                    	 				 <button onclick="delete_comment(this.value)" th:value="${reply.replyNum}">삭제</button>
+		                    	 				 <button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" >답글달기</button>
+		                    	 			</div>
+		                    	 			<div th:id="replyComment + ${replyStat.index}">
+		                    	 				
 		                    	 			</div>
 		                    	 		</div>
-                                        <!-- Child comment 1-->
-<!--                                         <div class="d-flex mt-4"> -->
-<!--                                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> -->
-<!--                                             <div class="ms-3"> -->
-<!--                                                 <div class="fw-bold">대댓글</div> -->
-<!--                                                 어떻게 꾸며야할지 너무 어렵다. -->
-<!--                                             </div> -->
-<!--                                         </div> -->
-<!--                                         Child comment 2 -->
-<!--                                         <div class="d-flex mt-4"> -->
-<!--                                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div> -->
-<!--                                             <div class="ms-3"> -->
-<!--                                                 <div class="fw-bold">대댓글</div> -->
-<!--                                                 살려줘 -->
-<!--                                             </div> -->
-<!--                                         </div> -->
+                                        <div class="d-flex mt-4" th:each="replyComment : ${replyComments}">
+                                        <th:block th:if="${reply.replyNum == replyComment.ParentReplyNum }">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold" th:text="${replyComment.member}">대댓글</div>
+                                                <label th:text="${replyComment.replyContent}">어떻게 꾸며야할지 너무 어렵다.</label>	
+                                            </div>
+                                        </th:block>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- Single comment-->
@@ -173,7 +170,20 @@
 		    	$('#updateForm' + id).replaceWith(htmls);
 		    	$('#change').focus();
 		    } // 수정할 수 있는 것으로 변경
-		
+			
+		    function change_replyCommentForm(id)
+		    {
+		    	var replyNum = $('#getId' + id).val();
+		    	var htmls ="";
+		    	htmls += '<textarea class="form-control" rows="3" id="replyComment" name="replyComment"></textarea>'
+		    	htmls += '<button onclick="replySend('+replyNum+')">답글달기</button>'
+		    	
+		    	$('#replyComment' + id).replaceWith(htmls);
+		    	$('#replyComment').focus();
+		    }
+		    
+		  
+		    
 			function dataSend()
 			{	
 				var data = $("#com_content").val();
@@ -212,6 +222,26 @@
 					history.go(0);
 				});		
 			} // 댓글 수정
+			
+			  function replySend(id)
+			    {
+			    	var replyComment = $('textarea[name=replyComment]').val();
+					var parentReplyNum = id;
+					var boardNum = $('#get_id').val();
+					
+					const SendDTO = {
+							boardId : boardNum,
+							num : parentReplyNum,
+							result : replyComment,
+					};
+					$.ajax({
+						url: "/board/replyComment",
+						data: SendDTO,
+						type: 'POST',
+					}).done(function (fragment){
+						history.go();
+					});	
+			    } // 답글 추가
 			
 			function delete_comment(replyNum)
 			{

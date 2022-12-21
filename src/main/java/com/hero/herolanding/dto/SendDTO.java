@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class SendDTO {
 	private Long boardId;
+	private Long num;
 	private String name;
 	private String result;
 	private String write_time;
