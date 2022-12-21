@@ -1,14 +1,35 @@
 package com.hero.herolanding.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import com.hero.herolanding.domain.Member;
+import com.hero.herolanding.dto.UpdateMemberDTO;
+import com.hero.herolanding.service.MypageService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class MypageController {
+	
+	private final MypageService mypageService;
 
 //--------<mypageForm() / 마이페이지 이동 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/mypage/mypageForm")
-	public String mypageForm() {
+	public String mypageForm(Model model, HttpServletRequest request) {
+		Member loginMember = new Member(); // 현재 로그인 한 데이터가 담기는 객체 생성
+		
+		HttpSession session = request.getSession();
+		loginMember = (Member)session.getAttribute("loginMember");
+		
+		model.addAttribute("updateMemberDTO" , loginMember);
 		return "mypage/마이페이지";
 	}
 	
@@ -40,6 +61,27 @@ public class MypageController {
 	@GetMapping("/mypage/replyByMeForm")
 	public String replyByMeForm() {
 		return "mypage/내가작성한댓글목록리스트";
+	}
+
+//--------<updateMemberData() / 마이페이지 회원정보 수정 메서드>-------------------------------------------------------------------------------------	
+	@PostMapping("/mypage/mypageForm")
+	public String updateMemberData(@ModelAttribute UpdateMemberDTO updateMemberDTO, HttpServletRequest request) {
+		Member updateMemberData = new Member();
+		
+		HttpSession session = request.getSession();
+		updateMemberData = (Member)session.getAttribute("loginMember");
+		
+		updateMemberData.setMemberId(updateMemberDTO.getMemberId());
+		updateMemberData.setMemberPw(updateMemberDTO.getMemberPw());
+		updateMemberData.setMemberName(updateMemberDTO.getMemberName());
+		updateMemberData.setMemberNickName(updateMemberDTO.getMemberNickName());
+		updateMemberData.setMemberEmail(updateMemberDTO.getMemberEmail());
+		updateMemberData.setMemberPhoneNum(updateMemberDTO.getMemberPhoneNum());
+		
+		
+		updateMemberData = mypageService.update(updateMemberData);
+		
+		return "mypage/마이페이지";
 	}
 
 	

@@ -10,6 +10,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 
+
 apply plugin: "com.ewerk.gradle.plugins.querydsl" 
 
 
@@ -47,6 +48,18 @@ dependencies {
 	
 	implementation 'com.querydsl:querydsl-jpa'
 	implementation 'com.querydsl:querydsl-apt'
+	
+	implementation fileTree(dir: 'lib', include: '*.jar')
+	
+	
+	// coolsms 사용 키트
+	// https://mvnrepository.com/artifact/net.nurigo/sdk
+	//implementation group: 'net.nurigo', name: 'sdk', version: '4.2.9'
+	
+	
+	//implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
+	// 핸드폰 인증용 json
+	 implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
 	
 }
 

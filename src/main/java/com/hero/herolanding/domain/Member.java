@@ -38,11 +38,11 @@ public class Member {
 	@Column(name = "\"닉네임\"")
 	private String memberNickName;
 
-	@Column(name = "\"핸드폰번호\"")
-	private String memberPhoneNum;
-
 	@Column(name = "\"이메일\"")
 	private String memberEmail;
+
+	@Column(name = "\"핸드폰번호\"")
+	private String memberPhoneNum;
 
 	@Column(name = "\"이용약관동의\"")
 	private boolean memberUsingAgree;
