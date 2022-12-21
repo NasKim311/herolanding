@@ -49,6 +49,9 @@ dependencies {
 	implementation 'com.querydsl:querydsl-jpa'
 	implementation 'com.querydsl:querydsl-apt'
 	
+	implementation fileTree(dir: 'lib', include: '*.jar')
+	
+	
 	// coolsms 사용 키트
 	// https://mvnrepository.com/artifact/net.nurigo/sdk
 	//implementation group: 'net.nurigo', name: 'sdk', version: '4.2.9'
