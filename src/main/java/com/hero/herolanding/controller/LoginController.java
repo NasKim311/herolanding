@@ -71,8 +71,6 @@ public class LoginController {
 		// 로그인 성공일 경우
 		HttpSession session = request.getSession(); // 세션 사용
 		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMemberData); // 세션에 로그인 회원정보 보관
-		
-		redirectAttributes.addFlashAttribute("msg", "로그인 성공");
 
 		return "redirect:" + redirectURL;
 	}
