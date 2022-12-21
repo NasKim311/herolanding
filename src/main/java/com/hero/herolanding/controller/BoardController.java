@@ -218,11 +218,22 @@ public class BoardController {
 	
 	
 	@GetMapping("/board/{id}/view")
-	public String board_detail(@PathVariable("id") Long boardId , Model model)
+	public String board_detail(@PathVariable("id") Long boardId , Model model, HttpServletRequest request)
 	{	
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
 		Board board = boardService.findById(boardId);
 		List<Reply> comments = boardService.getComments(boardId);
 		List<Reply> replyComments = boardService.getReplyComment(boardId);
+		if(member != null)
+		{
+			if(member.getMemberNum() == board.getMember().getMemberNum())
+			{
+				model.addAttribute("check" , 1);
+			}
+		}
+	
 		model.addAttribute("replyComments",replyComments);
 		model.addAttribute("comments", comments);
 		model.addAttribute("board", board);
