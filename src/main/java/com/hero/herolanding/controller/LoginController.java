@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -70,16 +71,17 @@ public class LoginController {
 		// 로그인 성공일 경우
 		HttpSession session = request.getSession(); // 세션 사용
 		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMemberData); // 세션에 로그인 회원정보 보관
-
+		
 		redirectAttributes.addFlashAttribute("msg", "로그인 성공");
 
 		return "redirect:" + redirectURL;
 	}
 
-//--------<logout() / 로그아웃 하는 메서드>-------------------------------------------------------------------------------------	
+//--------<kakaoLogin() / 카카오 로그인 하는 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/kakao/loginForm")
-	public String kakaoLogin() {
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) {
 		System.out.println("카카오로그인");
+		loginService.getAccessToken(code);
 		return "index";
 	}
 	
