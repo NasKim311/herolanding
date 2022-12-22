@@ -45,7 +45,7 @@ public class HomeController {
 		 
 //		homeService.worldMap();
 		List<CovidDTO>  covids =  homeService.findCovid();
-		 model.addAttribute("Covids" , covids);
+		model.addAttribute("Covids" , covids);
 		return "index";
 	}
 	
