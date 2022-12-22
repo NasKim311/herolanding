@@ -48,10 +48,11 @@
                 Highcharts.mapChart('container', {
                     chart: {
                         map: topology,
+                        // backgroundColor top white bottom black
                         backgroundColor: {
-                            linearGradient: [0, 0, 500, 500],
+                            linearGradient: [0, 0, 0, 500],
                             stops: [
-                                [0, 'rgb(50, 50, 50)'],
+                                [0, 'rgb(50, 50, 80)'],
                                 [1, 'rgb(0, 0, 0)']
                             ]
                         },

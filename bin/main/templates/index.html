@@ -35,10 +35,10 @@
         <!-- 메인 헤더가 될 예정 -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-dark">
+        <div class="container-fluid bg-dark px-0">
+			<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
             <div class="row">
                 <div class="col-12 text-white text-center">
-					<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
 					<!-- 국가검색창 -->
 					<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
                 </div>
