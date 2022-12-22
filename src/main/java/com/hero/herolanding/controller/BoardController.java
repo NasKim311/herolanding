@@ -222,7 +222,9 @@ public class BoardController {
 	{	
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
+		Member temp = new Member();
 		
+		temp.setMemberNum(-10L);
 		Board board = boardService.findById(boardId);
 		List<Reply> comments = boardService.getComments(boardId);
 		List<Reply> replyComments = boardService.getReplyComment(boardId);
@@ -232,8 +234,10 @@ public class BoardController {
 			{
 				model.addAttribute("check" , 1);
 			}
+			temp.setMemberNum(member.getMemberNum());
 		}
-	
+		
+		model.addAttribute("memberNum", temp.getMemberNum());
 		model.addAttribute("replyComments",replyComments);
 		model.addAttribute("comments", comments);
 		model.addAttribute("board", board);
@@ -269,12 +273,19 @@ public class BoardController {
 	
 	@RequestMapping(value = "/board/comment", method = RequestMethod.POST)
 	@ResponseBody
-	public void writeComment(Model model, SendDTO dto)
+	public void writeComment(Model model, SendDTO dto , HttpServletRequest request )
 	{	
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		
+		Member m = new Member();
+		m.setMemberNum(member.getMemberNum());
+		
 		dto.setWrite_time(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 		Reply reply = new Reply();
 		Board board = new Board();
-//		Member member = new Member(); // 어떤 사람이 글을 썻는지 알기 위한 변수
 		board.setBoardNum(dto.getBoardId()); // 어떤 게시판에 글을 썻는지 알기 위한 변수
 		
 		reply.setReplyContent(dto.getResult()); // 댓글 내용
@@ -283,15 +294,22 @@ public class BoardController {
 				format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss"))); // 댓글 작성 시간
 		reply.setReplyUpdateDate(""); // 업데이트 날짜는 null
 		reply.setBoard(board); // board 입력
-//		reply.setMember(member); // member입력
+		reply.setMember(m);
 		
 		boardService.inputComment(reply);
 	} // 댓글 짜는 로직입니다 .AJAX 사용이기 때문에 따로 return 값없고 db에 댓글만 입력합니다.
 	
 	@RequestMapping(value = "/board/replyComment", method = RequestMethod.POST )
 	@ResponseBody
-	public void addReplyComment (SendDTO dto)
+	public void addReplyComment (SendDTO dto  , HttpServletRequest request )
 	{	
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		Member m = new Member();
+		m.setMemberNum(member.getMemberNum());
+		
 		dto.setWrite_time(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 		Reply reply = new Reply();
 		Board board = new Board();
@@ -304,7 +322,7 @@ public class BoardController {
 				format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 		reply.setReplyUpdateDate("");
 		reply.setBoard(board);
-		//reply.setMember(member);
+		reply.setMember(m);
 		reply.setParentReplyNum(dto.getNum()); // 부모의 값도 넣어줘야함
 		
 		boardService.inputComment(reply);

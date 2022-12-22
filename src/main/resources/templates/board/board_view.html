@@ -64,9 +64,11 @@
                                 <!-- Comment form-->
                                 <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" id="com_content"></textarea></form>
                                 <!-- Comment with nested comments-->
-                                 <div class="regBtn">
-                    				<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
-                    			 </div>
+                                <th:block th:if="${memberNum != -10}">
+                                 	<div class="regBtn">
+                    					<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
+                    			 	</div>
+                    			</th:block>
                                 <div class="d-flex mb-4"  th:each="reply : ${comments}">
                                     <!-- Parent comment-->
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
@@ -76,9 +78,13 @@
 	                                        <label th:text="${reply.replyContent}"> 프론트는 외롭다. </label>
 	                                        <div>
 	                                        	<input type="hidden" th:value="${reply.replyNum}" th:id="getId + ${replyStat.index}"/>
-	                                        	 <button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
-		                    	 				 <button onclick="delete_comment(this.value)" th:value="${reply.replyNum}">삭제</button>
+	                                        	<th:block th:if="${memberNum == reply.member.memberNum}">
+	                                        		<button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
+		                    	 				 	<button onclick="delete_comment(this.value)" th:value="${reply.replyNum}">삭제</button>
+	                                        	</th:block>
+	                                        	<th:block th:if="${memberNum != -10}">
 		                    	 				 <button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" >답글달기</button>
+		                    	 				 </th:block>
 		                    	 			</div>
 		                    	 			<div th:id="replyComment + ${replyStat.index}">
 		                    	 				
@@ -90,7 +96,9 @@
                                             <div class="ms-3">
                                                 <div class="fw-bold" th:text="${replyComment.member}">대댓글</div>
                                                 <label th:text="${replyComment.replyContent}">어떻게 꾸며야할지 너무 어렵다.</label>
+                                                <th:block th:if="${memberNum == replyComment.member.memberNum}">
                                                 <button onclick="delete_comment(this.value)" th:value="${replyComment.replyNum}">삭제</button>
+                                                </th:block>
                                             </div>
                                         </th:block>
                                         </div>
