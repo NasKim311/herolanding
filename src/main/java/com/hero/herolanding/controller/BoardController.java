@@ -28,7 +28,9 @@ import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
 import com.hero.herolanding.dto.SendDTO;
+import com.hero.herolanding.repository.LoginRepository;
 import com.hero.herolanding.service.BoardService;
+import com.hero.herolanding.service.LoginService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +39,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 	
 	private final BoardService boardService;
+	private final LoginRepository loginRepository;
 //===================== 글 작성 ===============================
 	@GetMapping("/board/write")
 	public String write_form(Model model)
@@ -54,8 +57,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		member = (Member)session.getAttribute("loginMember");
 		
-		Member m = new Member();
-		m.setMemberNum(member.getMemberNum());
+		Member m = loginRepository.findById(member.getMemberId());
 		
 		if(!StringUtils.hasText(dto.getPost_title()))
 		{
