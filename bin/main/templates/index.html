@@ -35,19 +35,15 @@
         <!-- 메인 헤더가 될 예정 -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-dark">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    	<!-- <a href="board/write">글쓰기</a>
-						<a href="board/list">글목록</a> -->
-                    <h1>여행가는 날 비와버려라~</h1>
-                    <div class="h1 my-0 py-0">🌙｀、、｀ヽ｀ヽ｀、、ヽヽ、｀、ヽ｀ヽ｀ヽヽ</div>
-					<div class="h1 my-0 py-0">ヽ｀、｀ヽ｀、ヽ｀｀、ヽ｀ヽ｀、ヽヽ｀ヽ、ヽ</div>
-					<div class="h1 my-0 py-0">｀ヽ、ヽヽ｀ヽ｀、｀｀ヽ｀ヽ、ヽ、ヽ｀ヽ｀ヽ</div>
-					<div class="h1 my-0 py-0">｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ 🚶‍♀ ヽ｀｀ヽ｀｀</div>
-					<!-- 국가검색창 -->
-					<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
-                </div>
+        <div class="container-fluid px-0" style="background-color: rgb(10,10,16);">
+			<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
+        </div>
+        
+        <div class="row">
+            <!-- 그라데이션 -->
+            <div class="col-12 text-white text-center" style="background: linear-gradient(rgb(10,10,16), rgb(25,110,247));">
+                <!-- 국가검색창 -->
+                <div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
             </div>
         </div>
         <!-- 메인 헤더 끝 -->
@@ -55,12 +51,17 @@
         <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-success">
+        <div class="container-fluid bg-primary">
             <div class="row">
                 <div class="col-12 text-white text-center">
                     <div class="py-5">        
                         <!-- 게시판 목록 버튼 검은색 외각 버튼-->
-                        <a class="btn btn-outline-light btn-lg" href="board/list/1" role="button">게시판</a>
+						<h1>여행가는 날 비와버려라~</h1>
+						<div class="h1 my-0 py-0">🌙｀、、｀ヽ｀ヽ｀、、ヽヽ、｀、ヽ｀ヽ｀ヽヽ</div>
+						<div class="h1 my-0 py-0">ヽ｀、｀ヽ｀、ヽ｀｀、ヽ｀ヽ｀、ヽヽ｀ヽ、ヽ</div>
+						<div class="h1 my-0 py-0">｀ヽ、ヽヽ｀ヽ｀、｀｀ヽ｀ヽ、ヽ、ヽ｀ヽ｀ヽ</div>
+						<div class="h1 my-0 py-0">｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ 🚶‍♀ ヽ｀｀ヽ｀｀</div>
+                        <a class="col-8 btn btn-outline-light btn-lg" href="board/list/1" role="button">게시판</a>
                     </div>
                 </div>
             </div>
@@ -69,7 +70,7 @@
         <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid py-5 bg-dark">
+        <div class="container-fluid py-5 bg-danger">
             <div class="row justify-content-center">
                 <div class="col-10 col-lg-6 text-white">
                     <div th:replace="/fragments/전세계.html :: 전세계"></div>
@@ -80,37 +81,18 @@
         <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-danger">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
+        <div class="container-fluid py-5 bg-dark">
+            <div class="row justify-content-center">
+                <div class="col-10 col-lg-6 text-white">
+                    <div th:replace="/fragments/확진자통계.html :: 확진자통계"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container-fluid py-5 bg-dark">
+            <div class="row justify-content-center">
+                <div class="col-10 col-lg-6 text-white">
+                    <div th:replace="/fragments/백신통계.html :: 백신통계"></div>
                 </div>
             </div>
         </div>

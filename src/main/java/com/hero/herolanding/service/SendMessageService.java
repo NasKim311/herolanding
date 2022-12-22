@@ -16,7 +16,7 @@ public class SendMessageService {
 	public void certifiedPhoneNumber(String userPhoneNumber, int randomNumber) {
 		String api_key = "NCSEEQZNKCK9AI0P";						// 입력함
 	    String api_secret = "LTY4P6GCF2CVPMQXXFLYQLQNEAEYD2KB";		// 입력함
-	    Message  coolsms = new Message(api_key, api_secret);
+	    Message coolsms = new Message(api_key, api_secret);
 
 	    // 4 params(to, from, type, text) are mandatory. must be filled
 	    HashMap<String, String> params = new HashMap<String, String>();

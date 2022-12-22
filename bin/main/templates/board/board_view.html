@@ -44,7 +44,7 @@
                         </header>
                         <!-- Post content-->
                         <section class="mb-5">
-                            <p class="fs-5 mb-4" th:text="${board.boardContents}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?</p>
+                            <p class="fs-5 mb-4"  th:utext=${board.boardContents} >Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?</p>
                         </section>
                                 <div class="row">
                                 <th:block th:if="${check == 1}">
@@ -64,33 +64,41 @@
                                 <!-- Comment form-->
                                 <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" id="com_content"></textarea></form>
                                 <!-- Comment with nested comments-->
-                                 <div class="regBtn">
-                    				<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
-                    			 </div>
+                                <th:block th:if="${memberNum != -10}">
+                                 	<div class="regBtn">
+                    					<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
+                    			 	</div>
+                    			</th:block>
                                 <div class="d-flex mb-4"  th:each="reply : ${comments}">
                                     <!-- Parent comment-->
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                     <div class="ms-3">
-                                        <div class="fw-bold" th:text="${reply.member}">유저1</div>
+                                        <div class="fw-bold" th:text="${reply[6]}">유저1</div>
                                         <div th:id="updateForm + ${replyStat.index}">
-	                                        <label th:text="${reply.replyContent}"> 프론트는 외롭다. </label>
+	                                        <label th:text="${reply[3]}"> 프론트는 외롭다. </label>
 	                                        <div>
-	                                        	<input type="hidden" th:value="${reply.replyNum}" th:id="getId + ${replyStat.index}"/>
-	                                        	 <button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
-		                    	 				 <button onclick="delete_comment(this.value)" th:value="${reply.replyNum}">삭제</button>
+	                                        	<input type="hidden" th:value="${reply[0]}" th:id="getId + ${replyStat.index}"/>
+	                                        	<th:block th:if="${memberNum == reply[4].memberNum}">
+	                                        		<button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
+		                    	 				 	<button onclick="delete_comment(this.value)" th:value="${reply[0]}">삭제</button>
+	                                        	</th:block>
+	                                        	<th:block th:if="${memberNum != -10}">
 		                    	 				 <button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" >답글달기</button>
+		                    	 				 </th:block>
 		                    	 			</div>
 		                    	 			<div th:id="replyComment + ${replyStat.index}">
 		                    	 				
 		                    	 			</div>
 		                    	 		</div>
                                         <div class="d-flex mt-4" th:each="replyComment : ${replyComments}">
-                                        <th:block th:if="${reply.replyNum == replyComment.ParentReplyNum }">
+                                        <th:block th:if="${reply[0] == replyComment[1] }">
                                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                             <div class="ms-3">
-                                                <div class="fw-bold" th:text="${replyComment.member}">대댓글</div>
-                                                <label th:text="${replyComment.replyContent}">어떻게 꾸며야할지 너무 어렵다.</label>
-                                                <button onclick="delete_comment(this.value)" th:value="${replyComment.replyNum}">삭제</button>
+                                                <div class="fw-bold" th:text="${replyComment[6]}">대댓글</div>
+                                                <label th:text="${replyComment[3]}">어떻게 꾸며야할지 너무 어렵다.</label>
+                                                <th:block th:if="${memberNum == replyComment[4].memberNum}">
+                                                <button onclick="delete_comment(this.value)" th:value="${replyComment[0]}">삭제</button>
+                                                </th:block>
                                             </div>
                                         </th:block>
                                         </div>

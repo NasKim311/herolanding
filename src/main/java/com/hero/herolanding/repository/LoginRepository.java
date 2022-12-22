@@ -46,5 +46,11 @@ public class LoginRepository {
 
 		return loginMemberData;
 	}
+	
+	public Member findById(String loginId)
+	{
+		return queryFactory.selectFrom(member)
+				.where(member.memberId.eq(loginId)).fetchOne();
+	}
 
 } // LoginRepository class

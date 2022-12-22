@@ -295,16 +295,16 @@ public class BoardRepository {
 	}
 //	
 	// 댓글 불러오기
-	public List<Reply> getComments(Long boardId)
+	public List<Object[]> getComments(Long boardId)
 	{	
-		return em.createQuery("select r from Reply r INNER JOIN Board b on r.board = b.boardNum where b.boardNum = :board_num and r.replyDepthLevel = 1 order by r.replyNum desc", Reply.class)
+		return em.createQuery("select r.replyNum,r.ParentReplyNum,r.replyInsertDate,r.replyContent,r.member,r.board, m.memberNickName from Reply r , Member m INNER JOIN Board b on r.board = b.boardNum and r.member = m.memberNum where b.boardNum = :board_num and r.replyDepthLevel = 1 order by r.replyNum desc")
 				.setParameter("board_num", boardId)
 				.getResultList();
 	}
 	// 답글 불러오기
-	public List<Reply> getReplyComment(Long boardId)
+	public List<Object[]> getReplyComment(Long boardId)
 	{	
-		return em.createQuery("select r from Reply r INNER JOIN Board b on r.board = b.boardNum where b.boardNum = :board_num and r.replyDepthLevel = 2 order by r.replyNum desc", Reply.class)
+		return em.createQuery("select r.replyNum,r.ParentReplyNum,r.replyInsertDate,r.replyContent,r.member,r.board, m.memberNickName from Reply r , Member m INNER JOIN Board b on r.board = b.boardNum and r.member = m.memberNum where b.boardNum = :board_num and r.replyDepthLevel = 2 order by r.replyNum desc")
 				.setParameter("board_num", boardId)
 				.getResultList();
 	}
