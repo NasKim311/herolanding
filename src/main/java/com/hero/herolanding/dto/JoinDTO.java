@@ -21,9 +21,6 @@ public class JoinDTO {
 	private Boolean memberAdvAgree;
 	private LocalDate signUpDate; 
 	
+	private String sendMsg;
 	
-	
-	
-	
-	
-} // name 안쓰나?
+} 

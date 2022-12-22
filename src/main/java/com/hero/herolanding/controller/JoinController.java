@@ -40,7 +40,7 @@ public class JoinController {
 	}
 	
 	@PostMapping("/joins/new")
-	public String create(@ModelAttribute JoinDTO joinDTO, BindingResult bindingResult,
+	public String create(@ModelAttribute JoinDTO joinDTO, BindingResult bindingResult, 
 			RedirectAttributes redirectAttributes) {
 		
 		// 벨리데이션체크
@@ -68,7 +68,7 @@ public class JoinController {
 			bindingResult.addError(new FieldError("joinForm", "memberEmail", joinDTO.getMemberEmail(), false, null, null , "이메일은 필수입니다."));
 		}
 		
-		if(!StringUtils.hasText(joinDTO.getMemberPhoneNum())) {
+		if(!StringUtils.hasText(joinDTO.getMemberPhoneNum()) || joinDTO.getSendMsg() == "false") {
 			bindingResult.addError(new FieldError("joinForm", "memberPhoneNum", joinDTO.getMemberPhoneNum(), false, null, null , "휴대전화번호는 필수입니다."));
 		}
 		
@@ -79,12 +79,18 @@ public class JoinController {
 		if(!joinDTO.getMemberDataAgree() == true) {
 			bindingResult.addError(new FieldError("joinForm", "memberDataAgree", joinDTO.getMemberDataAgree(), false, null, null , "개인정보수집동의는 필수입니다."));
 		}
-		
+//		
+//		if(joinDTO.getSendMsg() == "false") {
+//			bindingResult.addError(new FieldError("joinForm", "sendMsg", joinDTO.getSendMsg(), false, null, null , "휴대폰 인증은 필수입니다."));
+//			
+//		}	
+
 		if(bindingResult.hasErrors()) {
 			
 			return "login/join";
 		}
 		
+		System.out.println("값 확인 : " + joinDTO.getSendMsg());
 		// 오류 없을시
 		Member member= new Member();
 		member.setMemberId(joinDTO.getMemberId());
@@ -96,7 +102,6 @@ public class JoinController {
 		member.setMemberUsingAgree(joinDTO.getMemberUsingAgree());
 		member.setMemberDataAgree(joinDTO.getMemberDataAgree());
 		member.setMemberAdvAgree(joinDTO.getMemberAdvAgree());
-		
 		member.setSignUpDate(joinDTO.getSignUpDate());
 		
 		joinService.saveJoin(member);
@@ -126,9 +131,6 @@ public class JoinController {
 	public boolean join2(JoinIdNicknameDTO dto ) {
 		
 		List<Member>  checkNickname = joinService.findNickName(dto.getMemberNickName());
-		
-		System.out.println(checkNickname.size());
-		System.out.println("-----------------------------------");
 		
 		if(checkNickname.size() != 0) {
 			return true;

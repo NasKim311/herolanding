@@ -16,7 +16,8 @@ public class SendsmsController {
 	
 	private final SendMessageService sendMessageService;
 	
-	@ResponseBody @GetMapping("/phoneCheck")
+	@ResponseBody 
+	@GetMapping("/phoneCheck")
 	public String sendSMS(@RequestParam("phone") String userPhoneNumber) { // 휴대폰 문자보내기
 		int randomNumber = (int)((Math.random()* (9999 - 1000 + 1)) + 1000);//난수 생성
 		
