@@ -24,6 +24,7 @@ import com.hero.herolanding.domain.CovidVaccinData;
 import com.hero.herolanding.domain.ExchangeRate;
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.CovidDTO;
+import com.hero.herolanding.dto.CovidOneDTO;
 import com.hero.herolanding.dto.vaccinDTO;
 import com.hero.herolanding.repository.HomeRepository;
 import com.querydsl.core.Tuple;
@@ -95,19 +96,63 @@ public class HomeService {
 	@Transactional
 	public List<CovidDTO> findCovid() {
 		List<CovidDTO> covids = new ArrayList<CovidDTO>();
-		List<Tuple> findcovid=  homeRepository.findCovidAll();
-		
+		List<Country> findcovid=  homeRepository.findCovidAll();
+//		for(int i = 0 ; i < findcovid.size();i++) {
+//			System.out.println("나라 : " + findcovid.get(i).getCountryName());
+//			System.out.println("백만 : " + findcovid.get(i).getCovidData().getMilionCount());
+//			System.out.println("신규 : " + findcovid.get(i).getCovidData().getNewCovidCount1());
+//			System.out.println("사망 : " + findcovid.get(i).getCovidData().getSamang());
+//		}
+//		
 		for(int i = 0 ; i < findcovid.size();i++) {
 			CovidDTO covidDTO = new CovidDTO();
-			covidDTO.setCountry(findcovid.get(i).get(country.countryName));
-			covidDTO.setMilionCount(findcovid.get(i).get(country.covidData.milionCount));
-			covidDTO.setNewCovidCount1(findcovid.get(i).get(country.covidData.newCovidCount1));
-			covidDTO.setSamang(findcovid.get(i).get(country.covidData.samang));
-			covidDTO.setTotalCovidCount(findcovid.get(i).get(country.covidData.totalCovidCount));
+			covidDTO.setCountry(findcovid.get(i).getCountryName());
+			covidDTO.setMilionCount(findcovid.get(i).getCovidData().getMilionCount());
+			covidDTO.setNewCovidCount1(findcovid.get(i).getCovidData().getNewCovidCount1());
+			covidDTO.setSamang(findcovid.get(i).getCovidData().getSamang());
+			covidDTO.setTotalCovidCount(findcovid.get(i).getCovidData().getTotalCovidCount());
 			
 			covids.add(covidDTO);
 		}
+
 		return covids;
+	}
+	
+	@Transactional
+	public List<vaccinDTO> findCovidVaccin() {
+		List<vaccinDTO> vaccins= new ArrayList<vaccinDTO>();
+		List<Country> findcovid=  homeRepository.findCovidVaccinAll();
+		
+		for(int i = 0 ; i < findcovid.size();i++) {
+			vaccinDTO vaccinDTO = new vaccinDTO();
+			vaccinDTO.setCountry(findcovid.get(i).getCountryName());
+			vaccinDTO.setInjectionCompleteCount(findcovid.get(i).getCovidVaccinData().getInjectionCompleteCount());
+			vaccinDTO.setInjectionCompletePercent(findcovid.get(i).getCovidVaccinData().getInjectionCompletePercent());
+			vaccinDTO.setNewInjectionCount1(findcovid.get(i).getCovidVaccinData().getNewInjectionCount1());
+			vaccinDTO.setTotalInjectionCount(findcovid.get(i).getCovidData().getTotalCovidCount());
+			
+			vaccins.add(vaccinDTO);
+		}
+		
+		return vaccins;
+	}
+	
+	@Transactional
+	public CovidOneDTO findCounrty(String country) {
+		CovidOneDTO main = new CovidOneDTO();
+		Country findone = homeRepository.findCounrty(country);
+		
+		main.setCountry(country);
+		main.setInjectionCompleteCount(findone.getCovidVaccinData().getInjectionCompleteCount());
+		main.setInjectionCompletePercent(findone.getCovidVaccinData().getInjectionCompletePercent());
+		main.setNewCovidCount1(findone.getCovidData().getNewCovidCount1());
+		main.setNewInjectionCount1(findone.getCovidVaccinData().getNewInjectionCount1());
+		main.setSamang(findone.getCovidData().getSamang());
+		main.setTotalInjectionCount(findone.getCovidVaccinData().getTotalInjectionCount());
+		main.setTotalCovidCount(findone.getCovidData().getTotalCovidCount());
+		
+		return main;
+		
 	}
 
 }

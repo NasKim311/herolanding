@@ -32,13 +32,13 @@
 									<th scope="col">사망</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">전세계</th>
-									<td>129,520,929</td>
-									<td>1,460,620</td>
-									<td>16,650.15</td>
-									<td>2,820,046</td>
+							<tbody >
+								<tr th:each="covid : ${Covids}">
+									<th scope="row" th:text="${covid.country}"> 전세계</th>
+									<td th:text="${covid.totalCovidCount}">129,520,929</td>
+									<td th:text="${covid.newCovidCount1}">1,460,620</td>
+									<td th:text="${covid.milionCount}">16,650.15</td>
+									<td th:text="${covid.samang}">2,820,046</td>
 								</tr>
 								<tr>
 									<th scope="row">대한민국</th>

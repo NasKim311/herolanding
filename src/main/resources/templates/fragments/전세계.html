@@ -15,30 +15,30 @@
 
 <body th:fragment="전세계">
 	<!-- 신호 : https://news.google.com/covid19/map?hl=ko&gl=KR&ceid=KR%3Ako 자세한 사항은 여기 참고 바람 -->
-	<div class="container-fluid">
+	<div class="container-fluid" th:object="${one}">
 		<div class=" border rounded">
 			<div class="p-3">
 
-				<h3 class="">전 세계</h3>
+				<h3 class="" th:text="*{country}"> 전 세계</h3>
 				<div class="">
 					<div class="">
 						<div class="row py-2">
 							<div class="col">
-								<div class="" id="c98">총 확진자 수</div>
-								<div class="" aria-describedby="c98">653,713,224</div>
+								<div class="" id="c98"  >총 확진자 수</div>
+								<div class="" aria-describedby="c98" th:text="*{totalCovidCount}">653,713,224</div>
 								<div class=""></div>
 							</div>
 							<div class="col border-end border-start border-2">
-								<div class="">신규 확진자(14일)</div>
-								<div class=""><img src="" class="" loading="lazy" alt="14일 동향 차트"
-										aria-label="14일 동향 차트"><img src="" class="" loading="lazy" alt="14일 동향 차트"
-										aria-label="14일 동향 차트">
-								</div>
-								<div class="">12월 6일~19일: <strong>+8,009,639</strong></div>
+								<div class="" >신규 확진자(1일)</div>
+<!-- 								<div class=""><img src="" class="" loading="lazy" alt="14일 동향 차트" -->
+<!-- 										aria-label="14일 동향 차트"><img src="" class="" loading="lazy" alt="14일 동향 차트" -->
+<!-- 										aria-label="14일 동향 차트"> -->
+<!-- 								</div> -->
+								<div class="" >12월 6일~19일: <strong th:text="*{newCovidCount1}">0</strong></div>
 							</div>
 							<div class="col">
 								<div class="" id="c99">사망</div>
-								<div class="" aria-describedby="c99">6,667,399</div>
+								<div class="" aria-describedby="c99"  th:text="*{samang}">0</div>
 								<div class=""></div>
 							</div>
 						</div>
@@ -48,21 +48,21 @@
 						<div class="row py-2">
 							<div class="col">
 								<div class="" id="c100">총 접종 횟수</div>
-								<div class="" aria-describedby="c100">13,070,502,479</div>
+								<div class="" aria-describedby="c100"  th:text="*{totalInjectionCount}">0</div>
 								<div class=""></div>
 							</div>
 							<div class="col border-end border-start border-2">
-								<div class="">신규 접종 횟수(14일)</div>
-								<div class=""><img src="" class="dt3Iuf zC7z7b FS6bed" loading="lazy" alt="14일 동향 차트"
-										aria-label="14일 동향 차트"><img src="" class="dt3Iuf krHqHb FS6bed" loading="lazy"
-										alt="14일 동향 차트" aria-label="14일 동향 차트">
-								</div>
-								<div class="">12월 6일~19일: <strong>+35,061,738</strong></div>
+								<div class="">신규 접종 횟수(1일)</div>
+<!-- 								<div class=""><img src="" class="dt3Iuf zC7z7b FS6bed" loading="lazy" alt="14일 동향 차트" -->
+<!-- 										aria-label="14일 동향 차트"><img src="" class="dt3Iuf krHqHb FS6bed" loading="lazy" -->
+<!-- 										alt="14일 동향 차트" aria-label="14일 동향 차트"> -->
+<!-- 								</div> -->
+								<div class="">12월 6일~19일: <strong  th:text="*{newInjectionCount1}"></strong></div>
 							</div>
 							<div class="col">
 								<div class="" id="c101">백신 접종을 완료한 사람의 수</div>
-								<div class="" aria-describedby="c101">5,036,001,382</div>
-								<div class="">인구 비율: <strong>64.8%</strong></div>
+								<div class="" aria-describedby="c101" th:text="*{injectionCompleteCount}"></div>
+								<div class="">인구 비율: <strong th:text="*{injectionCompletePercent}">0</strong></div>
 							</div>
 						</div>
 					</div>
