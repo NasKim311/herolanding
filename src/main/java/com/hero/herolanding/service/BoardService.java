@@ -53,7 +53,7 @@ public class BoardService {
 	}
 //	
 	@Transactional
-	public List<Reply> getComments(Long boardId)
+	public List<Object[]> getComments(Long boardId)
 	{
 		return boardRepository.getComments(boardId);
 	}
@@ -118,7 +118,7 @@ public class BoardService {
 	}
 	
 	@Transactional
-	public List<Reply> getReplyComment(Long boardId)
+	public List<Object[]> getReplyComment(Long boardId)
 	{
 		return boardRepository.getReplyComment(boardId);
 	}

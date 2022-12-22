@@ -226,8 +226,8 @@ public class BoardController {
 		
 		temp.setMemberNum(-10L);
 		Board board = boardService.findById(boardId);
-		List<Reply> comments = boardService.getComments(boardId);
-		List<Reply> replyComments = boardService.getReplyComment(boardId);
+		List<Object[]> comments = boardService.getComments(boardId);
+		List<Object[]> replyComments = boardService.getReplyComment(boardId);
 		if(member != null)
 		{
 			if(member.getMemberNum() == board.getMember().getMemberNum())
