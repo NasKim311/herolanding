@@ -1,6 +1,7 @@
 package com.hero.herolanding.controller;
 
 import java.awt.print.Pageable;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -20,7 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Member;
@@ -58,6 +62,8 @@ public class BoardController {
 		member = (Member)session.getAttribute("loginMember");
 		
 		Member m = loginRepository.findById(member.getMemberId());
+		
+		System.out.println(dto.getPost_content());
 		
 		if(!StringUtils.hasText(dto.getPost_title()))
 		{
@@ -345,8 +351,6 @@ public class BoardController {
 	{
 		boardService.comment_remove(dto.getNum());
 	} // 댓글 삭제
-	
-	
 	
 	
 	
