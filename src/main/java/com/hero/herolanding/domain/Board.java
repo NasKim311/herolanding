@@ -41,7 +41,7 @@ public class Board {
 	@Column(name = "\"글 제목\"")
 	private String boardTitle;
 
-	@Column(name = "\"글 내용\"")
+	@Column(name = "\"글 내용\"" , length = 50000)
 	private String boardContents;
 
 	@Column(name = "\"조회 수\"")
