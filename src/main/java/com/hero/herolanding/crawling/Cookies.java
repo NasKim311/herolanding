@@ -14,7 +14,7 @@ import com.hero.herolanding.service.HomeService;
 public class Cookies {
 	
 	public void setCookie(HttpServletResponse response ,HttpServletRequest request) {
-		Cookie cookie = new Cookie("crawring" , "있따");
+		Cookie cookie = new Cookie("crawring" , "들어왔따");
 		LocalTime now = LocalTime.now();
 		int hour = 23 - now.getHour();
         int minute = 59 - now.getMinute();
@@ -22,7 +22,6 @@ public class Cookies {
         int total = hour*minute*60*second;
 		cookie.setMaxAge(total);
 		response.addCookie(cookie); // response에 Cookie 추가
-			
+		System.out.println("돼냐");
 	}
-
 }
