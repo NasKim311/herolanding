@@ -9,7 +9,8 @@
 	<!-- 네비바 시작 -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark border-bottom bg-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">
+			<!-- 홈 이동 -->
+            <a class="navbar-brand" href="/">
             	<img src="/assets/images/네비로고.png" alt="히어로랜딩_로고" width="87"
                 	class="d-inline-block align-text-top"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -20,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -45,12 +46,24 @@
                 </ul>
 
                 <!-- 네비바 우측 메뉴 -->
-                <form class="d-flex">
-                    <!-- 로그인 버튼 -->
-                    <button class="btn btn-outline-success me-2" onclick="location.href='login.html'" th:onclick="|location.href='@{/login/loginForm}'|" type="button">로그인</button>
-                    <!-- 회원가입 버튼 -->
-                    <button class="btn btn-outline-success" type="button">회원가입</button>
-                </form>
+                <div class="d-flex">
+					<!-- 회원 유저 이름 박스(일단 닉네임으로 작업해놓음) -->
+					<th:block th:if="${session.loginMember != null}">
+						<a class="btn btn-link text-decoration-none text-light" th:onclick="|location.href='@{/mypage/mypageForm}'|" th:text="${session.loginMember.memberName} + '님의 마이페이지'"></a>
+					</th:block>
+                    <th:block th:unless="${session.loginMember != null}">
+                    	<!-- 로그인 버튼 -->
+                        <button class="btn btn-outline-success me-2" onclick="location.href='login.html'" th:onclick="|location.href='@{/login/loginForm}'|" type="button">로그인</button>
+                    </th:block>
+					
+					<th:block th:if="${session.loginMember != null}">
+						<button class="btn btn-outline-success" type="button" th:onclick="|location.href='@{/logout/index}'|" >로그아웃</button>
+					</th:block>
+                    <th:block th:unless="${session.loginMember != null}">
+                    	<!-- 회원가입 -->
+                        <button class="btn btn-outline-success"onclick="location.href='join.html'" th:onclick="|location.href='@{/joins/new}'|" type="button">회원가입</button>
+                    </th:block>
+                </div>
             </div>
         </div>
     </nav>

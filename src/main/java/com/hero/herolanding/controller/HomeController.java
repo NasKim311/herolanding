@@ -37,6 +37,8 @@ public class HomeController {
 				}
 			}
 		}
+		 
+		homeService.worldMap();
 		return "index";
 	}
 
