@@ -61,12 +61,19 @@ public class Covid {
 
 		driver.get(url); // 브라우저에서 url로 이동한다.
 		
+		// 백신 탭 xpath경로로 설정
+		WebElement tab1 = driver.findElement(By.xpath("//*[@id=\"yDmH0d\"]/c-wiz[1]/div/div[2]/div[2]/div[4]/div/div/div[2]/div/div[1]/div[1]"));
+		//*[@id="yDmH0d"]/c-wiz[1]/div/div[2]/div[2]/div[4]/div/div/div[2]/div/div[1]/div[1]
+		Actions action1 = new Actions(driver) ;
+		// 클릭
+		action1.click(tab1);
+		
 		System.out.println("실행");
 //		코로나 정보		
-		WebElement tab = driver.findElement(By.className("pH8O4c"));
-		Actions action = new Actions(driver) ;
+		WebElement tab2 = driver.findElement(By.className("pH8O4c"));
+		Actions action2 = new Actions(driver) ;
 //		마우스를 해당 정보 위에 올려 활성화 시켜 모든 정보가 나오게한다.
-		action.moveToElement(tab).build().perform();
+		action2.moveToElement(tab2).build().perform();
 		// 값을 가져올 xpath경로를 입력 후 값을 가지고온다. 
 		List<WebElement> elements  = driver.findElements(By.xpath("//*[@id=\"yDmH0d\"]/c-wiz[1]/div/div[2]/div[2]/div[4]/div/div/div[2]/div/div[2]"));
 		String element = elements.get(0).getText();
