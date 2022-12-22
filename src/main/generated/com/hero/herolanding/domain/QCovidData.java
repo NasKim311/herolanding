@@ -19,17 +19,15 @@ public class QCovidData extends BeanPath<CovidData> {
 
     public static final QCovidData covidData = new QCovidData("covidData");
 
-    public final StringPath injectionCompleteCount = createString("injectionCompleteCount");
+    public final StringPath milionCount = createString("milionCount");
 
-    public final StringPath newCovidCount = createString("newCovidCount");
+    public final StringPath newCovidCount1 = createString("newCovidCount1");
 
-    public final StringPath newInjectionCount = createString("newInjectionCount");
+    public final StringPath newCovidCount60 = createString("newCovidCount60");
 
     public final StringPath samang = createString("samang");
 
     public final StringPath totalCovidCount = createString("totalCovidCount");
-
-    public final StringPath totalInjectionCount = createString("totalInjectionCount");
 
     public QCovidData(String variable) {
         super(CovidData.class, forVariable(variable));

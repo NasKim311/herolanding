@@ -34,7 +34,7 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final EnumPath<Continent> continent = createEnum("continent", Continent.class);
 
-    public final DateTimePath<java.time.LocalDateTime> insertDate = createDateTime("insertDate", java.time.LocalDateTime.class);
+    public final StringPath insertDate = createString("insertDate");
 
     public final QMember member;
 
@@ -44,7 +44,7 @@ public class QBoard extends EntityPathBase<Board> {
 
     public final ListPath<Report, QReport> reports = this.<Report, QReport>createList("reports", Report.class, QReport.class, PathInits.DIRECT2);
 
-    public final DateTimePath<java.time.LocalDateTime> updateDate = createDateTime("updateDate", java.time.LocalDateTime.class);
+    public final StringPath updateDate = createString("updateDate");
 
     public QBoard(String variable) {
         this(Board.class, forVariable(variable), INITS);

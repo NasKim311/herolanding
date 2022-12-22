@@ -26,13 +26,17 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final QMember member;
 
+    public final NumberPath<Long> ParentReplyNum = createNumber("ParentReplyNum", Long.class);
+
+    public final StringPath replyContent = createString("replyContent");
+
     public final NumberPath<Integer> replyDepthLevel = createNumber("replyDepthLevel", Integer.class);
 
-    public final DateTimePath<java.time.LocalDateTime> replyInsertDate = createDateTime("replyInsertDate", java.time.LocalDateTime.class);
+    public final StringPath replyInsertDate = createString("replyInsertDate");
 
     public final NumberPath<Long> replyNum = createNumber("replyNum", Long.class);
 
-    public final DateTimePath<java.time.LocalDateTime> replyUpdateDate = createDateTime("replyUpdateDate", java.time.LocalDateTime.class);
+    public final StringPath replyUpdateDate = createString("replyUpdateDate");
 
     public final ListPath<Report, QReport> reports = this.<Report, QReport>createList("reports", Report.class, QReport.class, PathInits.DIRECT2);
 

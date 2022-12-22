@@ -1,9 +1,19 @@
 package com.hero.herolanding.service;
 
+import static com.hero.herolanding.domain.QCountry.*;
+import static com.hero.herolanding.domain.QExchangeRate.*;
+import static com.hero.herolanding.domain.QCountry.*;
+import static com.hero.herolanding.domain.QExchangeRate.*;
+import static com.hero.herolanding.domain.QCovidData.*;
+import static com.hero.herolanding.domain.QCountryPaper.*;
+
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hero.herolanding.crawling.Covid;
 import com.hero.herolanding.crawling.CovidVaaccin;
@@ -12,9 +22,11 @@ import com.hero.herolanding.domain.Country;
 import com.hero.herolanding.domain.CovidData;
 import com.hero.herolanding.domain.CovidVaccinData;
 import com.hero.herolanding.domain.ExchangeRate;
+import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.CovidDTO;
 import com.hero.herolanding.dto.vaccinDTO;
 import com.hero.herolanding.repository.HomeRepository;
+import com.querydsl.core.Tuple;
 
 import lombok.RequiredArgsConstructor;
 
@@ -77,6 +89,25 @@ public class HomeService {
 				country.setCovidData(covidData);
 			}
 		}
+	}
+	
+	
+	@Transactional
+	public List<CovidDTO> findCovid() {
+		List<CovidDTO> covids = new ArrayList<CovidDTO>();
+		List<Tuple> findcovid=  homeRepository.findCovidAll();
+		
+		for(int i = 0 ; i < findcovid.size();i++) {
+			CovidDTO covidDTO = new CovidDTO();
+			covidDTO.setCountry(findcovid.get(i).get(country.countryName));
+			covidDTO.setMilionCount(findcovid.get(i).get(country.covidData.milionCount));
+			covidDTO.setNewCovidCount1(findcovid.get(i).get(country.covidData.newCovidCount1));
+			covidDTO.setSamang(findcovid.get(i).get(country.covidData.samang));
+			covidDTO.setTotalCovidCount(findcovid.get(i).get(country.covidData.totalCovidCount));
+			
+			covids.add(covidDTO);
+		}
+		return covids;
 	}
 
 }

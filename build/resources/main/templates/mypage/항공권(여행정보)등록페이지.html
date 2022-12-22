@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords"
+        content="wrappixel, admin dashboard, html css dashboard, web dashboard, bootstrap 5 admin, bootstrap 5, css3 dashboard, bootstrap 5 dashboard, Monsterlite admin bootstrap 5 dashboard, frontend, responsive bootstrap 5 admin template, Monster admin lite design, Monster admin lite dashboard bootstrap 5 dashboard template">
+    <meta name="description"
+        content="Monster Lite is powerful and clean admin dashboard template, inpired from Bootstrap Framework">
+    <meta name="robots" content="noindex,nofollow">
+    <title>항공권(여행정보)등록페이지</title>
+    <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <!-- Custom CSS -->
+    <link href="/css/style.min.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+
+<body>
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="lds-ripple">
+            <div class="lds-pos"></div>
+            <div class="lds-pos"></div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin5" data-sidebartype="full"
+        data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+<!-- ########################################################################################################### -->
+<!-- 네비바 -->
+<div th:replace="/mypage/fragments/nav-mypage.html :: nav-mypage"></div>
+<!-- ########################################################################################################### -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb pb-0">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-8 align-self-center">
+                        <h3 class="page-title mb-0 p-0">항공권(여행정보)등록페이지</h3>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <!-- <li class="breadcrumb-item"><a href="#">관리자 페이지</a></li> -->
+                                    <li class="breadcrumb-item active" aria-current="page">항공권(여행정보)등록페이지</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">여행정보</h4>
+                                <div class="d-md-flex">
+	                                <form class="col d-md-flex">
+	                                    <div class="m-2">
+	                                        <select class="form-select shadow-none" aria-label="Default select example">
+	                                        	<!-- 신호 : 검색창 카테고리 알맞게 뿌려주세요. -->
+	                                            <option selected>카테고리 선택</option>
+	                                            <option value="1">아이디</option>
+	                                            <option value="2">비밀번호</option>
+	                                            <option value="3">이름</option>
+	                                            <option value="4">닉네임</option>
+	                                            <option value="5">이메일</option>
+	                                            <option value="6">휴대폰</option>
+	                                            <option value="7">개인정보 수집 및 이용 동의</option>
+	                                        </select>
+	                                    </div>
+	                                    <!-- 검색 기능 -->
+	                                    <div class="col m-2 col-md-6">
+	                                        <div class="input-group">
+	                                            <input type="text" class="form-control" placeholder="게시판 정보 검색">
+	                                            <button class="btn btn-secondary" type="button" id="button-addon2">검색</button>
+	                                        </div>
+	                                    </div>
+	                                </form>
+	                                <!-- 신호 : 버튼 연결해주세요. -->
+	                                <div class="text-end">
+	                                	<button type="button" class="btn btn-primary m-2" onClick="">출국일자등록</button>
+	                                </div>
+                                </div>
+                      
+                  
+                                <!-- 신호 : 무언가 등록 버튼 -->
+                                <!-- 신호 : 검색창 끝 -->
+                                <div class="table-responsive">
+                                    <table class="table user-table no-wrap">
+                                    	<!-- 신호 : 알맞게 정보 뿌려주세요. -->
+                                        <thead>
+                                            <tr>
+                                                <th class="border-top-0"><b>#</b></th>
+                                                <th class="border-top-0"><b>아이디</b></th>
+                                                <th class="border-top-0"><b>비밀번호</b></th>
+                                                <th class="border-top-0"><b>이름</b></th>
+                                                <th class="border-top-0"><b>닉네임</b></th>
+                                                <th class="border-top-0"><b>이메일</b></th>
+                                                <th class="border-top-0"><b>휴대폰</b></th>
+                                                <th class="border-top-0"><b>개인정보 수집 및 이용 동의</b></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr onClick="location.href='회원정보수정.html'">
+                                                <td>1</td>
+                                                <td>shinho93</td>
+                                                <td>1234</td>
+                                                <td>곽신호</td>
+                                                <td>BananaCube</td>
+                                                <td>shinho930@gmail.com</td>
+                                                <td>010-9284-7555</td>
+                                                <td>Y</td>
+                                            </tr>
+                                            <tr onClick="location.href='회원정보수정.html'">
+                                                <td>2</td>
+                                                <td>shinho93</td>
+                                                <td>1234</td>
+                                                <td>곽신호</td>
+                                                <td>BananaCube</td>
+                                                <td>shinho930@gmail.com</td>
+                                                <td>010-9284-7555</td>
+                                                <td>Y</td>
+                                            </tr>
+                                            <tr onClick="location.href='회원정보수정.html'">
+                                                <td>3</td>
+                                                <td>shinho93</td>
+                                                <td>1234</td>
+                                                <td>곽신호</td>
+                                                <td>BananaCube</td>
+                                                <td>shinho930@gmail.com</td>
+                                                <td>010-9284-7555</td>
+                                                <td>Y</td>
+                                            </tr>
+                                            <tr onClick="location.href='회원정보수정.html'">
+                                                <td>4</td>
+                                                <td>shinho93</td>
+                                                <td>1234</td>
+                                                <td>곽신호</td>
+                                                <td>BananaCube</td>
+                                                <td>shinho930@gmail.com</td>
+                                                <td>010-9284-7555</td>
+                                                <td>Y</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                    
+                                <!-- 윤창, 진환 : 페이징 처리 시작 -->
+                                <div class="mt-3">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination justify-content-end mb-0">
+                                            <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                            </li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                                <!-- 윤창, 진환 : 페이징 처리 끝 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+<!-- ########################################################################################################### -->
+<!-- 푸터 -->
+<div th:replace="/mypage/fragments/footer-mypage.html :: footer-mypage"></div>
+<!-- ########################################################################################################### -->
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="../assets/plugins/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="../assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app-style-switcher.js"></script>
+    <!--Wave Effects -->
+    <script src="/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="/js/custom.js"></script>
+</body>
+
+</html>
