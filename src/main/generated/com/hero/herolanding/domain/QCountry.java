@@ -5,8 +5,6 @@ import static com.querydsl.core.types.PathMetadataFactory.*;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;
-import com.querydsl.core.types.Predicate;
-
 import javax.annotation.processing.Generated;
 import com.querydsl.core.types.Path;
 import com.querydsl.core.types.dsl.PathInits;
@@ -38,6 +36,8 @@ public class QCountry extends EntityPathBase<Country> {
 
     public final QCovidData covidData;
 
+    public final QCovidVaccinData covidVaccinData;
+
     public final StringPath embassyLink = createString("embassyLink");
 
     public final QExchangeRate exchangeRate;
@@ -65,9 +65,9 @@ public class QCountry extends EntityPathBase<Country> {
     public QCountry(Class<? extends Country> type, PathMetadata metadata, PathInits inits) {
         super(type, metadata, inits);
         this.covidData = inits.isInitialized("covidData") ? new QCovidData(forProperty("covidData")) : null;
+        this.covidVaccinData = inits.isInitialized("covidVaccinData") ? new QCovidVaccinData(forProperty("covidVaccinData")) : null;
         this.exchangeRate = inits.isInitialized("exchangeRate") ? new QExchangeRate(forProperty("exchangeRate")) : null;
     }
-
 
 }
 

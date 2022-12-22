@@ -49,7 +49,7 @@ dependencies {
 	implementation 'com.querydsl:querydsl-jpa'
 	implementation 'com.querydsl:querydsl-apt'
 	
-	implementation fileTree(dir: 'lib', include: '*.jar')
+	implementation fileTree(dir: 'src/lib', include: '*.jar')
 	
 	
 	// coolsms 사용 키트
@@ -88,11 +88,16 @@ compileQuerydsl{
 }
  
 configurations {
-	querydsl.extendsFrom compileClasspath 
+	querydsl.extendsFrom compileClasspath
 } 
+tasks.withType(JavaCompile) {
+    options.annotationProcessorGeneratedSourcesDirectory = file(querydslDir)
+}
 
-
-
+compileQuerydsl.doFirst {
+    if(file(querydslDir).exists() )
+        delete(file(querydslDir))
+}
 
 
 

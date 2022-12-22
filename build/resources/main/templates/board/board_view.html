@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>글보기</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/board/css/styles.css" rel="stylesheet" />
+    </head>
+    <style>
+	    /* 검은색 백그라운드 */
+	    .bg-dark {
+	        background-color: #000000 !important;
+	    }
+	
+	    /* 메인 네비바에 안가리게 */
+	    body {
+	        padding-top: 3.5rem;
+	        /* padding-bottom: 3rem; */
+	        color: #333;
+	    }
+	</style>
+    
+    <body>
+        <!-- 네비바 자리 -->
+		<div th:replace="/fragments/nav-main.html :: nav-main"></div>
+        <!-- Page content-->
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Post content-->
+                    <article>
+                        <!-- Post header-->
+                        <header class="mb-4">
+                            <!-- Post title-->
+                            <h1 class="fw-bolder mb-1" th:text="${board.boardTitle}">제목들어갈자리</h1>
+                            <input type="hidden" th:value="${board.boardNum}" id="get_id"/>
+                            <!-- Post meta content-->
+                            <div class="text-muted fst-italic mb-2" th:text="${board.insertDate}">Posted on January 1, 2022 by Start Bootstrap</div>
+                        </header>
+                        <!-- Post content-->
+                        <section class="mb-5">
+                            <p class="fs-5 mb-4" th:text="${board.boardContents}">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?</p>
+                        </section>
+                                <div class="row">
+                                <th:block th:if="${check == 1}">
+                                <div class="col-6">
+                                    <a href="#" th:href="@{/board/edit/{id}(id=${board.boardNum})}"  class="btn btn-primary">수정</a>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.boardNum})}"  class="btn btn-danger">삭제</a>
+                                </div>
+                                </th:block>
+                            </div>
+                    </article>
+                    <!-- Comments section-->
+                    <section class="mb-5">
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <!-- Comment form-->
+                                <form class="mb-4"><textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!" id="com_content"></textarea></form>
+                                <!-- Comment with nested comments-->
+                                 <div class="regBtn">
+                    				<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
+                    			 </div>
+                                <div class="d-flex mb-4"  th:each="reply : ${comments}">
+                                    <!-- Parent comment-->
+                                    <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                    <div class="ms-3">
+                                        <div class="fw-bold" th:text="${reply.member}">유저1</div>
+                                        <div th:id="updateForm + ${replyStat.index}">
+	                                        <label th:text="${reply.replyContent}"> 프론트는 외롭다. </label>
+	                                        <div>
+	                                        	<input type="hidden" th:value="${reply.replyNum}" th:id="getId + ${replyStat.index}"/>
+	                                        	 <button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
+		                    	 				 <button onclick="delete_comment(this.value)" th:value="${reply.replyNum}">삭제</button>
+		                    	 				 <button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" >답글달기</button>
+		                    	 			</div>
+		                    	 			<div th:id="replyComment + ${replyStat.index}">
+		                    	 				
+		                    	 			</div>
+		                    	 		</div>
+                                        <div class="d-flex mt-4" th:each="replyComment : ${replyComments}">
+                                        <th:block th:if="${reply.replyNum == replyComment.ParentReplyNum }">
+                                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                                            <div class="ms-3">
+                                                <div class="fw-bold" th:text="${replyComment.member}">대댓글</div>
+                                                <label th:text="${replyComment.replyContent}">어떻게 꾸며야할지 너무 어렵다.</label>
+                                                <button onclick="delete_comment(this.value)" th:value="${replyComment.replyNum}">삭제</button>
+                                            </div>
+                                        </th:block>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- 여기부터 -->
+                <!-- Side widgets-->
+                <div class="col-lg-4 d-none">
+                    <!-- Search widget -->
+                    <div class="card mb-4">
+                        <div class="card-header">Search</div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                                <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Categories widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Categories</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">Web Design</a></li>
+                                        <li><a href="#!">HTML</a></li>
+                                        <li><a href="#!">Freebies</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-sm-6">
+                                    <ul class="list-unstyled mb-0">
+                                        <li><a href="#!">JavaScript</a></li>
+                                        <li><a href="#!">CSS</a></li>
+                                        <li><a href="#!">Tutorials</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Side widget-->
+                    <div class="card mb-4">
+                        <div class="card-header">Side Widget</div>
+                        <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
+                    </div>
+                </div>
+                <!-- 여기까지 신경 쓰지마셈 -->
+            </div>
+        </div>
+        <!-- 푸터 들어갈 자리-->
+        <div th:replace="/fragments/footer-main.html :: footer-main"></div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="/board/js/scripts.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script>
+		    function Change_editForm(id)
+		    {	
+		    	
+		    	var replyNum = $('#getId' + id).val();
+		    	var htmls ="";
+		    	htmls += '<textarea class="form-control" rows="3" id="change" name="change"></textarea>'
+		    	htmls += '<button onclick="edit('+replyNum+')">수정</button>'
+		    	htmls += '<button>취소</button>'
+		    	$('#updateForm' + id).replaceWith(htmls);
+		    	$('#change').focus();
+		    } // 수정할 수 있는 것으로 변경
+			
+		    function change_replyCommentForm(id)
+		    {
+		    	var replyNum = $('#getId' + id).val();
+		    	var htmls ="";
+		    	htmls += '<textarea class="form-control" rows="3" id="replyComment" name="replyComment"></textarea>'
+		    	htmls += '<button onclick="replySend('+replyNum+')">답글달기</button>'
+		    	
+		    	$('#replyComment' + id).replaceWith(htmls);
+		    	$('#replyComment').focus();
+		    }
+		    
+			function dataSend()
+			{	
+				var data = $("#com_content").val();
+// 				var user_name = $("#com_writer").val();
+				var board_id = $("#get_id").val();
+				
+				const sendDTO = {
+// 						name: user_name,
+						result:data,
+						boardId:board_id
+				};
+				$.ajax({
+					url: "/board/comment",
+					data: sendDTO,
+					type: 'POST',
+				}).done(function (fragment){
+					history.go(0);
+				});
+			} // 댓글 등록
+			
+			function edit(replyNum)
+			{	
+				var change = $('textarea[name=change]').val();
+				var reply = replyNum;
+				
+				
+				const ReplyDTO = {
+						num : reply,
+						changeData : change
+				};
+				$.ajax({
+					url: "/board/comment_update",
+					data: ReplyDTO,
+					type: 'POST',
+				}).done(function (fragment){
+					history.go(0);
+				});		
+			} // 댓글 수정
+			
+			  function replySend(id)
+			    {
+			    	var replyComment = $('textarea[name=replyComment]').val();
+					var parentReplyNum = id;
+					var boardNum = $('#get_id').val();
+					
+					const SendDTO = {
+							boardId : boardNum,
+							num : parentReplyNum,
+							result : replyComment,
+					};
+					$.ajax({
+						url: "/board/replyComment",
+						data: SendDTO,
+						type: 'POST',
+					}).done(function (fragment){
+						history.go();
+					});	
+			    } // 답글 추가
+			
+			function delete_comment(replyNum)
+			{
+				var reply = replyNum;
+				
+				const ReplyDTO = {
+						num : reply	
+				};
+				$.ajax({
+					url: "/board/comment_remove",
+					data: ReplyDTO,
+					type: 'POST',
+				}).done(function (fragment){
+					history.go(0);
+				});
+			} // 댓글 삭제
+			
+			
+			
+        </script>
+    </body>
+</html>

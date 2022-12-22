@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>국가검색창</title>
+    
+</head>
+
+<body th:fragment="국가검색창">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
+    <main>
+	    <div class="row justify-content-center">
+	        <form class="col-10 col-lg-6" action="/검색" method="get" id="searchForm">
+	            <input id="search" type="text" class="form-control rounded-pill" placeholder="위치 검색">
+	        </form>
+	    </div>
+    </main>
+
+    <!-- 자바스크립트 링크 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="/js/국가검색창.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</body>
+
+</html>

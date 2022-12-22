@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hero.herolanding.crawling.Covid;
 import com.hero.herolanding.crawling.CovidVaaccin;
@@ -77,6 +78,13 @@ public class HomeService {
 				country.setCovidData(covidData);
 			}
 		}
+	}
+	
+	@Transactional
+	@GetMapping("/worldMap")
+	public void worldMap() {
+		homeRepository.getworld();
+		// json 파일로 만들어주기
 	}
 
 }
