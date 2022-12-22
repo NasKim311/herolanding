@@ -37,11 +37,13 @@
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
         <div class="container-fluid px-0" style="background-color: rgb(10,10,16);">
 			<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
-            <div class="row">
-                <div class="col-12 text-white text-center">
-					<!-- 국가검색창 -->
-					<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
-                </div>
+        </div>
+        
+        <div class="row">
+            <!-- 그라데이션 -->
+            <div class="col-12 text-white text-center" style="background: linear-gradient(rgb(10,10,16), rgb(25,110,247));">
+                <!-- 국가검색창 -->
+                <div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
             </div>
         </div>
         <!-- 메인 헤더 끝 -->

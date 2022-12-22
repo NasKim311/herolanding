@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
+    
     <style>
         #container {
             height: 500px;
@@ -57,20 +58,51 @@
                             ]
                         },
                     },
-
+                    // 제목
                     title: {
-                        text: 'Zoom in on country by double click'
+                        
+                        text: 'FBI WARNING',
+                        style: {
+                            color: 'red',
+                            textTransform: 'uppercase',
+                            fontSize: '20px',
+                            fontWeight: 'bold',
+                        }
+                    },
+                    // 부제목
+                    subtitle: {
+                        text: 'Federal Law provides severe civil and criminal penalties for the unauthorized reproduction, distribution, or exhibition of copyrighted works, including the downloading of protected works and the infringement of copyright by streaming or other means. Violators may be prosecuted to the maximum extent possible under the law.',
+                        style: {
+                            color: '#E0E0E3',
+                            textTransform: 'uppercase'
+                        }
                     },
 
                     mapNavigation: {
-                        enabled: true,
-                        enableDoubleClickZoomTo: true
+                        enabled: false,
+                        enableDoubleClickZoomTo: true,
                     },
+
+                    // 푸터 없애기
+                    credits: {
+                        enabled: false
+                    },
+                    // 하단 메뉴 없애기
 
                     colorAxis: {
                         min: 1,
                         max: 1000,
                         type: 'logarithmic'
+                    },
+
+                    //proxy 버튼 없애기
+                    exporting: {
+                        enabled: false
+                    },
+
+                    //highcharts-legend 없애기
+                    legend: {
+                        enabled: false
                     },
 
                     series: [{
