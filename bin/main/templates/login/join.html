@@ -122,7 +122,7 @@
 									data-bs-toggle="modal" data-bs-target="#phoneModal">인증번호 받기</button>
 							</div>
 							<div class="field-error" th:errors="*{memberPhoneNum}">폰번 오류</div>
-							<span id="phoneChk" class="doubleChk"></span>
+<!-- 							<span id="phoneChk" class="doubleChk"></span> -->
 						</div>
 
 						<hr class="my-4">
@@ -342,20 +342,22 @@
  		
 		$("#phoneChk").click(function(){
 			alert($('input[id=phone]').val())
+			
+			
 			if( $('input[id=phone]').val() == "" ){
 				$('#phoneModal').on('show.bs.modal', function (e) {
 // 				$('.modal').on('show.bs.modal', function (e) {
 					alert("막음")
 					stopPropagation();
+					alert("핸드폰 번호을 입력해주세요 ! ")
 					return false;
-				alert("핸드폰 번호을 입력해주세요 ! ")
 				})
 			}
 			
 			
 			if($('input[id=phone]').val() != ""){
-			alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-			var phone = $('input[id=phone]').val();
+				alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+				var phone = $('input[id=phone]').val();
 // 			$.ajax({
 // 		        type:"GET",
 // 		        url:"/phoneCheck?phone=" + phone,
