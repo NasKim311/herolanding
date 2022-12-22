@@ -118,8 +118,7 @@
 								<input type="text" class="form-control" id="phone" placeholder="휴대폰을 입력하세요."
 									th:field="*{memberPhoneNum}" th:errorclass="field-error">
 								<!-- 모달창 버튼-->
-								<button class="btn btn-secondary" type="button" id="phoneChk"
-									data-bs-toggle="modal" data-bs-target="#phoneModal">인증번호 받기</button>
+								<button class="btn btn-secondary" type="button" id="phoneChk" >인증번호 받기</button>
 							</div>
 							<div class="field-error" th:errors="*{memberPhoneNum}">폰번 오류</div>
 <!-- 							<span id="phoneChk" class="doubleChk"></span> -->
@@ -336,28 +335,39 @@
 		
 		//핸드폰 인증======================================================================================================================
  		//휴대폰 번호 인증
-		var code2 = "";
- 		var phone2 = $('input[id=phone]').val();
  		
  		
-		$("#phoneChk").click(function(){
-			alert($('input[id=phone]').val())
+// 인증번호 받기 버튼 클릭시 인증번호 보내기
+      $(document).ready(function() {
+         $("#phoneChk").click(function() {
+            alert("인증번호 보내기 버튼을 눌렀습니다.");
+
+            // 휴대전화 번호 입력되었으면 모달창 띄우기
+            if ($("#phone").val() == "") {
+               alert("휴대폰 번호를 입력해주세요.");
+               $("#phone").focus();
+               return false;
+            } else {
+               $("#phoneModal").modal("show");
+            }
+         });
+      });
+				
 			
-			
-			if( $('input[id=phone]').val() == "" ){
-				$('#phoneModal').on('show.bs.modal', function (e) {
-// 				$('.modal').on('show.bs.modal', function (e) {
-					alert("막음")
-					stopPropagation();
-					alert("핸드폰 번호을 입력해주세요 ! ")
-					return false;
-				})
-			}
-			
-			
-			if($('input[id=phone]').val() != ""){
-				alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-				var phone = $('input[id=phone]').val();
+// 			if( $('input[id=phone]').val() == "" ){
+// 				$('#phoneModal').on('show.bs.modal', function (e) {
+// // 				$('.modal').on('show.bs.modal', function (e) {
+// 					alert("막음")
+// // 					stopPropagation();
+// 					alert("핸드폰 번호을 입력해주세요 ! ")
+// // 					return e.preventDefault();
+// 				})
+// 					return false;
+// 			}else{
+// 				alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+// 				
+
+
 // 			$.ajax({
 // 		        type:"GET",
 // 		        url:"/phoneCheck?phone=" + phone,
@@ -379,7 +389,8 @@
 // 		        }
 // 		    });
 		}		
-	});
+	})
+
 			
 		//휴대폰 인증번호 대조
 		$("#phoneChk2").click(function(){
