@@ -33,11 +33,13 @@
 			<div class="card mb-4">
 				<div class="card-header">검색</div>
 				<div class="card-body">
+				<form th:object="${writeTypeDTO}" action="/board/search"  method="get">
 					<div class="input-group">
 						<input class="form-control" type="text" placeholder="Enter search term..."
-							aria-label="Enter search term..." aria-describedby="button-search" />
-						<button class="btn btn-primary" id="button-search" type="button">검색</button>
+							aria-label="Enter search term..." aria-describedby="button-search" th:field="*{writeType}"/>
+						<button class="btn btn-primary" id="button-search" type="submit">검색</button>
 					</div>
+				</form>
 				</div>
 			</div>
 			<!-- Categories widget-->
@@ -101,7 +103,6 @@
 						<!-- 페이징 처리 사작-->
 						<div class="my-3">
 							<nav aria-label="Page navigation example">
-
 								<ul class="pagination justify-content-end mb-0">
 									<li class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${now - 1})}" tabindex="-1">Previous</a></li>
 									<li th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}" class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${board})}" th:text="${board}">1</a></li>

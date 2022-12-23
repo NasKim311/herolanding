@@ -32,6 +32,7 @@ import com.hero.herolanding.domain.Reply;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
 import com.hero.herolanding.dto.SendDTO;
+import com.hero.herolanding.dto.writeTypeDTO;
 import com.hero.herolanding.repository.LoginRepository;
 import com.hero.herolanding.service.BoardService;
 import com.hero.herolanding.service.LoginService;
@@ -138,6 +139,9 @@ public class BoardController {
 		{
 			model.addAttribute("last", ((boardService.BoardCount().size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
 		}
+		writeTypeDTO dto = new writeTypeDTO();
+		
+		model.addAttribute("writeTypeDTO" , dto);
 		model.addAttribute("list" , boardService.findAll(page)); 
 		model.addAttribute("WholeCount", (boardService.BoardCount().size() / 10) + 1); // 전체 게시물 수
 		model.addAttribute("now", page); // 현재 페이지
@@ -176,6 +180,9 @@ public class BoardController {
 		
 		List<Object[]> list = boardService.findAllByType(--page, continent);
 		
+		writeTypeDTO dto = new writeTypeDTO();
+		
+		model.addAttribute("writeTypeDTO" , dto);
 		model.addAttribute("now", page);
 		model.addAttribute("WholeCount", (boards.size() / 10) + 1);
 		model.addAttribute("current", (int) page / 10);
@@ -213,6 +220,9 @@ public class BoardController {
 		{
 			model.addAttribute("last", ((boards.size() / 10) + 1) %10); // 현재 보고 있는 페이지의 게시물 100개보다 마지막 게시물이 적다면 게시물만큼 보여줌
 		}
+		writeTypeDTO dto = new writeTypeDTO();
+		
+		model.addAttribute("writeTypeDTO" , dto);
 		
 		List<Object[]> list = boardService.findAllByRange(--page, continent, boardType);
 		model.addAttribute("now", page);
@@ -278,6 +288,22 @@ public class BoardController {
 		return "redirect:/board/list/1";
 	} // 업데이트를 위한 로직
 	
+	@GetMapping("/board/search")
+	public String search( Model model , writeTypeDTO dto)
+	{	
+		
+		List<Object[]> list = boardService.Search(dto.getWriteType());
+		model.addAttribute("last", 0);
+		model.addAttribute("check", 0);
+		model.addAttribute("page", 0);
+		model.addAttribute("now", 0);
+		model.addAttribute("type", 0);
+		model.addAttribute("WholeCount", 0);
+		model.addAttribute("current", 0);
+		model.addAttribute("continents");
+		model.addAttribute("boards",list);
+		return  "board/board_list";
+	}
 	
 	@RequestMapping(value = "/board/comment", method = RequestMethod.POST)
 	@ResponseBody

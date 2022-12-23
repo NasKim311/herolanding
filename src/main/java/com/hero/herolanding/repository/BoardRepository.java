@@ -45,6 +45,13 @@ public class BoardRepository {
 		return em.createQuery("select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum order by b.boardNum desc").setFirstResult(page).setMaxResults(10).getResultList();
 	}
 	
+	public List<Object[]> Search(String searchText)
+	{	
+		String temp = "%" + searchText + "%";
+		return em.createQuery("select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum and m.memberNickName LIKE :search order by b.boardNum desc")
+				.setParameter("search", temp).getResultList();
+	}
+	
 	public List<Object[]> findAllByType(int page , String boardType)
 	{	
 		

@@ -122,4 +122,9 @@ public class BoardService {
 	{
 		return boardRepository.getReplyComment(boardId);
 	}
+	@Transactional
+	public List<Object[]> Search(String searchText)
+	{
+		return boardRepository.Search(searchText);
+	}
 }
