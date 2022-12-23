@@ -105,7 +105,7 @@ public class HomeController {
 	@Transactional
 	@GetMapping("/search")
 	public String worldMap() {
-		return "result/index";
+		return "result/result";
 	}
 
 }
