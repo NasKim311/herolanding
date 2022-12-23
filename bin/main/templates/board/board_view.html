@@ -168,11 +168,16 @@
 		    	var htmls ="";
 		    	htmls += '<textarea class="form-control" rows="3" id="change" name="change"></textarea>'
 		    	htmls += '<button onclick="edit('+replyNum+')">수정</button>'
-		    	htmls += '<button>취소</button>'
+		    	htmls += '<button onclick="cancel()">취소</button>'
 		    	$('#updateForm' + id).replaceWith(htmls);
 		    	$('#change').focus();
 		    } // 수정할 수 있는 것으로 변경
 			
+		    function cancel()
+		    {
+		    	history.go(0);
+		    }
+		    
 		    function change_replyCommentForm(id)
 		    {
 		    	var replyNum = $('#getId' + id).val();
