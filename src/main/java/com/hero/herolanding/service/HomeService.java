@@ -174,13 +174,6 @@ public class HomeService {
 		List<Country> countrys =  homeRepository.findAllcountry();
 		JSONArray jsarr = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/static/js/country.json"));
 		JSONArray hey = new JSONArray();
-//		JSONObject jsonObject = (JSONObject) jsarr.get(0);
-//		System.out.println(jsonObject);
-//		System.out.println(jsonObject.get("name"));
-//		System.out.println(countrys.get(0).getCountryName());
-//		int a = Integer.parseInt(countrys.get(0).getCovidData().getMilionCount().replace(",",""));
-//		jsonObject.replace("value",a);
-//		System.out.println(jsonObject);
 		for(int i = 0 ; i < countrys.size();i++) {
 			for(int j = 0 ; j < jsarr.size(); j++) {
 				JSONObject jsonObject = (JSONObject) jsarr.get(j);
@@ -198,6 +191,7 @@ public class HomeService {
 				}
 			}
 		}
+		
 		FileWriter hi = new  FileWriter("src/main/resources/static/js/country.json");
 		hi.write(hey.toJSONString());
 		hi.flush();
