@@ -293,7 +293,7 @@ public class BoardController {
 	{	
 		
 		List<Object[]> list = boardService.Search(dto.getWriteType());
-		model.addAttribute("last", 0);
+		model.addAttribute("last", 1);
 		model.addAttribute("check", 0);
 		model.addAttribute("page", 0);
 		model.addAttribute("now", 0);
@@ -301,7 +301,7 @@ public class BoardController {
 		model.addAttribute("WholeCount", 0);
 		model.addAttribute("current", 0);
 		model.addAttribute("continents");
-		model.addAttribute("boards",list);
+		model.addAttribute("list",list);
 		return  "board/board_list";
 	}
 	
