@@ -64,7 +64,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		member = (Member)session.getAttribute("loginMember");
 		
-		Member m = loginRepository.findById(member.getMemberId());
+		Member m = loginRepository.findByLoginId(member.getMemberId());
 		
 		System.out.println(dto.getPost_content());
 		
@@ -256,7 +256,7 @@ public class BoardController {
 		HttpSession session = request.getSession();
 		Member member = (Member)session.getAttribute("loginMember");
 		
-		Member m = loginRepository.findById(member.getMemberId());
+		Member m = loginRepository.findByLoginId(member.getMemberId());
 		Board b = boardService.findById(dto.getBoardId());
 		
 		Report report = new Report();

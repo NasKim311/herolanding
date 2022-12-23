@@ -20,11 +20,15 @@ public class MypageRepository {
 	JPQLQueryFactory queryFactory;
 
 //--------<updateMemberData() / 마이페이지 회원정보 수정 메서드>-------------------------------------------------------------------------------------	
-	public void update(Member updateMemberData, String loginid) {
+	public void updateMemberData(Member updateMemberData, String loginid) {
 		queryFactory = new JPAQueryFactory(em);
 		
 		queryFactory.update(member)
-					.set(member, updateMemberData)
+					.set(member.memberPw, updateMemberData.getMemberPw())
+					.set(member.memberName, updateMemberData.getMemberName())
+					.set(member.memberNickName, updateMemberData.getMemberNickName())
+					.set(member.memberEmail, updateMemberData.getMemberEmail())
+					.set(member.memberPhoneNum, updateMemberData.getMemberPhoneNum())
 					.where(member.memberId.eq(loginid))
 					.execute();
 		

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.UpdateMemberDTO;
@@ -20,6 +21,13 @@ import lombok.RequiredArgsConstructor;
 public class MypageController {
 	
 	private final MypageService mypageService;
+	
+//--------<mypageForm() / 마이페이지 이동 메서드>-------------------------------------------------------------------------------------	
+	@GetMapping("/mypage/index")
+	public String indexPage(@RequestParam(defaultValue = "/") String redirectURL) {
+		return "redirect:" + redirectURL;
+	}
+	
 
 //--------<mypageForm() / 마이페이지 이동 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/mypage/mypageForm")
@@ -78,8 +86,10 @@ public class MypageController {
 		updateMemberData.setMemberEmail(updateMemberDTO.getMemberEmail());
 		updateMemberData.setMemberPhoneNum(updateMemberDTO.getMemberPhoneNum());
 		
+		Member NewMemberData = mypageService.updateMemberData(updateMemberData);
 		
-		updateMemberData = mypageService.update(updateMemberData);
+		session.setAttribute("loginMember", NewMemberData);
+		
 		
 		return "mypage/마이페이지";
 	}
