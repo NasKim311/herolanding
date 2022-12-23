@@ -82,6 +82,7 @@ public class HomeController {
 		}
 			try {
 				homeService.coivdMap();
+				System.out.println("새끼 나와라");
 			} catch (FileNotFoundException e) {
 				System.out.println("파일경로에러");
 				e.printStackTrace();
