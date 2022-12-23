@@ -19,7 +19,7 @@ public class LoginService {
 	@Transactional
 	public Member login(String loginId, String loginPw) {
 
-		Member loginMemberData = loginRepository.findByLoginId(loginId, loginPw);
+		Member loginMemberData = loginRepository.findByLoginIdPw(loginId, loginPw);
 
 		return loginMemberData;
 	}

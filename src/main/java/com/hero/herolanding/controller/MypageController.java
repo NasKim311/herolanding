@@ -78,8 +78,10 @@ public class MypageController {
 		updateMemberData.setMemberEmail(updateMemberDTO.getMemberEmail());
 		updateMemberData.setMemberPhoneNum(updateMemberDTO.getMemberPhoneNum());
 		
+		Member NewMemberData = mypageService.updateMemberData(updateMemberData);
 		
-		updateMemberData = mypageService.update(updateMemberData);
+		session.setAttribute("loginMember", NewMemberData);
+		
 		
 		return "mypage/마이페이지";
 	}
