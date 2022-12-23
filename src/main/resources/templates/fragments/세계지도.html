@@ -35,10 +35,10 @@
         (async () => {
 
             const topology = await fetch(
-                'https://code.highcharts.com/mapdata/custom/world.topo.json'
+            		'/js/gi2.json'
             ).then(response => response.json());
 
-            Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
+            Highcharts.getJSON('/js/country.json', function (data) {
 
                 // Prevent logarithmic errors in color calulcation
                 data.forEach(function (p) {
@@ -93,7 +93,7 @@
 
                     colorAxis: {
                         min: 1,
-                        max: 1000,
+                        max: 1000000,
                         type: 'logarithmic'
                     },
 
@@ -117,7 +117,7 @@
                             }
                         },
                         tooltip: {
-                            valueSuffix: '/km²'
+                            valueSuffix: ''
                         }
                     }]
                 });

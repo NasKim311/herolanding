@@ -23,6 +23,7 @@ import com.hero.herolanding.domain.Inspection;
 import com.hero.herolanding.domain.QCountryPaper;
 import com.hero.herolanding.domain.QInspection;
 import com.querydsl.core.Tuple;
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,12 @@ public class HomeRepository {
 	// 코로나 확진자 수 순위 (크롤링) - 매일 변동 (업데이트)
 	public void covidUpdate() {
 		
+	}
+	
+	// 전체 나라 정보 가져오기
+	public List<Country> findAllcountry() {
+		queryFactory = new JPAQueryFactory(em);
+		return queryFactory.selectFrom(country).fetch();
 	}
 
 	// 검색 후 사용

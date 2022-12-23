@@ -1,5 +1,7 @@
 package com.hero.herolanding.controller;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -7,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +42,18 @@ public class HomeController {
 				homeService.save();
 				homeService.saveCovid();
 				homeService.saveCovidVaccin();
+				try {
+					homeService.coivdMap();
+				} catch (FileNotFoundException e) {
+					System.out.println("파일경로에러");
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}else {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("crawring")) {
@@ -49,15 +64,38 @@ public class HomeController {
 						homeService.save();
 						homeService.saveCovid();
 						homeService.saveCovidVaccin();
+						try {
+							homeService.coivdMap();
+						} catch (FileNotFoundException e) {
+							System.out.println("파일경로에러");
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
 		}
-		 
-//		homeService.worldMap();
+			try {
+				homeService.coivdMap();
+			} catch (FileNotFoundException e) {
+				System.out.println("파일경로에러");
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
 		List<CovidDTO>  covids =  homeService.findCovid();
 		List<vaccinDTO> vaccins = homeService.findCovidVaccin();
 		CovidOneDTO oneDTO = homeService.findCounrty("전세계");
+		
 		model.addAttribute("one",oneDTO);
 		model.addAttribute("Covids" , covids);
 		model.addAttribute("vaccins" , vaccins);
@@ -68,7 +106,6 @@ public class HomeController {
 	@GetMapping("/worldMap")
 	public void worldMap() {
 		
-		// json 파일로 만들어주기
 	}
 
 }
