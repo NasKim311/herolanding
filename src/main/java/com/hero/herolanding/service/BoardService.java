@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Reply;
+import com.hero.herolanding.domain.Report;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
 import com.hero.herolanding.repository.BoardRepository;
@@ -126,5 +127,17 @@ public class BoardService {
 	public List<Object[]> Search(String searchText)
 	{
 		return boardRepository.Search(searchText);
+	}
+	
+	@Transactional
+	public void updateReportCount(long boardId)
+	{
+		boardRepository.updateReportCount(boardId);
+	}
+	
+	@Transactional
+	public void inputReport(Report report)
+	{
+		boardRepository.inputReport(report);
 	}
 }

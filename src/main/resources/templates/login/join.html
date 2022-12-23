@@ -2,30 +2,33 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>회원가입</title>
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>회원가입</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
 </head>
 
 <style>
-	/* 검은색 백그라운드 */
-	.bg-dark {
-		background-color: #000000 !important;
-	}
+/* 검은색 백그라운드 */
+.bg-dark {
+	background-color: #000000 !important;
+}
 
-	/* 메인 네비바에 안가리게 */
-	body {
-		padding-top: 3.5rem;
-		/* padding-bottom: 3rem; */
-		color: #333;
-	}
+/* 메인 네비바에 안가리게 */
+body {
+	padding-top: 3.5rem;
+	/* padding-bottom: 3rem; */
+	color: #333;
+}
 
-	.field-error {
-		border-color: #dc3545;
-		color: #dc3545;
-	}
+.field-error {
+	border-color: #dc3545;
+	color: #dc3545;
+}
 </style>
 
 <body>
@@ -38,28 +41,33 @@
 			<div class="row justify-content-center py-5">
 				<div class="col-md-5">
 					<h4 class="h3 mb-3 text-center">회원가입</h4>
-					<form th:action="@{/joins/new}" th:object="${joinDTO}" method="post" >
-						
+					<form th:action="@{/joins/new}" th:object="${joinDTO}"
+						method="post">
+
 						<div class="col-sm-12 pb-3">
 							<!-- 아이디, 중복확인 -->
 							<label for="name" class="form-label">아이디</label>
 
 							<div class="input-group">
-								<input type="text" class="form-control" id="name" placeholder="아이디를 입력하세요."
-									th:field="*{memberId}" th:errorclass="field-error">
-								<button class="btn btn-secondary" type="button" id="button-addon2"
-									onclick="dataSendId()">중복확인</button>
+								<input type="text" class="form-control" id="name"
+									placeholder="아이디를 입력하세요." th:field="*{memberId}"
+									th:errorclass="field-error">
+								<button class="btn btn-secondary" type="button"
+									id="button-addon2" onclick="dataSendId()">중복확인</button>
 							</div>
 							<div class="field-error" th:errors="*{memberId}">아이디 오류</div>
-							<div class="field-error" id="idcheck1" style="display: none;">중복된 아이디입니다. </div>
-							<div class="field-error" id="idcheck2" style="display: none;">탐나는 아이디네요. </div>
+							<div class="field-error" id="idcheck1" style="display: none;">중복된
+								아이디입니다.</div>
+							<div class="field-error" id="idcheck2" style="display: none;">탐나는
+								아이디네요.</div>
 						</div>
 						<!-- 비밀번호 -->
 
 						<div class="sol-sm-12 pb-3">
-							<label for="password" class="form-label">비밀번호</label>
-							<input type="password" class="form-control" id="password1" placeholder="비밀번호를 입력하세요."
-								th:field="*{memberPw}" th:errorclass="field-error">
+							<label for="password" class="form-label">비밀번호</label> <input
+								type="password" class="form-control" id="password1"
+								placeholder="비밀번호를 입력하세요." th:field="*{memberPw}"
+								th:errorclass="field-error">
 						</div>
 						<div class="field-error" th:errors="*{memberPw}">비밀번호 오류</div>
 
@@ -69,17 +77,19 @@
 							<div class="input-group">
 								<input type="password" class="form-control" id="password2"
 									placeholder="비밀번호를 입력하세요.">
-								<button class="btn btn-secondary" type="button" id="button-addon2" onclick="test()"
-									value="비밀번호 확인">비밀번호 확인</button>
+								<button class="btn btn-secondary" type="button"
+									id="button-addon2" onclick="test()" value="비밀번호 확인">비밀번호
+									확인</button>
 							</div>
 						</div>
-						
+
 						<!-- 이름 -->
 						<div class="col-sm-12 pb-3">
 							<label for="name" class="form-label">이름</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="name" placeholder="이름을 입력하세요."
-								th:field="*{memberName}" th:errorclass="field-error">
+								<input type="text" class="form-control" id="name"
+									placeholder="이름을 입력하세요." th:field="*{memberName}"
+									th:errorclass="field-error">
 							</div>
 							<div class="field-error" th:errors="*{memberName}">이름 오류</div>
 						</div>
@@ -88,138 +98,140 @@
 						<div class="col-sm-12 pb-3">
 							<label for="nickname" class="form-label">닉네임</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력하세요."
-									th:field="*{memberNickName}" th:errorclass="field-error">
-								<button class="btn btn-secondary" type="button" id="button-addon2"
-									onclick="dataSendNickname()">중복확인</button>
+								<input type="text" class="form-control" id="nickname"
+									placeholder="닉네임을 입력하세요." th:field="*{memberNickName}"
+									th:errorclass="field-error">
+								<button class="btn btn-secondary" type="button"
+									id="button-addon2" onclick="dataSendNickname()">중복확인</button>
 							</div>
-							<div class="field-error" th:errors="*{memberNickName}">닉네임 오류</div>
-							<div class="field-error" id="nicknamecheck1" style="display: none;">중복된 닉네임입니다. </div>
-							<div class="field-error" id="nicknamecheck2" style="display: none;">멋진 닉네임이에요. </div>
+							<div class="field-error" th:errors="*{memberNickName}">닉네임
+								오류</div>
+							<div class="field-error" id="nicknamecheck1"
+								style="display: none;">중복된 닉네임입니다.</div>
+							<div class="field-error" id="nicknamecheck2"
+								style="display: none;">멋진 닉네임이에요.</div>
 						</div>
-						
+
 
 						<!-- 이메일 -->
 						<div class="col-sm-12 pb-3">
 							<label for="email" class="form-label">이메일</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="email" placeholder="이메일을 입력하세요."
-									th:field="*{memberEmail}" th:errorclass="field-error" required>
-<!-- 								<button class="btn btn-secondary" type="button" id="button-addon2" -->
-<!-- 									data-bs-toggle="modal" data-bs-target="#emailModal">인증번호 받기</button> -->
+								<input type="text" class="form-control" id="email"
+									placeholder="이메일을 입력하세요." th:field="*{memberEmail}"
+									th:errorclass="field-error" required>
+								<!-- 								<button class="btn btn-secondary" type="button" id="button-addon2" -->
+								<!-- 									data-bs-toggle="modal" data-bs-target="#emailModal">인증번호 받기</button> -->
 							</div>
 							<div class="field-error" th:errors="*{memberEmail}">이메일 오류</div>
 						</div>
 
+						<!-- ------------------------------------------------------------------------------------------------ -->
 						<!-- 휴대폰 -->
 						<div class="col-sm-12">
 							<label for="phone" class="form-label">휴대폰</label>
 							<div class="input-group">
-								<input type="text" class="form-control" id="phone" placeholder="휴대폰을 입력하세요."
-									th:field="*{memberPhoneNum}" th:errorclass="field-error">
+								<input type="text" class="form-control" id="phone"
+									placeholder="휴대폰을 입력하세요." th:field="*{memberPhoneNum}"
+									th:errorclass="field-error">
 								<!-- 모달창 버튼-->
-								<button class="btn btn-secondary" type="button" id="phoneChk" 
-								data-bs-toggle="modal" data-bs-target="#phoneModal">인증번호 받기</button>
+								<button class="btn btn-secondary" type="button" id="phoneChk">인증번호
+									받기</button>
 							</div>
-							<div class="field-error" th:errors="*{memberPhoneNum}">폰번 오류</div>
-<!-- 							<span id="phoneChk" class="doubleChk"></span> -->
+							<div class="field-error" th:errors="*{memberPhoneNum}">폰번
+								오류</div>
+							<!-- 							<span id="phoneChk" class="doubleChk"></span> -->
 						</div>
+						<!-- ------------------------------------------------------------------------------------------------ -->
 
 						<hr class="my-4">
 
 						<div class="form-check pb-1">
-							<input type="checkbox" name="전체동" value="전체동" onclick='selectAll(this)'
-								class="form-check-input" id="전체동">
-							<label class="form-check-label" for="전체동"><b>전체 동의합니다.</b></label>
+							<input type="checkbox" name="전체동" value="전체동"
+								onclick='selectAll(this)' class="form-check-input" id="전체동">
+							<label class="form-check-label" for="전체동"><b>전체
+									동의합니다.</b></label>
 						</div>
 
 						<ul>
 							<div class="form-check">
-								<input type="checkbox" name="약관" value="이용동" onclick='checkSelectAll()'
-									class="form-check-input" id="이용동" th:field="*{memberUsingAgree}"
-									th:errorclass="field-error">이용약관 동의
-								<div class="field-error" th:errors="*{memberUsingAgree}">동의 오류</div>
+								<input type="checkbox" name="약관" value="이용동"
+									onclick='checkSelectAll()' class="form-check-input" id="이용동"
+									th:field="*{memberUsingAgree}" th:errorclass="field-error">이용약관
+								동의
+								<div class="field-error" th:errors="*{memberUsingAgree}">동의
+									오류</div>
 							</div>
 
 							<div class="form-check">
-								<input type="checkbox" name="약관" value="필수동" onclick='checkSelectAll()'
-									class="form-check-input" id="필수동" th:field="*{memberDataAgree}"
-									th:errorclass="field-error">개인정보 수집 및 이용 동의<span class='text-muted'>(필수)</span>
-								<div class="field-error" th:errors="*{memberDataAgree}">동의 오류</div>
+								<input type="checkbox" name="약관" value="필수동"
+									onclick='checkSelectAll()' class="form-check-input" id="필수동"
+									th:field="*{memberDataAgree}" th:errorclass="field-error">개인정보
+								수집 및 이용 동의<span class='text-muted'>(필수)</span>
+								<div class="field-error" th:errors="*{memberDataAgree}">동의
+									오류</div>
 							</div>
 
 							<div class="form-check">
-								<input type="checkbox" name="약관" value="선택동" onclick='checkSelectAll()'
-									class="form-check-input" id="선택동" th:field="*{memberAdvAgree}"
-									th:errorclass="field-error">개인정보 수집 및 이용 동의<span class='text-muted'>(선택)</span>
+								<input type="checkbox" name="약관" value="선택동"
+									onclick='checkSelectAll()' class="form-check-input" id="선택동"
+									th:field="*{memberAdvAgree}" th:errorclass="field-error">개인정보
+								수집 및 이용 동의<span class='text-muted'>(선택)</span>
 							</div>
 						</ul>
 
 						<hr class="my-4">
 
 						<!-- 가입하기 버튼 -->
-						<button class="w-100 btn btn-primary btn-lg" id="joinFormSubmit" type="button">가입하기</button>
+						<button class="w-100 btn btn-primary btn-lg" id="joinFormSubmit"
+							type="submit">가입하기</button>
+							<!-- type="button" -->
 					</form>
 				</div>
 			</div>
 		</div>
 	</main>
 
-	<!-- 이메일 인증번호 입력 모달창 -->
-<!-- 	<div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true"> -->
-<!-- 		<div class="modal-dialog modal-dialog-centered"> -->
-<!-- 			<div class="modal-content"> -->
-<!-- 				<div class="modal-header"> -->
-<!-- 					<h5 class="modal-title" id="emailModalLabel">이메일 인증번호 입력</h5> -->
-<!-- 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-<!-- 				</div> -->
-<!-- 				<div class="modal-body"> -->
-<!-- 					<div class="input-group"> -->
-<!-- 						<input type="text" class="form-control" id="email" placeholder="이메일 인증번호를 입력하세요."> -->
-<!-- 						<button class="btn btn-secondary" type="button" id="button-addon2">인증번호 확인</button> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="modal-footer"> -->
-<!-- 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
-
 	<!-- 휴대폰 인증번호 입력 모달창 -->
-	<div class="modal fade" id="phoneModal" tabindex="-1" aria-labelledby="phoneModalLabel" aria-hidden="true">
+	<div class="modal fade" id="phoneModal" tabindex="-1"
+		aria-labelledby="phoneModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="phoneCheck">휴대폰 인증번호 입력</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
 					<div class="input-group">
-						<input type="text" class="form-control" id="phone2"  placeholder="휴대폰 인증번호를 입력하세요." >
-						<button class="btn btn-secondary" type="button" id="phoneChk2" onkeyup="checkPhone()" >인증번호 확인</button>
+						<input type="text" class="form-control" id="phone2"
+							placeholder="휴대폰 인증번호를 입력하세요.">
+						<button class="btn btn-secondary" type="button" id="phoneChk2">인증번호
+							확인</button>
 					</div>
-					<span id="phoneChk2" class="doubleChk"></span>
-					<span class="point successPhoneChk"> </span>
-					<input type="hidden" id="phoneDoubleChk" name="sendMsg" value="false"/>
+					<span id="phoneChk2" class="doubleChk"></span> <span
+						class="point successPhoneChk"> </span> <input type="hidden"
+						id="phoneDoubleChk" name="sendMsg" value="false" />
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">닫기</button>
 				</div>
 			</div>
 		</div>
 	</div>
-	
 
 	<!-- 푸터 -->
 	<div th:replace="/fragments/footer-main.html :: footer-main"></div>
 
 
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 		crossorigin="anonymous"></script>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 	<script>
 		function checkSelectAll() {
@@ -334,100 +346,74 @@
 			});
 		}
 		
-		//핸드폰 인증======================================================================================================================
- 		//휴대폰 번호 인증
- 		
- 		
-// 인증번호 받기 버튼 클릭시 인증번호 보내기
-      $(document).ready(function() {
-         $("#phoneChk").click(function() {
-            alert("인증번호 보내기 버튼을 눌렀습니다.");
-
-            // 휴대전화 번호 입력되었으면 모달창 띄우기
-            if ($("#phone").val() == "") {
-               alert("휴대폰 번호를 입력해주세요.");
-               $("#phone").focus();
-               return false;
-            } else {
-               $("#phoneModal").modal("show");
-            }
-         });
-      });
-				
+// 		// 인증번호 받기 버튼 클릭시 인증번호 보내기
+// 	      $(document).ready(function() {
+// 	         $("#phoneChk").click(function() {
+// 	            alert("인증번호 보내기 버튼을 눌렀습니다.");
+	
+// 	            // 휴대전화 번호 입력되었으면 모달창 띄우기
+// 	            if ($("#phone").val() == "") {
+// 	               alert("휴대폰 번호를 입력해주세요.");
+// 	               $("#phone").focus();
+// 	               return false;
+// 	            } else {
+// 	               $("#phoneModal").modal("show");
+// 	               alert("보낸 번호 : " + $("#phone").val() )
+// 	               alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
+	               
+// 	               var phone = $("#phone").val();
+// 		   			$.ajax({
+// 		   		        type:"GET",
+// 		   		        url:"/phoneCheck?phone=" + phone,
+// 		   		        cache : false,
+// 		   		        success:function(data){
+// 		   		        	if(data == "error"){
+// 		   		        		alert("휴대폰 번호가 올바르지 않습니다.")
+// 		   						$(".successPhoneChk").text("유효한 번호를 입력해주세요.");
+// 		   						$(".successPhoneChk").css("color","red");
+// 		   						$("#phone").attr("autofocus",true);
+// 		   		        	}else{	        		
+// 		   		        		$("#phone2").attr("disabled",false);
+// 		   		        		$("#phoneChk2").css("display","inline-block");
+// 		   		        		$(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
+// 		   		        		$(".successPhoneChk").css("color","green");
+// 		//    		        		$("#phone").attr("readonly",true);
+// 		   		        		code2 = data;
+// 		   		        	}
+// 		   		        }
+// 		   		    });
+		   			
+// 		            }
+// 		         });
+// 		      });
 			
-// 			if( $('input[id=phone]').val() == "" ){
-// 				$('#phoneModal').on('show.bs.modal', function (e) {
-// // 				$('.modal').on('show.bs.modal', function (e) {
-// 					alert("막음")
-// // 					stopPropagation();
-// 					alert("핸드폰 번호을 입력해주세요 ! ")
-// // 					return e.preventDefault();
-// 				})
-// 					return false;
+// 		//휴대폰 인증번호 대조
+// 		$("#phoneChk2").click(function(){
+// 			if($("#phone2").val() == code2){
+// 				$(".successPhoneChk").text("인증번호가 일치합니다.");
+// 				$(".successPhoneChk").css("color","green");
+// 				$("#phoneDoubleChk").val("true");
+// 				$("#phone2").attr("disabled",true);
 // 			}else{
-// 				alert("인증번호 발송이 완료되었습니다.\n휴대폰에서 인증번호 확인을 해주십시오.");
-// 				
-
-
-// 			$.ajax({
-// 		        type:"GET",
-// 		        url:"/phoneCheck?phone=" + phone,
-// 		        cache : false,
-// 		        success:function(data){
-// 		        	if(data == "error"){
-// 		        		alert("휴대폰 번호가 올바르지 않습니다.")
-// 						$(".successPhoneChk").text("유효한 번호를 입력해주세요.");
-// 						$(".successPhoneChk").css("color","red");
-// 						$("#phone").attr("autofocus",true);
-// 		        	}else{	        		
-// 		        		$("#phone2").attr("disabled",false);
-// 		        		$("#phoneChk2").css("display","inline-block");
-// 		        		$(".successPhoneChk").text("인증번호를 입력한 뒤 본인인증을 눌러주십시오.");
-// 		        		$(".successPhoneChk").css("color","green");
-// // 		        		$("#phone").attr("readonly",true);
-// 		        		code2 = data;
-// 		        	}
-// 		        }
-// 		    });
-		}		
-	})
-
+// 				$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
+// 				$(".successPhoneChk").css("color","red");
+// 				$("#phoneDoubleChk").val("false");
+// 				$(this).attr("autofocus",true);
+// 			}
+// 		});
+		
+		
+// 		// 가입하기 버튼 눌렀을시	
+// 		$('#joinFormSubmit').click(function(){
+// 			if($("#phoneDoubleChk").val() == "true"){
+// 				$('#joinFormSubmit').submit()
+// 			}else{
+// 				alert("핸드폰 인증을 확인해주세요")
+// 				return false;
+// 			}
 			
-		//휴대폰 인증번호 대조
-		$("#phoneChk2").click(function(){
-			if($("#phone2").val() == code2){
-				$(".successPhoneChk").text("인증번호가 일치합니다.");
-				$(".successPhoneChk").css("color","green");
-				$("#phoneDoubleChk").val("true");
-				$("#phone2").attr("disabled",true);
-			}else{
-				$(".successPhoneChk").text("인증번호가 일치하지 않습니다. 확인해주시기 바랍니다.");
-				$(".successPhoneChk").css("color","red");
-				$("#phoneDoubleChk").val("false");
-				$(this).attr("autofocus",true);
-			}
-		});
-		
-		
-		let phoneCheck = document.getElementById('phoneDoubleChk').value;
-		function checkPhone(){
-			if(!phoneCheck){
-				return false;
-			}else{
-				return true;
-			}
-		}
-		
-		
-		$('#joinFormSubmit').click(function(){
-			if(checkPhone()){
-				$('#joinFormSubmit').submit()
-			}else{
-				alert("핸드폰 인증을 확인해주세요")
-				return false;
-			}
-			
-		})
+// 		})
+
 		
 	</script>
 </body>
