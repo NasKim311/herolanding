@@ -77,20 +77,21 @@ public class LoginController {
 
 //--------<kakaoLogin() / 카카오 로그인 하는 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/kakao/loginForm")
-	public String kakaoLogin(@RequestParam(value = "code", required = false) String code) {
+	public String kakaoLogin(@RequestParam(value = "code", required = false) String code,
+			@RequestParam(defaultValue = "/") String redirectURL) {
 		System.out.println("카카오로그인");
 		loginService.getAccessToken(code);
-		return "index";
+		return "redirect:" + redirectURL;
 	}
-	
+
 //--------<logout() / 로그아웃 하는 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/logout/index")
-	public String logout(HttpServletRequest request) {
+	public String logout(HttpServletRequest request, @RequestParam(defaultValue = "/") String redirectURL) {
 
 		HttpSession session = request.getSession();
 		session.removeAttribute(SessionConst.LOGIN_MEMBER);
 
-		return "index";
+		return "redirect:" + redirectURL;
 	}
 
 } // LoginController class
