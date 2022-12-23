@@ -42,18 +42,18 @@ public class HomeController {
 				homeService.save();
 				homeService.saveCovid();
 				homeService.saveCovidVaccin();
-//				try {
-//					homeService.coivdMap();
-//				} catch (FileNotFoundException e) {
-//					System.out.println("파일경로에러");
-//					e.printStackTrace();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				} catch (ParseException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+				try {
+					homeService.coivdMap();
+				} catch (FileNotFoundException e) {
+					System.out.println("파일경로에러");
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		}else {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("crawring")) {
@@ -64,34 +64,34 @@ public class HomeController {
 						homeService.save();
 						homeService.saveCovid();
 						homeService.saveCovidVaccin();
-//						try {
-//							homeService.coivdMap();
-//						} catch (FileNotFoundException e) {
-//							System.out.println("파일경로에러");
-//							e.printStackTrace();
-//						} catch (IOException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						} catch (ParseException e) {
-//							// TODO Auto-generated catch block
-//							e.printStackTrace();
-//						}
+						try {
+							homeService.coivdMap();
+						} catch (FileNotFoundException e) {
+							System.out.println("파일경로에러");
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (ParseException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				}
 			}
 		}
-//			try {
-//				homeService.coivdMap();
-//			} catch (FileNotFoundException e) {
-//				System.out.println("파일경로에러");
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} catch (ParseException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			} 
+			try {
+				homeService.coivdMap();
+			} catch (FileNotFoundException e) {
+				System.out.println("파일경로에러");
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
 		List<CovidDTO>  covids =  homeService.findCovid();
 		List<vaccinDTO> vaccins = homeService.findCovidVaccin();
 		CovidOneDTO oneDTO = homeService.findCounrty("전세계");
