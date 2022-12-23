@@ -308,7 +308,7 @@ public class BoardController {
 	
 //===================== 게시물 수정 ===============================
 	@GetMapping("/board/edit/{id}")
-	public String editForm(Model model, @PathVariable("id")Long boardId)
+	public String editForm(Model model, @PathVariable("id")Long boardId )
 	{	
 		model.addAttribute("board", boardService.findById(boardId));
 		model.addAttribute("boardDTO", new BoardDTO());
@@ -316,8 +316,31 @@ public class BoardController {
 	} // 수정 Form 으로 이동하기 위한 로직
 	
 	@PostMapping("/board/edit/{id}")
-	public String edit(@PathVariable("id")Long boardId , BoardDTO boardDTO)
+	public String edit(@PathVariable("id")Long boardId , BoardDTO boardDTO  , BindingResult bindingResult , Model model)
 	{	
+		
+		if(!StringUtils.hasText(boardDTO.getPost_title()))
+		{
+			bindingResult.addError(new FieldError("dto", "post_title", boardDTO.getPost_title(), false, null, null , "제목은 필수입니다."));
+		} // 제목 검사 ( 값을 입력했는지 검사 )
+		
+		if(!StringUtils.hasText(boardDTO.getPost_content()))
+		{
+			bindingResult.addError(new FieldError("dto", "post_content", boardDTO.getPost_content(), false, null, null , "내용은 필수입니다."));
+		} // 내용 검사 ( 값을 입력했는지 검사 )
+		
+		if(boardDTO.getContinent() == null)
+		{
+			bindingResult.addError(new FieldError("dto", "continent", null, false, null, null , "여행지역을 입력해주세요"));
+		} // 지역 선택했는지 검사
+		
+		if(boardDTO.getWriteType() == null)
+		{
+			bindingResult.addError(new FieldError("dto", "writeType", boardDTO.getWriteType(), false, null, null , "게시판을 선택해주세요"));
+		} // 게시판 선택했는지 검사
+		
+		model.addAttribute("board", boardService.findById(boardId));
+		if(bindingResult.hasErrors()) return "board/board_edit";
 		boardDTO.setModifiedDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss")));
 		boardService.update(boardId,boardDTO);
 		return "redirect:/board/list/1";
