@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.hero.herolanding.crawling.Cookies;
 import com.hero.herolanding.dto.CovidDTO;
+import com.hero.herolanding.dto.CovidOneDTO;
+import com.hero.herolanding.dto.vaccinDTO;
 import com.hero.herolanding.service.HomeService;
 
 import lombok.RequiredArgsConstructor;
@@ -54,7 +56,11 @@ public class HomeController {
 		 
 //		homeService.worldMap();
 		List<CovidDTO>  covids =  homeService.findCovid();
+		List<vaccinDTO> vaccins = homeService.findCovidVaccin();
+		CovidOneDTO oneDTO = homeService.findCounrty("전세계");
+		model.addAttribute("one",oneDTO);
 		model.addAttribute("Covids" , covids);
+		model.addAttribute("vaccins" , vaccins);
 		return "index";
 	}
 	

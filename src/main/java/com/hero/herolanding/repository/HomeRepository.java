@@ -94,9 +94,17 @@ public class HomeRepository {
 	}
 	
 	// 코로나 수 (전체)
-	public List<Tuple> findCovidAll() {
+	public List<Country> findCovidAll() {
 		queryFactory = new JPAQueryFactory(em);
-		List<Tuple> covidDatas =  queryFactory.select(country.countryName,country.covidData).from(country).fetch();
+//		List<Tuple> covidDatas =  queryFactory.select(country.countryName,
+//													  country.covidData.milionCount.coalesce("").as("데이터없음"),
+//													  country.covidData.newCovidCount1.coalesce("").as("데이터없음"),
+//													  country.covidData.samang.coalesce("").as("데이터없음"),
+//													  country.covidData.totalCovidCount.coalesce("").as("데이터없음"))
+//											   .from(country).fetch();
+		
+		List<Country> covidDatas = queryFactory.selectFrom(country).where(country.covidData.milionCount.isNotNull()).fetch();
+		
 		return covidDatas;
 	}
 	
@@ -107,9 +115,9 @@ public class HomeRepository {
 		return covidData;
 	}
 	// 코로나 백신 수 (전체)
-	public List<Tuple> findCovidVaccinAll() {
+	public List<Country> findCovidVaccinAll() {
 		queryFactory = new JPAQueryFactory(em);
-		List<Tuple> covidDatas =  queryFactory.select(country.countryName,country.covidVaccinData).from(country).fetch();
+		List<Country> covidDatas = queryFactory.selectFrom(country).where(country.covidData.milionCount.isNotNull()).fetch();
 		return covidDatas;
 	}
 	
