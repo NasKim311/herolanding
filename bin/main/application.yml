@@ -8,6 +8,8 @@ spring:
     username: Herolanding1
     password: Rlathdud1011
     driver-class-name: oracle.jdbc.OracleDriver
+  thymeleaf:
+    cache: false
 
   jpa:
     hibernate:

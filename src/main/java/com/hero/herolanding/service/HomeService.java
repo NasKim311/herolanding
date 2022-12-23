@@ -7,10 +7,17 @@ import static com.hero.herolanding.domain.QExchangeRate.*;
 import static com.hero.herolanding.domain.QCovidData.*;
 import static com.hero.herolanding.domain.QCountryPaper.*;
 
-
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,6 +55,8 @@ public class HomeService {
 	private final CovidVaaccin covidVaaccin;
 	private final Covid covid;
 
+	
+	// 전체 환율 정복 가져오기
 	@Transactional
 	public void save() {
 		List<ExchangeRate> exchangeRates = exchangeRate.process();
@@ -55,10 +64,9 @@ public class HomeService {
 			homeRepository.insertExchange(exchangeRates.get(i));
 		}
 	}
-	
+	// 코로나 백신 전체 정보 저장하기
 	@Transactional
 	public void saveCovidVaccin() {
-		System.out.println("서비스 들어옴");
 		List<vaccinDTO> covidVaccinDatas = covidVaaccin.process();
 		for(int i = 0 ; i < covidVaccinDatas.size();i++) {
 			Country country = homeRepository.findCounrty(covidVaccinDatas.get(i).getCountry());
@@ -73,9 +81,10 @@ public class HomeService {
 			}
 		}
 	}
+	
+	// 코로나 확진자 전체 정보 저장하기
 	@Transactional
 	public void saveCovid() {
-		System.out.println("서비스 들어옴");
 		List<CovidDTO> covidDatas = covid.process();
 		for(int i = 0 ; i < covidDatas.size();i++) {
 			Country country = homeRepository.findCounrty(covidDatas.get(i).getCountry());
@@ -92,7 +101,7 @@ public class HomeService {
 		}
 	}
 	
-	
+	// 코로나 확진자 전체 정보 가져오기
 	@Transactional
 	public List<CovidDTO> findCovid() {
 		List<CovidDTO> covids = new ArrayList<CovidDTO>();
@@ -118,6 +127,8 @@ public class HomeService {
 		return covids;
 	}
 	
+	
+	// 코로나 백신 전체 정보 가져오기
 	@Transactional
 	public List<vaccinDTO> findCovidVaccin() {
 		List<vaccinDTO> vaccins= new ArrayList<vaccinDTO>();
@@ -137,6 +148,7 @@ public class HomeService {
 		return vaccins;
 	}
 	
+	// 코로나 정보 한 나라의 값 가져오기
 	@Transactional
 	public CovidOneDTO findCounrty(String country) {
 		CovidOneDTO main = new CovidOneDTO();
@@ -154,5 +166,45 @@ public class HomeService {
 		return main;
 		
 	}
-
+	
+	// 코로나 정보 지도에 업데이트 하기
+	@SuppressWarnings("unchecked")
+	@Transactional
+	public void coivdMap() throws FileNotFoundException, IOException, ParseException {
+		List<Country> countrys =  homeRepository.findAllcountry();
+		JSONArray jsarr = (JSONArray) new JSONParser().parse(new FileReader("src/main/resources/static/js/country.json"));
+		JSONArray hey = new JSONArray();
+//		JSONObject jsonObject = (JSONObject) jsarr.get(0);
+//		System.out.println(jsonObject);
+//		System.out.println(jsonObject.get("name"));
+//		System.out.println(countrys.get(0).getCountryName());
+//		int a = Integer.parseInt(countrys.get(0).getCovidData().getMilionCount().replace(",",""));
+//		jsonObject.replace("value",a);
+//		System.out.println(jsonObject);
+		for(int i = 0 ; i < countrys.size();i++) {
+			for(int j = 0 ; j < jsarr.size(); j++) {
+				JSONObject jsonObject = (JSONObject) jsarr.get(j);
+				if(countrys.get(i).getCountryName().equals(jsonObject.get("name"))) {
+					System.out.println(jsonObject.get("name"));
+					if(countrys.get(i).getCovidData() == null) {
+						continue;
+					}else {
+						System.out.println(countrys.get(i).getCovidData().getMilionCount());
+						int cnt = Integer.parseInt(countrys.get(i).getCovidData().getMilionCount().replace(",",""));
+						jsonObject.replace("value", cnt);
+						hey.add(jsonObject);
+						
+					}
+				}
+			}
+		}
+		FileWriter hi = new  FileWriter("src/main/resources/static/js/country.json");
+		hi.write(hey.toJSONString());
+		hi.flush();
+		hi.close();
+		JSONObject jsonObject = (JSONObject) jsarr.get(0);
+		System.out.println(jsonObject);
+		System.out.println(jsonObject.get("value"));
+		System.out.println();
+	}
 }
