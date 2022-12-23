@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    
+    <style>
+        #container {
+            height: 500px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .loading {
+            margin-top: 10em;
+            text-align: center;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body th:fragment="세계지도">
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+
+    <div id="container"></div>
+
+    <script>
+        (async () => {
+
+            const topology = await fetch(
+            		'/js/gi2.json'
+            ).then(response => response.json());
+
+            Highcharts.getJSON('/js/country.json', function (data) {
+
+                // Prevent logarithmic errors in color calulcation
+                data.forEach(function (p) {
+                    p.value = (p.value < 1 ? 1 : p.value);
+                });
+
+                // Initialize the chart
+                Highcharts.mapChart('container', {
+                    chart: {
+                        map: topology,
+                        // backgroundColor top white bottom black
+                        backgroundColor: {
+                            linearGradient: [0, 0, 0, 500],
+                            stops: [
+                                [0, 'rgb(50, 50, 80)'],
+                                [1, 'rgb(0, 0, 0)']
+                            ]
+                        },
+                    },
+                    // 제목
+                    title: {
+                        
+                        text: 'FBI WARNING',
+                        style: {
+                            color: 'red',
+                            textTransform: 'uppercase',
+                            fontSize: '20px',
+                            fontWeight: 'bold',
+                        }
+                    },
+                    // 부제목
+                    subtitle: {
+                        text: 'Federal Law provides severe civil and criminal penalties for the unauthorized reproduction, distribution, or exhibition of copyrighted works, including the downloading of protected works and the infringement of copyright by streaming or other means. Violators may be prosecuted to the maximum extent possible under the law.',
+                        style: {
+                            color: '#E0E0E3',
+                            textTransform: 'uppercase'
+                        }
+                    },
+
+                    mapNavigation: {
+                        enabled: false,
+                        enableDoubleClickZoomTo: true,
+                        // 휠 옵션
+                        enableMouseWheelZoom: true
+                    },
+
+                    // 푸터 없애기
+                    credits: {
+                        enabled: false
+                    },
+                    // 하단 메뉴 없애기
+
+                    colorAxis: {
+                        min: 0,
+                        max: 1000,
+                        type: 'logarithmic'
+                    },
+
+                    //proxy 버튼 없애기
+                    exporting: {
+                        enabled: false
+                    },
+
+                    //highcharts-legend 없애기
+                    legend: {
+                        enabled: false
+                    },
+
+                    series: [{
+                        data: data,
+                        joinBy: ['iso-a3', 'code3'],
+                        name: 'Population density',
+                        states: {
+                            hover: {
+                                color: '#0e0c32'
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: ''
+                        }
+                    }]
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
