@@ -31,7 +31,7 @@
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 
     <!-- 메인 시작 -->
-    <main style="background-color: rgb(10,10,16);">
+    <main class=bg-dark>
         <!-- 메인 헤더가 될 예정 -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
@@ -44,12 +44,8 @@
         	<!-- 검색창 -->
 			<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
 		</div>
-		<div class="container-fluid" style="background: linear-gradient(rgb(10,10,16), rgb(25,110,247));">
-			<div class="py-3"></div>
-        </div>
 		
-		
-        <div class="container-fluid bg-primary">
+        <div class="container-fluid bg-primary" style="background: linear-gradient(rgb(10,10,16), rgb(14,41,89));">
             <div class="row">
                 <div class="col-12 text-white text-center">
                     <div class="py-5">        
@@ -65,75 +61,57 @@
             </div>
         </div>
 
-		<!-- 포장 준비 -->
-		<div class="">
-	        <div class="container-fluid py-5 bg-danger">
-	            <div class="row justify-content-start">
-	                <div class="col col-lg-8 text-white">
-	                    <div th:replace="/fragments/전세계.html :: 전세계"></div>
-	                </div>
-	            </div>
-	        </div>
-	
-	        <div class="container-fluid py-5 bg-dark">
-	            <div class="row justify-content-center">
-	                <div class="col col-lg-8 text-white">
-	                    <div th:replace="/fragments/확진자통계.html :: 확진자통계"></div>
-	                </div>
-	            </div>
-	        </div>
-	        
-	        <div class="container-fluid py-5 bg-warning">
-	            <div class="row justify-content-center">
-	                <div class="col col-lg-8 text-white">
-	                    <div th:replace="/fragments/백신통계.html :: 백신통계"></div>
-	                </div>
-	            </div>
-	        </div>
-	        
-	        <div class="container-fluid py-5 bg-info">
-	            <div class="row justify-content-center">
-	                <div class="col col-lg-8 text-white">
-					<!-- <div th:replace="/fragments/테이블테스트.html :: 테이블테스트"></div> -->
-	                </div>
-	            </div>
-	        </div>
+		<!-- 컨텐츠 포장 시작 -->
+		<div class="row container-fluid bg-danger mx-0 mb-3 justify-content-center"
+			style="background: linear-gradient(rgb(14,41,89), rgb(10,10,16));">
+			<div class="row col col-lg-10 ">
+				<!-- 사이드 시작 -->
+		
+				<!-- 사이드 끝 -->
+				<div class="col col-lg-8 px-0">
+					<div class="pb-3">
+						<div th:replace="/fragments/전세계.html :: 전세계"></div>
+					</div>
+					<div class="pb-3">
+						<div th:replace="/fragments/확진자통계.html :: 확진자통계"></div>
+					</div>
+					<div class="pb-3">
+						<div th:replace="/fragments/백신통계.html :: 백신통계"></div>
+					</div>
+				</div>
+		
+				<!-- 카드 시작 -->
+				<div class="col col-4 d-none d-lg-block">
+					<div class="quickmenu" style="position: sticky; top:150px;">
+						<div class="card border text-white bg-dark mb-3" style="max-width: 18rem;">
+							<div class="card-body">
+								<div class="mb-2">
+									<h4>주요 뉴스</h4>
+								</div>
+								<!-- 뉴스 링크 -->
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m" class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m" class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m" class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m" class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 카드 끝 -->
+		
+			</div>
 		</div>
+		<!-- 컨텐츠 포장 끝 -->
 
-        <div class="container-fluid bg-dark">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                </div>
-            </div>
-        </div>
+        
 
         <!-- 회전목마 시작 -->
 <style>
