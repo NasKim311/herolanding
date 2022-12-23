@@ -31,7 +31,7 @@
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 
     <!-- 메인 시작 -->
-    <main>
+    <main style="background-color: rgb(10,10,16);">
         <!-- 메인 헤더가 될 예정 -->
         <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
         <!-- <div class="container-fluid vh-100 bg-dark"> -->
@@ -39,18 +39,16 @@
 			<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
         </div>
         
-        <div class="container-fluid">
-	        <div class="row">
-	            <!-- 그라데이션 -->
-	            <div class="text-white text-center" style="background: linear-gradient(rgb(10,10,16), rgb(25,110,247));">
-	                <!-- 국가검색창 -->
-	                <div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
-	            </div>
-	        </div>
+        
+        <div class="container-fluid quickmenu" style="position: sticky; top:57.43px;">
+        	<!-- 검색창 -->
+			<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
+		</div>
+		<div class="container-fluid" style="background: linear-gradient(rgb(10,10,16), rgb(25,110,247));">
+			<div class="py-3"></div>
         </div>
-        <!-- 메인 헤더 끝 -->
-
-
+		
+		
         <div class="container-fluid bg-primary">
             <div class="row">
                 <div class="col-12 text-white text-center">
@@ -67,37 +65,40 @@
             </div>
         </div>
 
-        <div class="container-fluid py-5 bg-danger">
-            <div class="row justify-content-center">
-                <div class="col col-lg-8 text-white">
-                    <div th:replace="/fragments/전세계.html :: 전세계"></div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid py-5 bg-dark">
-            <div class="row justify-content-center">
-                <div class="col col-lg-8 text-white">
-                    <div th:replace="/fragments/확진자통계.html :: 확진자통계"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="container-fluid py-5 bg-warning">
-            <div class="row justify-content-center">
-                <div class="col col-lg-8 text-white">
-                    <div th:replace="/fragments/백신통계.html :: 백신통계"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="container-fluid py-5 bg-info">
-            <div class="row justify-content-center">
-                <div class="col col-lg-8 text-white">
-				<!-- <div th:replace="/fragments/테이블테스트.html :: 테이블테스트"></div> -->
-                </div>
-            </div>
-        </div>
+		<!-- 포장 준비 -->
+		<div class="">
+	        <div class="container-fluid py-5 bg-danger">
+	            <div class="row justify-content-start">
+	                <div class="col col-lg-8 text-white">
+	                    <div th:replace="/fragments/전세계.html :: 전세계"></div>
+	                </div>
+	            </div>
+	        </div>
+	
+	        <div class="container-fluid py-5 bg-dark">
+	            <div class="row justify-content-center">
+	                <div class="col col-lg-8 text-white">
+	                    <div th:replace="/fragments/확진자통계.html :: 확진자통계"></div>
+	                </div>
+	            </div>
+	        </div>
+	        
+	        <div class="container-fluid py-5 bg-warning">
+	            <div class="row justify-content-center">
+	                <div class="col col-lg-8 text-white">
+	                    <div th:replace="/fragments/백신통계.html :: 백신통계"></div>
+	                </div>
+	            </div>
+	        </div>
+	        
+	        <div class="container-fluid py-5 bg-info">
+	            <div class="row justify-content-center">
+	                <div class="col col-lg-8 text-white">
+					<!-- <div th:replace="/fragments/테이블테스트.html :: 테이블테스트"></div> -->
+	                </div>
+	            </div>
+	        </div>
+		</div>
 
         <div class="container-fluid bg-dark">
             <div class="row">
