@@ -35,7 +35,7 @@
         (async () => {
 
             const topology = await fetch(
-                'resources/static/js/gi.json'
+                'https://code.highcharts.com/mapdata/custom/world.topo.json'
             ).then(response => response.json());
 
             Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
