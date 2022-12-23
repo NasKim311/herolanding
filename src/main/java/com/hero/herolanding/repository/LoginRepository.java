@@ -37,8 +37,8 @@ public class LoginRepository {
 		return allMemberList;
 	}
 
-//--------<findByLoginId() / 파라미터로 받아온 loginId에 해당하는 멤버 정보를 리턴하는 메서드 >-------------------------------------------------------------------------------------	
-	public Member findByLoginId(String loginId, String loginPw) {
+//--------<findByLoginIdPw() / 파라미터로 받아온 loginId에 해당하는 멤버 정보를 리턴하는 메서드 >-------------------------------------------------------------------------------------	
+	public Member findByLoginIdPw(String loginId, String loginPw) {
 		queryFactory = new JPAQueryFactory(em);
 
 		Member loginMemberData = queryFactory.selectFrom(member)
@@ -46,11 +46,10 @@ public class LoginRepository {
 
 		return loginMemberData;
 	}
-	
-	public Member findById(String loginId)
-	{
-		return queryFactory.selectFrom(member)
-				.where(member.memberId.eq(loginId)).fetchOne();
+
+//--------<findByLoginId() / 파라미터로 받아온 loginId에 해당하는 멤버 정보를 리턴하는 메서드 >-------------------------------------------------------------------------------------	
+	public Member findByLoginId(String loginId) {
+		return queryFactory.selectFrom(member).where(member.memberId.eq(loginId)).fetchOne();
 	}
 
 } // LoginRepository class
