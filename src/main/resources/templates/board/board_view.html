@@ -55,6 +55,9 @@
                                     <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.boardNum})}"  class="btn btn-danger">삭제</a>
                                 </div>
                                 </th:block>
+                                  <div class="col-6 text-end" th:if="${memberNum != -10}">
+                                    <a href="#" th:href="@{/board/report/{id}/(id=${board.boardNum})}" class="btn btn-danger">신고</a>
+                                </div>
                             </div>
                     </article>
                     <!-- Comments section-->

@@ -29,8 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.domain.Reply;
+import com.hero.herolanding.domain.Report;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
+import com.hero.herolanding.dto.ReportDTO;
 import com.hero.herolanding.dto.SendDTO;
 import com.hero.herolanding.dto.writeTypeDTO;
 import com.hero.herolanding.repository.LoginRepository;
@@ -234,6 +236,39 @@ public class BoardController {
 		return "board/board_listByType";	
 	}
 	
+	@GetMapping("/board/report/{id}")
+	public String reportForm(@PathVariable("id")Long boardId , HttpServletRequest request, Model model)
+	{	
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		ReportDTO dto = new ReportDTO();
+		
+		model.addAttribute("member", member);
+		model.addAttribute("boardId" , boardId);
+		model.addAttribute("ReportDTO", dto);
+		return "board/board_report";
+	}
+	
+	@PostMapping("/board/reporting")
+	public String BoardReporting(ReportDTO dto , HttpServletRequest request)
+	{
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		Member m = loginRepository.findById(member.getMemberId());
+		Board b = boardService.findById(dto.getBoardId());
+		
+		Report report = new Report();
+		report.setBoard(b);
+		report.setMember(m);
+		report.setReportReason(dto.getReportContents());
+		
+		boardService.inputReport(report);
+		boardService.updateReportCount(dto.getBoardId());
+		
+		return "redirect:/";
+	}
 	
 	@GetMapping("/board/{id}/view")
 	public String board_detail(@PathVariable("id") Long boardId , Model model, HttpServletRequest request)
@@ -379,5 +414,5 @@ public class BoardController {
 	} // 댓글 삭제
 	
 	
-	
+
 }

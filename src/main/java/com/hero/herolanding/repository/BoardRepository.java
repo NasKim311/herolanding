@@ -10,6 +10,7 @@ import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.BoardType;
 import com.hero.herolanding.domain.Continent;
 import com.hero.herolanding.domain.Reply;
+import com.hero.herolanding.domain.Report;
 import com.hero.herolanding.dto.BoardDTO;
 import com.hero.herolanding.dto.ReplyDTO;
 
@@ -26,6 +27,18 @@ public class BoardRepository {
 	public void inputBoardContents(Board board)
 	{
 		em.persist(board);
+	}
+	
+	public void inputReport(Report report)
+	{
+		em.persist(report);
+	}
+	
+	public void updateReportCount(long boardId)
+	{
+		Board b = findById(boardId);
+		long temp = b.getReportCount();
+		b.setReportCount(temp + 1);
 	}
 	
 	public List<Board> BoardCount()
