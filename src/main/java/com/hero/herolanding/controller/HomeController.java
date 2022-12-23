@@ -103,9 +103,9 @@ public class HomeController {
 	}
 	
 	@Transactional
-	@GetMapping("/worldMap")
-	public void worldMap() {
-		
+	@GetMapping("/search")
+	public String worldMap() {
+		return "result/index";
 	}
 
 }
