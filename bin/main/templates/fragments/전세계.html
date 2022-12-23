@@ -16,7 +16,7 @@
 <body th:fragment="전세계">
 	<!-- 신호 : https://news.google.com/covid19/map?hl=ko&gl=KR&ceid=KR%3Ako 자세한 사항은 여기 참고 바람 -->
 	<div class="container-fluid" th:object="${one}">
-		<div class=" border rounded bg-dark text-light">
+		<div class=" border border-1 rounded bg-dark text-light">
 			<div class="p-3">
 
 				<h3 class="mb-2" th:text="*{country}">전세계</h3>
@@ -31,7 +31,7 @@
 									<div class="" aria-describedby="c98" th:text="*{totalCovidCount}">653,713,224<span>명</span></div>
 									<div class=""></div>
 								</td>
-								<td class="border-end border-start border-2" >
+								<td class="border border-0 border-end border-start border-2" >
 									<div>
 										<div class="" >신규 확진자(1일)</div>
 										<div th:text="*{newCovidCount1}">0<span>명</span></div>
@@ -61,7 +61,7 @@
 									</div>
 								</td>
 								
-								<td class="col border-end border-start border-2">
+								<td class="col border border-0 border-end border-start border-2">
 							
 									<div>
 										<div class="">신규 접종 횟수(1일)</div>
