@@ -22,5 +22,9 @@ public class JoinDTO {
 	private LocalDate signUpDate; 
 	
 	private String sendMsg;
+	private String idCheck;
+	private String passWordCheck;
+	private String nickNameCheck;
+	private String emailCheck;
 	
 } 

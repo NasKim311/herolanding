@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.crawling.Cookies;
 import com.hero.herolanding.dto.CovidDTO;
@@ -42,18 +43,18 @@ public class HomeController {
 				homeService.save();
 				homeService.saveCovid();
 				homeService.saveCovidVaccin();
-				try {
-					homeService.coivdMap();
-				} catch (FileNotFoundException e) {
-					System.out.println("파일경로에러");
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+//				try {
+//					homeService.coivdMap();
+//				} catch (FileNotFoundException e) {
+//					System.out.println("파일경로에러");
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				} catch (ParseException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
 		}else {
 			for(Cookie c : cookies) {
 				if(c.getName().equals("crawring")) {
@@ -64,35 +65,35 @@ public class HomeController {
 						homeService.save();
 						homeService.saveCovid();
 						homeService.saveCovidVaccin();
-						try {
-							homeService.coivdMap();
-						} catch (FileNotFoundException e) {
-							System.out.println("파일경로에러");
-							e.printStackTrace();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} catch (ParseException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+//						try {
+//							homeService.coivdMap();
+//						} catch (FileNotFoundException e) {
+//							System.out.println("파일경로에러");
+//							e.printStackTrace();
+//						} catch (IOException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						} catch (ParseException e) {
+//							// TODO Auto-generated catch block
+//							e.printStackTrace();
+//						}
 					}
 				}
 			}
 		}
-			try {
-				homeService.coivdMap();
-				System.out.println("새끼 나와라");
-			} catch (FileNotFoundException e) {
-				System.out.println("파일경로에러");
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+//			try {
+//				homeService.coivdMap();
+//				System.out.println("새끼 나와라");
+//			} catch (FileNotFoundException e) {
+//				System.out.println("파일경로에러");
+//				e.printStackTrace();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			} 
 		List<CovidDTO>  covids =  homeService.findCovid();
 		List<vaccinDTO> vaccins = homeService.findCovidVaccin();
 		CovidOneDTO oneDTO = homeService.findCounrty("전세계");
@@ -105,7 +106,8 @@ public class HomeController {
 	
 	@Transactional
 	@GetMapping("/search")
-	public String worldMap() {
+	public String worldMap(@RequestParam String country , Model model) {
+		model.addAttribute("country" , country);
 		return "result/result";
 	}
 
