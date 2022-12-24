@@ -49,6 +49,14 @@ public class JoinRepository {
 					 .getResultList();
 		}
 		
+		// 이메일 찾기
+				public List<Member> findDuplicationEmail(String memberEmail){
+				
+					 return em.createQuery("select m from Member m where m.memberEmail = :memberEmail", Member.class)
+							 .setParameter("memberEmail", memberEmail)
+							 .getResultList();
+				}
+		
 		
 	
 }

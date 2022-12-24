@@ -7,5 +7,6 @@ public class JoinIdNicknameDTO {
 
 	private String memberId;
 	private String memberNickName;
+	private String memberEmail;
 	
 }
