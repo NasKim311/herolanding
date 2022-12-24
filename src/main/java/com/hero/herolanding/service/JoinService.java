@@ -36,4 +36,10 @@ public class JoinService {
 		return joinRepository.findDuplicationNickName(memberNickName);
 	}
 	
+	// 중복이메일 찾기
+		@Transactional
+		public List<Member> findEmail(String memberEmail) {
+			return joinRepository.findDuplicationId(memberEmail);
+		}
+	
 }
