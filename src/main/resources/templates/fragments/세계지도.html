@@ -106,6 +106,16 @@
                     legend: {
                         enabled: false
                     },
+                    // 클릭 이벤트
+                    plotOptions: {
+                        series: {
+                            events: {
+                                click: function (e) {
+        							location.href='/search?country='+e.point.name
+                                }
+                            }
+                        }
+                    },
 
                     series: [{
                         data: data,
