@@ -52,7 +52,7 @@
                         </a>
                         <ul class="dropdown-menu 호버메뉴" aria-labelledby="navbarDropdown">
 
-                            <li><a class="dropdown-item" href="#">대륙별 전체 게시판</a></li>
+                            <li><a class="dropdown-item" href="board/list/1">대륙별 전체 게시판</a></li>
 
                             <li>
                                 <hr class="dropdown-divider">
@@ -67,13 +67,13 @@
                                     </a>
                                     <ul class="dropdown-menu m-0" data-bs-popper="static">
 
-                                        <li><a class="dropdown-item" href="#">아시아 전체 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= ASIA, id = 1)}">아시아 전체 게시판</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">후기 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">맛집 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=ASIA,type=REVIEW, id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=ASIA,type=FREE, id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=ASIA,type=FOOD, id = 1)}">맛집 게시판</a></li>
 
 
                                     </ul>
@@ -87,13 +87,13 @@
                                         유럽
                                     </a>
                                     <ul class="dropdown-menu m-0" data-bs-popper="static">
-                                        <li><a class="dropdown-item" href="#">유럽 전체 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= EUROPE, id = 1)}">유럽 전체 게시판</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">후기 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">맛집 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=EUROPE,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=EUROPE,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=EUROPE,type= FOOD , id = 1)}">맛집 게시판</a></li>
 
                                     </ul>
                                 </div>
@@ -106,13 +106,13 @@
                                         북아메리카
                                     </a>
                                     <ul class="dropdown-menu m-0" data-bs-popper="static">
-                                        <li><a class="dropdown-item" href="#">북아메리카 전체 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= NorthAmerica , id = 1)}">북아메리카 전체 게시판</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">후기 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">맛집 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= NorthAmerica ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= NorthAmerica ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= NorthAmerica ,type= FOOD , id = 1)}">맛집 게시판</a></li>
 
                                     </ul>
                                 </div>
@@ -125,13 +125,13 @@
                                         남아메리카
                                     </a>
                                     <ul class="dropdown-menu m-0" data-bs-popper="static">
-                                        <li><a class="dropdown-item" href="#">남아메리카 전체 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= SouthAmerica , id = 1)}">남아메리카 전체 게시판</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">후기 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">맛집 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= SouthAmerica ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= SouthAmerica ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= SouthAmerica ,type= FOOD , id = 1)}">맛집 게시판</a></li>
                                     </ul>
 
                                 </div>
@@ -144,13 +144,13 @@
                                         아프리카
                                     </a>
                                     <ul class="dropdown-menu m-0" data-bs-popper="static">
-                                        <li><a class="dropdown-item" href="#">아프리카 전체 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= AFRICA , id = 1)}">아프리카 전체 게시판</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">후기 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">맛집 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= AFRICA ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= AFRICA ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= AFRICA ,type= FOOD , id = 1)}">맛집 게시판</a></li>
 
                                     </ul>
                                 </div>
@@ -163,13 +163,13 @@
                                         오세아니아
                                     </a>
                                     <ul class="dropdown-menu m-0" data-bs-popper="static">
-                                        <li><a class="dropdown-item" href="#">오세아니아 전체 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= OCEANIA , id = 1)}">오세아니아 전체 게시판</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" href="#">후기 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">자유 게시판</a></li>
-                                        <li><a class="dropdown-item" href="#">맛집 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= OCEANIA ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= OCEANIA ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= OCEANIA ,type= FOOD , id = 1)}">맛집 게시판</a></li>
 
                                     </ul>
                                 </div>

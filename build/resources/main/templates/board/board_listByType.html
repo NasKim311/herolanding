@@ -34,11 +34,13 @@
 			<div class="card mb-4">
 				<div class="card-header">Search</div>
 				<div class="card-body">
+					<form th:object="${writeTypeDTO}" action="/board/search"  method="get">
 					<div class="input-group">
 						<input class="form-control" type="text" placeholder="Enter search term..."
-							aria-label="Enter search term..." aria-describedby="button-search" />
-						<button class="btn btn-primary" id="button-search" type="button">Go!</button>
+							aria-label="Enter search term..." aria-describedby="button-search" th:field="*{writeType}"/>
+						<button class="btn btn-primary" id="button-search" type="submit">검색</button>
 					</div>
+				</form>
 				</div>
 			</div>
 			<!-- Categories widget-->
@@ -67,19 +69,19 @@
 			<div class="vh-100">
 				<div class="row">
 					<div class="col-12">
-						<th:block th:switch="${continents}">
-							<h1 th:case="ASIA">아시아</h1>
-							<h1 th:case="EUROPE">유럽</h1>
-							<h1 th:case="NorthAmerica">북아메리카</h1>
-							<h1 th:case="SouthAmerica">남아메리카</h1>
-							<h1 th:case="AFRICA">아프리카</h1>
-							<h1 th:case="OCEANIA">오세아니아</h1>
-						</th:block>
-						<th:block th:switch="${type}">
-							<h3 th:case="REVIEW">후기게시판</h3>
-							<h3 th:case="FREE">자유게시판</h3>
-							<h3 th:case="FOOD">맛집게시판</h3>
-						</th:block>
+						<div th:switch="${continents}" style="display: inline-block;">
+							<h1 th:case="ASIA">아시아 - </h1>
+							<h1 th:case="EUROPE">유럽 - </h1>
+							<h1 th:case="NorthAmerica">북아메리카 - </h1>
+							<h1 th:case="SouthAmerica">남아메리카 - </h1>
+							<h1 th:case="AFRICA">아프리카 - </h1>
+							<h1 th:case="OCEANIA">오세아니아 - </h1>
+						</div>
+						<div th:switch="${type}" style="display: inline-block;">
+							<h1 th:case="REVIEW">후기게시판</h1>
+							<h1 th:case="FREE">자유게시판</h1>
+							<h1 th:case="FOOD">맛집게시판</h1>
+						</div>
 					</div>
 				</div>
 				<div style="display: inline-block;">
