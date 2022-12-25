@@ -24,10 +24,10 @@ public class Inspection {
 	private int inspectionNum;
 
 	@Column(name = "\"격리 기간\"")
-	private int isolationPeriod;
+	private String isolationPeriod;
 
 	@Column(name = "\"검사 횟수\"")
-	private int inspectionCount;
+	private String inspectionCount;
 
 	@Column(name = "\"비고\"")
 	private String inspectionNote;

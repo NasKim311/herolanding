@@ -11,30 +11,36 @@
         <div class="border rounded bg-dark text-light">
             <div class="container p-3">
  				<h3 class="">비자</h3>
- 				<div class="container-fluid mx-0 px-0 row d-flex flex-wrap jusify-content-center">
+ 				<div class="container-fluid mx-0 px-0 row d-flex flex-wrap jusify-content-center" th:object="${visa}">
                     <div class="col text-center border">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">입국 시 소지 여부</div>
-                    	<div class="text-wrap p-1">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:if="${visa?.entranceVisaStatus==null}" th:text="'데이터없음'">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:unless="${visa?.entranceVisaStatus==null}" th:text="${visa.entranceVisaStatus}">가나다라마바사</div>
                     </div>
                     <div class="col text-center border">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">발급 기관명</div>
-                    	<div class="text-wrap p-1">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:if="${visa?.entranceVisaStatus==null}" th:text="'데이터없음'">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:unless="${visa?.entranceVisaStatus==null}" th:text="${visa.entranceVisaStatus}">가나다라마바사</div>
                     </div>
                     <div class="col text-center border">
-                    	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">일반려권 소지자</div>
-                    	<div class="text-wrap p-1">가나다라마바사</div>
+                    	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">일반여권 소지자</div>
+                    	<div class="text-wrap p-1" th:if="${visa?.normalPassportStatus==null}" th:text="'데이터없음'">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:unless="${visa?.normalPassportStatus==null}" th:text="${visa.normalPassportStatus}">가나다라마바사</div>
                     </div>
                     <div class="col text-center border">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">무비자 입국 근거</div>
-                    	<div class="text-wrap p-1">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:if="${visa?.reasonForVisaFree==null}" th:text="'데이터없음'">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:unless="${visa?.reasonForVisaFree==null}" th:text="${visa.reasonForVisaFree}">가나다라마바사</div>
                     </div>
                     <div class="col text-center border">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">입국 가능 기간</div>
-                    	<div class="text-wrap p-1">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:if="${visa?.normalPassportPeriod==null}" th:text="'데이터없음'">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:unless="${visa?.normalPassportPeriod==null}" th:text="${visa.normalPassportPeriod}">가나다라마바사</div>
                     </div>
                     <div class="col text-center border">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">비고</div>
-                    	<div class="text-wrap p-1">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:if="${visa?.visaNote==null}" th:text="'데이터없음'">가나다라마바사</div>
+                    	<div class="text-wrap p-1" th:unless="${visa?.visaNote ==null}" th:text="${visa.visaNote}">가나다라마바사</div>
                     </div>
 
                 </div>

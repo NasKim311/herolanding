@@ -12,36 +12,43 @@
 
 </head>
 
-<body th:fragment="필요서류">
+<body th:fragment="필요서류" >
     <div class="container-fluid">
         <div class="border rounded bg-dark text-light">
-            <div class="container p-3">
+            <div class="container p-3"  >
                 <h3 class="">필요서류</h3>
  				<!-- 서류명, 발급기관명, 최소나이, 서류 유효기간, 서류제출 방법, 비고 -->
-                <div class="container-fluid mx-0 px-0 row d-flex flex-wrap jusify-content-center">
+                <div class="container-fluid mx-0 px-0 row d-flex flex-wrap jusify-content-center" th:object="${countryPaper}" th:each="cp : ${countryPaper}">
                     <div class="col text-center border p-2">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">서류명</div>
-                    	<div class="text-wrap p-1">백신접종증명서</div>
+                    	<div class="text-wrap p-1" th:unless="${cp.paper?.paperTitle != null}" th:text="'데이터없음'">백신접종증명서</div>
+                    	<div class="text-wrap p-1" th:if="${cp.paper?.paperTitle != null}" th:text="${cp.paper.paperTitle}" >백신접종증명서</div>
                     </div>
                     <div class="col text-center border p-2">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">발급 기관명</div>
-                    	<div class="text-wrap p-1">질병관리청</div>
+                    	<div class="text-wrap p-1" th:unless="${cp.paper?.paperAuthorityName != null}" th:text="'데이터없음'">질병관리청</div>
+                    	<div class="text-wrap p-1" th:if="${cp.paper?.paperAuthorityName != null}" >
+                    	<a th:text="${cp.paper?.paperAuthorityName}" th:href="@{{url}(url=${cp.paper?.paperAuthorityLink})}">질병관리청</a></div>
                     </div>
                     <div class="col text-center border p-2">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">최소 나이</div>
-                    	<div class="text-wrap p-1">제한없음</div>
+                    	<div class="text-wrap p-1" th:unless="${cp.countryPaperMinAge != null}" th:text="'데이터없음'">제한없음</div>
+                    	<div class="text-wrap p-1" th:if="${cp.countryPaperMinAge != null}" th:text="${cp.countryPaperMinAge}">제한없음</div>
                     </div>
                     <div class="col text-center border p-2">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">서류 유효기간</div>
-                    	<div class="text-wrap p-1">접종 후 4주 경과 발급 서류 유효</div>
+                    	<div class="text-wrap p-1" th:unless="${cp.countryPaperExpiration != null}" th:text="'데이터없음'">접종 후 4주 경과 발급 서류 유효</div>
+                    	<div class="text-wrap p-1" th:if="${cp.countryPaperExpiration != null}" th:text="${cp.countryPaperExpiration}">접종 후 4주 경과 발급 서류 유효</div>
                     </div>
                     <div class="col text-center border p-2">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">서류 제출 방법</div>
-                    	<div class="text-wrap p-1">실물증명서</div>
+                    	<div class="text-wrap p-1" th:unless="${cp.countryPaperSubmitType != null}" th:text="'데이터없음'">실물증명서</div>
+                    	<div class="text-wrap p-1" th:if="${cp.countryPaperSubmitType != null}" th:text="${cp.countryPaperSubmitType}">실물증명서</div>
                     </div>
                     <div class="col text-center border p-2">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">비고</div>
-                    	<div class="text-wrap p-1">12세 이하 제외</div>
+                    	<div class="text-wrap p-1" th:unless="${cp.countryPaperNote != null}" th:text="'데이터없음'">12세 이하 제외</div>
+                    	<div class="text-wrap p-1" th:if="${cp.countryPaperNote != null}" th:text="${cp.countryPaperNote}">12세 이하 제외</div>
                     </div>
 
                 </div>

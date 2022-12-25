@@ -34,7 +34,8 @@
 							</thead>
 							<tbody >
 								<tr th:each="covid : ${Covids}">
-									<th scope="row" th:text="${covid.country}"> 전세계</th>
+									<th scope="row"><a th:text="${covid.country}" th:href="@{/search?country={country}(country=${covid.country})}"
+																				  >전세계</a> </th>
 									<td th:text="${covid.totalCovidCount}">129,520,929</td>
 									<td th:text="${covid.newCovidCount1}">1,460,620</td>
 									<td th:text="${covid.milionCount}">16,650.15</td>

@@ -1,9 +1,5 @@
 package com.hero.herolanding.repository;
 
-
-
-import static com.hero.herolanding.domain.QCountry.*;
-import static com.hero.herolanding.domain.QExchangeRate.*;
 import static com.hero.herolanding.domain.QCountry.*;
 import static com.hero.herolanding.domain.QExchangeRate.*;
 import static com.hero.herolanding.domain.QCovidData.*;
@@ -22,6 +18,8 @@ import com.hero.herolanding.domain.ExchangeRate;
 import com.hero.herolanding.domain.Inspection;
 import com.hero.herolanding.domain.QCountryPaper;
 import com.hero.herolanding.domain.QInspection;
+import com.hero.herolanding.domain.QVisa;
+import com.hero.herolanding.domain.Visa;
 import com.querydsl.core.Tuple;
 import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -35,8 +33,6 @@ public class HomeRepository {
 	
 	private final EntityManager em;
 	private JPAQueryFactory queryFactory;
-//	private final queryFactory = new JPAQueryFactory(em);
-	
 	
 	// 메인페이지에서 사용
 	
@@ -48,23 +44,6 @@ public class HomeRepository {
 		}else {
 			em.merge(exchangeRate);
 		}
-	}
-	// 나라 업데이트 
-	public void updateCountry() {
-		
-	}
-	
-	// 등록된 회원의 많이 여행가는 나라 순위 (디비 - select)
-	public void maxCntContry() {
-		
-	}
-	// 코로나 확진자 수 순위 (크롤링) - 매일 변동 (인서트)
-	public void covidInsert() {
-		
-	}
-	// 코로나 확진자 수 순위 (크롤링) - 매일 변동 (업데이트)
-	public void covidUpdate() {
-		
 	}
 	
 	// 전체 나라 정보 가져오기
@@ -79,9 +58,6 @@ public class HomeRepository {
 	public Country findCounrty(String countryone) {
 		queryFactory = new JPAQueryFactory(em);
 		Country findCountry = queryFactory.select(country).from(country).where(country.countryName.eq(countryone)).fetchOne();
-//		if(findCountry == null) {
-//			return em.persist(findCountry);
-//		}
 		return findCountry;
 	}
 	
@@ -94,24 +70,16 @@ public class HomeRepository {
 	}
 	
 	// 환율정보(단건)
-	public ExchangeRate findExchageOne(String country) { 
+	public ExchangeRate findExchageOne1(Long num) { 
 		queryFactory = new JPAQueryFactory(em);
-		ExchangeRate ExchangeRate =  queryFactory.selectFrom(exchangeRate).where(exchangeRate.countries.get(0).countryName.eq(country)).fetchOne();
+		ExchangeRate ExchangeRate =  queryFactory.selectFrom(exchangeRate).leftJoin(exchangeRate.countries , country).where(country.countryNum.eq(num)).fetchOne();
 		return ExchangeRate;
 	}
 	
 	// 코로나 수 (전체)
 	public List<Country> findCovidAll() {
 		queryFactory = new JPAQueryFactory(em);
-//		List<Tuple> covidDatas =  queryFactory.select(country.countryName,
-//													  country.covidData.milionCount.coalesce("").as("데이터없음"),
-//													  country.covidData.newCovidCount1.coalesce("").as("데이터없음"),
-//													  country.covidData.samang.coalesce("").as("데이터없음"),
-//													  country.covidData.totalCovidCount.coalesce("").as("데이터없음"))
-//											   .from(country).fetch();
-		
 		List<Country> covidDatas = queryFactory.selectFrom(country).where(country.covidData.milionCount.isNotNull()).fetch();
-		
 		return covidDatas;
 	}
 	
@@ -128,6 +96,12 @@ public class HomeRepository {
 		return covidDatas;
 	}
 	
+	// 나라 이름과 일치하는 정보들
+	public Country findCountry(String countryName) {
+		queryFactory = new JPAQueryFactory(em);
+		return queryFactory.selectFrom(country).where(country.countryName.eq(countryName)).fetchOne();
+	}
+	
 	// 코로나 백신 수 (단건)
 	public Tuple findCovidVaccinOne(String countryName) {
 		queryFactory = new JPAQueryFactory(em);
@@ -136,36 +110,33 @@ public class HomeRepository {
 	}
 	
 	// 필요 서류 (단건)
-	public CountryPaper findCountryPeper(String countryName) {
+	public List<CountryPaper> findCountryPeper(Long countryNum) {
 		queryFactory = new JPAQueryFactory(em);
-		CountryPaper countryPaper = queryFactory.selectFrom(QCountryPaper.countryPaper)
-												.where(QCountryPaper.countryPaper.country.countryName
-												.eq(countryName)).fetchOne();
-		
+		List<CountryPaper> countryPaper = queryFactory.selectFrom(QCountryPaper.countryPaper)
+												.leftJoin(QCountryPaper.countryPaper.country , country)
+												.where(country.countryNum.eq(countryNum)).fetch();
 		return countryPaper;
-		
-	}
-	// 필요 검사 (단건)
-	public Inspection findinspection(String countryName) {
-		queryFactory = new JPAQueryFactory(em);
-		Inspection inspection = queryFactory.selectFrom(QInspection.inspection)
-											.where(QCountryPaper.countryPaper.country.countryName
-											.eq(countryName)).fetchOne();
-		
-		return inspection;
-				
 	}
 
-	// 여행자 순위 (전체)
-	public void findTripLank() {
-		
+	// 필요 검사 (단건)
+	public List<Inspection> findinspection(Long countryNum) {
+		queryFactory = new JPAQueryFactory(em);
+		List<Inspection> inspection = queryFactory.selectFrom(QInspection.inspection)
+											.leftJoin(QInspection.inspection.country , country)
+											.where(country.countryNum.eq(countryNum)).fetch();
+		return inspection;
 	}
 	
-	// 세계지도에 들어갈 정보
-	public void getworld() {
-		
-		
+	// 비자 정보 (단건)
+	public Visa findVisa(Long countryNum) {
+		queryFactory = new JPAQueryFactory(em);
+		Visa visa = queryFactory.selectFrom(QVisa.visa)
+											.leftJoin(QVisa.visa.country , country)
+											.where(country.countryNum.eq(countryNum)).fetchOne();
+		return visa;
 	}
+
+
 
 	
 	
