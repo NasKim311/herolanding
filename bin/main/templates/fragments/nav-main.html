@@ -1,72 +1,263 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>네비바</title>
+    <meta charset="UTF-8">
+    <title>네비바</title>
 </head>
 
 <body th:fragment="nav-main">
-	<!-- 네비바 시작 -->
+    <style>
+        .dropdown-toggle::after {
+            transition: transform 0.15s linear;
+        }
+
+        .show.dropdown .dropdown-toggle::after {
+            transform: translateY(3px);
+        }
+
+        .dropdown-menu {
+            margin-top: 0;
+        }
+
+        /* hover 메뉴때문에 넣음 */
+    </style>
+    <!-- 네비바 시작 -->
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark border-bottom bg-dark">
         <div class="container-fluid">
-			<!-- 홈 이동 -->
+            <!-- 홈 이동 -->
             <a class="navbar-brand" href="/">
-            	<img src="/assets/images/네비로고.png" alt="히어로랜딩_로고" width="87"
-                	class="d-inline-block align-text-top"></a>
+                <img src="/assets/images/네비로고.png" alt="히어로랜딩_로고" width="87" class="d-inline-block align-text-top"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                        <a class="nav-link" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+
+                    <!-- 클릭된 a태그 클래스에 active 추가되야 함 -->
+                    <!-- <li class="nav-item">
+                        <a class="nav-link active" href="#">Link</a>
+                    </li> -->
+                    <li class="nav-item dropdown 호버드롭다운">
+                        <a class="nav-link dropdown-toggle 호버토글" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                            게시판
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <ul class="dropdown-menu 호버메뉴" aria-labelledby="navbarDropdown">
+
+                            <li><a class="dropdown-item" href="board/list/1">대륙별 전체 게시판</a></li>
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+
+                            <li>
+
+                                <div class="dropend" href="#">
+                                    <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        아시아
+                                    </a>
+                                    <ul class="dropdown-menu m-0" data-bs-popper="static">
+
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= ASIA, id = 1)}">아시아 전체 게시판</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=ASIA,type=REVIEW, id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=ASIA,type=FREE, id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=ASIA,type=FOOD, id = 1)}">맛집 게시판</a></li>
+
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropend" href="#">
+                                    <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        유럽
+                                    </a>
+                                    <ul class="dropdown-menu m-0" data-bs-popper="static">
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= EUROPE, id = 1)}">유럽 전체 게시판</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=EUROPE,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=EUROPE,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key=EUROPE,type= FOOD , id = 1)}">맛집 게시판</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropend" href="#">
+                                    <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        북아메리카
+                                    </a>
+                                    <ul class="dropdown-menu m-0" data-bs-popper="static">
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= NorthAmerica , id = 1)}">북아메리카 전체 게시판</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= NorthAmerica ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= NorthAmerica ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= NorthAmerica ,type= FOOD , id = 1)}">맛집 게시판</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropend" href="#">
+                                    <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        남아메리카
+                                    </a>
+                                    <ul class="dropdown-menu m-0" data-bs-popper="static">
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= SouthAmerica , id = 1)}">남아메리카 전체 게시판</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= SouthAmerica ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= SouthAmerica ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= SouthAmerica ,type= FOOD , id = 1)}">맛집 게시판</a></li>
+                                    </ul>
+
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropend" href="#">
+                                    <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        아프리카
+                                    </a>
+                                    <ul class="dropdown-menu m-0" data-bs-popper="static">
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= AFRICA , id = 1)}">아프리카 전체 게시판</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= AFRICA ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= AFRICA ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= AFRICA ,type= FOOD , id = 1)}">맛집 게시판</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="dropend" href="#">
+                                    <a type="button" class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        오세아니아
+                                    </a>
+                                    <ul class="dropdown-menu m-0" data-bs-popper="static">
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/listByType/{key}/{id}(key= OCEANIA , id = 1)}">오세아니아 전체 게시판</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= OCEANIA ,type= REVIEW , id = 1)}">후기 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= OCEANIA ,type= FREE , id = 1)}">자유 게시판</a></li>
+                                        <li><a class="dropdown-item" href="#" th:href="@{/board/rangeSelect/{key}/{type}/{id}(key= OCEANIA ,type= FOOD , id = 1)}">맛집 게시판</a></li>
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
                         </ul>
                     </li>
-                    <li class="nav-item">
+
+                    <!-- disabled 클래스 -->
+                    <!-- <li class="nav-item">
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <!-- 네비바 우측 메뉴 -->
                 <div class="d-flex">
-					<!-- 회원 유저 이름 박스(일단 닉네임으로 작업해놓음) -->
-					<th:block th:if="${session.loginMember != null}">
-						<a class="btn btn-link text-decoration-none text-light" th:onclick="|location.href='@{/mypage/mypageForm}'|" th:text="${session.loginMember.memberName} + '님의 마이페이지'"></a>
-					</th:block>
-                    <th:block th:unless="${session.loginMember != null}">
-                    	<!-- 로그인 버튼 -->
-                        <button class="btn btn-outline-success me-2" onclick="location.href='login.html'" th:onclick="|location.href='@{/login/loginForm}'|" type="button">로그인</button>
+                    <!-- 회원 유저 이름 박스(일단 닉네임으로 작업해놓음) -->
+                    <th:block th:if="${session.loginMember != null}">
+                        <a class="btn btn-link text-decoration-none text-light"
+                            th:onclick="|location.href='@{/mypage/mypageForm}'|"
+                            th:text="${session.loginMember.memberName} + '님의 마이페이지'"></a>
                     </th:block>
-					
-					<th:block th:if="${session.loginMember != null}">
-						<button class="btn btn-outline-success" type="button" th:onclick="|location.href='@{/logout/index}'|" >로그아웃</button>
-					</th:block>
                     <th:block th:unless="${session.loginMember != null}">
-                    	<!-- 회원가입 -->
-                        <button class="btn btn-outline-success"onclick="location.href='join.html'" th:onclick="|location.href='@{/joins/new}'|" type="button">회원가입</button>
+                        <!-- 로그인 버튼 -->
+                        <button class="btn btn-outline-success me-2" onclick="location.href='login.html'"
+                            th:onclick="|location.href='@{/login/loginForm}'|" type="button">로그인</button>
+                    </th:block>
+
+                    <th:block th:if="${session.loginMember != null}">
+                        <button class="btn btn-outline-success" type="button"
+                            th:onclick="|location.href='@{/logout/index}'|">로그아웃</button>
+                    </th:block>
+                    <th:block th:unless="${session.loginMember != null}">
+                        <!-- 회원가입 -->
+                        <button class="btn btn-outline-success" onclick="location.href='join.html'"
+                            th:onclick="|location.href='@{/joins/new}'|" type="button">회원가입</button>
                     </th:block>
                 </div>
             </div>
         </div>
     </nav>
-    <!-- 네비바 끝 -->
+
+    <!-- 네비바 호버 이벤트 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        var $dropdown = $(".navbar-nav .dropend");
+        var $dropdownToggle = $(".dropdown-toggle");
+        var $dropdownMenu = $(".dropdown-menu");
+        var showClass = "show";
+        $dropdown.hover(
+            function () {
+                var $this = $(this);
+                $this.addClass(showClass);
+                $this.find($dropdownToggle).attr("aria-expanded", "true");
+                $this.find($dropdownMenu).addClass(showClass);
+            },
+            function () {
+                var $this = $(this);
+                $this.removeClass(showClass);
+                $this.find($dropdownToggle).attr("aria-expanded", "false");
+                $this.find($dropdownMenu).removeClass(showClass);
+
+            }
+        );
+
+        // 게시판 버튼만 호버
+        var $dropdown2 = $(".navbar-nav .호버드롭다운");
+        var $dropdownToggle2 = $(".호버토글");
+        var $dropdownMenu2 = $(".호버메뉴");
+        var showClass2 = "show";
+        $dropdown2.hover(
+            function () {
+                var $this = $(this);
+                $this.addClass(showClass2);
+                $this.find($dropdownToggle2).attr("aria-expanded", "true");
+                $this.find($dropdownMenu2).addClass(showClass2);
+            },
+            function () {
+                var $this = $(this);
+                $this.removeClass(showClass);
+                $this.find($dropdownToggle2).attr("aria-expanded", "false");
+                $this.find($dropdownMenu2).removeClass(showClass2);
+
+            }
+        );
+
+    </script>
 </body>
+
 </html>

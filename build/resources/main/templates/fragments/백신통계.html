@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>백신 통계</title>
+	<!-- 부트스트랩 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+</head>
+
+<body th:fragment="백신통계">
+	<div class="container-fluid">
+		<div class=" border rounded bg-dark text-light">
+			<div class="p-3">
+				<!-- https://news.google.com/covid19/map?hl=ko&gl=KR&ceid=KR%3Ako&state=4 페이지 참고 바람 -->
+				<h3 class="m-0">백신 통계</h3>
+				<div>
+					<div class="container-fluid table-responsive" style="max-height: 480px;	overflow-y: auto;">
+						<!-- 검색한게 받아져야함 -->
+						<!-- 테이블 자리 -->
+						<table class="table border border-0 text-light text-nowrap">
+							<thead>
+								<tr>
+									<th scope="col">위치</th>
+									<th scope="col">총 접종 횟수</th>
+									<th scope="col">신규 접종 횟수(1일*)</th>
+									<th scope="col">백신 접종을 완료한 사람의 수</th>
+									<th scope="col">인구 중 접종 완료자 비율(%)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="vaccin : ${vaccins}">
+									<th scope="row" th:text="${vaccin.country}">전세계</th>
+									<td th:text="${vaccin.totalInjectionCount}">129,520,929</td>
+									<td th:text="${vaccin.newInjectionCount1}">1,460,620</td>
+									<td th:text="${vaccin.injectionCompleteCount}">16,650.15</td>
+									<td th:text="${vaccin.injectionCompletePercent}">2,820,046</td>
+								</tr>
+								
+<!------------------------추후 삭제------------------------------------------------------------------------------------------>
+								<tr>
+									<th scope="row">대한민국</th>
+									<td>1,461,430</td>
+									<td>5,298</td>
+									<td>1,461.43</td>
+									<td>13,433</td>
+								</tr>
+								<tr>
+									<th scope="row">미국</th>
+									<td>31,000,000</td>
+									<td>1,000,000</td>
+									<td>93,000.00</td>
+									<td>555,000</td>
+								</tr>
+								<tr>
+									<th scope="row">영국</th>
+									<td>4,000,000</td>
+									<td>100,000</td>
+									<td>58,000.00</td>
+									<td>100,000</td>
+								</tr>
+								<tr>
+									<th scope="row">인도</th>
+									<td>20,000,000</td>
+									<td>1,000,000</td>
+									<td>14,000.00</td>
+									<td>200,000</td>
+								</tr>
+								<tr>
+									<th scope="row">브라질</th>
+									<td>18,000,000</td>
+									<td>1,000,000</td>
+									<td>85,000.00</td>
+									<td>400,000</td>
+								</tr>
+								<tr>
+									<th scope="row">러시아</th>
+									<td>5,000,000</td>
+									<td>100,000</td>
+									<td>34,000.00</td>
+									<td>100,000</td>
+								</tr>
+								<tr>
+									<th scope="row">프랑스</th>
+									<td>3,000,000</td>
+									<td>100,000</td>
+									<td>46,000.00</td>
+									<td>60,000</td>
+								</tr>
+								<tr>
+									<th scope="row">이탈리아</th>
+									<td>2,000,000</td>
+									<td>100,000</td>
+									<td>33,000.00</td>
+									<td>50,000</td>
+								</tr>
+<!------------------------추후 삭제------------------------------------------------------------------------------------------>
+							</tbody>
+						</table>
+					</div>
+					<div>
+						<div class="">
+							<div class="">*지난 3일 동안 집계된 데이터를 기반으로 한 최근 1일 동안의 신규 확진자 수</div>
+							<span class="" aria-hidden="true"> • </span><a class="CZloAf"	href="https://support.google.com/websearch/answer/9814707?p=cvd19_statistics&amp;hl=ko"
+								target="_blank"><span class="sNxhtf">데이터 정보</span></a><span class="H4TtPb" aria-hidden="true"> •
+							</span>
+							<span class="">
+								<span id="c39">출처</span>
+								<span aria-hidden="true">:
+							</span> 
+							<a class="" target="_blank" 
+								href="https://ourworldindata.org/covid-vaccinations?country=OWID_WRL"
+								aria-describedby="c39">
+								<span class="">OWID</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
