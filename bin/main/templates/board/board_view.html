@@ -165,8 +165,8 @@
 		    	var replyNum = $('#getId' + id).val();
 		    	var htmls ="";
 		    	htmls += '<textarea class="form-control" rows="3" id="change" name="change"></textarea>'
-		    	htmls += '<button onclick="edit('+replyNum+')">수정</button>'
-		    	htmls += '<button onclick="cancel()">취소</button>'
+		    	htmls += '<button onclick="edit('+replyNum+')" class="btn btn-primary" >수정</button>'
+		    	htmls += '<button onclick="cancel()" class="btn btn-primary" >취소</button>'
 		    	$('#updateForm' + id).replaceWith(htmls);
 		    	$('#change').focus();
 		    } // 수정할 수 있는 것으로 변경
