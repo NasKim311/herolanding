@@ -29,7 +29,10 @@
     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
 
-    <div id="container" height="2000px"></div>
+
+   	<div id="container" style="height: 80vh !important;"></div>
+
+
 
     <script>
         (async () => {
@@ -51,14 +54,15 @@
                         map: topology,
                         // backgroundColor top white bottom black
                         backgroundColor: {
-                            linearGradient: [0, 0, 0, 500],
+                            linearGradient: [0, 0, 0, 400],
                             stops: [
                                 [0, 'rgb(50, 50, 80)'],
                                 [1, 'rgb(0, 0, 0)']
                             ]
                         },
-                        // 높이를 화면에 맞춰서
-                        //                         height: '1000',
+                        // 화면 높이 설정
+//                        	height: '600',
+
                     },
                     // 제목에 이미지 넣기
                     title: {

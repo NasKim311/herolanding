@@ -17,53 +17,47 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class BoardService {
-	
-	
+
 	private final BoardRepository boardRepository;
-	
+
 	@Transactional
-	public void inputBoardContents(Board board)
-	{
+	public void inputBoardContents(Board board) {
 		boardRepository.inputBoardContents(board);
 	}
-	
+
 	@Transactional
-	public List<Object[]> findAll(int page)
-	{
+	public List<Object[]> findAll(int page) {
 		return boardRepository.FindAll(page);
 	}
-	
+
 	@Transactional
-	public List<Board> BoardCount()
-	{
+	public List<Board> BoardCount() {
 		return boardRepository.BoardCount();
 	}
-	
+
 	@Transactional
-	public Board findById(Long boardId)
-	{	
+	public Board findById(Long boardId) {
 		Board board = boardRepository.findById(boardId);
 		board.updateViewCount(board.getBoardCount());
 		return board;
 	}
 
 	@Transactional
-	public void removeById(Long boardId)
-	{
+	public void removeById(Long boardId) {
 		boardRepository.removeById(boardId);
 	}
+
 //	
 	@Transactional
-	public List<Object[]> getComments(Long boardId)
-	{
+	public List<Object[]> getComments(Long boardId) {
 		return boardRepository.getComments(boardId);
 	}
-	
+
 	@Transactional
-	public void inputComment(Reply reply)
-	{
+	public void inputComment(Reply reply) {
 		boardRepository.inputComment(reply);
 	}
+
 //	
 //	@Transactional
 //	public List<Board> findByType(String type)
@@ -72,72 +66,62 @@ public class BoardService {
 //	}
 //	
 	@Transactional
-	public void update(Long boardId , BoardDTO updateBoard)
-	{
+	public void update(Long boardId, BoardDTO updateBoard) {
 		boardRepository.update(boardId, updateBoard);
 	}
-	
+
 	@Transactional
-	public Reply findCommentById(Long replyId)
-	{
+	public Reply findCommentById(Long replyId) {
 		return boardRepository.findCommentById(replyId);
 	}
-	
+
 	@Transactional
-	public void comment_remove(Long replyId)
-	{
+	public void comment_remove(Long replyId) {
 		boardRepository.comment_remove(replyId);
 	}
-	
+
 	@Transactional
-	public void comment_update(Long replyId , ReplyDTO dto)
-	{
+	public void comment_update(Long replyId, ReplyDTO dto) {
 		boardRepository.comment_update(replyId, dto);
 	}
-	
+
 	@Transactional
-	public List<Board> findByType(String boardType)
-	{
+	public List<Board> findByType(String boardType) {
 		return boardRepository.findByType(boardType);
 	}
-	
+
 	@Transactional
-	public List<Board> rangeSelect(String continent , String boardType)
-	{
+	public List<Board> rangeSelect(String continent, String boardType) {
 		return boardRepository.rangeSelect(continent, boardType);
 	}
+
 	@Transactional
-	public List<Object[]> findAllByType(int page , String boardType)
-	{
+	public List<Object[]> findAllByType(int page, String boardType) {
 		return boardRepository.findAllByType(page, boardType);
 	}
-	
+
 	@Transactional
-	public List<Object[]> findAllByRange(int page , String continent , String boardType)
-	{
+	public List<Object[]> findAllByRange(int page, String continent, String boardType) {
 		return boardRepository.findAllByRange(page, continent, boardType);
 	}
-	
+
 	@Transactional
-	public List<Object[]> getReplyComment(Long boardId)
-	{
+	public List<Object[]> getReplyComment(Long boardId) {
 		return boardRepository.getReplyComment(boardId);
 	}
+
 	@Transactional
-	public List<Object[]> Search(String searchText)
-	{
+	public List<Object[]> Search(String searchText) {
 		return boardRepository.Search(searchText);
 	}
-	
+
 	@Transactional
-	public void updateReportCount(long boardId)
-	{
+	public void updateReportCount(long boardId) {
 		boardRepository.updateReportCount(boardId);
 	}
-	
+
 	@Transactional
-	public void inputReport(Report report)
-	{
+	public void inputReport(Report report) {
 		boardRepository.inputReport(report);
 	}
 }
