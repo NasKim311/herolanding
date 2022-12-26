@@ -34,10 +34,19 @@
 				<div class="card-header">검색</div>
 				<div class="card-body">
 					<form th:object="${writeTypeDTO}" action="/board/search" method="get">
+						<!-- 영진 : 셀렉터 박스 -->
+						<div class="input-group mb-3">
+							<select class="form-select" id="inputGroupSelect01">
+								<option value="title" selected>제목</option>
+								<option value="content">내용</option>
+								<option value="writer">작성자</option>
+							</select>
+						</div>
+						<!-- 검색창 -->
 						<div class="input-group">
 							<input class="form-control" type="text" placeholder="Enter search term..."
 								aria-label="Enter search term..." aria-describedby="button-search"
-								th:field="*{writeType}" />
+								th:field="*{writeType}"/>
 							<button class="btn btn-primary" id="button-search" type="submit">검색</button>
 						</div>
 					</form>
