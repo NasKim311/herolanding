@@ -13,10 +13,10 @@
                 <h3 class="">격리기간</h3>
  				<!-- 서류명, 발급기관명, 최소나이, 서류 유효기간, 서류제출 방법, 비고 -->
                 <div class="container-fluid mx-0 px-0 row d-flex flex-wrap jusify-content-center " th:object="${inspection}" th:each="inspection :${inspection}">
-                    <div class="col text-center border">
-                    	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">검사종류</div>
-                    	<div class="text-wrap p-1"  >뇌자기공명영상(MRI)</div>
-                    </div>
+<!--                     <div class="col text-center border"> -->
+<!--                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">검사종류</div> -->
+<!--                     	<div class="text-wrap p-1"  >뇌자기공명영상(MRI)</div> -->
+<!--                     </div> -->
                     <div class="col text-center border">
                     	<div class="border border-0 border-bottom text-nowrap h5 font-weight-bold mb-0 p-1">격리기간</div>
                     	<div class="text-wrap p-1" th:if="${inspection.isolationPeriod != null}" 
