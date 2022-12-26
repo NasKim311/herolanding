@@ -73,19 +73,27 @@
 		</div>
 
 		<!-- 게시판 버튼 -->
-		<div class="container-fluid bg-primary" style="background: linear-gradient(rgb(0,0,0), 60%, rgb(14,41,89));">
-			<div class="row">
-				<div class="col-12 text-light text-center">
-					<div class="py-5">
-						<div th:replace="/fragments/게시판버튼.html :: 게시판버튼"></div>
-					</div>
-				</div>
-			</div>
-		</div>
+<!-- 		<div class="container-fluid bg-primary" style="background: linear-gradient(rgb(0,0,0), 60%, rgb(14,41,89));"> -->
+<!-- 			<div class="row"> -->
+<!-- 				<div class="col-12 text-light text-center"> -->
+<!-- 					<div class="py-5"> -->
+<!-- 						<div th:replace="/fragments/게시판버튼.html :: 게시판버튼"></div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 
 		<!-- 컨텐츠 포장 시작 -->
 		<div class="row container-fluid bg-danger mx-0 mb-3 justify-content-center"
-			style="background: linear-gradient(rgb(14,41,89), rgb(0,0,0));">
+			style="background: linear-gradient(rgb(0,0,0), rgb(14,41,89), rgb(0,0,0));">
+				<div class="row">
+					<div class="col-12 text-light text-center">
+						<div class="py-5">
+							<div th:replace="/fragments/게시판버튼.html :: 게시판버튼"></div>
+						</div>
+					</div>
+				</div>
+			
 			<div class="row col col-lg-10 ">
 				<!-- 사이드 시작 -->
 

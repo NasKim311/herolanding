@@ -123,56 +123,21 @@
                                     	<!-- 신호 : 알맞게 정보 뿌려주세요. -->
                                         <thead>
                                             <tr>
-                                                <th class="border-top-0"><b>#</b></th>
-                                                <th class="border-top-0"><b>아이디</b></th>
-                                                <th class="border-top-0"><b>비밀번호</b></th>
-                                                <th class="border-top-0"><b>이름</b></th>
-                                                <th class="border-top-0"><b>닉네임</b></th>
-                                                <th class="border-top-0"><b>이메일</b></th>
-                                                <th class="border-top-0"><b>휴대폰</b></th>
-                                                <th class="border-top-0"><b>개인정보 수집 및 이용 동의</b></th>
+                                                <th class="border-top-0"><b>대륙</b></th>
+                                                <th class="border-top-0"><b>게시판종류</b></th>
+                                                <th class="border-top-0"><b>제목</b></th>
+                                                <th class="border-top-0"><b>작성자</b></th>
+                                                <th class="border-top-0"><b>댓글내용</b></th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr onClick="location.href='회원정보수정.html'">
-                                                <td>1</td>
-                                                <td>shinho93</td>
-                                                <td>1234</td>
-                                                <td>곽신호</td>
-                                                <td>BananaCube</td>
-                                                <td>shinho930@gmail.com</td>
-                                                <td>010-9284-7555</td>
-                                                <td>Y</td>
-                                            </tr>
-                                            <tr onClick="location.href='회원정보수정.html'">
-                                                <td>2</td>
-                                                <td>shinho93</td>
-                                                <td>1234</td>
-                                                <td>곽신호</td>
-                                                <td>BananaCube</td>
-                                                <td>shinho930@gmail.com</td>
-                                                <td>010-9284-7555</td>
-                                                <td>Y</td>
-                                            </tr>
-                                            <tr onClick="location.href='회원정보수정.html'">
-                                                <td>3</td>
-                                                <td>shinho93</td>
-                                                <td>1234</td>
-                                                <td>곽신호</td>
-                                                <td>BananaCube</td>
-                                                <td>shinho930@gmail.com</td>
-                                                <td>010-9284-7555</td>
-                                                <td>Y</td>
-                                            </tr>
-                                            <tr onClick="location.href='회원정보수정.html'">
-                                                <td>4</td>
-                                                <td>shinho93</td>
-                                                <td>1234</td>
-                                                <td>곽신호</td>
-                                                <td>BananaCube</td>
-                                                <td>shinho930@gmail.com</td>
-                                                <td>010-9284-7555</td>
-                                                <td>Y</td>
+                                            <tr th:each="selectReplyContent : ${selectReplyContent}">
+<!--                                                 <td th:text="${selectAll.boards.continent}" >1</td> -->
+<!--                                                 <td th:text="${selectAll.boards.boardType}" >shinho93</td> -->
+<!--                                                 <td th:text="${selectAll.boards.boardTitle}" >1234</td> -->
+<!--                                                 <td th:text="${selectAll.memberName}" >곽신호</td> -->
+                                                <td th:text="${selectReplyContent.replyContent}" >곽신호</td>
                                             </tr>
                                         </tbody>
                                     </table>
