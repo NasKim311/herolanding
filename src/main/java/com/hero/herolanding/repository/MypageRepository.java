@@ -36,4 +36,20 @@ public class MypageRepository {
 		em.flush();
 	}
 	
+//--------<deleteMemberData() / 회원정보 삭제 메서드>-------------------------------------------------------------------------------------	
+	public void deleteMemberData(String loginId) {
+		queryFactory = new JPAQueryFactory(em);
+		
+		System.out.println("R" + loginId);
+		queryFactory.update(member)
+					.set(member.memberIsjoin, 1L)
+					.where(member.memberId.eq(loginId))
+					.execute();
+		
+		em.clear();
+		em.flush();
+	}
+	
+	
+	
 } // MypageRepository class

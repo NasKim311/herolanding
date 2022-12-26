@@ -30,4 +30,13 @@ public class MypageService {
 		return NewMember;
 	}
 
+//--------<updateMemberData() / 마이페이지 회원정보 수정 메서드>-------------------------------------------------------------------------------------	
+	@Transactional
+	public void deleteMember(String loginId) {
+		
+		System.out.println("S" + loginId);
+		
+		mypageRepository.deleteMemberData(loginId);
+	}
+
 } // MypageService class

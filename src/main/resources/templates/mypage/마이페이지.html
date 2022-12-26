@@ -213,18 +213,18 @@
                     <div class="form-group mb-0">
                       <div class="row">
                         <div class="col-6">
-                          <button
-                            class="btn btn-danger mx-auto mx-md-0 text-white"
+                          <a
+                            class="btn btn-danger mx-auto mx-md-0 text-white" th:href="@{/mypage/delete/{memberId}(memberId=${updateMemberDTO.memberId})}" 
                           >
                             회원 탈퇴
-                          </button>
+                          </a>
                         </div>
                         <div class="col-6 text-end">
-                          <button
-                            class="btn btn-secondary mx-auto mx-md-0 text-white"
+                          <a
+                            class="btn btn-secondary mx-auto mx-md-0 text-white" th:href="@{/mypage/mypageForm}"
                           >
                             취소
-                          </button>
+                          </a>
                           <button
                             class="btn btn-success mx-auto mx-md-0 text-white" type="submit"
                           >

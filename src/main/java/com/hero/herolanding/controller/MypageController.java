@@ -7,12 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.UpdateMemberDTO;
 import com.hero.herolanding.service.MypageService;
+import com.hero.herolanding.session.SessionConst;
 
 import lombok.RequiredArgsConstructor;
 
@@ -90,6 +92,21 @@ public class MypageController {
 		session.setAttribute("loginMember", NewMemberData);
 
 		return "mypage/마이페이지";
+	}
+
+//--------<deleteMember() / 마이페이지 회원정보 삭제 메서드>-------------------------------------------------------------------------------------	
+	@GetMapping("/mypage/delete/{memberId}")
+	public String deleteMember(@PathVariable String memberId, @RequestParam(defaultValue = "/") String redirectURL,
+			HttpServletRequest request) {
+
+		System.out.println("C" + memberId);
+
+		mypageService.deleteMember(memberId);
+
+		HttpSession session = request.getSession();
+		session.removeAttribute(SessionConst.LOGIN_MEMBER);
+
+		return "redirect:" + redirectURL;
 	}
 
 } // MypageController class
