@@ -39,7 +39,7 @@ public class JoinService {
 	// 중복이메일 찾기
 		@Transactional
 		public List<Member> findEmail(String memberEmail) {
-			return joinRepository.findDuplicationId(memberEmail);
+			return joinRepository.findDuplicationEmail(memberEmail);
 		}
 	
 }

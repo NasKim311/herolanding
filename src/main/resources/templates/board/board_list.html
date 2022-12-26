@@ -91,7 +91,9 @@
 									<th scope="row"><a href="/board/view"
 											th:href="@{/board/{id}/view(id=${list[0]})}"
 											th:text="${list[0]}">1</a></th>
-										<td th:text="${list[1]}">게시글 제목</td>
+										<td > <a href="/board/view"
+											th:href="@{/board/{id}/view(id=${list[0]})}"
+											th:text="${list[1]}">게시글 제목</a></td>
 										<td th:text="${list[2]}">작성자</td>
 										<td th:text="${list[3]}">2021-01-01</td>
 										<td th:text="${list[4]}">0</td>

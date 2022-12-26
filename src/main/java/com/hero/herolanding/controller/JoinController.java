@@ -118,10 +118,11 @@ public class JoinController {
 		member.setMemberDataAgree(joinDTO.getMemberDataAgree());
 		member.setMemberAdvAgree(joinDTO.getMemberAdvAgree());
 		member.setSignUpDate(joinDTO.getSignUpDate());
+		member.setMemberIsjoin((long) 0);
 		
 		joinService.saveJoin(member);
 		
-		return "redirect:/";
+		return "redirect:/login/loginForm";
 	}
 	
 	// 중복된 아이디 찾기
