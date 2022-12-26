@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hero.herolanding.domain.City;
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.AdminMemberDTO;
 import com.hero.herolanding.service.AdminMemberService;
@@ -73,6 +74,9 @@ public class AdminMemberController {
 	
 	// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 	List<Member> member = adminMemberService.findSearchData(select, search, nowPage);
+	if(member.size() == 0) {
+		member.add(new Member());
+	}
 	
 	// 전체 페이징 메소드
 	List<Integer> totalPageCnt = adminMemberService.paging(nowPage, totalPage);
@@ -134,7 +138,6 @@ public class AdminMemberController {
 // DB수정 페이지 이동(회원수정)
 	@GetMapping("/회원수정/{pgNum}")
 	public String dbupdate(@PathVariable("pgNum") int pgNum, Model model) {
-		System.out.println("여기냐?");
 		Long memberNumL=Long.valueOf(pgNum);
 		
 		// 해당 검사번호의 검사 찾아오기

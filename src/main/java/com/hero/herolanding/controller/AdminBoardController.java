@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hero.herolanding.domain.Board;
+import com.hero.herolanding.domain.Country;
 import com.hero.herolanding.domain.Paper;
 import com.hero.herolanding.dto.AdminBoardDTO;
 import com.hero.herolanding.dto.BoardDTO;
@@ -77,6 +78,9 @@ public class AdminBoardController {
 		
 		// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 		List<Board> board = adminBoardService.findSearchData(select, search, nowPage);
+		if(board.size() == 0) {
+			board.add(new Board());
+		}
 		
 		// 전체 페이징 메소드
 		List<Integer> totalPageCnt = adminBoardService.paging(nowPage, totalPage);
