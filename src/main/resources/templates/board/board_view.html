@@ -47,19 +47,18 @@
                             <p class="fs-5 mb-4"  th:utext=${board.boardContents} >Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur omnis, ea laborum sequi sed maxime id est earum aliquam, vitae vel expedita neque. Hic perspiciatis sunt assumenda voluptas obcaecati natus?</p>
                         </section>
                                 <div class="row">
-                                <th:block th:if="${check == 1}">
                                 <div class="col-6">
-                                    <a href="#" th:href="@{/board/edit/{id}(id=${board.boardNum})}"  class="btn btn-primary">수정</a>
+	                                <th:block th:if="${check == 1}">
+	                                    <a href="#" th:href="@{/board/edit/{id}(id=${board.boardNum})}"  class="btn btn-primary">수정</a>
+	                                    <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.boardNum})}"  class="btn btn-danger">삭제</a>
+	                                </th:block>
                                 </div>
-                                <div class="col-6 text-end">
-                                    <a href="/board/delete" th:href="@{/board/{id}/delete(id=${board.boardNum})}"  class="btn btn-danger">삭제</a>
-                                </div>
-                                </th:block>
-                                  <div class="col-6 text-end" th:if="${memberNum != -10}">
+                                <div class="col-6 text-end" th:if="${memberNum != -10}">
                                     <a href="#" th:href="@{/board/report/{id}/(id=${board.boardNum})}" class="btn btn-danger">신고</a>
                                 </div>
                             </div>
                     </article>
+                    <br>
                     <!-- Comments section-->
                     <section class="mb-5">
                         <div class="card bg-light">
@@ -69,9 +68,10 @@
                                 <!-- Comment with nested comments-->
                                 <th:block th:if="${memberNum != -10}">
                                  	<div class="regBtn">
-                    					<button id="Comment_regist" onclick="dataSend()"> 댓글등록</button>
+                    					<button id="Comment_regist" onclick="dataSend()" class="btn btn-primary"> 댓글등록</button>
                     			 	</div>
                     			</th:block>
+                    			<br>
                                 <div class="d-flex mb-4"  th:each="reply : ${comments}">
                                     <!-- Parent comment-->
                                     <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
@@ -79,27 +79,24 @@
                                         <div class="fw-bold" th:text="${reply[6]}">유저1</div>
                                         <div th:id="updateForm + ${replyStat.index}">
 	                                        <label th:text="${reply[3]}"> 프론트는 외롭다. </label>
-	                                        <div>
-	                                        	<input type="hidden" th:value="${reply[0]}" th:id="getId + ${replyStat.index}"/>
-	                                        	<th:block th:if="${memberNum == reply[4].memberNum}">
-	                                        		<button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}">수정</button>
-		                    	 				 	<button onclick="delete_comment(this.value)" th:value="${reply[0]}">삭제</button>
-	                                        	</th:block>
-	                                        	<th:block th:if="${memberNum != -10}">
-		                    	 				 <button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" >답글달기</button>
-		                    	 				 </th:block>
-		                    	 			</div>
+	                                        		<input type="hidden" th:value="${reply[0]}" th:id="getId + ${replyStat.index}"/>
+	                                        		<th:block th:if="${memberNum == reply[4].memberNum}">
+	                                        			<button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}" class="btn btn-primary">수정</button>
+		                    	 				 		<button onclick="delete_comment(this.value)" th:value="${reply[0]}" class="btn btn-danger">삭제</button>
+	                                        		</th:block>
+	                                        		<th:block th:if="${memberNum != -10}">
+		                    	 				 		<button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" class="btn btn-primary" >답글달기</button>
+		                    	 				 	</th:block>
 		                    	 			<div th:id="replyComment + ${replyStat.index}">
 		                    	 				
 		                    	 			</div>
-		                    	 		</div>
                                         <div class="d-flex mt-4" th:each="replyComment : ${replyComments}" th:if="${reply[0] == replyComment[1] }"> 
                                             <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
                                             <div class="ms-3">
                                                 <div class="fw-bold" th:text="${replyComment[6]}">대댓글</div>
                                                 <label th:text="${replyComment[3]}">어떻게 꾸며야할지 너무 어렵다.</label>
                                                 <th:block th:if="${memberNum == replyComment[4].memberNum}">
-                                                <button onclick="delete_comment(this.value)" th:value="${replyComment[0]}">삭제</button>
+                                                <button onclick="delete_comment(this.value)" th:value="${replyComment[0]}"  class="btn btn-danger">삭제</button>
                                                 </th:block>
                                             </div>
                                         </div>
@@ -184,7 +181,7 @@
 		    	var replyNum = $('#getId' + id).val();
 		    	var htmls ="";
 		    	htmls += '<textarea class="form-control" rows="3" id="replyComment" name="replyComment"></textarea>'
-		    	htmls += '<button onclick="replySend('+replyNum+')">답글달기</button>'
+		    	htmls += '<button onclick="replySend('+replyNum+')"  class="btn btn-primary">답글달기</button>'
 		    	
 		    	$('#replyComment' + id).replaceWith(htmls);
 		    	$('#replyComment').focus();
