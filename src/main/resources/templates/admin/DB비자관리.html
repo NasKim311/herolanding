@@ -140,7 +140,7 @@
                                                 <th class="border-top-0"><b>외교관여권소지자입국가능여부</b></th>
                                                 <th class="border-top-0"><b>외교관여권소지자입국가능기간</b></th>
                                                 <th class="border-top-0"><b>무비자입국근거</b></th>
-                                                <th class="border-top-0"><b>비고</b></th>
+                                                <th class="border-top-0"><b>국가번호</b></th>
                                             </tr>
                                         </thead>
                                         <!-- 윤창, 진환 : 테이블 이름 검색 결과 뿌리기 -->
@@ -159,7 +159,9 @@
 	                                                <td th:text="${visa.diplomatPassportStatus}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
 	                                                <td th:text="${visa.diplomatPassportPeriod}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
 	                                                <td th:text="${visa.reasonForVisaFree}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
-	                                                <td th:utext="${visa.visaNote}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+	                                                <td th:each="ctr : ${visa.country}">
+	                                                	<span th:text="${ctr.countryNum}"></span>
+	                                                </td>
                                             	</tr>
                                         </tbody>
                                     </table>

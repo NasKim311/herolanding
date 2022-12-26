@@ -125,7 +125,7 @@
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material mx-2" method="post" th:action th:object=${countrydto}>
+                                <form class="form-horizontal form-material mx-2" method="post" th:action th:object=${countrydto} >
 
                                     <div class="form-group">
                                         <!-- 수정하고자 하는 것이 pk라던가 유니크일때의 변수 처리도 해야함 -->
@@ -173,10 +173,11 @@
                                                     class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
+                                   
 
                                     <!-- html이 기타사항일 때 input 테그 클래스에 d-none 추가하고 
                                         summernote 클래스에 d-none 삭제하는거 가능하겠지? -->
-                                    <div class="form-group">
+                                    <div class="form-group" >
                                         <label class="col-md-12 mb-0">기타사항</label>
                                         <div class="col-md-12">
                                             <textarea id="summernote" th:field="*{countryNote}" th:text="${countrydto.countryNote}">가나는 쵸콜렛이지~~</textarea>
@@ -223,22 +224,23 @@
                                     <div class="form-group mb-0">
                                         <div class="row">
                                             <div class="col-6">
-	                                                <button class="btn btn-danger mx-auto mx-md-0 text-white" type="button"
-	                                                		th:onclick="|location.href='@{/DB국가삭제/country/{countryNum}(countryNum = ${countrydto.countryNum})}'|">삭제</button>
+                                                <button class="btn btn-danger mx-auto mx-md-0 text-white" type="button"
+                                                		th:onclick="|location.href='@{/DB국가삭제/country/{countryNum}(countryNum = ${countrydto.countryNum})}'|">삭제</button>
                                             </div>
                                             <div class="col-6 text-end">
-                                                
-                                                
+                                                <button class="btn btn-secondary mx-auto mx-md-0 text-white"
+                                               			th:onclick="|location.href='@{/DB국가관리/country/1}'|" type="reset">취소</button>
                                                 <button class="btn btn-success mx-auto mx-md-0 text-white" type="submit">수정</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                                                	<button class="btn btn-secondary mx-auto mx-md-0 text-white"
-                                                	th:onclick="|location.href='@{/DB국가관리/Country/1}'|">취소</button>
+                                                	
                             </div>
                         </div>
                     </div>
+                    
+                   
                     <!-- Column -->
                 </div>
                 <!-- Row -->

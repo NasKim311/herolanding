@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.City;
+import com.hero.herolanding.domain.Country;
 import com.hero.herolanding.domain.Inspection;
 import com.hero.herolanding.dto.AdminCityDTO;
 import com.hero.herolanding.dto.AdminInspectionDTO;
@@ -75,6 +76,11 @@ public class AdminInspectionController {
 		// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 		List<Inspection> inspection = adminInspectionService.findSearchData(select, search, nowPage);
 		
+		
+		if(inspection.size() == 0) {
+			inspection.add(new Inspection());
+		}
+		
 		// 전체 페이징 메소드
 		List<Integer> totalPageCnt = adminInspectionService.paging(nowPage, totalPage);
 		
@@ -113,6 +119,11 @@ public class AdminInspectionController {
 		
 		// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 		List<Inspection> inspection = adminInspectionService.findSearchData(select, search, nowPage);
+		
+		if(inspection.size() == 0) {
+			inspection.add(new Inspection());
+		}
+		
 		
 		// 전체 페이징 메소드
 		List<Integer> totalPageCnt = adminInspectionService.paging(nowPage, totalPage);

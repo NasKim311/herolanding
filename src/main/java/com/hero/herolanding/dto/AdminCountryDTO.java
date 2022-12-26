@@ -18,6 +18,5 @@ public class AdminCountryDTO {
 	private EntranceLevel entranceLevel;
 	private String embassyLink;
 	private String countryNote;
-
 	
 }
