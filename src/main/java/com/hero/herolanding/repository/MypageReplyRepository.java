@@ -21,7 +21,7 @@ public class MypageReplyRepository {
 	private final EntityManager em;
 
 	public List<Reply> findreplyContent(Long memberNum){
-		return 	em.createQuery("select r from REPLY r where r.member.memberNum = memberNum", Reply.class )
+		return 	em.createQuery("select r from REPLY r where member.memberNum = memberNum", Reply.class )
 				.setParameter("memberNum", memberNum)
 				.getResultList();
 	}
