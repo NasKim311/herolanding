@@ -54,11 +54,29 @@ public class BoardRepository {
 				.setFirstResult(page).setMaxResults(10).getResultList();
 	}
 
-	public List<Object[]> Search(String searchText) {
+	public List<Object[]> Search(String searchText , String text) {
 		String temp = "%" + searchText + "%";
-		return em.createQuery(
-				"select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum and m.memberNickName LIKE :search order by b.boardNum desc")
-				.setParameter("search", temp).getResultList();
+		String temp2 = "";
+		
+		if(text.equals("title"))
+		{
+			return em.createQuery(
+					"select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum and b.boardTitle LIKE :search order by b.boardNum desc")
+					.setParameter("search", temp).getResultList();
+		}
+		else if(text.equals("content"))
+		{
+			return em.createQuery(
+					"select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum and b.boardContents LIKE :search order by b.boardNum desc")
+					.setParameter("search", temp).getResultList();
+		}
+		else if(text.equals("writer"))
+		{
+			return em.createQuery(
+					"select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum and m.memberNickName LIKE :search order by b.boardNum desc")
+					.setParameter("search", temp).getResultList();
+		}
+		return null;		
 	}
 
 	public List<Object[]> findAllByType(int page, String boardType) {

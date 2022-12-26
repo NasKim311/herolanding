@@ -4,9 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class writeTypeDTO {
+public class MailDTO {
+
+	private String MemberEmail;
+	private String title;
+	private String contents;
 	
-	private String writeType;
-	private String temp;
 	
 }
