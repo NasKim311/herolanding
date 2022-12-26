@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+   <form action="/mail" th:action method="post" th:object="${mail}">
+   		<input th:field="*{MemberEmail}" type="text">
+   		<input th:field="*{title}" type="text">
+   		<input th:field="*{contents}" type="text">
+   		<button type="submit">메일 보내기 !</button>
+   </form>
+</body>
+</html>

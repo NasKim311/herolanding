@@ -64,6 +64,7 @@ dependencies {
 	 //문의 메일 
 	 // https://mvnrepository.com/artifact/javax.mail/mail
 	implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	 
 	
 }
