@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>500에러</title>
+	<!-- favicon -->
+	<link rel="icon" href="${pageContext.request.contextPath}/assets/images/favicon.ico" type="image/x-icon">
+	<!-- 부트스트랩 -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+</head>
+
+<body >
+	
+
+	<div id="살려줘" class="container-fulid m-0 p-0 vh-100">
+
+			<div class="col col-sm-5 text-center">
+				<div class="mb-3">
+					<img class="img-fluid" src="/assets/images/errors.png" alt="공룡이미지"/>
+				</div>
+				<h3 class="mb-3 text-nowrap">500에러 발생했어요... 😔</h1>
+				<div class="mb-3">
+					<!-- 뒤로가기 버튼 -->
+					<button onclick="history.back()" class="btn btn-success">뒤로가기</button>
+				</div>
+			</div>
+
+	</div>
+	<!-- 화면 가운데 배치 -->
+	<style>
+		#살려줘 {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+
+	</style>
+
+	<!-- 부트스트랩 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</body>
+
+</html>
