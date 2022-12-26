@@ -57,7 +57,7 @@ public class Member {
 	private LocalDate signUpDate;
 
 	@Column(name = "\"회원 상태\"")
-	private boolean memberIsjoin;
+	private Long memberIsjoin;
 
 //--------<@OneToMany / board>-------------------------------------------------------------------------------------	
 	@OneToMany(mappedBy = "member")
