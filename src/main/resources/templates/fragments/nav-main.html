@@ -333,21 +333,22 @@
                         </div>
                     </form>
                 </div>
+
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" onclick="문의하기모달창초기화()">닫기</button>
                     <!-- sendMail 발송하기 버튼 -->
                     <th:block th:if="${session.loginMember != null}">
-                        <button type="button" class="btn btn-primary" onclick="check2()">발송하기</button>
+                        <!-- 전송하고 닫기 -->
+                        <button class="btn btn-primary" onclick="check2()">발송하기</button>
                     </th:block>
                     <th:block th:unless="${session.loginMember != null}">
-                        <button type="button" class="btn btn-primary" onclick="check1()">발송하기</button>
+                        <button class="btn btn-primary" onclick="check1()">발송하기</button>
                     </th:block>
                 </div>
+
             </div>
         </div>
     </div>
-
-
 
     <!-- 네비바 호버 이벤트 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -419,6 +420,7 @@
                 $dropdown2.find($dropdownMenu2).removeClass(showClass2);
             }
         });
+<<<<<<< HEAD
 			var serviceKey = 'service_7o8rheo';
 			var templatesKey = 'template_39lbtdb';
         // 비회원 문의 메일 전송
@@ -532,7 +534,11 @@
             });
         }
 
+=======
+>>>>>>> origin/main
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="/js/email.js"></script>
 </body>
 
 </html>
