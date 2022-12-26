@@ -2,250 +2,132 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>히어로 랜딩</title>
-    <!-- 부트스트랩 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>히어로 랜딩</title>
+	<!-- 부트스트랩 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
 
 
 </head>
 
 <style>
-    /* 검은색 백그라운드 */
-    .bg-dark {
-        background-color: #000000 !important;
-    }
+	/* 검은색 백그라운드 */
+	.bg-dark {
+		background-color: #000000 !important;
+	}
 
-    /* 메인 네비바에 안가리게 */
-    body {
-        padding-top: 3.5rem;
-        /* padding-bottom: 3rem; */
-        color: #333;
-    }
+	/* 메인 네비바에 안가리게 */
+	body {
+		padding-top: 3.5rem;
+		/* padding-bottom: 3rem; */
+		color: #333;
+	}
+
+	/* border 회색 */
+	.border {
+		border-color: #888 !important;
+	}
 </style>
 
 <body>
 	<!-- 네비바 -->
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 
-    <!-- 메인 시작 -->
-    <main>
-        <!-- 메인 헤더가 될 예정 -->
-        <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
-        <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-dark">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    	<!-- <a href="board/write">글쓰기</a>
-						<a href="board/list">글목록</a> -->
-                    <h1>여행가는 날 비와버려라~</h1>
-                    <div class="h1 my-0 py-0">🌙｀、、｀ヽ｀ヽ｀、、ヽヽ、｀、ヽ｀ヽ｀ヽヽ</div>
-					<div class="h1 my-0 py-0">ヽ｀、｀ヽ｀、ヽ｀｀、ヽ｀ヽ｀、ヽヽ｀ヽ、ヽ</div>
-					<div class="h1 my-0 py-0">｀ヽ、ヽヽ｀ヽ｀、｀｀ヽ｀ヽ、ヽ、ヽ｀ヽ｀ヽ</div>
-					<div class="h1 my-0 py-0">｀ヽ｀、ヽヽ｀｀、ヽ｀、ヽヽ 🚶‍♀ ヽ｀｀ヽ｀｀</div>
-					<!-- 국가검색창 -->
-					<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
-                </div>
-            </div>
-        </div>
-        <!-- 메인 헤더 끝 -->
+	<!-- 메인 시작 -->
+	<main style="background-color: rgb(10,10,16);">
+		<!-- 메인 헤더가 될 예정 -->
+		<!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
+		<!-- <div class="container-fluid vh-100 bg-dark"> -->
+		<div class="container-fluid px-0" style="background-color: rgb(10,10,16);">
+			<div th:replace="/fragments/세계지도.html :: 세계지도"></div>
+		</div>
 
-        <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
-        <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
-        <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-success">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    <div class="py-5">        
-                        <!-- 게시판 목록 버튼 검은색 외각 버튼-->
-                        <a class="btn btn-outline-light btn-lg" href="board/list/1" role="button">게시판</a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
-        <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
-        <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid py-5 bg-dark">
-            <div class="row justify-content-center">
-                <div class="col-10 col-lg-6 text-white">
-                    <div th:replace="/fragments/전세계.html :: 전세계"></div>
-                </div>
-            </div>
-        </div>
+		<div class="container-fluid quickmenu" style="position: sticky; top:57.43px;">
+			<!-- 검색창 -->
+			<div th:replace="/fragments/국가검색창.html :: 국가검색창"></div>
+		</div>
 
-        <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
-        <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
-        <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-danger">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                </div>
-            </div>
-        </div>
+		<!-- 게시판 버튼 -->
+		<div class="container-fluid bg-primary" style="background: linear-gradient(rgb(10,10,16), rgb(14,41,89));">
+			<div class="row">
+				<div class="col-12 text-light text-center">
+					<div class="py-5">
+						<div th:replace="/fragments/게시판버튼.html :: 게시판버튼"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <!-- 하나의 컨테이너 당 하나의 컨텐츠 ㄱㄱ -->
-        <!-- 나중에 vh-100 넣은 아래 코드로 교체할 것 -->
-        <!-- <div class="container-fluid vh-100 bg-dark"> -->
-        <div class="container-fluid bg-dark">
-            <div class="row">
-                <div class="col-12 text-white text-center">
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                    <h1>Lorem, ipsum.</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim nihil maiores numquam alias
-                        perferendis illo tempore quisquam autem. Sint repudiandae velit optio asperiores ratione tempore
-                        inventore nulla praesentium omnis similique?</p>
-                </div>
-            </div>
-        </div>
+		<!-- 컨텐츠 포장 시작 -->
+		<div class="row container-fluid bg-danger mx-0 mb-3 justify-content-center"
+			style="background: linear-gradient(rgb(14,41,89), rgb(10,10,16));">
+			<div class="row col col-lg-10 ">
+				<!-- 사이드 시작 -->
 
-        <!-- 회전목마 시작 -->
-<style>
-    /* 회전목마 이미지 수정하는 곳(현재 디폴트) */
-    .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-    }
+				<!-- 사이드 끝 -->
+				<div class="col col-lg-8 px-0">
+					<div class="pb-3">
+						<div th:replace="/fragments/전세계.html :: 전세계"></div>
+					</div>
+					<div class="pb-3">
+						<div th:replace="/fragments/확진자통계.html :: 확진자통계"></div>
+					</div>
+					<div class="pb-3">
+						<div th:replace="/fragments/백신통계.html :: 백신통계"></div>
+					</div>
+				</div>
 
-    @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-            font-size: 3.5rem;
-        }
-    }
-</style>
-	<link href="carousel/carousel.rtl.css" rel="stylesheet">
-	<div id="myCarousel" class="carousel slide mb-0" data-bs-ride="carousel">
-	    <div class="carousel-indicators">
-	        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
-	            aria-current="true" aria-label="Slide 1"></button>
-	        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-	        <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-	    </div>
-	    <div class="carousel-inner">
-	        <div class="carousel-item active">
-	            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-	                aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-	                <rect width="100%" height="100%" fill="#777" />
-	            </svg>
-	
-	            <div class="container">
-	                <div class="carousel-caption text-start">
-	                    <h1>عنوان المثال.</h1>
-	                    <p>تشير الدراسات الإحصائية حسب الجمعية الأمريكية للغات بأن الإقبال على العربية زاد %126 في
-	                        الولايات المتحدة الأمريكية وحدها بين عامي 2002 و2009م.</p>
-	                    <p><a class="btn btn-lg btn-primary" href="#">سجل اليوم</a></p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="carousel-item">
-	            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-	                aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-	                <rect width="100%" height="100%" fill="#777" />
-	            </svg>
-	
-	            <div class="container">
-	                <div class="carousel-caption">
-	                    <h1>عنوان مثال آخر.</h1>
-	                    <p>حسب المجلس الثقافي البريطاني فإن تعليم الإنجليزية داخل بريطانيا يسهم في تعزيز اقتصادها
-	                        بما يتجاوز ملياري جنيه سنوياً، كما أنه وفر أكثر من 26 ألف وظيفة.</p>
-	                    <p><a class="btn btn-lg btn-primary" href="#">أعرف أكثر</a></p>
-	                </div>
-	            </div>
-	        </div>
-	        <div class="carousel-item">
-	            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-	                aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-	                <rect width="100%" height="100%" fill="#777" />
-	            </svg>
-	
-	            <div class="container">
-	                <div class="carousel-caption text-end">
-	                    <h1>واحد أكثر لقياس جيد.</h1>
-	                    <p>الإحصاءات لحجم الاستثمار اللغوي خارج بريطانيا تتفاوت من سنة لأخرى إلا أن المدير التنفيذي
-	                        للمجلس الثقافي البريطاني إدي بايرز يرى أن استثمار تعليم الإنجليزية في الخارج لا يحسب على
-	                        المستوى المالي فحسب بل على المستوى السياسي أيضاً.</p>
-	                    <p><a class="btn btn-lg btn-primary" href="#">تصفح المعرض</a></p>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-	        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	        <span class="visually-hidden">السابق</span>
-	    </button>
-	    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-	        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	        <span class="visually-hidden">التالي</span>
-	    </button>
-	</div>
-	<!-- 회전목마 끝 -->
-	
-    </main>
-    <!-- 메인 끝 -->
-    
-    <!-- 푸터 -->
+				<!-- 카드 시작 -->
+				<div class="col col-4 d-none d-lg-block">
+					<div class="quickmenu" style="position: sticky; top:150px;">
+						<div class="card border text-white bg-dark mb-3" style="max-width: 18rem;">
+							<div class="card-body">
+								<div class="mb-2">
+									<h4>주요 뉴스</h4>
+								</div>
+								<!-- 뉴스 링크 -->
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m"
+										class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m"
+										class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m"
+										class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+								<div class="py-2">
+									<a href="https://www.yna.co.kr/view/AKR20210428090000003?input=1195m"
+										class="text-white">코로나19 확진자 1만명대 돌파…전날보다 1천명↑</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 카드 끝 -->
+
+			</div>
+		</div>
+		<!-- 컨텐츠 포장 끝 -->
+
+
+		<div th:replace="/fragments/회전목마.html :: 회전목마"></div>
+
+
+	</main>
+	<!-- 메인 끝 -->
+
+	<!-- 푸터 -->
 	<div th:replace="/fragments/footer-main.html :: footer-main"></div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous"></script>
 </body>
 
 </html>

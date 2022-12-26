@@ -13,8 +13,9 @@
 
     <main>
 	    <div class="row justify-content-center">
-	        <form class="col-10 col-lg-6" action="/검색" method="get" id="searchForm">
-	            <input id="search" type="text" class="form-control rounded-pill" placeholder="위치 검색">
+	        <form class="col-10 col-lg-6" action="/search" method="get" id="searchForm">
+	            <input th:if="${country == null}"  id="search" type="text" class="form-control rounded-pill bg-dark text-light" name="country" placeholder="위치 검색">
+	            <input th:unless="${country == null}" id="search" type="text" class="form-control rounded-pill bg-dark text-light" name="country" th:value="${country}">
 	        </form>
 	    </div>
     </main>

@@ -24,22 +24,22 @@ public class Visa {
 	private int visaNum;
 
 	@Column(name = "\"입국시 비자 소지 여부\"")
-	private boolean entranceVisaStatus;
+	private String entranceVisaStatus;
 
 	@Column(name = "\"일반여권 소지자 입국 가능 여부\"")
-	private boolean normalPassportStatus;
+	private String normalPassportStatus;
 
 	@Column(name = "\"일반여권 소지자 입국 가능 기간\"")
 	private String normalPassportPeriod;
 
 	@Column(name = "\"관용여권 소지자 입국 가능 여부\"")
-	private boolean officialPassportStatus;
+	private String officialPassportStatus;
 
 	@Column(name = "\"관용여권 소지자 입국 가능 기간\"")
 	private String officialPassportPeriod;
 
 	@Column(name = "\"외교관여권 소지자 입국 가능 여부\"")
-	private boolean diplomatPassportStatus;
+	private String diplomatPassportStatus;
 
 	@Column(name = "\"외교관여권 소지자 입국 가능 기간\"")
 	private String diplomatPassportPeriod;

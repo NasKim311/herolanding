@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.crawling.Cookies;
+import com.hero.herolanding.domain.CountryPaper;
+import com.hero.herolanding.domain.Inspection;
 import com.hero.herolanding.dto.CovidDTO;
 import com.hero.herolanding.dto.CovidOneDTO;
+import com.hero.herolanding.dto.NewsDTO;
 import com.hero.herolanding.dto.vaccinDTO;
 import com.hero.herolanding.service.HomeService;
 
@@ -34,6 +37,7 @@ public class HomeController {
 	@Autowired
 	private final Cookies cookiess;
 	
+	// 메인페이지
 	@GetMapping
 	public String home(HttpServletResponse response ,HttpServletRequest request, Model model) {
 		 Cookie[] cookies = request.getCookies(); 
@@ -96,18 +100,43 @@ public class HomeController {
 //			} 
 		List<CovidDTO>  covids =  homeService.findCovid();
 		List<vaccinDTO> vaccins = homeService.findCovidVaccin();
-		CovidOneDTO oneDTO = homeService.findCounrty("전세계");
+		CovidOneDTO oneDTO = homeService.findCoivdCounrty("전세계");
+		List<NewsDTO> newsDTOs = homeService.findNews("코로나");
 		
+		model.addAttribute("news",newsDTOs);
 		model.addAttribute("one",oneDTO);
 		model.addAttribute("Covids" , covids);
 		model.addAttribute("vaccins" , vaccins);
 		return "index";
 	}
 	
+	// 검색 후 페이지
 	@Transactional
 	@GetMapping("/search")
 	public String worldMap(@RequestParam String country , Model model) {
-		model.addAttribute("country" , country);
+		
+		List<CountryPaper> countryPapers = homeService.findCountryPaper(country);
+		if(countryPapers.size() == 0) {
+			countryPapers.add(new CountryPaper()) ;
+		}
+		List<Inspection> inspections = homeService.findInspection(country);
+		if(inspections.size() == 0 ) {
+			inspections.add(new Inspection());
+		}
+		// 나라정보0
+		model.addAttribute("country" , homeService.findCountry(country));
+		// 뉴스정보0
+		model.addAttribute("news" , homeService.findNews(country));
+		// 코로나 정보0
+		model.addAttribute("covid" , homeService.findCoivdCounrty(country));
+		// 환율 정보0
+		model.addAttribute("ex" , homeService.exchangeOne(country));
+		// 서류 정보0
+		model.addAttribute("countryPaper" ,countryPapers );
+		// 검사 정보
+		model.addAttribute("inspection" ,inspections);
+		// 비자 정보0
+		model.addAttribute("visa",homeService.findVisa(country));
 		return "result/result";
 	}
 

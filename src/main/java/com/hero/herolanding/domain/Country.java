@@ -37,9 +37,9 @@ public class Country {
 	@Column(name = "\"대륙 명\"")
 	private Continent continent;
 	
-//	@Enumerated(EnumType.STRING)
-//	@Column(name = "\"입국 조치 번호\"")
-//	private EntranceLevel entranceLevel;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "\"입국 조치 번호\"")
+	private EntranceLevel entranceLevel;
 
 	@Column(name = "\"대사관/영사관 링크\"")
 	private String embassyLink;

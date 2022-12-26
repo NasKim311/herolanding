@@ -85,12 +85,6 @@ public class JoinController {
 			bindingResult.addError(new FieldError("joinForm", "memberEmail", joinDTO.getEmailCheck(), false, null, null , "이메일 중복 확인은 필수입니다."));
 		}
 		
-		String pattern2 = "^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$";
-		String str2 = joinDTO.getEmailCheck();
-		if(Pattern.matches(pattern2, str2)) {
-			bindingResult.addError(new FieldError("joinForm", "memberEmail", joinDTO.getEmailCheck(), false, null, null , "이메일 형식에 맞춰주세요."));
-		}
-		
 		if(!StringUtils.hasText(joinDTO.getMemberPhoneNum())) {
 			bindingResult.addError(new FieldError("joinForm", "memberPhoneNum", joinDTO.getMemberPhoneNum(), false, null, null , "휴대전화번호는 필수입니다."));
 		}
@@ -106,17 +100,12 @@ public class JoinController {
 		if(!joinDTO.getMemberDataAgree() == true) {
 			bindingResult.addError(new FieldError("joinForm", "memberDataAgree", joinDTO.getMemberDataAgree(), false, null, null , "개인정보수집동의는 필수입니다."));
 		}
-//		
-//		if(joinDTO.getSendMsg() == "false") {
-//			bindingResult.addError(new FieldError("joinForm", "sendMsg", joinDTO.getSendMsg(), false, null, null , "휴대폰 인증은 필수입니다."));
-//		}	
 
 		if(bindingResult.hasErrors()) {
 			
 			return "login/join";
 		}
 		
-		System.out.println("===============================================================값 확인 : " + joinDTO.getSendMsg());
 		// 오류 없을시
 		Member member= new Member();
 		member.setMemberId(joinDTO.getMemberId());

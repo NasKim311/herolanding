@@ -57,7 +57,7 @@ body {
 									id="button-addon2" onclick="dataSendId()">중복확인</button>
 							</div>
 							
-							<div class="field-error" th:errors="*{memberId}">아이디 오류</div>
+							<div class="field-error" th:errors="*{memberId}" style="display: none;">아이디 오류</div>
 							<div class="field-error" id="idcheck1" style="display: none;">중복된
 								아이디입니다.</div>
 							<div class="field-error" id="idcheck2" style="display: none;">탐나는
@@ -67,10 +67,10 @@ body {
 						
 						<!-- 비밀번호 -->
 						<div class="sol-sm-12 pb-3">
-							<label for="password" class="form-label">비밀번호</label> <input
-								type="password" class="form-control" id="password1"
-								placeholder="비밀번호를 입력하세요." th:field="*{memberPw}"
-								th:errorclass="field-error">
+							<label for="password" class="form-label">비밀번호</label>
+							 <input type="password" class="form-control" id="password1"
+									placeholder="비밀번호를 입력하세요." th:field="*{memberPw}"
+									th:errorclass="field-error">
 						</div>
 						<div class="field-error" th:errors="*{memberPw}">비밀번호 오류</div>
 
@@ -127,14 +127,16 @@ body {
 							<div class="input-group">
 								<input type="text" class="form-control" id="email" name="emailemail" 
 									placeholder="이메일을 입력하세요." th:field="*{memberEmail}" 
-									th:errorclass="field-error" required>
+									th:errorclass="field-error" >
 									<button class="btn btn-secondary" type="button"
 									id="button-addon2" onclick="dataSendEmail()">중복확인</button>
 							</div>
-									<div class="field-error" th:errors="*{memberEmail}">이메일 오류</div>
+									<div class="field-error" th:errors="*{memberEmail}" id="emailcheck4" >이메일 중복확인을 눌러주세요.</div>
 									<div class="field-error" id="emailcheck1" style="display: none;">중복된
 										이메일입니다.</div>
 									<div class="field-error" id="emailcheck2" style="display: none;">이메일 확인</div>
+									<div class="field-error" id="emailcheck3" style="display: none;">형식에 맞지않는 이메일입니다.</div>
+									
 <!-- 									<button class="btn btn-secondary" type="button" -->
 <!-- 									id="button-addon2" onclick="emailtime()">이메일 형식확인</button> -->
 <!-- 										<button class="btn btn-secondary" type="button" id="button-addon2" -->
@@ -314,18 +316,26 @@ body {
 				data: JoinIdNicknameDTO,
 				type: 'POST',
 			}).done(function (fragment) {
+				
+				
 
-				if (fragment) {
+				if (fragment) {		// 아이디 중복 아닐시
 					$("#idcheck1").css("display", "block");
 					$("#idcheck2").css("display", "none");
-				} else {
+				} else {			// 아이디 중복 일시
+					$("#idcheck2").css("display", "block");
 					$("#idcheck2").css("color","green");
 					$("#idcheck1").css("display", "none");
-					$("#idcheck2").css("display", "block");
 					$("#phoneDoubleChk4").val("true");
 				}
+				
+				
+				
+				
+				
 			});
 		}
+		
 		// 비밀번호 확인
 		function test() {
 			var p1 = document.getElementById('password1').value;
@@ -343,7 +353,6 @@ body {
 				return true;
 			}
 		}
-		
 				
 		// 닉네임 중복확인
 		function dataSendNickname() {
@@ -368,9 +377,6 @@ body {
 				}
 			});
 		}
-		
-		
-		
 		
 		// 인증번호 받기 버튼 클릭시 인증번호 보내기
 	      $(document).ready(function() {
@@ -427,114 +433,67 @@ body {
 			}
 		});
 		
-		
-		// 가입하기 버튼 눌렀을시	
-// 		$('#joinFormSubmit').click(function(){
-// 			if($("#phoneDoubleChk").val() == "true"){
-// 				alert("")
-// 				$('#joinFormSubmit').submit()
-// 			}else{
-// 				alert("핸드폰 인증을 확인해주세요")
-// 				return false;
-// 			}
-// 		})
-
-// 		let user_email = $("input[name=emailemail]")
-// 		let emailCheck = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
-// 		let emailCheckOk = false;
-		
-// 		function checkEmail(){
-// 			if(user_email.val()==""){
-// 				$("#emailCheck").css("color","red");
-// 				$("#emailCheck").html("이메일을 입력하세요.");
-// 			}else if(!emailCheck.test(user_email.val())){
-// 				$("#emailCheck").css("color","red");
-// 				$("#emailCheck").html("이메일 형식이 아닙니다.");
-// 			}else if(emailCheck.test(user_email.val())){
-// 				//이메일 중복 확인하는 ajax 
-// 				let obj = "";
-// 				let xhr = new XMLHttpRequest();
-// 				xhr.open("GET","/user/UserJoinEmailOk.us?user_email="+user_email.val(),true);
-// 				xhr.send();
-// 				xhr.onreadystatechange = function(){
-// 				if(xhr.readyState == xhr.DONE && xhr.status == 200){
-// 					obj = xhr.responseText;
-// 					if(obj == 0){
-// 						$("#emailCheck").css("color","blue");
-// 						$("#emailCheck").html("가입 가능한 아이디입니다.");
-// 						emailCheckOk = true;
-// 					}else if(obj != 0){
-// 						$("#emailCheck").css("color","red");
-// 						$("#emailCheck").html("중복된 이메일 입니다.");
-// 						emailCheckOk = false;
-// 						}	
-// 					}	
-// 				}
-// 			}
-// 		}
-
-// 		let emailCheck = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]+$/;
-// 		var email999 = $("#email").val();
-// 		function checkEmail(){
-// 			$.ajax({
-//    		        type:"GET",
-//    		        url:"/email?email999=" + email999,
-//    		        cache : false,
-//    		        success:function(data){
-// 			if( emailCheck.test(email999.val()) ){
-// 				$("#phoneDoubleChk33").val("true");
-// 			}
-// 			}
-// 		}
-// 		}
-
-// 		// 아이디 중복확인
-// 		function emailtime() {
-// 			var name = $("#name").val();
-// 			const JoinIdNicknameDTO = {
-// 				memberId: name,
-// 			};
-// 			$.ajax({
-// 				url: "/join/id",
-// 				data: JoinIdNicknameDTO,
-// 				type: 'POST',
-// 			}).done(function (fragment) {
-
-// 				if (fragment) {
-// 					$("#idcheck1").css("display", "block");
-// 					$("#idcheck2").css("display", "none");
-// 				} else {
-// 					$("#idcheck2").css("color","green");
-// 					$("#idcheck1").css("display", "none");
-// 					$("#idcheck2").css("display", "block");
-// 					$("#phoneDoubleChk4").val("true");
-// 				}
-// 			});
-// 		}
-		
 		// 이메일 중복확인
 		function dataSendEmail() {
 			var email = $("#email").val();
-			const JoinIdNicknameDTO = {
-					memberEmail: email,
-			};
-			$.ajax({
-				url: "/join/email",
-				data: JoinIdNicknameDTO,
-				type: 'POST',
-			}).done(function (fragment) {
-
-				if (fragment) {		// 여기 컨트롤러 하고 바꿔주기
-					$("#emailcheck1").css("display", "block");
-					$("#emailcheck2").css("display", "none");
-				} else {
-					$("#emailcheck2").css("color","green");
-					$("#emailcheck1").css("display", "none");
-					$("#emailcheck2").css("display", "block");
-					$("#phoneDoubleChk5").val("true");
+			email_regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+			
+			if( !email_regex.test(email) )  {			// 이메일 형식 안맞을시
+				
+				$("#emailcheck4").css("display", "none");
+				$("#emailcheck3").css("display", "block");
+				$("#emailcheck2").css("display", "none");
+				$("#emailcheck1").css("display", "none");
+				
+			}else{				// 이메일 형식 맞을시
+				$("#emailcheck3").css("display", "none");
+				const JoinIdNicknameDTO = {
+						memberEmail: email,
+				};
+				$.ajax({
+					url: "/join/email",
+					data: JoinIdNicknameDTO,
+					type: 'POST',
+				}).done(function (fragment) {
+						if (fragment) {		// 중복 이메일시
+							$("#emailcheck1").css("display", "block");
+							$("#emailcheck2").css("display", "none");
+							
+						} else {			// 중복 이메일 아닐시
+							$("#emailcheck2").css("color","green");
+							$("#emailcheck2").css("display", "block");
+							$("#emailcheck1").css("display", "none");
+							$("#phoneDoubleChk5").val("true");
+						}
 				}
-			});
+				
+			);
 		}
+		}
+
+// 			기존되던거
+// 			const JoinIdNicknameDTO = {
+// 					memberEmail: email,
+// 			};
+// 			$.ajax({
+// 				url: "/join/email",
+// 				data: JoinIdNicknameDTO,
+// 				type: 'POST',
+// 			}).done(function (fragment) {
+// 					if (fragment) {		// 중복 이메일시
+// 						$("#emailcheck1").css("display", "block");
+// 						$("#emailcheck2").css("display", "none");
+						
+// 					} else {			// 중복 이메일 아닐시
+// 						$("#emailcheck2").css("color","green");
+// 						$("#emailcheck1").css("display", "none");
+// 						$("#emailcheck2").css("display", "block");
+// 						$("#phoneDoubleChk5").val("true");
+// 					}
+// 			}
+					
+				
+		
 
 		
 		

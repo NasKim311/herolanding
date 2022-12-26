@@ -10,10 +10,11 @@ import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
 
 import com.hero.herolanding.dto.NewsDTO;
 
-
+@Component
 public class News {
 	// 정보 가져올 url
     private static final String url = "https://search.naver.com/search.naver?where=news&ie=utf8&sm=nws_hty&query=";
@@ -36,7 +37,7 @@ public class News {
 
     private List<NewsDTO> getDataList(Document document) {
     	// Elements로 넘어온 뉴스를 담아줄 ArrayList
-        List<String> country = new ArrayList<String>();
+//        List<String> country = new ArrayList<String>();
         List<NewsDTO> newsDTO = new ArrayList<NewsDTO>();
         
         Elements all = document.select(".news_tit"); 

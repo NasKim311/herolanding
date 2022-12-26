@@ -22,6 +22,7 @@
 	crossorigin="anonymous">
         
 <div class="container">
+<!-- 	<div th:replace="/fragments/nav-main.html :: nav-main"></div> -->
             <form th:action="@{/board/edit/{id}(id=${board.boardNum})}" th:object="${boardDTO}" method="POST">
              	 <div class="form-group">
                             <label for="boardUser">작성자</label>
@@ -54,6 +55,7 @@
                         	</select>
                         	<div class="field-error" th:errors="*{continent}">상품평 오류</div>
                         </div>
+                        <br>
                           <div class="form-group">
                         	<select class="form-control" id="writeType" name="writeType" th:errorclass="field-error">
                         		<option>===게시판을 정해주세요 ===</option>
@@ -69,7 +71,7 @@
                         </div>
                     </form>
         </div>
-        
+<!--         <div th:replace="/fragments/footer-main.html :: footer-main"></div> -->
         <script>
 		$('#summernote').summernote(
 				{

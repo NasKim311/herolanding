@@ -23,7 +23,7 @@ public class CountryPaper {
 	private int countryPaperNum;
 
 	@Column(name = "\"최소 나이\"")
-	private int countryPaperMinAge;
+	private String countryPaperMinAge;
 
 	@Column(name = "\"서류 유효 기간\"")
 	private String countryPaperExpiration;

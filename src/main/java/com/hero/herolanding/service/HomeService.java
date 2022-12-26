@@ -25,13 +25,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.hero.herolanding.crawling.Covid;
 import com.hero.herolanding.crawling.CovidVaaccin;
 import com.hero.herolanding.crawling.ExchangeRateCr;
+import com.hero.herolanding.crawling.News;
 import com.hero.herolanding.domain.Country;
+import com.hero.herolanding.domain.CountryPaper;
 import com.hero.herolanding.domain.CovidData;
 import com.hero.herolanding.domain.CovidVaccinData;
 import com.hero.herolanding.domain.ExchangeRate;
+import com.hero.herolanding.domain.Inspection;
 import com.hero.herolanding.domain.Member;
+import com.hero.herolanding.domain.Visa;
 import com.hero.herolanding.dto.CovidDTO;
 import com.hero.herolanding.dto.CovidOneDTO;
+import com.hero.herolanding.dto.NewsDTO;
 import com.hero.herolanding.dto.vaccinDTO;
 import com.hero.herolanding.repository.HomeRepository;
 import com.querydsl.core.Tuple;
@@ -50,13 +55,14 @@ public class HomeService {
 //		return homeRepository.findCountryAll();
 //	}
 
-	// 해당 국가 뉴스기사 ( 크롤링 , 디비 X )
 	private final ExchangeRateCr exchangeRate;
 	private final CovidVaaccin covidVaaccin;
 	private final Covid covid;
-
+	private final News news;
 	
-	// 전체 환율 정복 가져오기
+	
+	
+	// 전체 환율 정보 저장
 	@Transactional
 	public void save() {
 		List<ExchangeRate> exchangeRates = exchangeRate.process();
@@ -64,6 +70,10 @@ public class HomeService {
 			homeRepository.insertExchange(exchangeRates.get(i));
 		}
 	}
+	
+	
+
+	
 	// 코로나 백신 전체 정보 저장하기
 	@Transactional
 	public void saveCovidVaccin() {
@@ -150,7 +160,7 @@ public class HomeService {
 	
 	// 코로나 정보 한 나라의 값 가져오기
 	@Transactional
-	public CovidOneDTO findCounrty(String country) {
+	public CovidOneDTO findCoivdCounrty(String country) {
 		CovidOneDTO main = new CovidOneDTO();
 		Country findone = homeRepository.findCounrty(country);
 		
@@ -166,6 +176,48 @@ public class HomeService {
 		return main;
 		
 	}
+	
+	// 검색 후 결과 값 가지고오기==============================================================================================
+	// 검색한 나라정보
+	@Transactional
+	public Country findCountry(String countryName) {
+		return homeRepository.findCounrty(countryName);
+	}
+
+	// 검색한 나라의 필요서류 정보
+	@Transactional
+	public List<CountryPaper> findCountryPaper(String countryName) {
+		Long countryNum =  homeRepository.findCounrty(countryName).getCountryNum();
+		return homeRepository.findCountryPeper(countryNum);
+		
+	}
+	// 검색한 나라의 접종 정보
+	@Transactional
+	public List<Inspection> findInspection(String countryName) {
+		Long countryNum =  homeRepository.findCounrty(countryName).getCountryNum();
+		return homeRepository.findinspection(countryNum);
+		
+	}
+	// 해당 나라의 환율 가져오기
+	@Transactional
+	public ExchangeRate exchangeOne(String countryName) {
+		Long countryNum =  homeRepository.findCounrty(countryName).getCountryNum();
+		List<ExchangeRate> exchangeRates = homeRepository.findExchageAll();
+		return homeRepository.findExchageOne1(countryNum);
+	}
+	// 검색한 나라의 비자 정보
+	@Transactional
+	public Visa findVisa(String countryName){
+		Long countryNum =  homeRepository.findCounrty(countryName).getCountryNum();
+		return homeRepository.findVisa(countryNum);
+	}
+	// 검색한 나라의 뉴스 크롤링
+	@Transactional
+	public List<NewsDTO> findNews(String countryName) {
+		return news.process(countryName);
+	}
+	// 검색 후 결과 값 가지고오기==============================================================================================
+	
 	
 	// 코로나 정보 지도에 업데이트 하기
 	@SuppressWarnings("unchecked")
