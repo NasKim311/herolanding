@@ -17,12 +17,12 @@
             <!-- ============================================================== -->
             <!-- Logo -->
             <!-- ============================================================== -->
-            <a class="navbar-brand" href="관리자페이지.html">
+            <a class="navbar-brand" href="index.html" th:href="|@{/}|">
                 <!-- Logo icon -->
                 <b class="logo-icon">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="../assets/images/히어로_랜딩-removebg-preview.png" alt="homepage" class="dark-logo" style="height: 30px;"/>
+                    <img src="/assets/images/히어로_랜딩-removebg-preview.png" alt="homepage" class="dark-logo" style="height: 30px;"/>
 
                 </b>
                 <!--End Logo icon -->
@@ -94,7 +94,7 @@
             <ul id="sidebarnav">
                 <!-- User Profile-->
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="관리자페이지.html" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
+                       	th:href="@{/admin}" href="관리자페이지.html" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
                             aria-hidden="true"></i><span class="hide-menu">회원 동향</span></a></li>
                 <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                         href="pages-profile.html" aria-expanded="false">
@@ -105,20 +105,44 @@
                         <i class="me-3 fa fa-user" aria-hidden="true"></i><span
                             class="hide-menu">Profile</span></a></li> -->
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                        href="회원관리.html" aria-expanded="false"><i class="me-3 fa fa-user"
+                        th:href="@{/회원관리/1}" href="회원관리.html" aria-expanded="false"><i class="me-3 fa fa-user"
                             aria-hidden="true"></i><span class="hide-menu">회원 관리</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="게시글관리.html" aria-expanded="false">
+                    th:href="@{/게시글관리/1}" href="게시글관리.html" aria-expanded="false">
                     <i class="me-3 fa fa-table" aria-hidden="true"></i>
                         <span class="hide-menu">게시글 관리</span></a></li>
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="신고글관리.html" aria-expanded="false">
+                    th:href="@{/신고글관리}" href="신고글관리.html" aria-expanded="false">
                     <i class="me-3 fa fa-exclamation-triangle" aria-hidden="true"></i>
                         <span class="hide-menu">신고글 관리</span></a></li>
+<!--                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link" -->
+<!--                     th:href="@{/DB관리/{a}(a = 0)}"  aria-expanded="false"> -->
+<!--                         <i class="me-3 fa fa-table" aria-hidden="true"></i><span -->
+<!--                             class="hide-menu">DB 관리</span></a></li> -->
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="DB관리.html" aria-expanded="false">
+                    th:href="@{/DB국가관리/country/1}"  aria-expanded="false">
                         <i class="me-3 fa fa-table" aria-hidden="true"></i><span
-                            class="hide-menu">DB 관리</span></a></li>
+                            class="hide-menu">국가 DB</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    th:href="@{/DB도시관리/city/1}"  aria-expanded="false">
+                        <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                            class="hide-menu">도시 DB</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    th:href="@{/DB검사관리/inspection/1}"  aria-expanded="false">
+                        <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                            class="hide-menu">검사 DB</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    th:href="@{/DB국가별서류관리/countryPaper/1}"  aria-expanded="false">
+                        <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                            class="hide-menu">국가별 서류 DB</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    th:href="@{/DB서류관리/paper/1}"  aria-expanded="false">
+                        <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                            class="hide-menu">서류 DB</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                    th:href="@{/DB비자관리/visa/1}"  aria-expanded="false">
+                        <i class="me-3 fa fa-table" aria-hidden="true"></i><span
+                            class="hide-menu">비자 DB</span></a></li>
                 <!-- <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                         href="icon-fontawesome.html" aria-expanded="false"><i class="me-3 fa fa-font"
                             aria-hidden="true"></i><span class="hide-menu">Icon</span></a></li>

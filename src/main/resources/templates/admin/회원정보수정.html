@@ -16,7 +16,7 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
     <!-- Custom CSS -->
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="/css/style.min.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -118,48 +118,69 @@
                     <div class="col-lg-8 col-xlg-9 col-md-7">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material mx-2">
+                            
+                                <form class="form-horizontal form-material mx-2" method="post" th:action th:object=${memberdto}>
                                     <!-- 윤창, 진환 : 회원 정보 받아오기 -->
                                     <div class="form-group">
-                                        <label class="col-md-12 mb-0">아이디</label>
+                                        <label class="col-md-12 mb-0">회원번호</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="shinho93"
+                                            <input type="text" value="shinho93" th:field="*{memberNum}" readonly
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="example-email" class="col-md-12">비밀번호</label>
+                                        <label class="col-md-12 mb-0">아이디</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="1234"
-                                                class="form-control ps-0 form-control-line" name=""
-                                                id="">
+                                            <input type="text" value="shinho93" th:field="*{memberId}" readonly
+                                                class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">이름</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="곽신호"
+                                            <input type="text" value="shinho93" th:field="*{memberName}" readonly
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">닉네임</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="BananaCube"
-                                                class="form-control ps-0 form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12 mb-0">이메일</label>
-                                        <div class="col-md-12">
-                                            <input type="text" value="shinho930@gmail.com"
+                                            <input type="text" value="shinho93" th:field="*{memberNickName}" readonly
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">휴대폰</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="01092847555"
+                                            <input type="text" value="shinho93" th:field="*{memberPhoneNum}" readonly
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">이메일</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="shinho93" th:field="*{memberEmail}" readonly
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">광고약관동의</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="shinho93" th:field="*{memberAdvAgree}" readonly
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">가입날짜</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="shinho93" th:field="*{signUpDate}" readonly
+                                                class="form-control ps-0 form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">회원상태</label>
+                                        <div class="col-md-12">
+                                            <input type="text" value="shinho93" th:field="*{memberIsjoin}" readonly
                                                 class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
@@ -184,15 +205,14 @@
                                     <div class="form-group mb-0">
                                         <div class="row">
                                             <div class="col-6">
-                                                <button class="btn btn-danger mx-auto mx-md-0 text-white">회원 비활성화</button>
                                             </div>
                                             <div class="col-6 text-end">
-                                                <button class="btn btn-secondary mx-auto mx-md-0 text-white">취소</button>
-                                                <button class="btn btn-success mx-auto mx-md-0 text-white">수정 완료</button>
+                                                <button class="btn btn-danger mx-auto mx-md-0 text-white">회원 비활성화</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
+                                                <button class="btn btn-secondary mx-auto mx-md-0 text-white">취소</button>
                             </div>
                         </div>
                     </div>
@@ -234,16 +254,16 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="../assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/plugins/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
-    <script src="../assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/app-style-switcher.js"></script>
+    <script src="/assets/plugins/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app-style-switcher.js"></script>
     <!--Wave Effects -->
-    <script src="js/waves.js"></script>
+    <script src="/js/waves.js"></script>
     <!--Menu sidebar -->
-    <script src="js/sidebarmenu.js"></script>
+    <script src="/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
-    <script src="js/custom.js"></script>
+    <script src="/js/custom.js"></script>
 </body>
 
 </html>

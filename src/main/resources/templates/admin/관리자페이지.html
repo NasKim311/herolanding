@@ -14,11 +14,15 @@
     <title>관리자 페이지</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/monster-admin-lite/" />
     <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon.png">
     <!-- Custom CSS -->
     <link href="../assets/plugins/chartist/dist/chartist.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.min.css" rel="stylesheet">
+    
+    <!-- highcharts CSS -->
+    <link href="../highcharts/highcharts.css" rel="stylesheet">
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -135,27 +139,27 @@
                     </div>
                     <!-- Column -->
                 </div>
+                
+                
+                
+                
                 <!-- ============================================================== -->
                 <!-- Sales chart -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <!-- column -->
-                    <div class="col-sm-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <!-- 윤창, 진환 : 회원수 증가량 그래프 -->
-                                <h4 class="card-title">회원 통계</h4>
-                                <div class="flot-chart">
-                                    <div class="flot-chart-content" id="flot-line-chart"
-                                        style="padding: 0px; position: relative;">
-                                        <canvas class="flot-base w-100" height="400"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- column -->
-                </div>
+                
+                <figure class="highcharts-figure">
+  					<div id="container"></div>
+  						<p class="highcharts-description">
+  						</p>
+				</figure>
+				<input type="hidden" id="member0" name="member" th:value="${member0}"/>
+				<input type="hidden" id="member1" name="member" th:value="${member1}"/>
+				<input type="hidden" id="member2" name="member" th:value="${member2}"/>
+				<input type="hidden" id="member3" name="member" th:value="${member3}"/>
+				<input type="hidden" id="member4" name="member" th:value="${member4}"/>
+				<input type="hidden" id="member5" name="member" th:value="${member5}"/>
+				<input type="hidden" id="member6" name="member" th:value="${member6}"/>
+				
                 <!-- ============================================================== -->
                 <!-- Table -->
                 <!-- ============================================================== -->
@@ -300,6 +304,15 @@
     <script src="../assets/plugins/flot/jquery.flot.js"></script>
     <script src="../assets/plugins/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
     <script src="js/pages/dashboards/dashboard1.js"></script>
+    
+    <!-- 하이차트 스크립트 -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+	<script src="https://code.highcharts.com/modules/series-label.js"></script>
+	<script src="https://code.highcharts.com/modules/exporting.js"></script>
+	<script src="https://code.highcharts.com/modules/export-data.js"></script>
+	<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+	<script src="../highcharts/highcharts.js"></script>
+	<!-- 하이차트 스크립트 -->
 </body>
 
 </html>
