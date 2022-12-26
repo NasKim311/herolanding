@@ -23,13 +23,19 @@ public class AdminHomeController {
 	@GetMapping("/admin")
 	public String admin(Model model) {
 		
-//		List<Long> member1 = adminService.findSignupDate();
-//		
-//		List<Long> member = new ArrayList<>(member1.subList(0, 7));
-//		for(int i = 0; i<member.size(); i++) {
-//			model.addAttribute("member"+i, member.get(i).intValue());
-//			System.out.println(model);
-//		}
+		List<Long> member1 = adminService.findSignupDate();
+		
+		int membersize = member1.size();
+		
+		if( membersize > 7) {
+			membersize = 7;
+		}
+		
+		List<Long> member = new ArrayList<>(member1.subList(0, membersize));
+		for(int i = 0; i<member.size(); i++) {
+			model.addAttribute("member"+i, member.get(i).intValue());
+			System.out.println(model);
+		}
 		
 		return "admin/관리자페이지";
 	}
