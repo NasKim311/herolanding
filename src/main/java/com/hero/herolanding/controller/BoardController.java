@@ -267,7 +267,7 @@ public class BoardController {
 		boardService.inputReport(report);
 		boardService.updateReportCount(dto.getBoardId());
 		
-		return "redirect:/";
+		return "redirect:/board/" + dto.getBoardId() + "/view";
 	}
 	
 	@GetMapping("/board/{id}/view")
