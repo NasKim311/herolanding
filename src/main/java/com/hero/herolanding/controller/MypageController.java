@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.UpdateMemberDTO;
+import com.hero.herolanding.service.BoardService;
 import com.hero.herolanding.service.MypageService;
 import com.hero.herolanding.session.SessionConst;
 
@@ -23,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class MypageController {
 
 	private final MypageService mypageService;
+	private final BoardService boardService;
 
 //--------<indexPage() / 로고 클릭시 메인화면으로 이동 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/mypage/index")
@@ -104,21 +106,28 @@ public class MypageController {
 	}
 
 //--------<boardByMeForm() / 내가작성한게시글페이지 이동하면서 조회하는 메서드(페이징처리 동시 작용)>-------------------------------------------------------------------------------------	
-	@GetMapping("/mypage/boardByMeForm/{nowPage}")
-	public String boardByMeForm(@PathVariable("nowPage") int nowPage, Model model, HttpServletRequest request) {
-		System.out.println(nowPage);
-		
+	@GetMapping("/mypage/boardByMeForm/{page}")
+	public String boardByMeForm(@PathVariable("page") int page, Model model, HttpServletRequest request) {
+		System.out.println(page);
+
 		HttpSession session = request.getSession();
-		Member member = (Member)session.getAttribute("loginMember");
+		Member member = (Member) session.getAttribute("loginMember");
+
+		// 첫 페이지를 무조건 1로 만드는 조건(첫 페이지 지정 조건)
+		if (page < 1) {
+			page = 1;
+		}
+
+		// 마지막 페이지를 지정하는 조건
+		if (page > (boardService.BoardCount().size() / 10) + 1) {
+			page = (boardService.BoardCount().size() / 10) + 1;
+		}
 		
-		
-		
+		model.addAttribute("current", page / 10); // 페이징 처리를 위한 변수
+
 		return "mypage/내가작성한게시글페이지";
 	}
 
-	
-	
-	
 //--------<replyByMeForm() / 내가작성한댓글목록리스트페이지 이동 메서드>-------------------------------------------------------------------------------------	
 //	@GetMapping("/mypage/replyByMeForm")
 //	public String replyByMeForm() {
