@@ -331,7 +331,7 @@ public class BoardController {
 	@GetMapping("/board/search")
 	public String search(Model model, writeTypeDTO dto) {
 
-		List<Object[]> list = boardService.Search(dto.getWriteType());
+		List<Object[]> list = boardService.Search(dto.getWriteType(), dto.getTemp());
 		model.addAttribute("last", 1);
 		model.addAttribute("check", 0);
 		model.addAttribute("page", 0);

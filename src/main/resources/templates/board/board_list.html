@@ -33,13 +33,23 @@
 			<div class="card mb-4">
 				<div class="card-header">검색</div>
 				<div class="card-body">
-				<form th:object="${writeTypeDTO}" action="/board/search"  method="get">
-					<div class="input-group">
-						<input class="form-control" type="text" placeholder="Enter search term..."
-							aria-label="Enter search term..." aria-describedby="button-search" th:field="*{writeType}"/>
-						<button class="btn btn-primary" id="button-search" type="submit">검색</button>
-					</div>
-				</form>
+					<form th:object="${writeTypeDTO}" action="/board/search" method="get">
+						<!-- 영진 : 셀렉터 박스 -->
+						<div class="input-group mb-3">
+							<select class="form-select" id="inputGroupSelect01" th:field="*{temp}">
+								<option value="title" selected>제목</option>
+								<option value="content">내용</option>
+								<option value="writer">작성자</option>
+							</select>
+						</div>
+						<!-- 검색창 -->
+						<div class="input-group">
+							<input class="form-control" type="text" placeholder="Enter search term..."
+								aria-label="Enter search term..." aria-describedby="button-search"
+								th:field="*{writeType}"/>
+							<button class="btn btn-primary" id="button-search" type="submit">검색</button>
+						</div>
+					</form>
 				</div>
 			</div>
 			<!-- Categories widget-->
@@ -76,7 +86,7 @@
 				</div>
 				<div class="row" id="test">
 					<div class="col-12">
-						<table class="table table-striped">
+						<table class="table table-dark table-hover ">
 							<thead>
 								<tr>
 									<th scope="col">번호</th>
@@ -87,16 +97,14 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="list : ${list}">
-									<th scope="row"><a href="/board/view"
-											th:href="@{/board/{id}/view(id=${list[0]})}"
-											th:text="${list[0]}">1</a></th>
-										<td > <a href="/board/view"
-											th:href="@{/board/{id}/view(id=${list[0]})}"
-											th:text="${list[1]}">게시글 제목</a></td>
-										<td th:text="${list[2]}">작성자</td>
-										<td th:text="${list[3]}">2021-01-01</td>
-										<td th:text="${list[4]}">0</td>
+								<tr class="text-muted" th:each="list : ${list}"
+									th:onclick="|location.href='@{/board/{id}/view(id=${list[0]})}'|">
+									<th scope="row" th:text="${list[0]}">1</th>
+									<td href="/board/view" th:href="@{/board/{id}/view(id=${list[0]})}"
+										th:text="${list[1]}">게시글 제목</td>
+									<td th:text="${list[2]}">작성자</td>
+									<td th:text="${list[3]}">2021-01-01</td>
+									<td th:text="${list[4]}">0</td>
 								</tr>
 
 							</tbody>
@@ -106,9 +114,13 @@
 						<div class="my-3">
 							<nav aria-label="Page navigation example">
 								<ul class="pagination justify-content-end mb-0">
-									<li class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${now - 1})}" tabindex="-1">Previous</a></li>
-									<li th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}" class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${board})}" th:text="${board}">1</a></li>
-									<li class="page-item"><a class="page-link" th:href="@{/board/list/{id}(id=${now + 1})}">Next</a>
+									<li class="page-item"><a class="page-link"
+											th:href="@{/board/list/{id}(id=${now - 1})}" tabindex="-1">Previous</a></li>
+									<li th:each="board : ${#numbers.sequence((current * 10) + 1 ,(current * 10 ) +  last)}"
+										class="page-item"><a class="page-link"
+											th:href="@{/board/list/{id}(id=${board})}" th:text="${board}">1</a></li>
+									<li class="page-item"><a class="page-link"
+											th:href="@{/board/list/{id}(id=${now + 1})}">Next</a>
 									</li>
 								</ul>
 							</nav>

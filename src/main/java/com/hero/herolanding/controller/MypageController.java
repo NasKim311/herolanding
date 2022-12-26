@@ -103,9 +103,16 @@ public class MypageController {
 		return "mypage/북마크페이지";
 	}
 
-//--------<boardByMeForm() / 내가작성한게시글페이지 이동 메서드>-------------------------------------------------------------------------------------	
-	@GetMapping("/mypage/boardByMeForm")
-	public String boardByMeForm() {
+//--------<boardByMeForm() / 내가작성한게시글페이지 이동하면서 조회하는 메서드(페이징처리 동시 작용)>-------------------------------------------------------------------------------------	
+	@GetMapping("/mypage/boardByMeForm/{nowPage}")
+	public String boardByMeForm(@PathVariable("nowPage") int nowPage, Model model, HttpServletRequest request) {
+		System.out.println(nowPage);
+		
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("loginMember");
+		
+		
+		
 		return "mypage/내가작성한게시글페이지";
 	}
 
