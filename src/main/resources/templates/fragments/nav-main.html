@@ -228,14 +228,17 @@
                                 </div>
                             </li>
 
-
                         </ul>
+                        
+                        
                     </li>
-
-                    <!-- disabled 클래스 -->
-                    <!-- <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li> -->
+                    <!-- 소영 -->
+                    <!-- 문의하기 모달창 a 태그  -->
+                    <li class="nav-item">
+                        <th:block th:if="${session.loginMember != null}">
+                            <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">문의하기</a>
+                        </th:block>
+                    </li>
                 </ul>
 
                 <!-- 네비바 우측 메뉴 -->
@@ -268,6 +271,37 @@
         </div>
     </nav>
 
+    <!-- 소영 -->
+    <!-- 제목, 내용, 발송하기버튼 모달창 -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">문의하기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">제목</label>
+                            <input type="text" class="form-control" id="recipient-name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="message-text" class="col-form-label">내용</label>
+                            <textarea class="form-control" id="message-text"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                    <button type="button" class="btn btn-primary">발송하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
     <!-- 네비바 호버 이벤트 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="text/javascript">
@@ -275,42 +309,69 @@
         var $dropdownToggle = $(".dropdown-toggle");
         var $dropdownMenu = $(".dropdown-menu");
         var showClass = "show";
-        $dropdown.hover(
-            function () {
-                var $this = $(this);
-                $this.addClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "true");
-                $this.find($dropdownMenu).addClass(showClass);
-            },
-            function () {
-                var $this = $(this);
-                $this.removeClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "false");
-                $this.find($dropdownMenu).removeClass(showClass);
+        // 최소폭 이상에서만 호버 이벤트
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(min-width: 990px)").matches) {
+                $dropdown.hover(
+                    function () {
+                        var $this = $(this);
+                        $this.addClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "true");
+                        $this.find($dropdownMenu).addClass(showClass);
+                    },
+                    function () {
+                        var $this = $(this);
+                        $this.removeClass(showClass);
+                        $this.find($dropdownToggle).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu).removeClass(showClass);
 
+                    }
+                );
+            } else {
+                $dropdown.off("mouseenter mouseleave");
             }
-        );
+        });
 
         // 게시판 버튼만 호버
         var $dropdown2 = $(".navbar-nav .호버드롭다운");
         var $dropdownToggle2 = $(".호버토글");
         var $dropdownMenu2 = $(".호버메뉴");
         var showClass2 = "show";
-        $dropdown2.hover(
-            function () {
-                var $this = $(this);
-                $this.addClass(showClass2);
-                $this.find($dropdownToggle2).attr("aria-expanded", "true");
-                $this.find($dropdownMenu2).addClass(showClass2);
-            },
-            function () {
-                var $this = $(this);
-                $this.removeClass(showClass);
-                $this.find($dropdownToggle2).attr("aria-expanded", "false");
-                $this.find($dropdownMenu2).removeClass(showClass2);
+        // 최소폭 이상에서만 호버 이벤트
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(min-width: 990px)").matches) {
+                $dropdown2.hover(
+                    function () {
+                        var $this = $(this);
+                        $this.addClass(showClass2);
+                        $this.find($dropdownToggle2).attr("aria-expanded", "true");
+                        $this.find($dropdownMenu2).addClass(showClass2);
+                    },
+                    function () {
+                        var $this = $(this);
+                        $this.removeClass(showClass2);
+                        $this.find($dropdownToggle2).attr("aria-expanded", "false");
+                        $this.find($dropdownMenu2).removeClass(showClass2);
 
+                    }
+                );
+            } else {
+                $dropdown2.off("mouseenter mouseleave");
             }
-        );
+        });
+
+        // 모바일에서는 게시판 항상 보기
+        $(window).on("load resize", function () {
+            if (this.matchMedia("(max-width: 990px)").matches) {
+                $dropdown2.addClass(showClass2);
+                $dropdown2.find($dropdownToggle2).attr("aria-expanded", "true");
+                $dropdown2.find($dropdownMenu2).addClass(showClass2);
+            } else {
+                $dropdown2.removeClass(showClass2);
+                $dropdown2.find($dropdownToggle2).attr("aria-expanded", "false");
+                $dropdown2.find($dropdownMenu2).removeClass(showClass2);
+            }
+        });
 
     </script>
 </body>
