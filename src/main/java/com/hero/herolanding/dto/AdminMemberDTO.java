@@ -16,6 +16,6 @@ public class AdminMemberDTO {
 	private String memberEmail;
 	private boolean memberAdvAgree;
 	private LocalDate signUpDate;
-	private boolean memberIsjoin;
+	private Long memberIsjoin;
 
 }

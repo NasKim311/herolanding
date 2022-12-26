@@ -159,7 +159,7 @@ public class AdminMemberService {
 			adminmemberdto.setMemberEmail(member.get(0).getMemberEmail());
 			adminmemberdto.setMemberAdvAgree(member.get(0).isMemberAdvAgree());
 			adminmemberdto.setSignUpDate(member.get(0).getSignUpDate());
-			adminmemberdto.setMemberIsjoin(member.get(0).isMemberIsjoin());
+			adminmemberdto.setMemberIsjoin(member.get(0).getMemberIsjoin());
 			
 			return adminmemberdto;
 			
@@ -170,10 +170,10 @@ public class AdminMemberService {
 		public void updateData(AdminMemberDTO adminmemberdto) {
 			Member m = adminMemberRepository.findOneData(adminmemberdto.getMemberNum());
 			
-			if(adminmemberdto.isMemberIsjoin() == true) {
-				m.setMemberIsjoin(false);
-			}else if(adminmemberdto.isMemberIsjoin() == false) {
-				m.setMemberIsjoin(true);
+			if(adminmemberdto.getMemberIsjoin() == 0) {
+				m.setMemberIsjoin(1L);
+			}else if(adminmemberdto.getMemberIsjoin() == 1) {
+				m.setMemberIsjoin(0L);
 			}
 			
 		}
