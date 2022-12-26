@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    
+
     <style>
         #container {
             height: 500px;
@@ -29,13 +29,13 @@
     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
 
-    <div id="container"></div>
+    <div id="container" height="2000px"></div>
 
     <script>
         (async () => {
 
             const topology = await fetch(
-            		'/js/gi2.json'
+                '/js/gi2.json'
             ).then(response => response.json());
 
             Highcharts.getJSON('/js/country.json', function (data) {
@@ -57,16 +57,20 @@
                                 [1, 'rgb(0, 0, 0)']
                             ]
                         },
+                        // 높이를 화면에 맞춰서
+                        //                         height: '1000',
                     },
-                    // 제목
+                    // 제목에 이미지 넣기
                     title: {
-                        
-                        text: 'Hero Landing',
+
+                        useHTML: true,
+
+                        text: '<img src="/assets/images/네비로고.png" alt="히어로랜딩_로고" width="300" class="d-inline-block align-text-top">',
                         style: {
                             color: 'white',
                             textTransform: 'uppercase',
-                            fontSize: '30px',
-                            fontWeight: '',
+                            fontSize: '65px',
+                            fontWeight: 'bold',
                         }
                     },
                     // 부제목
@@ -74,7 +78,7 @@
                         text: '스크롤로 지도를 확대 / 축소 할 수있으며 나라를 클릭해 바로 검색할 수 있습니다.',
                         style: {
                             color: '#E0E0E3',
-                            textTransform: 'uppercase'
+                            // textTransform: 'uppercase'
                         }
                     },
 
@@ -111,9 +115,9 @@
                         series: {
                             events: {
                                 click: function (e) {
-        							location.href='/search?country='+e.point.name
-        							
-        									
+                                    location.href = '/search?country=' + e.point.name
+
+
                                 }
                             }
                         }
