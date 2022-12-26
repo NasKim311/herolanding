@@ -10,15 +10,21 @@
         
         <div th:replace="/fragments/nav-main.html :: nav-main"></div>
 			<div class="container">
-				<form th:object="${ReportDTO}" th:action="@{/board/reporting}" method="POST">
-					게시글 번호<br>
-					<input type="text" id="boardId" name="boardId" th:value="${boardId}" readonly/>
-					<br><br>
-					신고 사유<br>
-					<textarea th:field="*{reportContents}"/>
-					
-					<input type="submit" value="신고하기">
-				</form>
+				<div class="form-group">
+					<div class="form-group mb-4">
+						<form th:object="${ReportDTO}" th:action="@{/board/reporting}" method="POST">
+							게시글 번호<br>
+							<input type="text" id="boardId" name="boardId" th:text="${boardId}" readonly/>
+							<br><br>
+							신고 사유<br>
+							<textarea class="form-control" th:field="*{reportContents}"/>
+							<br>
+							<div>
+								<input type="submit" value="신고하기" class="btn btn-primary">
+							</div>
+						</form>
+					</div>
+				</div>
 		
 </div>
 <div th:replace="/fragments/footer-main.html :: footer-main"></div>
