@@ -121,8 +121,8 @@ public class MypageController {
 	
 //--------<replyByMeForm() / 내가작성한댓글목록리스트페이지 이동 메서드>-------------------------------------------------------------------------------------	
 //	@GetMapping("/mypage/replyByMeForm")
-	public String replyByMeForm() {
-		return "mypage/내가작성한댓글목록리스트";
-	}
+//	public String replyByMeForm() {
+//		return "mypage/내가작성한댓글목록리스트";
+//	}
 
 } // MypageController class
