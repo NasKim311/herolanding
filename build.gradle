@@ -60,6 +60,11 @@ dependencies {
 	//implementation group: 'net.nurigo', name: 'javaSDK', version: '2.2'
 	// 핸드폰 인증용 json
 	 implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	 
+	 //문의 메일 
+	 // https://mvnrepository.com/artifact/javax.mail/mail
+	implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
+	 
 	
 }
 
