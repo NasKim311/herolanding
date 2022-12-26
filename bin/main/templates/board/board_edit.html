@@ -22,7 +22,7 @@
 	crossorigin="anonymous">
         
 <div class="container">
-<!-- 	<div th:replace="/fragments/nav-main.html :: nav-main"></div> -->
+	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
             <form th:action="@{/board/edit/{id}(id=${board.boardNum})}" th:object="${boardDTO}" method="POST">
              	 <div class="form-group">
                             <label for="boardUser">작성자</label>
@@ -72,7 +72,7 @@
                         </div>
                     </form>
         </div>
-<!--         <div th:replace="/fragments/footer-main.html :: footer-main"></div> -->
+        <div th:replace="/fragments/footer-main.html :: footer-main"></div>
         <script>
 		$('#summernote').summernote(
 				{
