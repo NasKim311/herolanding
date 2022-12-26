@@ -21,8 +21,9 @@
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
         
+<div th:replace="/fragments/nav-main.html :: nav-main"></div>
 <div class="container">
-	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
+			<br><br><br>
             <form th:action="@{/board/edit/{id}(id=${board.boardNum})}" th:object="${boardDTO}" method="POST">
              	 <div class="form-group">
                             <label for="boardUser">작성자</label>
@@ -71,6 +72,7 @@
                             <button type="submit" class="btn btn-primary">수정</button>
                         </div>
                     </form>
+                    <br>
         </div>
         <div th:replace="/fragments/footer-main.html :: footer-main"></div>
         <script>
