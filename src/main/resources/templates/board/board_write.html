@@ -15,8 +15,7 @@
 	rel="stylesheet"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-	crossorigin="anonymous"></script>
+		
 
 </head>
 <style>
@@ -36,11 +35,9 @@ body {
 <body class="bg-light">
 	<!-- 네비바 -->
 	<div th:replace="/fragments/nav-main.html :: nav-main"></div>
-	<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.1.slim.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 
 	<main>
 
@@ -85,7 +82,7 @@ body {
 						<div class="form-group mb-3">
 							<label for="summernote">내용</label>
 							<textarea class="form-control"  th:field="*{post_content}"
-								th:errorclass="field-error" ></textarea>
+								th:errorclass="field-error" id="summernote" ></textarea>
 							<div class="field-error" th:errors="*{post_content}">상품평 오류</div>
 						</div>
 						<!-- 썸머노트 에디터 호출 -->
