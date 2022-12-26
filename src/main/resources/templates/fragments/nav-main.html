@@ -331,23 +331,23 @@
                             <label for="message" class="col-form-label">내용</label>
                             <textarea class="form-control" id="message"></textarea>
                         </div>
+
+                        <div class="modal-footer">
+                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                            <!-- sendMail 발송하기 버튼 -->
+                            <th:block th:if="${session.loginMember != null}">
+                                <!-- 전송하고 닫기 -->
+                                <button type="submit" class="btn btn-primary" onclick="check2()">발송하기</button>
+                            </th:block>
+                            <th:block th:unless="${session.loginMember != null}">
+                                <button type="submit" class="btn btn-primary" onclick="check1()">발송하기</button>
+                            </th:block>
+                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                    <!-- sendMail 발송하기 버튼 -->
-                    <th:block th:if="${session.loginMember != null}">
-                        <button type="button" class="btn btn-primary" onclick="check2()">발송하기</button>
-                    </th:block>
-                    <th:block th:unless="${session.loginMember != null}">
-                        <button type="button" class="btn btn-primary" onclick="check1()">발송하기</button>
-                    </th:block>
                 </div>
             </div>
         </div>
     </div>
-
-
 
     <!-- 네비바 호버 이벤트 -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -437,16 +437,16 @@
                 title: title,
                 message: message
             }).then(function (response) {
-                alert("메일이 전송되었습니다.");
+                alert("문의가 접수되었습니다.");
                 console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
             }, function (err) {
-                alert("메일 전송에 실패했습니다.");
+                alert("문의 접수에 실패했습니다.");
                 console.log("FAILED. error=", err);
             });
         }
 
 
-        
+
 
         // 문의하기 벨리데이션 체크
         function check1() {
@@ -467,14 +467,14 @@
             } else if (phone == "") {
                 alert("연락처를 입력해주세요.");
                 return false;
-            // 숫자만
+                // 숫자만
             } else if (!phone.match(/^[0-9]*$/)) {
                 alert("연락처는 숫자만 입력해주세요.");
                 return false;
             } else if (email == "") {
                 alert("이메일을 입력해주세요.");
                 return false;
-            // 이메일 정규 표현식
+                // 이메일 정규 표현식
             } else if (!email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
                 alert("이메일 형식이 올바르지 않습니다.");
                 return false;
@@ -486,7 +486,6 @@
                 return false;
             } else {
                 sendMail1();
-                alert("문의가 접수되었습니다.");
                 return true;
             }
         }
@@ -503,8 +502,7 @@
                 alert("내용을 입력해주세요.");
                 return false;
             } else {
-            	sendMail2();
-                alert("문의가 접수되었습니다.");
+                sendMail2();
                 return true;
             }
         }
@@ -526,8 +524,10 @@
                 title: title,
                 message: message
             }).then(function (response) {
+                alert("문의가 접수되었습니다.");
                 console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
             }, function (err) {
+                alert("문의 접수에 실패했습니다.");
                 console.log("FAILED. error=", err);
             });
         }
