@@ -79,7 +79,6 @@
                                         <div class="fw-bold" th:text="${reply[6]}">유저1</div>
                                         <div th:id="updateForm + ${replyStat.index}">
 	                                        <label th:text="${reply[3]}"> 프론트는 외롭다. </label>
-	                                        <div>
 	                                        		<input type="hidden" th:value="${reply[0]}" th:id="getId + ${replyStat.index}"/>
 	                                        		<th:block th:if="${memberNum == reply[4].memberNum}">
 	                                        			<button th:onclick="Change_editForm(this.value)" th:value="${replyStat.index}" class="btn btn-primary">수정</button>
@@ -88,7 +87,6 @@
 	                                        		<th:block th:if="${memberNum != -10}">
 		                    	 				 		<button onclick="change_replyCommentForm(this.value)" th:value="${replyStat.index}" class="btn btn-primary" >답글달기</button>
 		                    	 				 	</th:block>
-		                    	 			</div>
 		                    	 			<div th:id="replyComment + ${replyStat.index}">
 		                    	 				
 		                    	 			</div>
