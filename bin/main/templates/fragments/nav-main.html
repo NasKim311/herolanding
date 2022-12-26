@@ -12,7 +12,7 @@
     <script type="text/javascript">
         (function () {
             // 본인의 API keys를 넣어주세요.
-            emailjs.init("gtos3lQPaG38HzxrW");
+            emailjs.init("15A73AiaHjnvp1DBd");
         })();
     </script>
     <style>
@@ -419,7 +419,8 @@
                 $dropdown2.find($dropdownMenu2).removeClass(showClass2);
             }
         });
-
+			var serviceKey = 'service_7o8rheo';
+			var templatesKey = 'template_39lbtdb';
         // 비회원 문의 메일 전송
         function sendMail1() {
             var name = document.getElementById("name").value;
@@ -429,7 +430,7 @@
             var title = document.getElementById("title").value;
             var message = document.getElementById("message").value;
             // 본인의 서비스 키와 템플릿 키를 입력해주세요.
-            emailjs.send("service_qy6dejv", "template_lhtmj7e", {
+            emailjs.send("service_6kovirc", "template_n4u76fq", {
                 name: name,
                 phone: phone,
                 email: email,
@@ -517,7 +518,7 @@
             var title = document.getElementById("title").value;
             var message = document.getElementById("message").value;
             // 본인의 서비스 키와 템플릿 키를 입력해주세요.
-            emailjs.send("service_qy6dejv", "template_lhtmj7e", {
+            emailjs.send("service_6kovirc", "template_n4u76fq", {
                 name: name,
                 phone: phone,
                 email: email,
