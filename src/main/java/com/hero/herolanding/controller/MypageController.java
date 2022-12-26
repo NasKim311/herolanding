@@ -22,7 +22,7 @@ public class MypageController {
 
 	private final MypageService mypageService;
 
-//--------<indexPage() / 로고 클릭 시 메인페이지 이동 메서드>-------------------------------------------------------------------------------------	
+//--------<mypageForm() / 마이페이지 이동 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/mypage/index")
 	public String indexPage(@RequestParam(defaultValue = "/") String redirectURL) {
 		return "redirect:" + redirectURL;
