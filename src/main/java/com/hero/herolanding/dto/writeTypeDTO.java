@@ -7,6 +7,6 @@ import lombok.Setter;
 public class writeTypeDTO {
 	
 	private String writeType;
-	
+	private String temp;
 	
 }

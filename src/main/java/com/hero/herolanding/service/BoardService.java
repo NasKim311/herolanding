@@ -111,8 +111,8 @@ public class BoardService {
 	}
 
 	@Transactional
-	public List<Object[]> Search(String searchText) {
-		return boardRepository.Search(searchText);
+	public List<Object[]> Search(String searchText , String temp) {
+		return boardRepository.Search(searchText, temp);
 	}
 
 	@Transactional
