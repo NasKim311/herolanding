@@ -94,13 +94,11 @@
                                         		<option th:case="inspectionNum">검사번호</option>
                                         		<option th:case="isolationPeriod">검사기간</option>
                                         		<option th:case="inspectionCount">검사횟수</option>
-                                        		<option th:case="inspectionNote">비고</option>
                                         		<option>==선택==</option>
                                         	</th:block>
                                             <option th:value="inspectionNum">검사번호</option>
                                             <option th:value="isolationPeriod">검사기간</option>
                                             <option th:value="inspectionCount">검사횟수</option>
-                                            <option th:value="inspectionNote">비고</option>
                                         </select>
                                     </div>
                                     <div class="col m-2 col-md-6">
@@ -122,7 +120,8 @@
                                                 <th class="border-top-0"><b>검사번호</b></th>
                                                 <th class="border-top-0"><b>격리기간</b></th>
                                                 <th class="border-top-0"><b>검사횟수</b></th>
-                                                <th class="border-top-0"><b>비고</b></th>
+                                                <th class="border-top-0"><b>도시번호</b></th>
+                                                <th class="border-top-0"><b>국가번호</b></th>
 <!--                                                 <th class="border-top-0"><b>국가명</b></th> -->
 <!--                                                 <th class="border-top-0"><b>검사</b></th> -->
                                             </tr>
@@ -133,11 +132,18 @@
                                             <tbody>
 <!--                                             윤창, 진환 : onClick은 해당 테이블로 이동 -->
                                             <tr th:each="inspection, i : ${inspection}" th:onclick="|location.href='@{/DB검사수정/inspection/{inspectionNum}(inspectionNum = ${inspection.inspectionNum})}'|">
-                                                <td th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
-                                                <td th:text="${inspection.inspectionNum}"></td>
-                                                <td th:text="${inspection.isolationPeriod}">1</td>
-                                                <td th:text="${inspection.inspectionCount}">1</td>
-                                                <td th:utext="${inspection.inspectionNote}">가나</td>
+                                                <td th:if="${inspection.inspectionNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10"></td>
+                                                <td th:unless="${inspection.inspectionNum != null}" th:colspan="5" style="text-align:center"> 데이터 없음</td>
+                                                <td th:if="${inspection.inspectionNum != null}" th:text="${inspection.inspectionNum}"></td>
+                                                <td th:if="${inspection.inspectionNum != null}" th:text="${inspection.isolationPeriod}"></td>
+                                                <td th:if="${inspection.inspectionNum != null}" th:text="${inspection.inspectionCount}"></td>
+                                                
+                                                <td th:if="${inspection.inspectionNum != null}" th:each="ctr : ${inspection.country}">
+                                                	<span th:text="${ctr.countryNum}"></span>
+                                                </td>
+                                                <td th:if="${inspection.inspectionNum != null}" th:each="cty : ${inspection.city}">
+                                                	<span th:text="${cty.cityNum}"></span>
+                                                </td>
 <!--                                                 <td th:text="${city.country.countryName}">5</td> -->
 <!--                                                 <td th:text="${city.inspections.inspectionNum}">1</td> -->
                                             </tr>

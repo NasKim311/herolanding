@@ -135,22 +135,27 @@
                                                 <th class="border-top-0"><b>신고횟수</b></th>
                                                 <th class="border-top-0"><b>대륙명</b></th>
                                                 <th class="border-top-0"><b>게시글분류</b></th>
+                                                <th class="border-top-0"><b>회원번호</b></th>
                                             </tr>
                                         </thead>
                                         <!-- 윤창, 진환 : 회원정보 검색 결과 뿌리기 -->
                                         <tbody>
                                             <!-- 윤창, 진환 : onClick은 해당 회원 정보로 이동 -->
                                             <tr th:each="board, i : ${board}" th:onclick="|location.href='@{/게시글수정/{pgNum}(pgNum = ${board.boardNum})}'|">
-                                                <td th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
-                                                <td th:text="${board.boardNum}">가나</td>
-                                                <td th:text="${board.insertDate}">1234</td>
-                                                <td th:text="${board.updateDate}">곽신호</td>
-                                                <td th:text="${board.boardTitle}">BananaCube</td>
-                                                <td th:text="${board.boardContents}">shinho930@gmail.com</td>
-                                                <td th:text="${board.boardCount}">010-9284-7555</td>
-                                                <td th:text="${board.reportCount}">Y</td>
-                                                <td th:text="${board.continent}">Y</td>
-                                                <td th:text="${board.boardType}">Y</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
+                                                <td th:unless="${board.boardNum != null}"  th:colspan="11" style="text-align:center">데이터없음</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.boardNum}">가나</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.insertDate}">1234</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.updateDate}">곽신호</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.boardTitle}">BananaCube</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.boardContents}">shinho930@gmail.com</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.boardCount}">010-9284-7555</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.reportCount}">Y</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.continent}">Y</td>
+                                                <td th:if="${board.boardNum != null}" th:text="${board.boardType}">Y</td>
+                                                <td th:if="${board.boardNum != null}" th:each="mem : ${board.member}">
+                                                	<span th:text="${mem.memberNum}"></span>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

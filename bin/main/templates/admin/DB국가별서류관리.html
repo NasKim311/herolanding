@@ -95,14 +95,12 @@
                                         		<option th:value="${select}" th:case="countryPaperMinAge">최소나이</option>
                                         		<option th:value="${select}" th:case="countryPaperExpiration">서류유효기간</option>
                                         		<option th:value="${select}" th:case="countryPaperSubmitType">서류제출방법</option>
-                                        		<option th:value="${select}" th:case="countryPaperNote">비고</option>
                                         		<option>==선택==</option>
                                         	</th:block>
                                             <option th:value="countryPaperNum">국가별서류번호</option>
                                             <option th:value="countryPaperMinAge">최소나이</option>
                                             <option th:value="countryPaperExpiration">서류유효기간</option>
                                             <option th:value="countryPaperSubmitType">서류제출방법</option>
-                                            <option th:value="countryPaperNote">비고</option>
                                         </select>
                                     </div>
                                     <div class="col m-2 col-md-6">
@@ -125,9 +123,8 @@
                                                 <th class="border-top-0"><b>최소나이</b></th>
                                                 <th class="border-top-0"><b>서류유효기간</b></th>
                                                 <th class="border-top-0"><b>서류제출방법</b></th>
-                                                <th class="border-top-0"><b>비고</b></th>
-<!--                                                 <th class="border-top-0"><b>국가명</b></th> -->
-<!--                                                 <th class="border-top-0"><b>검사</b></th> -->
+                                                <th class="border-top-0"><b>국가번호</b></th>
+                                                <th class="border-top-0"><b>서류번호</b></th>
                                             </tr>
                                         </thead>
                                         <!-- 윤창, 진환 : 테이블 이름 검색 결과 뿌리기 -->
@@ -135,15 +132,20 @@
                                             <!-- 윤창, 진환 : onClick은 해당 테이블로 이동 -->
                                             <tbody>
 <!--                                             윤창, 진환 : onClick은 해당 테이블로 이동 -->
-                                            <tr th:each="countryPaper, i : ${countryPaper}" th:onclick="|location.href='@{/DB국가별서류수정/countryPaper/{countryPaperNum}(countryPaperNum = ${countryPaper.countryPaperNum})}">
-                                                <td th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
-                                                <td th:text="${countryPaper.countryPaperNum}"></td>
-                                                <td th:text="${countryPaper.countryPaperMinAge}">1</td>
-                                                <td th:text="${countryPaper.countryPaperExpiration}">1</td>
-                                                <td th:text="${countryPaper.countryPaperSubmitType}">가나</td>
-                                                <td th:utext="${countryPaper.countryPaperNote}">가나</td>
-<!--                                                 <td th:text="${city.country.countryName}">5</td> -->
-<!--                                                 <td th:text="${city.inspections.inspectionNum}">1</td> -->
+                                            <tr th:each="countryPaper, i : ${countryPaper}" th:onclick="|location.href='@{/DB국가별서류수정/countryPaper/{countryPaperNum}(countryPaperNum = ${countryPaper.countryPaperNum})}'|">
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10"></td>
+                                                <td th:unless="${countryPaper.countryPaperNum != null}" th:colspan="7" style="text-align:center"> 데이터 없음</td>
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:text="${countryPaper.countryPaperNum}"></td>
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:text="${countryPaper.countryPaperMinAge}">1</td>
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:text="${countryPaper.countryPaperExpiration}">1</td>
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:text="${countryPaper.countryPaperSubmitType}">가나</td>
+                                                
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:each="ctr : ${countryPaper.country}">
+                                                	<span th:text="${ctr.countryNum}"></span>
+                                                </td>
+                                                <td th:if="${countryPaper.countryPaperNum != null}" th:each="pap : ${countryPaper.paper}">
+                                                	<span th:text="${pap.paperNum}"></span>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

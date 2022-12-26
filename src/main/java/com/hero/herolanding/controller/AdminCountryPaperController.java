@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.City;
+import com.hero.herolanding.domain.Country;
 import com.hero.herolanding.domain.CountryPaper;
 import com.hero.herolanding.dto.AdminCityDTO;
 import com.hero.herolanding.dto.AdminCountryPaperDTO;
@@ -76,6 +77,11 @@ public class AdminCountryPaperController {
 		// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 		List<CountryPaper> countryPaper = adminCountryPaperService.findSearchData(select, search, nowPage);
 		
+		if(countryPaper.size() == 0) {
+			countryPaper.add(new CountryPaper());
+		}
+		
+		
 		// 전체 페이징 메소드
 		List<Integer> totalPageCnt = adminCountryPaperService.paging(nowPage, totalPage);
 		
@@ -114,6 +120,10 @@ public class AdminCountryPaperController {
 		
 		// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 		List<CountryPaper> countryPaper = adminCountryPaperService.findSearchData(select, search, nowPage);
+		
+		if(countryPaper.size() == 0) {
+			countryPaper.add(new CountryPaper());
+		}
 		
 		// 전체 페이징 메소드
 		List<Integer> totalPageCnt = adminCountryPaperService.paging(nowPage, totalPage);

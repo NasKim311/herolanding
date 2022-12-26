@@ -96,7 +96,6 @@
                                         		<option th:case="continent">대륙명</option>
                                         		<option th:case="entranceLevel">입국조치명</option>
                                         		<option th:case="embassyLink">대사관/영사관</option>
-                                        		<option th:case="countryNote">비고</option>
                                         		<option>==선택==</option>
                                         	</th:block>
                                         	<option th:value="countryNum">국가번호</option>
@@ -104,7 +103,6 @@
                                             <option th:value="continent">대륙명</option>
                                             <option th:value="entranceLevel">입국조치명</option>
                                             <option th:value="embassyLink">대사관/영사관</option>
-                                            <option th:value="countryNote">비고</option>
                                         </select>
                                     </div>
                                     <div class="col m-2 col-md-6">
@@ -128,7 +126,25 @@
                                                 <th  class="border-top-0"><b>대륙명</b></th>
                                                 <th  class="border-top-0"><b>입국조치번호</b></th>
                                                 <th  class="border-top-0"><b>대사관/영사관</b></th>
-                                                <th  class="border-top-0"><b>기타사항</b></th>
+                                                <th  class="border-top-0"><b>총확진자수</b></th>
+                                                <th  class="border-top-0"><b>신규확진자수(1일)</b></th>
+                                                <th  class="border-top-0"><b>신규확진자수(60일)</b></th>
+                                                <th  class="border-top-0"><b>백만명당확진자수</b></th>
+                                                <th  class="border-top-0"><b>사망</b></th>
+                                                <th  class="border-top-0"><b>총접종횟수</b></th>
+                                                <th  class="border-top-0"><b>신규접종횟수(1일)</b></th>
+                                                <th  class="border-top-0"><b>신규접종횟수(60일)</b></th>
+                                                <th  class="border-top-0"><b>백신접종을완료한사람의수</b></th>
+                                                <th  class="border-top-0"><b>인구중접종완료자비율</b></th>
+                                                <th  class="border-top-0"><b>통화번호</b></th>
+                                                <th  class="border-top-0"><b>통화명</b></th>
+                                                <th  class="border-top-0"><b>매매기준율</b></th>
+                                                <th  class="border-top-0"><b>전일대비</b></th>
+                                                <th  class="border-top-0"><b>등락율</b></th>
+                                                <th  class="border-top-0"><b>현찰구입</b></th>
+                                                <th  class="border-top-0"><b>현찰판매</b></th>
+                                                <th  class="border-top-0"><b>송금받을때</b></th>
+                                                <th  class="border-top-0"><b>송금보낼때</b></th>
                                             </tr>
                                         </thead>
                                         <!-- 윤창, 진환 : 테이블 이름 검색 결과 뿌리기 -->
@@ -137,13 +153,73 @@
                                            
                                             <tr th:each="country, i : ${country}" th:onclick="|location.href='@{/DB국가수정/country/{countryNum}(countryNum = ${country.countryNum})}'|">
                                                 <td th:if="${country.countryNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10"></td>
-                                                <td th:unless="${country.countryNum != null}" th:colspan="7" style="text-align:center"> 데이터 없음</td>
+                                                <td th:unless="${country.countryNum != null}" th:colspan="25" style="text-align:center"> 데이터 없음</td>
                                                 <td th:if="${country.countryNum != null}" th:text="${country.countryNum}"></td>
                                                 <td th:if="${country.countryNum != null}" th:text="${country.countryName}"></td>
                                                 <td th:if="${country.countryNum != null}" th:text="${country.continent}"></td>
                                                 <td th:if="${country.countryNum != null}" th:text="${country.entranceLevel}"></td>
                                                 <td th:if="${country.countryNum != null}" th:text="${country.embassyLink}"></td>
-                                                <td th:if="${country.countryNum != null}" th:utext="${country.countryNote}"></td>
+                                                
+<!--------------------------------------------------------------------CovidData 시작 --------------------------------------------------------->
+                                                <td th:if="${country.countryNum != null}" th:each="cd : ${country.covidData}">
+                                                	<span th:text="${cd.totalCovidCount}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cd : ${country.covidData}">
+                                                	<span th:text="${cd.newCovidCount1}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cd : ${country.covidData}">
+                                                	<span th:text="${cd.newCovidCount60}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cd : ${country.covidData}">
+                                                	<span th:text="${cd.milionCount}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cd : ${country.covidData}">
+                                                	<span th:text="${cd.samang}"></span>
+                                                </td>
+<!--------------------------------------------------------------------CovidVaccine 시작 --------------------------------------------------------->
+                                                <td th:if="${country.countryNum != null}" th:each="cvd : ${country.covidVaccinData}">
+                                                	<span th:text="${cvd.totalInjectionCount}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cvd : ${country.covidVaccinData}">
+                                                	<span th:text="${cvd.newInjectionCount1}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cvd : ${country.covidVaccinData}">
+                                                	<span th:text="${cvd.newInjectionCount60}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cvd : ${country.covidVaccinData}">
+                                                	<span th:text="${cvd.injectionCompleteCount}"></span>
+                                                </td>
+                                                <td th:if="${country.countryNum != null}" th:each="cvd : ${country.covidVaccinData}">
+                                                	<span th:text="${cvd.injectionCompletePercent}"></span>
+                                                </td>
+<!--------------------------------------------------------------------ExchangeRate시작 시작 --------------------------------------------------------->
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.currencyNum}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.currencyName}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.tradingStandardRate}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.joenIlDaeBi}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.joenIlDaeBiRate}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.buyingCash}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.sellingCash}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.takeMoney}"></span>
+                                                </td>
+												<td th:if="${country.countryNum != null}" th:each="er : ${country.exchangeRate}">
+                                                	<span th:text="${er.giveMoney}"></span>
+                                                </td>
                                               </tr>
                                         </tbody>
                                     </table>

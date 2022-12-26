@@ -140,16 +140,17 @@
                                         <tbody>
                                             <!-- 윤창, 진환 : onClick은 해당 회원 정보로 이동 -->
                                             <tr th:each="member, i : ${member}"  th:onclick="|location.href='@{/회원수정/{pgNum}(pgNum = ${member.memberNum})}'|">
-                                                <td th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
-                                                <td th:text="${member.memberNum}">가나</td>
-                                                <td th:text="${member.memberId}"></td>
-                                                <td th:text="${member.memberName}">5</td>
-                                                <td th:text="${member.memberNickName}">1</td>
-                                                <td th:utext="${member.memberPhoneNum}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
-                                                <td th:utext="${member.memberEmail}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
-                                                <td th:utext="${member.memberAdvAgree}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
-                                                <td th:utext="${member.signUpDate}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
-                                                <td th:utext="${member.memberIsjoin}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
+                                                <td th:unless="${member.memberNum != null}"  th:colspan="10" style="text-align:center"> 데이터 없음</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberNum}">가나</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberId}"></td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberName}">5</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberNickName}">1</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberPhoneNum}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberEmail}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberAdvAgree}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.signUpDate}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+                                                <td th:if="${member.memberNum != null}" th:text="${member.memberIsjoin}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
                                             </tr>
                                         </tbody>
                                     </table>
