@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.City;
+import com.hero.herolanding.domain.Country;
 import com.hero.herolanding.dto.AdminCityDTO;
 import com.hero.herolanding.service.AdminCityService;
 
@@ -72,6 +73,9 @@ public class AdminCityController {
 		
 		// 페이지에 담길 검색한 데이터 10개씩 뽑아오기
 		List<City> city = adminCityService.findSearchData(select, search, nowPage);
+		if(city.size() == 0) {
+			city.add(new City());
+		}
 		
 		// 전체 페이징 메소드
 		List<Integer> totalPageCnt = adminCityService.paging(nowPage, totalPage);

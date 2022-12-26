@@ -95,14 +95,12 @@
                                         		<option th:case="paperTitle">서류명</option>
                                         		<option th:case="paperAuthorityName">발급기관명</option>
                                         		<option th:case="paperAuthorityLink">발급기관링크</option>
-                                        		<option th:case="paperNote">비고</option>
                                         		<option>==선택==</option>
                                         	</th:block>
                                             <option th:value="paperNum">서류번호</option>
                                             <option th:value="paperTitle">서류명</option>
                                             <option th:value="paperAuthorityName">발급기관명</option>
                                             <option th:value="paperAuthorityLink">발급기관링크</option>
-                                            <option th:value="paperNote">비고</option>
                                         </select>
                                     </div>
                                     <div class="col m-2 col-md-6">
@@ -125,19 +123,18 @@
                                                 <th class="border-top-0"><b>서류명</b></th>
                                                 <th class="border-top-0"><b>발급기관명</b></th>
                                                 <th class="border-top-0"><b>발급기관링크</b></th>
-                                                <th class="border-top-0"><b>비고</b></th>
                                             </tr>
                                         </thead>
                                         <!-- 윤창, 진환 : 테이블 이름 검색 결과 뿌리기 -->
                                         <tbody th:each="paper, i : ${paper}" >
                                             <!-- 윤창, 진환 : onClick은 해당 테이블로 이동 -->
                                            	<tr th:each="paper, i : ${paper}" th:onclick="|location.href='@{/DB서류수정/paper/{paperNum}(paperNum = ${paper.paperNum})}'|">
-                                               	<td th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
-                                               	<td th:text="${paper.paperNum}">1</td>
-                                               	<td th:text="${paper.paperTitle}"></td>
-                                                <td th:text="${paper.paperAuthorityName}">1</td>
-                                                <td th:text="${paper.paperAuthorityLink}">가나</td>
-                                                <td th:text="${paper.paperNote}">http://overseas.mofa.go.kr/gh-ko/index.do</td>
+                                               	<td th:if="${paper.paperNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10"></td>
+                                               	<td th:unless="${paper.paperNum != null}"  th:colspan="7" style="text-align:center">데이터 없음</td>
+                                               	<td th:if="${paper.paperNum != null}" th:text="${paper.paperNum}">1</td>
+                                               	<td th:if="${paper.paperNum != null}" th:text="${paper.paperTitle}"></td>
+                                                <td th:if="${paper.paperNum != null}" th:text="${paper.paperAuthorityName}">1</td>
+                                                <td th:if="${paper.paperNum != null}" th:text="${paper.paperAuthorityLink}">가나</td>
                                            	</tr>
                                         </tbody>
                                     </table>

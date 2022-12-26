@@ -14,6 +14,7 @@ import com.hero.herolanding.domain.City;
 import com.hero.herolanding.domain.Continent;
 import com.hero.herolanding.domain.Country;
 import com.hero.herolanding.domain.CountryPaper;
+import com.hero.herolanding.domain.CovidData;
 import com.hero.herolanding.domain.EntranceLevel;
 import com.hero.herolanding.domain.Inspection;
 import com.hero.herolanding.domain.Member;
@@ -174,6 +175,7 @@ public class AdminCountryService {
 		// 찾아온 국가들 담아줄 DTO
 		AdminCountryDTO countrydto = new AdminCountryDTO();
 		
+		
 		// 찾아온 국가를 빈 CountryDTO 객체에 담아주기
 		countrydto.setCountryNum(country.get(0).getCountryNum());
 		countrydto.setCountryName(country.get(0).getCountryName());
@@ -184,7 +186,6 @@ public class AdminCountryService {
 		
 		return countrydto;
 	}
-   
    // 국가 데이터 수정
    @Transactional
    public void updateData(AdminCountryDTO countrydto){
@@ -197,10 +198,17 @@ public class AdminCountryService {
 	   c.setCountryNote(countrydto.getCountryNote());
    }
    
+   
+   
    @Transactional
    public void deleteCountry(int countryNum) {
 	   adminCountryRepository.deleteCountry(countryNum);
 	}
+
+
+
+
+
 
 
 

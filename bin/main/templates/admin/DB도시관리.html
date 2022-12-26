@@ -120,8 +120,7 @@
                                                 <th class="border-top-0"><b>도시번호</b></th>
                                                 <th class="border-top-0"><b>도시명</b></th>
                                                 <th class="border-top-0"><b>입국조치번호</b></th>
-<!--                                                 <th class="border-top-0"><b>국가명</b></th> -->
-<!--                                                 <th class="border-top-0"><b>검사</b></th> -->
+                                                <th class="border-top-0"><b>국가번호</b></th>
                                             </tr>
                                         </thead>
                                         <!-- 윤창, 진환 : 테이블 이름 검색 결과 뿌리기 -->
@@ -130,12 +129,15 @@
                                             <tbody>
 <!--                                             윤창, 진환 : onClick은 해당 테이블로 이동 -->
                                             <tr th:each="city, i : ${city}" th:onclick="|location.href='@{/DB도시수정/city/{cityNum}(cityNum = ${city.cityNum})}'|">
-                                                <td th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
-                                                <td th:text="${city.cityNum}">1</td>
-                                                <td th:text="${city.cityName}"></td>
-                                                <td th:text="${city.entranceLevel}">가나</td>
-<!--                                                 <td th:text="${city.country.countryName}">5</td> -->
-<!--                                                 <td th:text="${city.inspections.inspectionNum}">1</td> -->
+                                                <td th:if="${city.cityNum != null}" th:text="${i.count} + 10 * ${nowPage} - 10">1</td>
+                                                <td th:unless="${city.cityNum != null}" th:colspan="5" style="text-align:center"> 데이터 없음</td>
+                                                <td th:if="${city.cityNum != null}" th:text="${city.cityNum}"></td>
+                                                <td th:if="${city.cityNum != null}" th:text="${city.cityName}"></td>
+                                                <td th:if="${city.cityNum != null}" th:text="${city.entranceLevel}"></td>
+                                                
+                                                <td th:if="${city.cityNum != null}" th:each="ctr : ${city.country}">
+                                                	<span th:text="${ctr.countryNum}"></span>
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>

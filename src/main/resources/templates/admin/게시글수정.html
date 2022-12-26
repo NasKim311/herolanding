@@ -165,13 +165,14 @@
                                                     class="form-control ps-0 form-control-line">
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">글내용</label>
                                         <div class="col-md-12">
-                                            <input type="text" value="1" th:field="*{boardContents}"
-                                                    class="form-control ps-0 form-control-line">
+                                            <textarea id="summernote" th:field="*{boardContents}">가나는 쵸콜렛이지~~</textarea>
                                         </div>
                                     </div>
+                                    
                                     <div class="form-group">
                                         <label class="col-md-12 mb-0">조회수</label>
                                         <div class="col-md-12">
@@ -249,14 +250,14 @@
                                             </div>
                                             <div class="col-6 text-end">
                                                 
+                                                	<button class="btn btn-secondary mx-auto mx-md-0 text-white"
+                                                	th:onclick="|location.href='@{/게시글관리/1}'|" type="reset">취소</button>
                                                 
                                                 <button class="btn btn-success mx-auto mx-md-0 text-white" type="submit">수정</button>
                                             </div>
                                         </div>
                                     </div>
                                 </form>
-                                                	<button class="btn btn-secondary mx-auto mx-md-0 text-white"
-                                                	th:onclick="|location.href='@{/게시글관리/1}'|">취소</button>
                             </div>
                         </div>
                     </div>

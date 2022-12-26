@@ -31,15 +31,13 @@
         <div class="border rounded bg-dark text-light">
             <div class="container p-3">
                 <!-- https://news.google.com/covid19/map?hl=ko&gl=KR&ceid=KR%3Ako&state=4 페이지 참고 바람 -->
-	            <div class="mb-2 text-justify">
-	                <span class="h5" ><b th:text="${country.countryName}">대한민국</b></span>
-	                <span>은(는)&nbsp;</span>
-	                <span class="h5 mx-0"><b th:text="${country.EntranceLevel.getDescription()}">한국발 입국자에 대한 입국관련 조치 해제</b></span>
-	                <span>&nbsp;상태입니다.</span>
+	            <div class="mb-2"><span class="h5 m-0 p-0"><b th:text="${country.countryName}">대한민국</b></span><span>은(는)&nbsp;</span>
+	                <span class="h5 mx-0"><b th:text="${country.EntranceLevel.getDescription()}">한국발 입국자에 대한 입국관련 조치 해제</b></span><span>상태입니다.</span>
                 </div>
-                <div class="text-justify" >
-                	<a th:onclick="|window.open('@{{embassyLink}(embassyLink=${country.embassyLink})}')|"><span th:text="${country.countryName}"><b  >대한민국</b></span>
-                	<span>의 대사관 링크로 이동하기&nbsp;Click!</span></a>
+                <div >
+                	<a class="link" th:onclick="|window.open('@{{embassyLink}(embassyLink=${country.embassyLink})}')|">
+                		<span class="h5 fw-bold" th:text="${country.countryName}">
+                		대한민국</span><span>의 대사관 링크로 이동하기</span></a>
                 </div>
             </div>
         </div>
