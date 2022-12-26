@@ -30,7 +30,7 @@ public class QMember extends EntityPathBase<Member> {
 
     public final StringPath memberId = createString("memberId");
 
-    public final BooleanPath memberIsjoin = createBoolean("memberIsjoin");
+    public final NumberPath<Long> memberIsjoin = createNumber("memberIsjoin", Long.class);
 
     public final StringPath memberName = createString("memberName");
 

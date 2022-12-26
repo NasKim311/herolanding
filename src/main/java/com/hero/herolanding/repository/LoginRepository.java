@@ -42,7 +42,7 @@ public class LoginRepository {
 		queryFactory = new JPAQueryFactory(em);
 
 		Member loginMemberData = queryFactory.selectFrom(member)
-				.where(member.memberId.eq(loginId), member.memberPw.eq(loginPw)).fetchOne();
+				.where(member.memberId.eq(loginId), member.memberPw.eq(loginPw), member.memberIsjoin.eq(0L)).fetchOne();
 
 		return loginMemberData;
 	}
