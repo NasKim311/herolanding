@@ -12,7 +12,7 @@
     <script type="text/javascript">
         (function () {
             // 본인의 API keys를 넣어주세요.
-            emailjs.init("15A73AiaHjnvp1DBd");
+            emailjs.init("gtos3lQPaG38HzxrW");
         })();
     </script>
     <style>
@@ -331,20 +331,21 @@
                             <label for="emailmessage" class="col-form-label">내용</label>
                             <textarea class="form-control" id="emailmessage"></textarea>
                         </div>
-
-                        <div class="modal-footer">
-                            <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-                            <!-- sendMail 발송하기 버튼 -->
-                            <th:block th:if="${session.loginMember != null}">
-                                <!-- 전송하고 닫기 -->
-                                <button type="submit" class="btn btn-primary" onclick="check2()">발송하기</button>
-                            </th:block>
-                            <th:block th:unless="${session.loginMember != null}">
-                                <button type="submit" class="btn btn-primary" onclick="check1()">발송하기</button>
-                            </th:block>
-                        </div>
                     </form>
                 </div>
+
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal" onclick="문의하기모달창초기화()">닫기</button>
+                    <!-- sendMail 발송하기 버튼 -->
+                    <th:block th:if="${session.loginMember != null}">
+                        <!-- 전송하고 닫기 -->
+                        <button class="btn btn-primary" onclick="check2()">발송하기</button>
+                    </th:block>
+                    <th:block th:unless="${session.loginMember != null}">
+                        <button class="btn btn-primary" onclick="check1()">발송하기</button>
+                    </th:block>
+                </div>
+
             </div>
         </div>
     </div>
@@ -419,120 +420,9 @@
                 $dropdown2.find($dropdownMenu2).removeClass(showClass2);
             }
         });
-			var serviceKey = 'service_7o8rheo';
-			var templatesKey = 'template_39lbtdb';
-        // 비회원 문의 메일 전송
-        function sendMail1() {
-            var name = document.getElementById("name").value;
-            var phone = document.getElementById("phone").value;
-            var email = document.getElementById("email").value;
-
-            var title = document.getElementById("title").value;
-            var message = document.getElementById("message").value;
-            // 본인의 서비스 키와 템플릿 키를 입력해주세요.
-            emailjs.send("service_6kovirc", "template_n4u76fq", {
-                name: name,
-                phone: phone,
-                email: email,
-                title: title,
-                message: message
-            }).then(function (response) {
-                alert("문의가 접수되었습니다.");
-                console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-            }, function (err) {
-                alert("문의 접수에 실패했습니다.");
-                console.log("FAILED. error=", err);
-            });
-        }
-
-
-
-
-        // 문의하기 벨리데이션 체크
-        function check1() {
-            var name = document.getElementById("name").value;
-            var phone = document.getElementById("phone").value;
-            var email = document.getElementById("email").value;
-
-            var title = document.getElementById("title").value;
-            var message = document.getElementById("message").value;
-
-            if (name == "") {
-                alert("이름을 입력해주세요.");
-                return false;
-                // 한글만
-            } else if (!name.match(/^[가-힣]*$/)) {
-                alert("이름은 한글만 입력해주세요.");
-                return false;
-            } else if (phone == "") {
-                alert("연락처를 입력해주세요.");
-                return false;
-                // 숫자만
-            } else if (!phone.match(/^[0-9]*$/)) {
-                alert("연락처는 숫자만 입력해주세요.");
-                return false;
-            } else if (email == "") {
-                alert("이메일을 입력해주세요.");
-                return false;
-                // 이메일 정규 표현식
-            } else if (!email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
-                alert("이메일 형식이 올바르지 않습니다.");
-                return false;
-            } else if (title == "") {
-                alert("제목을 입력해주세요.");
-                return false;
-            } else if (message == "") {
-                alert("내용을 입력해주세요.");
-                return false;
-            } else {
-                sendMail1();
-                return true;
-            }
-        }
-
-        // check2 제목 내용 벨리데이션 체크
-        function check2() {
-            var title = document.getElementById("title").value;
-            var message = document.getElementById("message").value;
-
-            if (title == "") {
-                alert("제목을 입력해주세요.");
-                return false;
-            } else if (message == "") {
-                alert("내용을 입력해주세요.");
-                return false;
-            } else {
-                sendMail2();
-                return true;
-            }
-        }
-
-        // 회원용 문의 메일 전송
-        function sendMail2() {
-            var name = document.getElementById("name").textContent;
-            var phone = document.getElementById("phone").textContent;
-            var email = document.getElementById("email").textContent;
-
-            var title = document.getElementById("title").value;
-            var message = document.getElementById("message").value;
-            // 본인의 서비스 키와 템플릿 키를 입력해주세요.
-            emailjs.send("service_6kovirc", "template_n4u76fq", {
-                name: name,
-                phone: phone,
-                email: email,
-
-                title: title,
-                message: message
-            }).then(function (response) {
-                alert("문의가 접수되었습니다.");
-                console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
-            }, function (err) {
-                alert("문의 접수에 실패했습니다.");
-                console.log("FAILED. error=", err);
-            });
-        }
-
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="/js/email.js"></script>
 </body>
 
 </html>
