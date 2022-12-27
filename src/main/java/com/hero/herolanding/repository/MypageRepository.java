@@ -5,7 +5,11 @@ import javax.persistence.EntityManager;
 import org.springframework.stereotype.Repository;
 
 import static com.hero.herolanding.domain.QMember.*;
+import static com.hero.herolanding.domain.QBoard.*;
 
+import java.util.List;
+
+import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Member;
 import com.querydsl.jpa.JPQLQueryFactory;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -48,6 +52,11 @@ public class MypageRepository {
 		
 		em.clear();
 		em.flush();
+	}
+
+//--------<BoardCountByMemberId() / 해당 아이디로 작성한 모든 게시글들을 리턴하는 메서드>-------------------------------------------------------------------------------------	
+	public List<Board> BoardCountByMemberId(String loginId) {
+		return queryFactory.selectFrom(board).where(board.member.memberId.eq(loginId)).fetch();
 	}
 	
 	

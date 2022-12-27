@@ -119,11 +119,21 @@ public class MypageController {
 		}
 
 		// 마지막 페이지를 지정하는 조건
-		if (page > (boardService.BoardCount().size() / 10) + 1) {
-			page = (boardService.BoardCount().size() / 10) + 1;
+		if (page > (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1) {
+			page = (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1;
+		}
+
+		model.addAttribute("current", page / 10); // 페이징 처리를 위한 변수
+
+		if ((page / 10) * 10 + 10 < (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1) {
+			model.addAttribute("last", 9);
+		} else {
+			model.addAttribute("last", ((mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1) % 10);
 		}
 		
-		model.addAttribute("current", page / 10); // 페이징 처리를 위한 변수
+		model.addAttribute("list", boardService.findAll(page));
+		model.addAttribute("WholeCount", (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1);
+		model.addAttribute("now", page);
 
 		return "mypage/내가작성한게시글페이지";
 	}
