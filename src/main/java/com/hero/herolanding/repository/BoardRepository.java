@@ -67,7 +67,7 @@ public class BoardRepository {
 		else if(text.equals("content"))
 		{
 			return em.createQuery(
-					"select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum and b.boardContents LIKE :search order by b.boardNum desc")
+					"select b.boardNum,b.boardTitle, m.memberNickName, b.insertDate,b.boardCount from Board b INNER JOIN Member m on b.member = m.memberNum where CONTAINS(b.boardContents, :search) > 0 order by b.boardNum desc")
 					.setParameter("search", temp).getResultList();
 		}
 		else if(text.equals("writer"))
