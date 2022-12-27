@@ -1,9 +1,12 @@
 package com.hero.herolanding.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import com.hero.herolanding.domain.Board;
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.repository.LoginRepository;
 import com.hero.herolanding.repository.MypageRepository;
@@ -38,5 +41,15 @@ public class MypageService {
 		
 		mypageRepository.deleteMemberData(loginId);
 	}
+	
+//--------<BoardCountByMemberId() / 해당 아이디로 작성한 모든 게시글들을 리턴하는 메서드>-------------------------------------------------------------------------------------	
+	@Transactional
+	public List<Board> BoardCountByMemberId(String loginId){
+		System.out.println("22222222222");
+		System.out.println("ID : "+loginId);
+		System.out.println("service : "+mypageRepository.BoardCountByMemberId(loginId));
+		return mypageRepository.BoardCountByMemberId(loginId);
+	}
+	
 
 } // MypageService class
