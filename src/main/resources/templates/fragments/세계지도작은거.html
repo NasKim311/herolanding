@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+
+    <style>
+        #container {
+            height: 500px;
+            min-width: 310px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .loading {
+            margin-top: 10em;
+            text-align: center;
+            color: gray;
+        }
+    </style>
+
+</head>
+
+<body th:fragment="세계지도작은거">
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/accessibility.js"></script>
+
+
+   	<div id="container" style="height: 40vh !important;"></div>
+
+
+
+    <script>
+        (async () => {
+
+            const topology = await fetch(
+                '/js/gi2.json'
+            ).then(response => response.json());
+
+            Highcharts.getJSON('/js/country.json', function (data) {
+
+                // Prevent logarithmic errors in color calulcation
+                data.forEach(function (p) {
+                    p.value = (p.value < 1 ? 1 : p.value);
+                });
+
+                // Initialize the chart
+                Highcharts.mapChart('container', {
+                    chart: {
+                        map: topology,
+                        // backgroundColor top white bottom black
+                        backgroundColor: {
+                            linearGradient: [0, 0, 0, 300],
+                            stops: [
+                                [0, 'rgb(50, 50, 80)'],
+                                [1, 'rgb(0, 0, 0)']
+                            ]
+                        },
+                        // 화면 높이 설정
+//                        	height: '600',
+
+                    },
+                    // 제목에 이미지 넣기
+                    title: {
+
+                        useHTML: true,
+
+                        text: '<img src="/assets/images/네비로고.png" alt="히어로랜딩_로고" width="300" class="d-inline-block align-text-top">',
+                        style: {
+                            color: 'white',
+                            textTransform: 'uppercase',
+                            fontSize: '65px',
+                            fontWeight: 'bold',
+                        }
+                    },
+                    // 부제목
+                    subtitle: {
+                        text: '스크롤로 지도를 확대 / 축소 할 수있으며 나라를 클릭해 바로 검색할 수 있습니다.',
+                        style: {
+                            color: '#E0E0E3',
+                            // textTransform: 'uppercase'
+                        }
+                    },
+
+                    mapNavigation: {
+                        enabled: false,
+                        enableDoubleClickZoomTo: true,
+                        // 휠 옵션
+                        enableMouseWheelZoom: true
+                    },
+
+                    // 푸터 없애기
+                    credits: {
+                        enabled: false
+                    },
+                    // 하단 메뉴 없애기
+
+                    colorAxis: {
+                        min: 1,
+                        max: 1000000,
+                        type: 'logarithmic'
+                    },
+
+                    //proxy 버튼 없애기
+                    exporting: {
+                        enabled: false
+                    },
+
+                    //highcharts-legend 없애기
+                    legend: {
+                        enabled: false
+                    },
+                    // 클릭 이벤트
+                    plotOptions: {
+                        series: {
+                            events: {
+                                click: function (e) {
+                                    location.href = '/search?country=' + e.point.name
+
+
+                                }
+                            }
+                        }
+                    },
+
+                    series: [{
+                        data: data,
+                        joinBy: ['iso-a3', 'code3'],
+                        name: '코로나 일일 확진자 수 ',
+                        states: {
+                            hover: {
+                                color: '#0e0c32'
+                            }
+                        },
+                        tooltip: {
+                            valueSuffix: '명'
+                        }
+                    }]
+                });
+            });
+
+        })();
+    </script>
+</body>
+
+</html>
