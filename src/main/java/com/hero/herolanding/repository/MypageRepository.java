@@ -58,8 +58,7 @@ public class MypageRepository {
 	public List<Board> BoardCountByMemberId(String loginId) {
 		System.out.println("333333333");
 		System.out.println("ID3 : "+loginId);
-		System.out.println(board.member.memberId);
-		return queryFactory.selectFrom(board).where(board.member.memberId.eq(loginId)).fetch();
+		return em.createQuery("select b from Board b where b.member.memberId = :text " , Board.class).setParameter("text", loginId).getResultList();
 	}
 	
 	

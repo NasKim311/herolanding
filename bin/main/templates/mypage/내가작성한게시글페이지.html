@@ -130,13 +130,13 @@
                                         </thead>
                                         <tbody>
 											<tr th:each="list : ${list}"
-											th:onclick="|location.href='@{/board/{id}/view(id=${list[0]})}'|">
-											<th scope="row" th:text="${list[0]}">1</th>
-											<td href="/board/view" th:href="@{/board/{id}/view(id=${list[0]})}"
-												th:text="${list[1]}">게시글 제목</td>
-											<td th:text="${list[2]}">작성자</td>
-											<td th:text="${list[3]}">2021-01-01</td>
-											<td th:text="${list[4]}">0</td>
+											th:onclick="|location.href='@{/board/{id}/view(id=${list.boardNum})}'|">
+											<th scope="row" th:text="${list.boardNum}">1</th>
+											<td href="/board/view" th:href="@{/board/{id}/view(id=${list.boardNum})}"
+												th:text="${list.boardTitle}">게시글 제목</td>
+											<td th:text="${list.member.memberId}">작성자</td>
+											<td th:text="${list.insertDate}">2021-01-01</td>
+											<td th:text="${list.boardCount}">0</td>
                                             </tr>
                                         </tbody>
                                     </table>

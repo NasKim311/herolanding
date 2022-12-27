@@ -47,7 +47,7 @@ public class MypageService {
 	public List<Board> BoardCountByMemberId(String loginId){
 		System.out.println("22222222222");
 		System.out.println("ID : "+loginId);
-		System.out.println("service : "+mypageRepository.BoardCountByMemberId(loginId));
+		System.out.println("service : "+mypageRepository.BoardCountByMemberId(loginId).size());
 		return mypageRepository.BoardCountByMemberId(loginId);
 	}
 	

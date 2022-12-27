@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.hero.herolanding.domain.Member;
 import com.hero.herolanding.dto.UpdateMemberDTO;
+import com.hero.herolanding.repository.LoginRepository;
 import com.hero.herolanding.service.BoardService;
 import com.hero.herolanding.service.MypageService;
 import com.hero.herolanding.session.SessionConst;
@@ -25,6 +26,7 @@ public class MypageController {
 
 	private final MypageService mypageService;
 	private final BoardService boardService;
+	private final LoginRepository loginRepository;
 
 //--------<indexPage() / 로고 클릭시 메인화면으로 이동 메서드>-------------------------------------------------------------------------------------	
 	@GetMapping("/mypage/index")
@@ -112,28 +114,30 @@ public class MypageController {
 
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("loginMember");
+		
+		Member m = loginRepository.findByLoginId(member.getMemberId());
 
 		// 첫 페이지를 무조건 1로 만드는 조건(첫 페이지 지정 조건)
 		if (page < 1) {
 			page = 1;
 		}
-
+		System.out.println(mypageService.BoardCountByMemberId(m.getMemberId()).size());
 		// 마지막 페이지를 지정하는 조건
-		if (page > (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1) {
-			page = (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1;
+		if (page > (mypageService.BoardCountByMemberId(m.getMemberId()).size() / 10) + 1) {
+			page = (mypageService.BoardCountByMemberId(m.getMemberId()).size() / 10) + 1;
 		}
-		System.out.println("size :  "+mypageService.BoardCountByMemberId(member.getMemberId()).size());
+		System.out.println("size :  "+mypageService.BoardCountByMemberId(m.getMemberId()).size());
 		model.addAttribute("current", page / 10); // 페이징 처리를 위한 변수
 
-		if ((page / 10) * 10 + 10 < (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1) {
+		if ((page / 10) * 10 + 10 < (mypageService.BoardCountByMemberId(m.getMemberId()).size() / 10) + 1) {
 			model.addAttribute("last", 9);
 		} else {
 			model.addAttribute("last",
-					((mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1) % 10);
+					((mypageService.BoardCountByMemberId(m.getMemberId()).size() / 10) + 1) % 10);
 		}
-		model.addAttribute("list", boardService.findAll(page));
-		System.out.println("findAll : " + boardService.findAll(page));
-		model.addAttribute("WholeCount", (mypageService.BoardCountByMemberId(member.getMemberId()).size() / 10) + 1);
+		
+		model.addAttribute("list", mypageService.BoardCountByMemberId(m.getMemberId()));
+		model.addAttribute("WholeCount", (mypageService.BoardCountByMemberId(m.getMemberId()).size() / 10) + 1);
 		model.addAttribute("now", page);
 
 		return "mypage/내가작성한게시글페이지";
