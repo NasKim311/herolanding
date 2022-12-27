@@ -13,38 +13,38 @@ const templateKey = 'template_n4u76fq';
 
 // 비회원용 문의하기 벨리데이션 체크
 function check1() {
-    var name = document.getElementById("name").value;
-    var phone = document.getElementById("phone").value;
-    var email = document.getElementById("email").value;
+    var emailname = document.getElementById("emailname").value;
+    var emailphone = document.getElementById("emailphone").value;
+    var emailemail = document.getElementById("emailemail").value;
 
-    var title = document.getElementById("title").value;
-    var message = document.getElementById("message").value;
+    var emailtitle = document.getElementById("emailtitle").value;
+    var emailmessage = document.getElementById("emailmessage").value;
 
-    if (name == "") {
+    if (emailname == "") {
         alert("이름을 입력해주세요.");
         return false;
         // 한글만
-    } else if (!name.match(/^[가-힣]*$/)) {
+    } else if (!emailname.match(/^[가-힣]*$/)) {
         alert("이름은 한글만 입력해주세요.");
         return false;
-    } else if (phone == "") {
+    } else if (emailphone == "") {
         alert("연락처를 입력해주세요.");
         return false;
         // 숫자만
-    } else if (!phone.match(/^[0-9]*$/)) {
+    } else if (!emailphone.match(/^[0-9]*$/)) {
         alert("연락처는 숫자만 입력해주세요.");
         return false;
-    } else if (email == "") {
+    } else if (emailemail == "") {
         alert("이메일을 입력해주세요.");
         return false;
         // 이메일 정규 표현식
-    } else if (!email.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
+    } else if (!emailemail.match(/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i)) {
         alert("이메일 형식이 올바르지 않습니다.");
         return false;
-    } else if (title == "") {
+    } else if (emailtitle == "") {
         alert("제목을 입력해주세요.");
         return false;
-    } else if (message == "") {
+    } else if (emailmessage == "") {
         alert("내용을 입력해주세요.");
         return false;
     } else {
@@ -55,13 +55,13 @@ function check1() {
 
 // 회원용 문의하기 벨리데이션 체크
 function check2() {
-    var title = document.getElementById("title").value;
-    var message = document.getElementById("message").value;
+    var emailtitle = document.getElementById("emailtitle").value;
+    var emailmessage = document.getElementById("emailmessage").value;
 
-    if (title == "") {
+    if (emailtitle == "") {
         alert("제목을 입력해주세요.");
         return false;
-    } else if (message == "") {
+    } else if (emailmessage == "") {
         alert("내용을 입력해주세요.");
         return false;
     } else {
@@ -72,18 +72,18 @@ function check2() {
 
 // 비회원 문의 메일 전송
 function sendMail1() {
-    var name = document.getElementById("name").value;
-    var phone = document.getElementById("phone").value;
-    var email = document.getElementById("email").value;
-    var title = document.getElementById("title").value;
-    var message = document.getElementById("message").value;
+    var emailname = document.getElementById("emailname").value;
+    var emailphone = document.getElementById("emailphone").value;
+    var emailemail = document.getElementById("emailemail").value;
+    var emailtitle = document.getElementById("emailtitle").value;
+    var emailmessage = document.getElementById("emailmessage").value;
     // 본인의 서비스 키와 템플릿 키를 입력해주세요.
     emailjs.send(serviceKey, templateKey, {
-        name: name,
-        phone: phone,
-        email: email,
-        title: title,
-        message: message
+        name: emailname,
+        phone: emailphone,
+        email: emailemail,
+        title: emailtitle,
+        message: emailmessage
     }).then(function (response) {
         console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
         alert("문의가 접수되었습니다.");
@@ -97,19 +97,19 @@ function sendMail1() {
 
 // 회원용 문의 메일 전송
 function sendMail2() {
-    var name = document.getElementById("name").textContent;
-    var phone = document.getElementById("phone").textContent;
-    var email = document.getElementById("email").textContent;
+    var emailname = document.getElementById("emailname").textContent;
+    var emailphone = document.getElementById("emailphone").textContent;
+    var emailemail = document.getElementById("emailemail").textContent;
 
-    var title = document.getElementById("title").value;
-    var message = document.getElementById("message").value;
+    var emailtitle = document.getElementById("emailtitle").value;
+    var emailmessage = document.getElementById("emailmessage").value;
     // 본인의 서비스 키와 템플릿 키를 입력해주세요.
     emailjs.send(serviceKey, templateKey, {
-        name: name,
-        phone: phone,
-        email: email,
-        title: title,
-        message: message
+        name: emailname,
+        phone: emailphone,
+        email: emailemail,
+        title: emailtitle,
+        message: emailmessage
     }).then(function (response) {
         console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
         alert("문의가 접수되었습니다.");
