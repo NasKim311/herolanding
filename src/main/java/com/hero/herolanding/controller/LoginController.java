@@ -70,7 +70,7 @@ public class LoginController {
 		
 		// 로그인 계정이 관리자 계정일 경우(admin)
 		if(loginMemberData.getMemberId().equals("admin")) {
-			return "admin/관리자페이지";
+			return "redirect:/admin";
 		}
 
 		// 로그인 성공일 경우
