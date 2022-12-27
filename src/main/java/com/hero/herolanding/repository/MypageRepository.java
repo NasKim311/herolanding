@@ -56,6 +56,9 @@ public class MypageRepository {
 
 //--------<BoardCountByMemberId() / 해당 아이디로 작성한 모든 게시글들을 리턴하는 메서드>-------------------------------------------------------------------------------------	
 	public List<Board> BoardCountByMemberId(String loginId) {
+		System.out.println("333333333");
+		System.out.println("ID3 : "+loginId);
+		System.out.println(board.member.memberId);
 		return queryFactory.selectFrom(board).where(board.member.memberId.eq(loginId)).fetch();
 	}
 	

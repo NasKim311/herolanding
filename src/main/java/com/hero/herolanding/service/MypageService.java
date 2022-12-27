@@ -45,6 +45,9 @@ public class MypageService {
 //--------<BoardCountByMemberId() / 해당 아이디로 작성한 모든 게시글들을 리턴하는 메서드>-------------------------------------------------------------------------------------	
 	@Transactional
 	public List<Board> BoardCountByMemberId(String loginId){
+		System.out.println("22222222222");
+		System.out.println("ID : "+loginId);
+		System.out.println("service : "+mypageRepository.BoardCountByMemberId(loginId));
 		return mypageRepository.BoardCountByMemberId(loginId);
 	}
 	

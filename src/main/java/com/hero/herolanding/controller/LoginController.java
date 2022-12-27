@@ -67,6 +67,11 @@ public class LoginController {
 			model.addAttribute("msg", "로그인 실패");
 			return "login/login";
 		}
+		
+		// 로그인 계정이 관리자 계정일 경우(admin)
+		if(loginMemberData.getMemberId().equals("admin")) {
+			return "admin/관리자페이지";
+		}
 
 		// 로그인 성공일 경우
 		HttpSession session = request.getSession(); // 세션 사용
