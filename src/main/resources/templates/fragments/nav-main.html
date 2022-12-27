@@ -292,44 +292,44 @@
                     <form>
                         <!-- 보낸사람 -->
                         <th:block th:if="${session.loginMember != null}">
-                            <div class="d-none" th:text="${session.loginMember.memberName}" id="name"></div>
+                            <div class="d-none" th:text="${session.loginMember.memberName}" id="emailname"></div>
                         </th:block>
                         <th:block th:unless="${session.loginMember != null}">
                             <div class="mb-3">
-                                <label for="name" class="col-form-label">이름</label>
-                                <input type="text" class="form-control" id="name">
+                                <label for="emailname" class="col-form-label">이름</label>
+                                <input type="text" class="form-control" id="emailname">
                             </div>
                         </th:block>
 
                         <!-- 연락처 -->
                         <th:block th:if="${session.loginMember != null}">
-                            <div class="d-none" th:text="${session.loginMember.memberPhoneNum}" id="phone"></div>
+                            <div class="d-none" th:text="${session.loginMember.memberPhoneNum}" id="emailphone"></div>
                         </th:block>
                         <th:block th:unless="${session.loginMember != null}">
                             <div class="mb-3">
-                                <label for="phone" class="col-form-label">연락처</label>
-                                <input type="text" class="form-control" id="phone">
+                                <label for="emailphone" class="col-form-label">연락처</label>
+                                <input type="text" class="form-control" id="emailphone">
                             </div>
                         </th:block>
 
                         <!-- 메일 주소 -->
                         <th:block th:if="${session.loginMember != null}">
-                            <div class="d-none" th:text="${session.loginMember.memberEmail}" id="email"></div>
+                            <div class="d-none" th:text="${session.loginMember.memberEmail}" id="emailemail"></div>
                         </th:block>
                         <th:block th:unless="${session.loginMember != null}">
                             <div class="mb-3">
-                                <label for="email" class="col-form-label">이메일</label>
-                                <input type="text" class="form-control" id="email">
+                                <label for="emailemail" class="col-form-label">이메일</label>
+                                <input type="text" class="form-control" id="emailemail">
                             </div>
                         </th:block>
 
                         <div class="mb-3">
-                            <label for="title" class="col-form-label">제목</label>
-                            <input type="text" class="form-control" id="title">
+                            <label for="emailtitle" class="col-form-label">제목</label>
+                            <input type="text" class="form-control" id="emailtitle">
                         </div>
                         <div class="mb-3">
-                            <label for="message" class="col-form-label">내용</label>
-                            <textarea class="form-control" id="message"></textarea>
+                            <label for="emailmessage" class="col-form-label">내용</label>
+                            <textarea class="form-control" id="emailmessage"></textarea>
                         </div>
                     </form>
                 </div>
