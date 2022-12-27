@@ -79,13 +79,13 @@ $(function () {
   };
 
   let data02 = [];
-  data02[0] = member0;
-  data02[1] = member1;
-  data02[2] = member2;
+  data02[0] = member6;
+  data02[1] = member5;
+  data02[2] = member4;
   data02[3] = member3;
-  data02[4] = member4;
-  data02[5] = member5;
-  data02[6] = member6;
+  data02[4] = member2;
+  data02[5] = member1;
+  data02[6] = member0;
 
   console.log(options02.series[0].data);
   options02.series[0].data = data02;
